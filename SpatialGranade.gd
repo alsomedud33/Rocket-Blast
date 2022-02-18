@@ -24,7 +24,7 @@ func _physics_process(delta):
 		#var explosion_instance = explosion.instance()
 		main.add_child(explosion_instance)
 		explosion_instance.global_transform.origin = bounce.get_position()
-		
+		explosion_instance.transform.looking_at(-velocity.bounce(bounce.normal), Vector3.UP)
 		#print("bye")
 		queue_free()
 	for index in get_slide_count():
