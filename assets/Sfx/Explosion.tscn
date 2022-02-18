@@ -1,0 +1,131 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://assets/Sfx/Explosion.gd" type="Script" id=1]
+
+[sub_resource type="SpatialMaterial" id=4]
+vertex_color_use_as_albedo = true
+params_diffuse_mode = 4
+params_specular_mode = 3
+
+[sub_resource type="Gradient" id=9]
+offsets = PoolRealArray( 0, 0.790598 )
+colors = PoolColorArray( 0.94902, 0.854902, 0.0352941, 1, 0.945313, 0.265869, 0, 1 )
+
+[sub_resource type="GradientTexture" id=10]
+gradient = SubResource( 9 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+emission_shape = 2
+emission_box_extents = Vector3( 1, 1, 1 )
+direction = Vector3( 0, 1, 0 )
+spread = 157.5
+initial_velocity = 174.71
+linear_accel = -14.97
+scale = 0.4
+color_ramp = SubResource( 10 )
+
+[sub_resource type="PrismMesh" id=8]
+
+[sub_resource type="ParticlesMaterial" id=11]
+emission_shape = 2
+emission_box_extents = Vector3( 1, 1, 1 )
+direction = Vector3( 0, 1, 0 )
+spread = 157.5
+initial_velocity = 95.0
+linear_accel = -14.97
+scale = 0.4
+color_ramp = SubResource( 10 )
+
+[sub_resource type="Gradient" id=12]
+offsets = PoolRealArray( 0.222222, 0.790598 )
+colors = PoolColorArray( 0.344727, 0.144085, 0.144085, 1, 1, 0.84359, 0.0351563, 1 )
+
+[sub_resource type="GradientTexture" id=13]
+gradient = SubResource( 12 )
+
+[sub_resource type="ParticlesMaterial" id=14]
+emission_shape = 2
+emission_box_extents = Vector3( 1, 1, 1 )
+direction = Vector3( 0, 1, 0 )
+spread = 157.5
+initial_velocity = 95.0
+linear_accel = -14.97
+scale = 0.4
+color_ramp = SubResource( 13 )
+
+[sub_resource type="Gradient" id=15]
+offsets = PoolRealArray( 0, 0.790598 )
+colors = PoolColorArray( 0.94902, 0.854902, 0.0352941, 1, 0.888184, 0.460429, 0.187351, 1 )
+
+[sub_resource type="GradientTexture" id=16]
+gradient = SubResource( 15 )
+
+[sub_resource type="ParticlesMaterial" id=17]
+emission_shape = 2
+emission_box_extents = Vector3( 1, 1, 1 )
+direction = Vector3( 0, 1, 0 )
+spread = 157.5
+initial_velocity = 95.0
+linear_accel = -14.97
+scale = 0.4
+color_ramp = SubResource( 16 )
+
+[node name="Explosion" type="Spatial"]
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
+script = ExtResource( 1 )
+
+[node name="Particles2" type="Particles" parent="."]
+material_override = SubResource( 4 )
+cast_shadow = 0
+amount = 100
+lifetime = 5.68
+speed_scale = 3.21
+explosiveness = 1.0
+randomness = 0.89
+fixed_fps = 60
+visibility_aabb = AABB( -1.7, -4, -4, 3.4, 8, 8 )
+process_material = SubResource( 5 )
+draw_pass_1 = SubResource( 8 )
+
+[node name="Particles3" type="Particles" parent="."]
+material_override = SubResource( 4 )
+cast_shadow = 0
+amount = 100
+lifetime = 5.68
+speed_scale = 3.21
+explosiveness = 1.0
+randomness = 0.89
+fixed_fps = 60
+visibility_aabb = AABB( -1.7, -4, -4, 3.4, 8, 8 )
+process_material = SubResource( 11 )
+draw_pass_1 = SubResource( 8 )
+
+[node name="Particles4" type="Particles" parent="."]
+material_override = SubResource( 4 )
+cast_shadow = 0
+amount = 100
+lifetime = 5.68
+speed_scale = 3.21
+explosiveness = 0.24
+randomness = 0.26
+fixed_fps = 60
+visibility_aabb = AABB( -1.7, -4, -4, 3.4, 8, 8 )
+process_material = SubResource( 14 )
+draw_pass_1 = SubResource( 8 )
+
+[node name="Particles5" type="Particles" parent="."]
+material_override = SubResource( 4 )
+cast_shadow = 0
+amount = 100
+lifetime = 5.68
+speed_scale = 3.21
+explosiveness = 0.61
+randomness = 0.5
+fixed_fps = 60
+visibility_aabb = AABB( -1.7, -4, -4, 3.4, 8, 8 )
+process_material = SubResource( 17 )
+draw_pass_1 = SubResource( 8 )
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
