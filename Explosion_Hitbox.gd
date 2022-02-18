@@ -3,6 +3,7 @@ extends Area
 export var duration = 0.6
 var velocity = Vector3()
 var bounce_normal = Vector3()
+export var distance_ratio: float = 3
 export (PackedScene) onready var partical
 
 onready var partical_instance = partical.instance()
@@ -46,8 +47,8 @@ func _on_Explosion_Hitbox_body_entered(body):
 	
 	#body.velocity += explode_force*get_global_transform().origin.direction_to(body.get_global_transform().origin)#collision_point * *15 #body.global_transform.origin,collision_point*10)
 	#body.wish_jump = true
-	body.velocity += explode_force*get_global_transform().origin.direction_to(body.get_global_transform().origin) * 4/self.translation.distance_to(body.translation)
-	body.vertical_velocity += explode_force*get_global_transform().origin.direction_to(body.get_global_transform().origin).length()
+	body.velocity += explode_force*get_global_transform().origin.direction_to(body.get_global_transform().origin) * distance_ratio/self.translation.distance_to(body.translation)
+	body.vertical_velocity += explode_force*3*get_global_transform().origin.direction_to(body.get_global_transform().origin).y
 
 	print (explode_force*get_global_transform().origin.direction_to(body.get_global_transform().origin))
 	#print(3/self.translation.distance_to(body.translation))

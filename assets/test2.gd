@@ -55,19 +55,7 @@ func _input(event: InputEvent) -> void:
 		var camera_rot = head.rotation_degrees
 		camera_rot.x = clamp(camera_rot.x, -90, 90)
 		head.rotation_degrees = camera_rot
-	if Input.is_action_pressed("shoot1") and timer.is_stopped():
-	#if event is InputEventMouseButton and event.pressed and event.button_index == 1 and timer.is_stopped():
-		timer.start(cooldown)
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		var rocket_instance = rocket_launcher.instance()
-		main.add_child(rocket_instance)
-		anim.play("Shoot_Rocket")
-		rocket_instance.global_transform.origin = guns.global_transform.origin
-		if raycast.is_colliding():
-			rocket_instance.look_at(raycast.get_collision_point(), Vector3.UP)
-		else:
-			rocket_instance.rotation_degrees = Vector3(-$Pivot.rotation_degrees.x+1, self.rotation_degrees.y+182,0)
-		rocket_instance.velocity = rocket_instance.transform.basis.z * -rocket_instance.speed
+
 
 func _process(delta):
 	gun_camera.global_transform = camera.global_transform
@@ -107,6 +95,20 @@ func _physics_process(delta: float) -> void:
 		if get_slide_collision(i).get_collider().name == "Explosion_Hitbox":
 			velocity += get_slide_collision(i).normal *15
 
+	if Input.is_action_pressed("shoot1") and timer.is_stopped():
+	#if event is InputEventMouseButton and event.pressed and event.button_index == 1 and timer.is_stopped():
+		timer.start(cooldown)
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		var rocket_instance = rocket_launcher.instance()
+		main.add_child(rocket_instance)
+		anim.play("Shoot_Rocket")
+		rocket_instance.global_transform.origin = guns.global_transform.origin
+		if raycast.is_colliding():
+			rocket_instance.look_at(raycast.get_collision_point(), Vector3.UP)
+		else:
+			rocket_instance.rotation_degrees = Vector3(-$Pivot.rotation_degrees.x+1, self.rotation_degrees.y+182,0)
+		rocket_instance.velocity = rocket_instance.transform.basis.z * -rocket_instance.speed
+		
 
 # This is were we calculate the speed to add to current velocity
 func accelerate(wishdir: Vector3, input_velocity: Vector3, accel: float, max_speed: float, delta: float)-> Vector3:

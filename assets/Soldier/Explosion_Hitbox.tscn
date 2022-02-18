@@ -3,7 +3,7 @@
 [ext_resource path="res://Explosion_Hitbox.gd" type="Script" id=1]
 [ext_resource path="res://assets/Sfx/Explosion.tscn" type="PackedScene" id=2]
 
-[sub_resource type="SphereShape" id=4]
+[sub_resource type="SphereShape" id=1]
 
 [sub_resource type="SpatialMaterial" id=2]
 params_diffuse_mode = 4
@@ -19,11 +19,12 @@ collision_layer = 8
 collision_mask = 2
 script = ExtResource( 1 )
 duration = 0.1
+distance_ratio = 4.0
 partical = ExtResource( 2 )
-explode_force = 12
+explode_force = 4
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-shape = SubResource( 4 )
+shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0 )
