@@ -104,11 +104,13 @@ tracks/3/keys = {
 "values": [ Transform( -0.1, 0, 1.50996e-08, 0, 0.1, 0, -1.50996e-08, 0, -0.1, 1, -0.7, 5.96046e-08 ), Transform( -0.1, 6.84943e-09, -1.34567e-08, 0, 0.0891197, 0.0453617, 1.50996e-08, 0.0453617, -0.0891196, 1, -0.7, 5.96046e-08 ), Transform( -0.1, 0, 1.50996e-08, 0, 0.1, 0, -1.50996e-08, 0, -0.1, 1, -0.7, 5.96046e-08 ) ]
 }
 
-[node name="Soldier" type="KinematicBody" groups=["Player"]]
+[node name="Soldier" type="KinematicBody" groups=[
+"Player",
+]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+input_ray_pickable = false
 collision_layer = 2
 collision_mask = 9
-input_ray_pickable = false
 script = ExtResource( 1 )
 jump_impulse = 7.0
 rocket_launcher = ExtResource( 2 )

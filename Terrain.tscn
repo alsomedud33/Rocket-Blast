@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://assets/Soldier/Soldier.tscn" type="PackedScene" id=2]
@@ -30,6 +30,12 @@ background_mode = 2
 background_sky = SubResource( 5 )
 glow_enabled = true
 glow_bloom = 1.0
+
+[sub_resource type="ViewportTexture" id=7]
+viewport_path = NodePath("Viewport")
+
+[sub_resource type="ViewportTexture" id=8]
+viewport_path = NodePath("Viewport")
 
 [node name="Room" type="Node"]
 
@@ -460,8 +466,10 @@ spot_angle = 28.86
 
 [node name="3DText" parent="sign" instance=ExtResource( 11 )]
 transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.462924, 0.41177 )
+texture = SubResource( 7 )
 label_text = "To Rocket Jump,"
 
 [node name="3DText2" parent="sign" instance=ExtResource( 11 )]
 transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.350292, 0.41177 )
+texture = SubResource( 8 )
 label_text = " Jump then shoot the ground"
