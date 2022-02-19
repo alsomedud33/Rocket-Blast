@@ -17,7 +17,7 @@ var collision_point
 func _ready():
 	$Timer.start(duration)
 	main.add_child(partical_instance)
-	print (self.global_transform.origin)
+	#print (self.global_transform.origin)
 	partical_instance.global_translate(self.translation) 
 	partical_instance.scale = Vector3(0.01,0.01,0.01)
 
@@ -51,7 +51,7 @@ func _on_Explosion_Hitbox_body_entered(body):
 	body.velocity += explode_force*get_global_transform().origin.direction_to(body.get_global_transform().origin) * distance_ratio/self.translation.distance_to(body.translation)
 	body.vertical_velocity += explode_force*3*get_global_transform().origin.direction_to(body.get_global_transform().origin).y
 
-	print (explode_force*get_global_transform().origin.direction_to(body.get_global_transform().origin))
+	#print (explode_force*get_global_transform().origin.direction_to(body.get_global_transform().origin))
 	#print(3/self.translation.distance_to(body.translation))
 
 
