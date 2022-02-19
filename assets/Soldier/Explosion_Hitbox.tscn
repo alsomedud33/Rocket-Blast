@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Explosion_Hitbox.gd" type="Script" id=1]
-[ext_resource path="res://assets/Sfx/Explosion.tscn" type="PackedScene" id=2]
 
 [sub_resource type="SphereShape" id=1]
 
@@ -20,7 +19,6 @@ collision_mask = 2
 script = ExtResource( 1 )
 duration = 0.1
 distance_ratio = 4.0
-partical = ExtResource( 2 )
 explode_force = 4
 
 [node name="CollisionShape" type="CollisionShape" parent="."]

@@ -4,7 +4,8 @@ export var duration = 0.6
 var velocity = Vector3()
 var bounce_normal = Vector3()
 export var distance_ratio: float = 3
-export (PackedScene) onready var partical
+onready var partical = preload("res://assets/Sfx/Explosion.tscn")
+#export (PackedScene) onready var partical
 
 onready var partical_instance = partical.instance()
 
