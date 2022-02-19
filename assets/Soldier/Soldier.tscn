@@ -156,17 +156,6 @@ shadow_color = Color( 1, 0.698039, 0.458824, 1 )
 shadow_bias = -8.621
 omni_range = 2.0
 
-[node name="OmniLight2" type="SpotLight" parent="Pivot/Camera"]
-transform = Transform( 1, 0, -1.98427e-09, 0, 1, 0, 1.98427e-09, 0, 1, 2.98023e-08, 0, -0.5 )
-light_energy = 16.0
-light_cull_mask = 4294967293
-shadow_enabled = true
-shadow_color = Color( 1, 0.698039, 0.458824, 1 )
-shadow_bias = -8.621
-__meta__ = {
-"_editor_description_": ""
-}
-
 [node name="Soldier Hat" parent="." instance=ExtResource( 3 )]
 transform = Transform( -0.3, 0, -2.62268e-08, 0, 0.3, 0, 2.62268e-08, 0, -0.3, 0, 0, 0 )
 
