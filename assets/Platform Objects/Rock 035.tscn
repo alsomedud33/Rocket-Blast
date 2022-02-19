@@ -11,7 +11,7 @@
 flags_unshaded = true
 params_grow = true
 params_grow_amount = -0.2
-albedo_color = Color( 0.568627, 0.694118, 0.678431, 1 )
+albedo_color = Color( 0.162992, 0.927246, 0.83171, 1 )
 
 [sub_resource type="SpatialMaterial" id=4]
 next_pass = SubResource( 6 )

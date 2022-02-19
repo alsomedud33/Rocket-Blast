@@ -16,10 +16,7 @@ func _ready():
 #	pass
 
 
-func _on_BoundingBox_body_exited(body):
-	body.global_transform.origin = $Respawn.global_transform.origin
 
-
-
-func _on_BoundingBox_body_entered(body):
-	body.global_transform.origin = $Respawn.global_transform.origin
+func _on_BHOP_Check_body_entered(body):
+	if body.wish_jump != true:
+		body.global_transform.origin = $Respawn.global_transform.origin
