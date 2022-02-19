@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://assets/Skybox/BoundingBox.gd" type="Script" id=1]
 [ext_resource path="res://assets/Soldier/Soldier.tscn" type="PackedScene" id=2]
 [ext_resource path="res://CameraHub.gd" type="Script" id=3]
+[ext_resource path="res://assets/Skybox/BoundingBox.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/TestBox.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/Skybox/environment.png" type="Texture" id=9]
 [ext_resource path="res://assets/Kenny/Models/GLTF format/sign.glb" type="PackedScene" id=10]
@@ -10,26 +11,28 @@
 [ext_resource path="res://assets/Platform Objects/Wall1.tscn" type="PackedScene" id=12]
 [ext_resource path="res://assets/Platform Objects/Rock 035.tscn" type="PackedScene" id=13]
 
-[sub_resource type="BoxShape" id=2]
-
-[sub_resource type="CubeMesh" id=3]
-
-[sub_resource type="SpatialMaterial" id=4]
-albedo_color = Color( 0.368627, 0.482353, 0.00784314, 0.317647 )
-albedo_texture = ExtResource( 1 )
-
-[sub_resource type="PhysicsMaterial" id=1]
-
 [sub_resource type="PanoramaSky" id=5]
 panorama = ExtResource( 9 )
 
 [sub_resource type="Environment" id=6]
 background_mode = 2
 background_sky = SubResource( 5 )
+dof_blur_far_distance = 1.43
+dof_blur_far_transition = 22.71
+dof_blur_far_quality = 2
 glow_enabled = true
 glow_bloom = 1.0
 
+[sub_resource type="ViewportTexture" id=7]
+viewport_path = NodePath("Viewport")
+
+[sub_resource type="ViewportTexture" id=8]
+viewport_path = NodePath("Viewport")
+
 [node name="Room" type="Node"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 6 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.999332, 0.0182782, -0.0316587, 0.0307173, 0.0496711, 0.998293, 0.0198195, -0.998598, 0.0490764, 0, 12.2368, 3.2192 )
@@ -38,34 +41,7 @@ shadow_enabled = true
 shadow_bias = 1.2
 
 [node name="Soldier" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 2.38419e-07, 0, 1, 0, -2.38419e-07, 0, 1, 2, 3.5, -7.5 )
-
-[node name="StaticBody" type="StaticBody" parent="."]
-transform = Transform( 10, 0, 0, 0, 0.3, 0, 0, 0, 10, 0, -0.5, 0 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
-shape = SubResource( 2 )
-
-[node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
-mesh = SubResource( 3 )
-material/0 = SubResource( 4 )
-
-[node name="StaticBody3" type="StaticBody" parent="."]
-transform = Transform( 10, 0, 0, 0, 0.3, 0, 0, 0, 10, 0, -0.5, 20 )
-physics_material_override = SubResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="CollisionShape" type="CollisionShape" parent="StaticBody3"]
-shape = SubResource( 2 )
-
-[node name="MeshInstance" type="MeshInstance" parent="StaticBody3"]
-mesh = SubResource( 3 )
-material/0 = SubResource( 4 )
+transform = Transform( 1, 0, 2.38419e-07, 0, 1, 0, -2.38419e-07, 0, 1, 2, 3.5, -15 )
 
 [node name="CameraHub" type="Spatial" parent="."]
 script = ExtResource( 3 )
@@ -73,107 +49,170 @@ script = ExtResource( 3 )
 [node name="Camera" type="Camera" parent="CameraHub"]
 transform = Transform( 1, 2.22799e-08, -2.47756e-08, -1.49012e-08, 0.9641, 0.265539, 2.98023e-08, -0.265539, 0.9641, 2.21349, 6.95739, 12.4384 )
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 6 )
+[node name="First Area" type="Spatial" parent="."]
 
-[node name="RigidBody" parent="." instance=ExtResource( 8 )]
+[node name="RigidBody" parent="First Area" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.83352, 7.27716, 20.9418 )
 
-[node name="RigidBody4" parent="." instance=ExtResource( 8 )]
+[node name="RigidBody4" parent="First Area" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.83352, 11.2772, 21.193 )
 
-[node name="RigidBody5" parent="." instance=ExtResource( 8 )]
+[node name="RigidBody5" parent="First Area" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.02815, 4.38474, 22.2343 )
 
-[node name="sign" parent="." instance=ExtResource( 10 )]
+[node name="sign" parent="First Area" instance=ExtResource( 10 )]
 transform = Transform( -2.16375, 0, -0.707107, 0, 3.7632, 0, 2.16375, 0, -0.707107, -8, 1, -16 )
 
-[node name="SpotLight" type="SpotLight" parent="sign"]
+[node name="SpotLight" type="SpotLight" parent="First Area/sign"]
 transform = Transform( -0.321131, 0.0452905, -0.0402479, 0, 0.176517, 0.198633, 0.185405, 0.734534, -0.652751, -1.08354, 0.870479, -1.39229 )
 light_color = Color( 0.745098, 0.764706, 0.643137, 1 )
 light_indirect_energy = 0.0
 spot_range = 5.939
 spot_angle = 28.86
 
-[node name="3DText" parent="sign" instance=ExtResource( 11 )]
+[node name="3DText" parent="First Area/sign" instance=ExtResource( 11 )]
 transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.462924, 0.41177 )
 label_text = "To Rocket Jump,"
 
-[node name="3DText2" parent="sign" instance=ExtResource( 11 )]
+[node name="3DText2" parent="First Area/sign" instance=ExtResource( 11 )]
 transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.350292, 0.41177 )
 label_text = " Jump then shoot the ground"
 
-[node name="Spatial3" parent="." instance=ExtResource( 12 )]
+[node name="Spatial10" parent="First Area" instance=ExtResource( 12 )]
+transform = Transform( -24.4, 2.14483e-06, -3.82137e-15, 0, -1.07242e-06, -1, -2.13312e-06, -24.534, 4.37114e-08, -1.8385e-14, -23.3111, -1 )
+collision_layer = 0
+
+[node name="Spatial3" parent="First Area" instance=ExtResource( 12 )]
 transform = Transform( -4.37114e-08, 4.37114e-08, -1, 24.4, 4.66207e-14, -1.06656e-06, 0, -20.445, -8.9368e-07, 10, 2, -1 )
 
-[node name="Spatial8" parent="." instance=ExtResource( 12 )]
+[node name="Spatial8" parent="First Area" instance=ExtResource( 12 )]
 transform = Transform( 1.91069e-15, -20.445, -8.49968e-07, 24.4, 4.66207e-14, -1.06656e-06, 4.37114e-08, 8.49968e-07, 1, 0.5, 2, -19.5 )
 
-[node name="Spatial9" parent="." instance=ExtResource( 12 )]
+[node name="Spatial4" parent="First Area" instance=ExtResource( 12 )]
+transform = Transform( 4.37114e-08, 1.74365e-06, 1, 24.4, 4.66207e-14, -1.06656e-06, -3.82137e-15, 20.445, 8.06257e-07, -7, 2.5, -0.5 )
+
+[node name="Rock 037" parent="First Area" instance=ExtResource( 13 )]
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, 16.5 )
+
+[node name="Rock 038" parent="First Area" instance=ExtResource( 13 )]
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, 16.5 )
+
+[node name="Rock 041" parent="First Area" instance=ExtResource( 13 )]
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, 16.5 )
+
+[node name="Rock 036" parent="First Area" instance=ExtResource( 13 )]
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, -18.5 )
+
+[node name="Rock 039" parent="First Area" instance=ExtResource( 13 )]
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, -11.5 )
+
+[node name="Rock 040" parent="First Area" instance=ExtResource( 13 )]
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, -11.5 )
+
+[node name="Rock 042" parent="First Area" instance=ExtResource( 13 )]
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, -18.5 )
+
+[node name="Rock 043" parent="First Area" instance=ExtResource( 13 )]
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, -18.5 )
+
+[node name="Rock 044" parent="First Area" instance=ExtResource( 13 )]
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, -11.5 )
+
+[node name="Spatial9" parent="First Area" instance=ExtResource( 12 )]
 transform = Transform( 1.91069e-15, -20.445, -8.49968e-07, -1.11027e-06, -8.49968e-07, -1, 24.4, 9.46746e-15, -1.11027e-06, 0.5, 26.5, 4.5 )
 visible = false
 
-[node name="Spatial4" parent="." instance=ExtResource( 12 )]
+[node name="BoundingBox" parent="First Area" instance=ExtResource( 4 )]
+transform = Transform( 3.4, 0, 0, 0, 1, 0, 0, 0, 0.8, 0, 1.5, 0 )
+script = ExtResource( 1 )
+
+[node name="Respawn" type="Position3D" parent="First Area/BoundingBox"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -15 )
+
+[node name="Second Area" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 129, 0, 0 )
+
+[node name="RigidBody" parent="Second Area" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.83352, 7.27716, 20.9418 )
+
+[node name="RigidBody4" parent="Second Area" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.83352, 11.2772, 21.193 )
+
+[node name="RigidBody5" parent="Second Area" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.02815, 4.38474, 22.2343 )
+
+[node name="sign" parent="Second Area" instance=ExtResource( 10 )]
+transform = Transform( -2.16375, 0, -0.707107, 0, 3.7632, 0, 2.16375, 0, -0.707107, -8, 1, -16 )
+
+[node name="SpotLight" type="SpotLight" parent="Second Area/sign"]
+transform = Transform( -0.321131, 0.0452905, -0.0402479, 0, 0.176517, 0.198633, 0.185405, 0.734534, -0.652751, -1.08354, 0.870479, -1.39229 )
+light_color = Color( 0.745098, 0.764706, 0.643137, 1 )
+light_indirect_energy = 0.0
+spot_range = 5.939
+spot_angle = 28.86
+
+[node name="3DText" parent="Second Area/sign" instance=ExtResource( 11 )]
+transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.462924, 0.41177 )
+texture = SubResource( 7 )
+label_text = "To Rocket Jump,"
+
+[node name="3DText2" parent="Second Area/sign" instance=ExtResource( 11 )]
+transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.350292, 0.41177 )
+texture = SubResource( 8 )
+label_text = " Jump then shoot the ground"
+
+[node name="Spatial10" parent="Second Area" instance=ExtResource( 12 )]
+transform = Transform( -24.4, 2.14483e-06, -3.82137e-15, 0, -1.07242e-06, -1, -2.13312e-06, -24.534, 4.37114e-08, -1.8385e-14, -23.3111, -1 )
+collision_layer = 0
+
+[node name="Spatial3" parent="Second Area" instance=ExtResource( 12 )]
+transform = Transform( -4.37114e-08, 4.37114e-08, -1, 24.4, 4.66207e-14, -1.06656e-06, 0, -20.445, -8.9368e-07, 10, 2, -1 )
+
+[node name="Spatial8" parent="Second Area" instance=ExtResource( 12 )]
+transform = Transform( 1.91069e-15, -20.445, -8.49968e-07, 24.4, 4.66207e-14, -1.06656e-06, 4.37114e-08, 8.49968e-07, 1, 0.5, 2, -19.5 )
+
+[node name="Spatial4" parent="Second Area" instance=ExtResource( 12 )]
 transform = Transform( 4.37114e-08, 1.74365e-06, 1, 24.4, 4.66207e-14, -1.06656e-06, -3.82137e-15, 20.445, 8.06257e-07, -7, 2.5, -0.5 )
 
-[node name="Spatial5" type="Spatial" parent="."]
-
-[node name="Rock 036" parent="Spatial5" instance=ExtResource( 13 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, 9.5 )
-
-[node name="Rock 037" parent="Spatial5" instance=ExtResource( 13 )]
+[node name="Rock 037" parent="Second Area" instance=ExtResource( 13 )]
 transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, 16.5 )
 
-[node name="Rock 038" parent="Spatial5" instance=ExtResource( 13 )]
+[node name="Rock 038" parent="Second Area" instance=ExtResource( 13 )]
 transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, 16.5 )
 
-[node name="Rock 039" parent="Spatial5" instance=ExtResource( 13 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, 9.5 )
-
-[node name="Rock 040" parent="Spatial5" instance=ExtResource( 13 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, 9.5 )
-
-[node name="Rock 041" parent="Spatial5" instance=ExtResource( 13 )]
+[node name="Rock 041" parent="Second Area" instance=ExtResource( 13 )]
 transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, 16.5 )
 
-[node name="Spatial6" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14 )
-
-[node name="Rock 036" parent="Spatial6" instance=ExtResource( 13 )]
+[node name="Rock 036" parent="Second Area" instance=ExtResource( 13 )]
 transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, 9.5 )
 
-[node name="Rock 037" parent="Spatial6" instance=ExtResource( 13 )]
+[node name="Rock 039" parent="Second Area" instance=ExtResource( 13 )]
 transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, 16.5 )
 
-[node name="Rock 038" parent="Spatial6" instance=ExtResource( 13 )]
+[node name="Rock 040" parent="Second Area" instance=ExtResource( 13 )]
 transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, 16.5 )
 
-[node name="Rock 039" parent="Spatial6" instance=ExtResource( 13 )]
+[node name="Rock 042" parent="Second Area" instance=ExtResource( 13 )]
 transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, 9.5 )
 
-[node name="Rock 040" parent="Spatial6" instance=ExtResource( 13 )]
+[node name="Rock 043" parent="Second Area" instance=ExtResource( 13 )]
 transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, 9.5 )
 
-[node name="Rock 041" parent="Spatial6" instance=ExtResource( 13 )]
+[node name="Rock 044" parent="Second Area" instance=ExtResource( 13 )]
 transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, 16.5 )
 
-[node name="Spatial7" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -28 )
+[node name="Spatial11" parent="Second Area" instance=ExtResource( 12 )]
+transform = Transform( 1.91069e-15, -20.445, -8.49968e-07, -1.11027e-06, -8.49968e-07, -1, 24.4, 9.46746e-15, -1.11027e-06, 0.5, 26.5, 4.5 )
+visible = false
 
-[node name="Rock 036" parent="Spatial7" instance=ExtResource( 13 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, 9.5 )
+[node name="BoundingBox2" parent="Second Area" instance=ExtResource( 4 )]
+transform = Transform( 3.4, 0, 0, 0, 1, 0, 0, 0, 0.8, -129, 1.5, 0 )
+script = ExtResource( 1 )
 
-[node name="Rock 037" parent="Spatial7" instance=ExtResource( 13 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, 16.5 )
+[node name="Respawn" type="Position3D" parent="Second Area/BoundingBox2"]
+transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, 37.9412, 0.5, -18.75 )
 
-[node name="Rock 038" parent="Spatial7" instance=ExtResource( 13 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, 16.5 )
-
-[node name="Rock 039" parent="Spatial7" instance=ExtResource( 13 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, 9.5 )
-
-[node name="Rock 040" parent="Spatial7" instance=ExtResource( 13 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, 9.5 )
-
-[node name="Rock 041" parent="Spatial7" instance=ExtResource( 13 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, 16.5 )
+[connection signal="body_entered" from="First Area/BoundingBox" to="First Area/BoundingBox" method="_on_BoundingBox_body_entered"]
+[connection signal="body_exited" from="First Area/BoundingBox" to="First Area/BoundingBox" method="_on_BoundingBox_body_exited"]
+[connection signal="body_entered" from="Second Area/BoundingBox2" to="Second Area/BoundingBox2" method="_on_BoundingBox_body_entered"]
+[connection signal="body_exited" from="Second Area/BoundingBox2" to="Second Area/BoundingBox2" method="_on_BoundingBox_body_exited"]
