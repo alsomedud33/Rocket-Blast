@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=2]
+[gd_scene load_steps=61 format=2]
 
 [ext_resource path="res://assets/Skybox/BoundingBox.gd" type="Script" id=1]
 [ext_resource path="res://assets/Soldier/Soldier.tscn" type="PackedScene" id=2]
@@ -81,53 +81,16 @@ func _ready():
 #	pass
 "
 
-[sub_resource type="SpatialMaterial" id=44]
-flags_unshaded = true
-params_grow = true
-params_grow_amount = -0.2
-albedo_color = Color( 0.92549, 0.478431, 0.164706, 1 )
-
-[sub_resource type="SpatialMaterial" id=45]
-next_pass = SubResource( 44 )
-params_cull_mode = 2
-albedo_texture = ExtResource( 17 )
-roughness_texture = ExtResource( 18 )
-normal_enabled = true
-normal_scale = 1.0
-normal_texture = ExtResource( 14 )
-ao_enabled = true
-ao_light_affect = 1.0
-ao_texture = ExtResource( 16 )
-ao_on_uv2 = true
-ao_texture_channel = 1
-
-[sub_resource type="SpatialMaterial" id=46]
-flags_unshaded = true
-params_grow = true
-params_grow_amount = -0.2
-albedo_color = Color( 0.92549, 0.478431, 0.164706, 1 )
-
-[sub_resource type="SpatialMaterial" id=47]
-next_pass = SubResource( 46 )
-params_cull_mode = 2
-albedo_texture = ExtResource( 17 )
-roughness_texture = ExtResource( 18 )
-normal_enabled = true
-normal_scale = 1.0
-normal_texture = ExtResource( 14 )
-ao_enabled = true
-ao_light_affect = 1.0
-ao_texture = ExtResource( 16 )
-ao_on_uv2 = true
-ao_texture_channel = 1
-
 [sub_resource type="SpatialMaterial" id=48]
 flags_unshaded = true
 params_grow = true
 params_grow_amount = -0.2
 albedo_color = Color( 0.92549, 0.478431, 0.164706, 1 )
+distance_fade_mode = 3
+distance_fade_min_distance = 13.0
+distance_fade_max_distance = 15.0
 
-[sub_resource type="SpatialMaterial" id=49]
+[sub_resource type="SpatialMaterial" id=45]
 next_pass = SubResource( 48 )
 params_cull_mode = 2
 albedo_texture = ExtResource( 17 )
@@ -140,6 +103,9 @@ ao_light_affect = 1.0
 ao_texture = ExtResource( 16 )
 ao_on_uv2 = true
 ao_texture_channel = 1
+distance_fade_mode = 3
+distance_fade_min_distance = 13.0
+distance_fade_max_distance = 15.0
 
 [sub_resource type="ViewportTexture" id=16]
 viewport_path = NodePath("Third Area/sign2/3DText/Viewport")
@@ -295,6 +261,40 @@ viewport_path = NodePath("Fourth Area/sign2/3DText/Viewport")
 [sub_resource type="ViewportTexture" id=32]
 viewport_path = NodePath("Fourth Area/sign2/3DText2/Viewport")
 
+[sub_resource type="SpatialMaterial" id=47]
+next_pass = SubResource( 45 )
+params_cull_mode = 2
+albedo_texture = ExtResource( 17 )
+roughness_texture = ExtResource( 18 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 14 )
+ao_enabled = true
+ao_light_affect = 1.0
+ao_texture = ExtResource( 16 )
+ao_on_uv2 = true
+ao_texture_channel = 1
+distance_fade_mode = 3
+distance_fade_min_distance = 8.0
+distance_fade_max_distance = 10.0
+
+[sub_resource type="SpatialMaterial" id=49]
+next_pass = SubResource( 45 )
+params_cull_mode = 2
+albedo_texture = ExtResource( 17 )
+roughness_texture = ExtResource( 18 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 14 )
+ao_enabled = true
+ao_light_affect = 1.0
+ao_texture = ExtResource( 16 )
+ao_on_uv2 = true
+ao_texture_channel = 1
+distance_fade_mode = 3
+distance_fade_min_distance = 8.0
+distance_fade_max_distance = 10.0
+
 [sub_resource type="GDScript" id=59]
 script/source = "extends Area
 
@@ -374,7 +374,7 @@ shadow_enabled = true
 shadow_bias = 1.2
 
 [node name="Soldier" parent="." instance=ExtResource( 2 )]
-transform = Transform( -1, 0, -3.89414e-07, 0, 1, 0, 3.89414e-07, 0, -1, 4, 3.5, -14.0001 )
+transform = Transform( 1, 0, 4.76837e-07, 0, 1, 0, -4.76837e-07, 0, 1, 4, 3.5, -14.0001 )
 
 [node name="CameraHub" type="Spatial" parent="."]
 script = ExtResource( 3 )
@@ -741,13 +741,13 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 2.75691e-12, 1, 0, 7.71429, 2.79465 
 transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, 9.5 )
 
 [node name="MeshInstance" parent="Second Area/Rock 042" index="0"]
-material/0 = SubResource( 47 )
+material/0 = SubResource( 45 )
 
 [node name="Rock 043" parent="Second Area" instance=ExtResource( 13 )]
 transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, 9.5 )
 
 [node name="MeshInstance" parent="Second Area/Rock 043" index="0"]
-material/0 = SubResource( 49 )
+material/0 = SubResource( 45 )
 
 [node name="Spatial11" parent="Second Area" instance=ExtResource( 12 )]
 transform = Transform( 1.91069e-15, -20.445, -8.49968e-07, -1.11027e-06, -8.49968e-07, -1, 24.4, 9.46746e-15, -1.11027e-06, 0.5, 26.5, 4.5 )
