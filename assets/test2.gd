@@ -72,7 +72,7 @@ func _physics_process(delta: float) -> void:
 		if wish_jump: # If we're on the ground but wish_jump is still true, this means we've just landed
 			snap = Vector3.ZERO #Set snapping to zero so we can get off the ground
 			vertical_velocity = jump_impulse # Jump
-			
+			$Jump.play()
 			move_air(velocity, delta) # Mimic Quake's way of treating first frame after landing as still in the air
 			
 			wish_jump = false # We have jumped, the player needs to press jump key again
@@ -102,6 +102,7 @@ func _physics_process(delta: float) -> void:
 		var rocket_instance = rocket_launcher.instance()
 		main.add_child(rocket_instance)
 		anim.play("Shoot_Rocket")
+		$Rocket_Launch.play()
 		rocket_instance.global_transform.origin = guns.global_transform.origin
 		if raycast.is_colliding():
 			rocket_instance.look_at(raycast.get_collision_point(), Vector3.UP)
@@ -171,7 +172,7 @@ func queue_jump()-> void:
 		wish_jump = true if Input.is_action_pressed("jump") else false
 		return
 	
-	if Input.is_action_pressed("jump") and !wish_jump:
+	if Input.is_action_just_pressed("jump") and !wish_jump:
 		wish_jump = true
 	if Input.is_action_just_released("jump"):
 		wish_jump = false

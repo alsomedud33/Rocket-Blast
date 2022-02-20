@@ -374,7 +374,7 @@ shadow_enabled = true
 shadow_bias = 1.2
 
 [node name="Soldier" parent="." instance=ExtResource( 2 )]
-transform = Transform( -1, 0, -3.89414e-07, 0, 1, 0, 3.89414e-07, 0, -1, 582, 61, 5.99986 )
+transform = Transform( -1, 0, -3.89414e-07, 0, 1, 0, 3.89414e-07, 0, -1, 4, 3.5, -14.0001 )
 
 [node name="CameraHub" type="Spatial" parent="."]
 script = ExtResource( 3 )
@@ -571,31 +571,31 @@ transform = Transform( 4.37114e-08, 1.74365e-06, 1, 24.4, 4.66207e-14, -1.06656e
 collision_layer = 8
 
 [node name="Rock 037" parent="First Area" instance=ExtResource( 13 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, 21.0101 )
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, 19.0101 )
 
 [node name="Rock 038" parent="First Area" instance=ExtResource( 13 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, 21.0101 )
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, 19.0101 )
 
 [node name="Rock 041" parent="First Area" instance=ExtResource( 13 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, 21.0101 )
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, 19.0101 )
 
 [node name="Rock 048" parent="First Area" instance=ExtResource( 13 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, 28.0101 )
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, 26.0101 )
 
 [node name="Rock 049" parent="First Area" instance=ExtResource( 13 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, 28.0101 )
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, 26.0101 )
 
 [node name="Rock 050" parent="First Area" instance=ExtResource( 13 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, 28.0101 )
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, 26.0101 )
 
 [node name="Rock 045" parent="First Area" instance=ExtResource( 13 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, 14.0154 )
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, 33.0154 )
 
 [node name="Rock 046" parent="First Area" instance=ExtResource( 13 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, 14.0154 )
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, 33.0154 )
 
 [node name="Rock 047" parent="First Area" instance=ExtResource( 13 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, 14.0154 )
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, 33.0154 )
 
 [node name="Rock 036" parent="First Area" instance=ExtResource( 13 )]
 transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, -18.5 )
@@ -1458,10 +1458,10 @@ transform = Transform( 3.4, 0, 0, 0, 1, 0, 0, 0, 0.00612051, -129, 24, 33.9444 )
 script = ExtResource( 1 )
 
 [node name="Respawn" type="Position3D" parent="Fifth Area/Next Level"]
-transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, 38.6765, -22.4803, -7893.85 )
+transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, 38.6765, -21.9803, -7893.85 )
 
 [node name="BoundingBox" parent="Fifth Area" instance=ExtResource( 4 )]
-transform = Transform( 3.06, 0, 0, 0, 1.2096, 0, 0, 0, 2.65447, 0, 4.5, -47.5 )
+transform = Transform( 3.06, 0, 0, 0, 1.2096, 0, 0, 0, 2.65447, 0, 1.5, -47.5 )
 script = ExtResource( 1 )
 
 [node name="Respawn" type="Position3D" parent="Fifth Area/BoundingBox"]
