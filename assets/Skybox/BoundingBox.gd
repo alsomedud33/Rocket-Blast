@@ -23,3 +23,12 @@ func _on_BoundingBox_body_exited(body):
 
 func _on_BoundingBox_body_entered(body):
 	body.global_transform.origin = $Respawn.global_transform.origin
+
+
+
+
+
+func Rocket_Entered(body):
+	self.rotation_degrees.x = -90
+	body.global_transform.origin = $Respawn.global_transform.origin
+	body.rotation_degrees.x = -90

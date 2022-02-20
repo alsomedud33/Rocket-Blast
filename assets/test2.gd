@@ -171,7 +171,7 @@ func queue_jump()-> void:
 		wish_jump = true if Input.is_action_pressed("jump") else false
 		return
 	
-	if Input.is_action_just_pressed("jump") and !wish_jump:
+	if Input.is_action_pressed("jump") and !wish_jump:
 		wish_jump = true
 	if Input.is_action_just_released("jump"):
 		wish_jump = false

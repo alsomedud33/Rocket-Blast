@@ -36,9 +36,11 @@ func _physics_process(delta):
 			queue_free()
 		#collision.normal
 	#velocity = move_and_collide(velocity * delta)
+
 func _on_Area_area_entered(area):
-	print("bye")
-	queue_free()
+	if area.name !=("Portal"):
+		print("bye")
+		queue_free()
 
 
 func _on_Timer_timeout():
