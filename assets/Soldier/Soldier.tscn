@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://assets/test2.gd" type="Script" id=1]
 [ext_resource path="res://assets/Soldier/Rocket.tscn" type="PackedScene" id=2]
@@ -11,6 +11,8 @@
 [ext_resource path="res://assets/Sounds/Jump_2.wav" type="AudioStream" id=9]
 [ext_resource path="res://assets/Sounds/Step_2.wav" type="AudioStream" id=10]
 [ext_resource path="res://assets/Sounds/Rocket_Trail.wav" type="AudioStream" id=11]
+[ext_resource path="res://assets/Sounds/Step_1.wav" type="AudioStream" id=12]
+[ext_resource path="res://assets/Sounds/Step_3.wav" type="AudioStream" id=13]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -211,11 +213,28 @@ blend_times = [ "Shoot_Rocket", "Sway", 0.5, "Sway", "Sway", 0.5 ]
 process_mode = 0
 one_shot = true
 
+[node name="Footstep" type="Timer" parent="."]
+process_mode = 0
+wait_time = 0.4
+autostart = true
+
 [node name="Rocket_Launch" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
 
 [node name="Jump" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
+
+[node name="Footstep1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+volume_db = -3.0
+
+[node name="Footstep2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+volume_db = -3.0
+
+[node name="Footstep3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+volume_db = -3.0
 
 [node name="land" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
@@ -227,3 +246,5 @@ pitch_scale = 0.8
 __meta__ = {
 "_editor_description_": ""
 }
+
+[connection signal="timeout" from="Footstep" to="." method="_on_Footstep_timeout"]

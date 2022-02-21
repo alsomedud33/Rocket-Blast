@@ -4,6 +4,7 @@
 
 extends KinematicBody
 
+var rng = RandomNumberGenerator.new()
 var mouse_sensitivity = Globals.mouse_sense * 0.001
 export var max_speed: float = 6 # Meters per second
 export var max_air_speed: float = 0.6
@@ -178,3 +179,16 @@ func queue_jump()-> void:
 
 func shoot_event():
 	pass 
+
+
+func _on_Footstep_timeout():
+	var my_random_number = rng.randi_range(1,3)
+	print(my_random_number)
+	if self.is_on_floor() and velocity.length() > 3:
+		match my_random_number:
+			1:
+				$Footstep1.play()
+			2:
+				$Footstep2.play()
+			3:
+				$Footstep3.play()

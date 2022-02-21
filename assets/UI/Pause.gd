@@ -44,3 +44,6 @@ func _on_HScrollBar_value_changed(value):
 func _on_Mouse_Sense_value_changed(value):
 	Globals.mouse_sense = value
 	$"Panel/Sense Value".text = "%3.2f" % value
+
+
+
