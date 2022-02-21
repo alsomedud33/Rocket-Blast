@@ -1,0 +1,139 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/UI/Pause.gd" type="Script" id=1]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://assets/Fonts/TF2.ttf"
+
+[sub_resource type="DynamicFont" id=4]
+size = 70
+outline_size = 5
+outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+use_filter = true
+font_data = SubResource( 1 )
+
+[sub_resource type="DynamicFontData" id=5]
+font_path = "res://assets/Fonts/TF2.ttf"
+
+[sub_resource type="DynamicFont" id=6]
+size = 30
+outline_size = 5
+outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+use_filter = true
+font_data = SubResource( 5 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 70
+outline_size = 5
+outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+use_filter = true
+font_data = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 50
+outline_size = 5
+outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+use_filter = true
+font_data = SubResource( 1 )
+
+[node name="HUD" type="CanvasLayer"]
+layer = 3
+
+[node name="Pause" type="Control" parent="."]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="Pause"]
+self_modulate = Color( 1, 1, 1, 0.501961 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mouse Sense" type="HScrollBar" parent="Pause/Panel"]
+margin_left = 818.0
+margin_top = 457.0
+margin_right = 1218.0
+margin_bottom = 507.0
+rect_min_size = Vector2( 100, 0 )
+max_value = 5.0
+step = 0.01
+value = 2.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sense Value" type="Label" parent="Pause/Panel"]
+margin_left = 947.0
+margin_top = 394.0
+margin_right = 1071.0
+margin_bottom = 465.0
+custom_fonts/font = SubResource( 4 )
+text = "2.5"
+align = 1
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label4" type="Label" parent="Pause/Panel"]
+margin_left = 458.0
+margin_top = 471.0
+margin_right = 783.0
+margin_bottom = 502.0
+custom_fonts/font = SubResource( 6 )
+text = "Mouse sensitivity: "
+align = 1
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Volume Scroll" type="HScrollBar" parent="Pause/Panel"]
+margin_left = 818.0
+margin_top = 617.0
+margin_right = 1218.0
+margin_bottom = 667.0
+rect_min_size = Vector2( 100, 0 )
+max_value = 1.0
+step = 0.01
+value = 0.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Volume Percent" type="Label" parent="Pause/Panel"]
+margin_left = 947.0
+margin_top = 554.0
+margin_right = 1071.0
+margin_bottom = 625.0
+custom_fonts/font = SubResource( 2 )
+text = "50%"
+align = 1
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Pause/Panel"]
+margin_left = 516.0
+margin_top = 600.0
+margin_right = 823.0
+margin_bottom = 671.0
+custom_fonts/font = SubResource( 3 )
+text = "volume:"
+align = 1
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="value_changed" from="Pause/Panel/Mouse Sense" to="Pause" method="_on_Mouse_Sense_value_changed"]
+[connection signal="value_changed" from="Pause/Panel/Volume Scroll" to="Pause" method="_on_HScrollBar_value_changed"]

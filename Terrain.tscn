@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=2]
+[gd_scene load_steps=74 format=2]
 
 [ext_resource path="res://assets/Skybox/BoundingBox.gd" type="Script" id=1]
 [ext_resource path="res://assets/Soldier/Soldier.tscn" type="PackedScene" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://assets/Soldier/Soldier Hat.png" type="Texture" id=20]
 [ext_resource path="res://assets/Soldier/Rocket launcher.tres" type="ArrayMesh" id=21]
 [ext_resource path="res://assets/Soldier/Rocket Launcher.png" type="Texture" id=22]
+[ext_resource path="res://assets/UI/HUD.tscn" type="PackedScene" id=23]
 
 [sub_resource type="PanoramaSky" id=1]
 panorama = ExtResource( 9 )
@@ -458,6 +459,7 @@ func Rocket_Entered(body):
 	body.rotation_degrees.y = 90
 	body.rotation_degrees.x = -90
 	body.velocity = body.transform.basis.z * -body.speed
+	$Portal.play()
 "
 
 [sub_resource type="GDScript" id=41]
@@ -716,13 +718,13 @@ transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 
 transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, 23.0101 )
 
 [node name="Rock 057" parent="First Area" instance=ExtResource( 13 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, 30.0154 )
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, 30.0101 )
 
 [node name="Rock 058" parent="First Area" instance=ExtResource( 13 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, 30.0154 )
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, 30.0101 )
 
 [node name="Rock 059" parent="First Area" instance=ExtResource( 13 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, 30.0154 )
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, 30.0101 )
 
 [node name="Rock 036" parent="First Area" instance=ExtResource( 13 )]
 transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, -18.5 )
@@ -2508,6 +2510,8 @@ transform = Transform( 0.294118, 0, -2.22045e-16, 0, 0.999999, 0, 0, 0, 1.25, -4
 __meta__ = {
 "_editor_description_": ""
 }
+
+[node name="HUD" parent="." instance=ExtResource( 23 )]
 
 [connection signal="body_exited" from="First Area/BoundingBox" to="First Area/BoundingBox" method="_on_BoundingBox_body_exited"]
 [connection signal="body_exited" from="First Area/BoundingBox2" to="First Area/BoundingBox2" method="_on_BoundingBox_body_exited"]

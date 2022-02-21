@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
-[sub_resource type="BoxShape" id=9]
+[ext_resource path="res://assets/Sounds/Teleport Sound.wav" type="AudioStream" id=1]
+
+[sub_resource type="BoxShape" id=1]
 
 [node name="BoundingBox" type="Area"]
 collision_layer = 0
@@ -8,4 +10,9 @@ collision_mask = 2
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 15.3, 0, 0, 0, 10.626, 0, 0, 0, 19.24, 0, -11.5, 0 )
-shape = SubResource( 9 )
+shape = SubResource( 1 )
+
+[node name="Portal" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 1 )
+unit_size = 10.0
+max_db = 6.0

@@ -15,6 +15,7 @@ func _ready():
 	set_as_toplevel(true)
 	$Timer.start(duration)
 
+
 func _physics_process(delta):
 	velocity = move_and_slide(velocity, Vector3.UP,false, 4, PI/4, false)
 	bounce = move_and_collide(velocity * delta)

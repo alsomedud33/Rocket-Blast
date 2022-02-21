@@ -30,6 +30,10 @@ config/name="Rocket Blast"
 run/main_scene="res://Terrain.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Globals="*res://Globals.gd"
+
 [display]
 
 window/size/width=1280

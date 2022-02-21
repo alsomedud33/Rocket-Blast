@@ -4,7 +4,7 @@
 
 extends KinematicBody
 
-export var mouse_sensitivity: float = 0.005
+var mouse_sensitivity = Globals.mouse_sense * 0.001
 export var max_speed: float = 6 # Meters per second
 export var max_air_speed: float = 0.6
 export var accel: float = 60 # or max_speed * 10 : Reach max speed in 1 / 10th of a second
@@ -42,13 +42,10 @@ var auto_jump: bool = false # Auto bunnyhopping
 var debug_horizontal_velocity: Vector3 = Vector3.ZERO
 var accelerate_return: Vector3 = Vector3.ZERO
 
-func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
 func _input(event: InputEvent) -> void:
 	shoot_event()
 	# Camera rotation
-	if event.is_action_pressed("ui_cancel"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		head.rotate_x(event.relative.y * mouse_sensitivity * 1)
 		self.rotate_y(event.relative.x * mouse_sensitivity * -1)
@@ -58,6 +55,7 @@ func _input(event: InputEvent) -> void:
 
 
 func _process(delta):
+	mouse_sensitivity = Globals.mouse_sense * 0.001
 	gun_camera.global_transform = camera.global_transform
 
 func _physics_process(delta: float) -> void:
@@ -103,6 +101,7 @@ func _physics_process(delta: float) -> void:
 		main.add_child(rocket_instance)
 		anim.play("Shoot_Rocket")
 		$Rocket_Launch.play()
+		$Rocket_Trail.play()
 		rocket_instance.global_transform.origin = guns.global_transform.origin
 		if raycast.is_colliding():
 			rocket_instance.look_at(raycast.get_collision_point(), Vector3.UP)
