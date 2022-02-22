@@ -14,7 +14,7 @@ export var accel: float = 60 # or max_speed * 10 : Reach max speed in 1 / 10th o
 # export var friction: float = 2 # Higher friction = less slippery. In quake-based games, usually between 1 and 5
 
 export var gravity: float = 15
-export var jump_impulse: float = 10
+export var jump_impulse: float = 7
 var terminal_velocity: float = gravity * -5 # When this is reached, we stop increasing falling speed
 
 var snap: Vector3 # Needed for move_and_slide_wit_snap(), which enables to go down slopes without falling

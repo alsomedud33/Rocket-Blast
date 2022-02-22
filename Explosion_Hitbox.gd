@@ -4,6 +4,10 @@ export var duration = 0.6
 var velocity = Vector3()
 var bounce_normal = Vector3()
 export var distance_ratio: float = 3
+export var y_explode_ratio: float =3
+onready var radius = $"CollisionShape".get_shape().radius
+var radius_val= 1
+
 onready var partical = preload("res://assets/Sfx/Explosion.tscn")
 #export (PackedScene) onready var partical
 
@@ -20,6 +24,7 @@ func _ready():
 	#print (self.global_transform.origin)
 	partical_instance.global_translate(self.translation) 
 	partical_instance.scale = Vector3(0.01,0.01,0.01)
+	radius = radius_val
 
 func _process(delta):
 	partical_instance.global_transform.origin = self.global_transform.origin
@@ -49,7 +54,7 @@ func _on_Explosion_Hitbox_body_entered(body):
 	#body.velocity += explode_force*get_global_transform().origin.direction_to(body.get_global_transform().origin)#collision_point * *15 #body.global_transform.origin,collision_point*10)
 	#body.wish_jump = true
 	body.velocity += explode_force*get_global_transform().origin.direction_to(body.get_global_transform().origin) * distance_ratio/self.translation.distance_to(body.translation)
-	body.vertical_velocity += explode_force*3*get_global_transform().origin.direction_to(body.get_global_transform().origin).y
+	body.vertical_velocity += explode_force*y_explode_ratio*get_global_transform().origin.direction_to(body.get_global_transform().origin).y
 
 	#print (explode_force*get_global_transform().origin.direction_to(body.get_global_transform().origin))
 	#print(3/self.translation.distance_to(body.translation))
