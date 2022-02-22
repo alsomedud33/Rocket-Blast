@@ -45,7 +45,7 @@ window/stretch/shrink=3.5
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/Trail/plugin.cfg" )
+enabled=PoolStringArray(  )
 
 [global]
 

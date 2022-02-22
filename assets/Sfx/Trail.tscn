@@ -1,12 +1,7 @@
 [gd_scene load_steps=17 format=2]
 
-<<<<<<< Updated upstream
 [sub_resource type="Gradient" id=12]
 offsets = PoolRealArray( 0.642857, 1 )
-=======
-[sub_resource type="Gradient" id=1]
-offsets = PoolRealArray( 0.351351, 0.48913 )
->>>>>>> Stashed changes
 colors = PoolColorArray( 0, 0, 0, 1, 0.111816, 0.0799313, 0.0799313, 1 )
 
 [sub_resource type="GradientTexture" id=19]
