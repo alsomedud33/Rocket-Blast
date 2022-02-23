@@ -6,9 +6,9 @@ extends KinematicBody
 
 var rng = RandomNumberGenerator.new()
 var mouse_sensitivity = Globals.mouse_sense * 0.001
-export var max_speed: float = 7 # Meters per second
+export var max_speed: float = 8 # Meters per second
 export var max_air_speed: float = 0.6
-export var accel: float = 68 # or max_speed * 10 : Reach max speed in 1 / 10th of a second
+export var accel: float = 70 # or max_speed * 10 : Reach max speed in 1 / 10th of a second
 
 # For now, the friction variable is not used, as the calculations are  not the same as quake's
 # export var friction: float = 2 # Higher friction = less slippery. In quake-based games, usually between 1 and 5
@@ -94,7 +94,7 @@ func _physics_process(delta: float) -> void:
 		if get_slide_collision(i).get_collider().name == "Explosion_Hitbox":
 			velocity += get_slide_collision(i).normal *15
 
-	if Input.is_action_pressed("shoot1") and timer.is_stopped():
+	if Input.is_action_pressed("shoot1") and timer.is_stopped() and Globals.sticky_deployed <=1:
 	#if event is InputEventMouseButton and event.pressed and event.button_index == 1 and timer.is_stopped():
 		timer.start(cooldown)
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

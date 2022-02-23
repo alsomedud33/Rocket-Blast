@@ -261,31 +261,31 @@ transform = Transform( 4.37114e-08, 1.74365e-06, 1, 24.4, 4.66207e-14, -1.06656e
 collision_layer = 8
 
 [node name="Rock 051" parent="First Area" instance=ExtResource( 7 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, 16.0101 )
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, 30.5799 )
 
 [node name="Rock 052" parent="First Area" instance=ExtResource( 7 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, 16.0101 )
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, 30.5799 )
 
 [node name="Rock 053" parent="First Area" instance=ExtResource( 7 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, 16.0101 )
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, 30.5799 )
 
 [node name="Rock 054" parent="First Area" instance=ExtResource( 7 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, 23.0101 )
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, 37.5799 )
 
 [node name="Rock 055" parent="First Area" instance=ExtResource( 7 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, 23.0101 )
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, 37.5799 )
 
 [node name="Rock 056" parent="First Area" instance=ExtResource( 7 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, 23.0101 )
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, 37.5799 )
 
 [node name="Rock 057" parent="First Area" instance=ExtResource( 7 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, 30.0101 )
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, 44.5799 )
 
 [node name="Rock 058" parent="First Area" instance=ExtResource( 7 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, 30.0101 )
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, 44.5799 )
 
 [node name="Rock 059" parent="First Area" instance=ExtResource( 7 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, 30.0101 )
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, 44.5799 )
 
 [node name="Rock 036" parent="First Area" instance=ExtResource( 7 )]
 transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, -18.5 )
@@ -312,11 +312,11 @@ transform = Transform( 1.91069e-15, -20.445, -8.49968e-07, -1.11027e-06, -8.4996
 transform = Transform( 1.91069e-15, -20.445, -8.49968e-07, -1.11027e-06, -8.49968e-07, -1, 24.4, 9.46746e-15, -1.11027e-06, 0.5, 26.5, 53 )
 
 [node name="BoundingBox" parent="First Area" instance=ExtResource( 5 )]
-transform = Transform( 1.7, 0, 0, 0, 1, 0, 0, 0, 1.04, 0, 0, 0 )
+transform = Transform( 1.7, 0, 0, 0, 1, 0, 0, 0, 1.04, 0, 0, 10.1432 )
 script = ExtResource( 2 )
 
 [node name="Respawn" type="Position3D" parent="First Area/BoundingBox"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -15 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -26.7982 )
 
 [node name="MeshInstance2" type="MeshInstance" parent="First Area"]
 transform = Transform( -0.353553, 0, 0.353553, 0, 0.5, 0, -0.353553, 0, -0.353553, 8.76381, 1.5, -18.8128 )
@@ -331,11 +331,11 @@ material/0 = null
 shape = SubResource( 8 )
 
 [node name="BoundingBox2" parent="First Area" instance=ExtResource( 5 )]
-transform = Transform( 3.4, 0, 0, 0, 1, 0, 0, 0, 0.00612051, -16.5, 24, 30.9444 )
+transform = Transform( 3.4, 0, 0, 0, 1, 0, 0, 0, 0.00612051, -16.5, 24, 44.2325 )
 script = SubResource( 9 )
 
 [node name="Respawn" type="Position3D" parent="First Area/BoundingBox2"]
-transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, -34.2647, -21.9803, -7893.85 )
+transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, 5.91098, -21.9803, -9442.58 )
 
 [node name="HUD" parent="." instance=ExtResource( 11 )]
 
