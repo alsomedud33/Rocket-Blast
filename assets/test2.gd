@@ -54,6 +54,8 @@ func _input(event: InputEvent) -> void:
 		camera_rot.x = clamp(camera_rot.x, -90, 90)
 		head.rotation_degrees = camera_rot
 
+func _ready():
+	Globals.player = 1
 
 func _process(delta):
 	mouse_sensitivity = Globals.mouse_sense * 0.001

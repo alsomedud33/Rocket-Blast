@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Stick Launch.wav-dc48461d20012d73bb868f83671491bc.sample"
+
+[deps]
+
+source_file="res://assets/Sounds/Demoman/Stick Launch.wav"
+dest_files=[ "res://.import/Stick Launch.wav-dc48461d20012d73bb868f83671491bc.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

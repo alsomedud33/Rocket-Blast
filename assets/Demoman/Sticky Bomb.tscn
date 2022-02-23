@@ -381,9 +381,7 @@ func _process(delta) -> void:
 
 "
 
-[node name="Sticky Bomb" type="KinematicBody" groups=[
-"Sticky Bomb",
-]]
+[node name="Sticky Bomb" type="KinematicBody" groups=["Sticky Bomb"]]
 collision_layer = 4
 script = ExtResource( 2 )
 gravity = 7

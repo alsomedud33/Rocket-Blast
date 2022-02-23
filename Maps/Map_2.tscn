@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://assets/Soldier/Soldier Hat Mesh.tres" type="ArrayMesh" id=1]
 [ext_resource path="res://assets/Skybox/BoundingBox.gd" type="Script" id=2]
@@ -13,8 +13,29 @@
 [ext_resource path="res://assets/UI/HUD.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assets/Demoman/Demolition Man.tscn" type="PackedScene" id=12]
 [ext_resource path="res://assets/Skybox/BHOP Check.tscn" type="PackedScene" id=13]
+[ext_resource path="res://assets/Skybox/environment.png" type="Texture" id=14]
 
-[sub_resource type="ViewportTexture" id=1]
+[sub_resource type="PanoramaSky" id=1]
+panorama = ExtResource( 14 )
+
+[sub_resource type="Environment" id=27]
+background_mode = 2
+background_sky = SubResource( 1 )
+background_sky_custom_fov = 60.0
+fog_enabled = true
+fog_color = Color( 0, 0.0745098, 0.14902, 1 )
+fog_sun_color = Color( 0.101961, 0, 1, 1 )
+fog_depth_begin = 0.0
+fog_depth_end = 86.4
+ss_reflections_roughness = false
+dof_blur_far_distance = 1.43
+dof_blur_far_transition = 22.71
+dof_blur_far_quality = 2
+glow_enabled = true
+glow_intensity = 2.29
+glow_bloom = 1.0
+
+[sub_resource type="ViewportTexture" id=28]
 viewport_path = NodePath("First Area/sign/3DText/Viewport")
 
 [sub_resource type="ViewportTexture" id=2]
@@ -268,6 +289,9 @@ func Rocket_Entered(body):
 
 [node name="Spatial" type="Node"]
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 27 )
+
 [node name="First Area" type="Spatial" parent="."]
 
 [node name="sign" parent="First Area" instance=ExtResource( 8 )]
@@ -282,7 +306,7 @@ spot_angle = 28.86
 
 [node name="3DText" parent="First Area/sign" instance=ExtResource( 3 )]
 transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.462924, 0.41177 )
-texture = SubResource( 1 )
+texture = SubResource( 28 )
 label_text = "To Rocket Jump,"
 
 [node name="3DText2" parent="First Area/sign" instance=ExtResource( 3 )]
@@ -508,7 +532,7 @@ transform = Transform( 1.7, 0, 0, 0, 1, 0, 0, 0, 1.04, 0, 0, 10.1432 )
 script = ExtResource( 2 )
 
 [node name="Respawn" type="Position3D" parent="First Area/BoundingBox"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26.5734, 58.0146, -2.14101 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.45576, 2.5146, -24.7372 )
 
 [node name="MeshInstance2" type="MeshInstance" parent="First Area"]
 transform = Transform( -0.353553, 0, 0.353553, 0, 0.5, 0, -0.353553, 0, -0.353553, 8.76381, 1.5, -18.8128 )
@@ -535,7 +559,7 @@ transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, 5.91098, -21.9803, -
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -16.5 )
 
 [node name="Fifth Area" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 44.9082, -0.275707, 36.5992 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 239.908, -0.275707, 36.5992 )
 
 [node name="sign" parent="Fifth Area" instance=ExtResource( 8 )]
 transform = Transform( -2.16375, 0, -0.707107, 0, 3.7632, 0, 2.16375, 0, -0.707107, -7.5, 1, -15.5 )

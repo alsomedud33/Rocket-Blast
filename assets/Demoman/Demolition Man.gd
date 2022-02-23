@@ -54,7 +54,8 @@ func _input(event: InputEvent) -> void:
 		camera_rot.x = clamp(camera_rot.x, -90, 90)
 		head.rotation_degrees = camera_rot
 
-
+func _ready():
+	Globals.player = 2
 func _process(delta):
 	mouse_sensitivity = Globals.mouse_sense * 0.001
 	gun_camera.global_transform = camera.global_transform
@@ -94,15 +95,14 @@ func _physics_process(delta: float) -> void:
 		if get_slide_collision(i).get_collider().name == "Explosion_Hitbox":
 			velocity += get_slide_collision(i).normal *15
 
-	if Input.is_action_pressed("shoot1") and timer.is_stopped() and Globals.sticky_deployed <=1:
+	if Input.is_action_pressed("shoot1") and timer.is_stopped() and Globals.sticky_deployed <=2:
 	#if event is InputEventMouseButton and event.pressed and event.button_index == 1 and timer.is_stopped():
 		timer.start(cooldown)
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		var sticky_instance = sticky_launcher.instance()
 		main.add_child(sticky_instance)
 		anim.play("Shoot")
-		$Rocket_Launch.play()
-		$Rocket_Trail.play()
+		$Sticky_Launch.play()
 		sticky_instance.global_transform.origin = guns.global_transform.origin
 		if raycast.is_colliding():
 			sticky_instance.look_at(raycast.get_collision_point(), Vector3.UP)
@@ -182,13 +182,13 @@ func shoot_event():
 
 
 func _on_Footstep_timeout():
-	var my_random_number = rng.randi_range(1,3)
+	var my_random_number = int(rng.randi_range(1,100) % 3)
 	print(my_random_number)
 	if self.is_on_floor() and velocity.length() > 3:
 		match my_random_number:
-			1:
+			0:
 				$Footstep1.play()
-			2:
+			1:
 				$Footstep2.play()
-			3:
+			2:
 				$Footstep3.play()

@@ -12,7 +12,7 @@ var delete = false
 export var explosion : PackedScene
 
 onready var main = get_tree().current_scene
-
+onready var tick = preload("res://assets/Sounds/Demoman/Explosion Tick.wav")
 #onready var explosion_instance = explosion.instance()
 
 func _ready():
@@ -26,7 +26,9 @@ func _physics_process(delta):
 		Globals.sticky_deployed = 0
 		queue_free()
 	if Globals.sticky_deployed >= 3:
-		get_tree().set_group("Sticky Bomb", "delete", true)
+		for members in range(0,get_tree().get_nodes_in_group("Sticky Bomb").size()):
+			if members == 0:
+				get_tree().get_nodes_in_group("Sticky Bomb")[members].explode()
 	if stick == false:
 		velocity.y -= gravity * delta
 		if velocity.y < terminal_velocity:
@@ -36,25 +38,38 @@ func _physics_process(delta):
 	if bounce:
 		stick = true
 		self.velocity = Vector3.ZERO
+		if Globals.sticky_deployed >= 2:
+			for members in range(0,get_tree().get_nodes_in_group("Sticky Bomb").size()):
+				if members == 0:
+					get_tree().get_nodes_in_group("Sticky Bomb")[members].explode()
 	else:
 		for index in get_slide_count():
 			stick = true
 			self.velocity = Vector3.ZERO
-
-
-func _input(event):
+			if Globals.sticky_deployed >= 2:
+				for members in range(0,get_tree().get_nodes_in_group("Sticky Bomb").size()):
+					if members == 0:
+						get_tree().get_nodes_in_group("Sticky Bomb")[members].explode()
+func _process(delta):
 	if Input.is_action_just_pressed("shoot2") and $Timer.is_stopped():
+		var tick_sound = AudioStreamPlayer.new()
+		tick_sound.stream = tick
+		tick_sound.set_volume_db(-12)
+		main.add_child(tick_sound)
+		tick_sound.play()
+		explode()
+
+func explode():
 		var explosion_instance = explosion.instance()
 		explosion_instance.radius_val = 1.5
 		explosion_instance.distance_ratio = 1
-		explosion_instance.explode_force  = 15
-		explosion_instance.y_explode_ratio = 1.1
+		explosion_instance.explode_force  = 12
+		explosion_instance.y_explode_ratio = 1
 		main.add_child(explosion_instance)
 		explosion_instance.global_transform.origin = self.global_transform.origin
 		Globals.sticky_deployed -= 1
 		queue_free()
 
-		
 func _on_Area_area_entered(area):
 	if area.name !=("Portal"):
 		print("bye")
