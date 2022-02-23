@@ -671,14 +671,14 @@ metallic_specular = 1.0
 roughness = 0.33
 roughness_texture = ExtResource( 23 )
 
-[sub_resource type="SpatialMaterial" id=76]
+[sub_resource type="SpatialMaterial" id=79]
 flags_unshaded = true
 params_grow = true
 params_grow_amount = -0.2
 albedo_color = Color( 0.92549, 0.478431, 0.164706, 1 )
 
 [sub_resource type="SpatialMaterial" id=77]
-next_pass = SubResource( 76 )
+next_pass = SubResource( 79 )
 params_cull_mode = 2
 albedo_texture = ExtResource( 26 )
 roughness_texture = ExtResource( 25 )
