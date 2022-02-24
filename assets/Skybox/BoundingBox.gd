@@ -32,3 +32,8 @@ func Rocket_Entered(body):
 	self.rotation_degrees.x = -90
 	body.global_transform.origin = $Respawn.global_transform.origin
 	body.rotation_degrees.x = -90
+
+
+func Level_5(body):
+	body.global_transform.origin = $Respawn.global_transform.origin
+	body.velocity = Vector3.ZERO

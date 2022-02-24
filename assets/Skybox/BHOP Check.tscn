@@ -20,4 +20,4 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[connection signal="area_entered" from="." to="." method="_on_Area_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_BHOP_Check_body_entered"]

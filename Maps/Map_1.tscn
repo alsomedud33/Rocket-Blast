@@ -27,12 +27,12 @@
 [ext_resource path="res://assets/Textures/Rock 035/Rock035_1K_Color.jpg" type="Texture" id=26]
 [ext_resource path="res://assets/Textures/Rock 035/Rock035_1K_NormalGL.jpg" type="Texture" id=27]
 
-[sub_resource type="PanoramaSky" id=1]
+[sub_resource type="PanoramaSky" id=80]
 panorama = ExtResource( 21 )
 
 [sub_resource type="Environment" id=2]
 background_mode = 2
-background_sky = SubResource( 1 )
+background_sky = SubResource( 80 )
 background_sky_custom_fov = 60.0
 fog_enabled = true
 fog_color = Color( 0, 0.0745098, 0.14902, 1 )
@@ -732,7 +732,7 @@ shadow_enabled = true
 shadow_bias = 1.2
 
 [node name="Soldier" parent="." instance=ExtResource( 17 )]
-transform = Transform( 1, 0, 4.74853e-07, 0, 1, 0, -4.74853e-07, 0, 1, 2, 3, -13.0001 )
+transform = Transform( -1, 0, -3.8743e-07, 0, 1, 0, 3.8743e-07, 0, -1, 578.5, 59.5, 9.99989 )
 
 [node name="CameraHub" type="Spatial" parent="."]
 script = ExtResource( 2 )
@@ -1319,11 +1319,11 @@ transform = Transform( 1, 2.23517e-08, -7.45058e-09, 1.49012e-08, 1, 2.98023e-08
 shape = SubResource( 27 )
 
 [node name="BoundingBox" parent="First Area B" instance=ExtResource( 11 )]
-transform = Transform( 1.7, 0, 0, 0, 1, 0, 0, 0, 2.0592, 0, 0.5, 16.5 )
+transform = Transform( 1.7, 0, 0, 0, 1, 0, 0, 0, 2.0592, 0, -1.5, 16.5 )
 script = ExtResource( 8 )
 
 [node name="Respawn" type="Position3D" parent="First Area B/BoundingBox"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -15 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -15 )
 
 [node name="MeshInstance2" type="MeshInstance" parent="First Area B"]
 transform = Transform( -0.353553, 0, 0.353553, 0, 0.5, 0, -0.353553, 0, -0.353553, 8.76381, 1.5, -18.8128 )
@@ -1338,7 +1338,7 @@ material/0 = null
 shape = SubResource( 10 )
 
 [node name="BHOP Check" parent="First Area B" instance=ExtResource( 16 )]
-transform = Transform( 9.66, 0, 0, 0, -1.5299e-07, 0.357825, 0, -26.95, -1.20436e-07, 2, 1, 17 )
+transform = Transform( 9.66, 0, 0, 0, -1.5299e-07, 0.357825, 0, -26.95, -1.20436e-07, 2, 0.722851, 17 )
 script = SubResource( 30 )
 
 [node name="Respawn" type="Position3D" parent="First Area B/BHOP Check"]
@@ -3180,6 +3180,7 @@ transform = Transform( -1.5299e-07, -3.5, 1.50996e-07, 3.5, -1.5299e-07, 3.479e-
 transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 24.5, -60.5 )
 
 [node name="MeshInstance" parent="Fifth Area/Rock 036" index="0"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0 )
 material/0 = SubResource( 77 )
 
 [node name="Rock 037" parent="Fifth Area" instance=ExtResource( 15 )]
@@ -3270,34 +3271,34 @@ transform = Transform( -3.5, -3.0598e-07, -3.82137e-15, 0, -1.5299e-07, 1, -3.05
 material/0 = SubResource( 77 )
 
 [node name="BHOP Check" parent="Fifth Area" instance=ExtResource( 16 )]
-transform = Transform( 9.66, 0, 0, 0, -1.5299e-07, 0.357825, 0, -3.5, -1.5641e-08, 2, 24.5, -60.5 )
+transform = Transform( 8.5, 0, 0, 0, -1.5299e-07, 0.5, 0, -3.5, -2.18557e-08, 2, 24.1655, -60.5 )
 
 [node name="Respawn" type="Position3D" parent="Fifth Area/BHOP Check"]
-transform = Transform( 1, 0, 0, 0, 1, -3.10862e-15, 0, 2.72848e-12, 1, 0, -9.42853, 95.0185 )
+transform = Transform( 1, 0, 0, 0, 1, -3.10862e-15, 0, 2.72848e-12, 1, 0, -10.4285, 68.0185 )
 
 [node name="BHOP Check2" parent="Fifth Area" instance=ExtResource( 16 )]
-transform = Transform( -4.22252e-07, 3.5, 1.5641e-08, 0, -1.5299e-07, 0.357825, 9.66, 1.5299e-07, 6.8369e-16, 11.5, 32.5, -75 )
+transform = Transform( -4.22252e-07, 3.5, 2.18557e-08, 0, -1.5299e-07, 0.5, 9.66, 1.5299e-07, 9.55343e-16, 11.5, 32.1362, -75 )
 
 [node name="Respawn" type="Position3D" parent="Fifth Area/BHOP Check2"]
-transform = Transform( 1, 0, -2.64698e-23, 8.52651e-14, 0.999999, -7.54952e-15, 2.03288e-20, 2.78533e-12, 1, 5.0207, -2.99997, 72.6612 )
+transform = Transform( 1, -5.32907e-15, -5.9557e-23, 7.10543e-14, 0.999999, -9.32587e-15, 6.09864e-20, 2.89901e-12, 1, 5.0207, -2.99997, 51.6613 )
 
 [node name="BHOP Check3" parent="Fifth Area" instance=ExtResource( 16 )]
-transform = Transform( -4.22252e-07, 3.5, 1.5641e-08, 0, -1.5299e-07, 0.357825, 9.66, 1.5299e-07, 6.8369e-16, 27, 39, -75 )
+transform = Transform( -4.22252e-07, 3.5, 2.18557e-08, 0, -1.5299e-07, 0.5, 9.66, 1.5299e-07, 9.55343e-16, 27, 38.6597, -75 )
 
 [node name="Respawn" type="Position3D" parent="Fifth Area/BHOP Check3"]
-transform = Transform( 1, -1.77636e-15, -3.30872e-23, 8.52651e-14, 0.999999, -7.99361e-15, 2.03288e-20, 2.81375e-12, 1, 4.71015, -6.4285, 51.7012 )
+transform = Transform( 1, 1.77636e-15, -9.26442e-23, 1.27898e-13, 0.999999, -1.24345e-14, 1.42302e-19, 2.6148e-12, 1, 4.71015, -6.42854, 37.7012 )
 
 [node name="BHOP Check4" parent="Fifth Area" instance=ExtResource( 16 )]
-transform = Transform( -9.66, -3.0598e-07, -1.36738e-15, 0, -1.5299e-07, 0.357825, -8.44504e-07, 3.5, 1.5641e-08, 21, 43, -54 )
+transform = Transform( -9.66, -5.28485e-07, -3.30012e-15, 0, -1.5299e-07, 0.5, -1.45862e-06, 3.5, 2.18557e-08, 21, 42.6726, -54 )
 
 [node name="Respawn" type="Position3D" parent="Fifth Area/BHOP Check4"]
-transform = Transform( 1, 3.55271e-15, -5.29396e-23, 1.7053e-13, 0.999999, -6.66134e-15, 4.06576e-20, 2.72848e-12, 1, 1.75983, 7.71432, 43.3172 )
+transform = Transform( 1, 6.75016e-14, 0, 3.41061e-13, 0.999999, -8.88178e-15, -8.13152e-20, 2.98428e-12, 1, 1.75983, 7.71432, 29.6506 )
 
 [node name="BHOP Check5" parent="Fifth Area" instance=ExtResource( 16 )]
-transform = Transform( -9.66, -3.0598e-07, -1.36738e-15, 0, -1.5299e-07, 0.357825, -8.44504e-07, 3.5, 1.5641e-08, 21, 50, -41.5 )
+transform = Transform( -9.66, -5.28485e-07, -3.30012e-15, 0, -1.5299e-07, 0.5, -1.45862e-06, 3.5, 2.18557e-08, 21, 49.6393, -41.5 )
 
 [node name="Respawn" type="Position3D" parent="Fifth Area/BHOP Check5"]
-transform = Transform( 1, -3.55271e-15, -6.61744e-23, 1.7053e-13, 0.999999, -8.88178e-15, 4.06576e-20, 2.84217e-12, 1, 1.70807, 3.85718, 22.3573 )
+transform = Transform( 1, 1.06581e-14, -2.64698e-23, 1.7053e-13, 0.999999, -9.32587e-15, -2.43945e-19, 3.09797e-12, 1, 1.70807, 3.85718, 18.3573 )
 
 [node name="BoundingBox3" parent="." instance=ExtResource( 11 )]
 transform = Transform( 3.4, 0, 0, 0, 1, 0, 0, 0, 0.035499, 403.5, 24, 118.444 )
@@ -3315,26 +3316,21 @@ transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, -843.916, -69.9803, 
 
 [node name="HUD" parent="." instance=ExtResource( 12 )]
 
+[node name="Respwan" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.5, -14.5 )
+
 [connection signal="body_exited" from="First Area/BoundingBox" to="First Area/BoundingBox" method="_on_BoundingBox_body_exited"]
 [connection signal="body_exited" from="First Area/BoundingBox2" to="First Area/BoundingBox2" method="_on_BoundingBox_body_exited"]
 [connection signal="body_entered" from="First Area B/BoundingBox" to="First Area B/BoundingBox" method="_on_BoundingBox_body_entered"]
-[connection signal="body_entered" from="First Area B/BHOP Check" to="First Area B/BHOP Check" method="_on_BHOP_Check_body_entered"]
 [connection signal="body_exited" from="First Area B/BoundingBox2" to="First Area B/BoundingBox2" method="_on_BoundingBox_body_exited"]
-[connection signal="body_entered" from="Second Area/BHOP Check" to="Second Area/BHOP Check" method="_on_BHOP_Check_body_entered"]
 [connection signal="body_entered" from="Second Area/BoundingBox" to="Second Area/BoundingBox" method="_on_BoundingBox_body_entered"]
 [connection signal="body_exited" from="Third Area/BoundingBox2" to="Third Area/BoundingBox2" method="_on_BoundingBox_body_exited"]
 [connection signal="body_exited" from="Third Area/BoundingBox" to="Third Area/BoundingBox" method="_on_BoundingBox_body_exited"]
 [connection signal="body_exited" from="Fourth Area/BoundingBox2" to="Fourth Area/BoundingBox2" method="_on_BoundingBox_body_exited"]
 [connection signal="body_exited" from="Fourth Area/BoundingBox" to="Fourth Area/BoundingBox" method="_on_BoundingBox_body_exited"]
-[connection signal="body_entered" from="Fourth Area/BHOP Check" to="Fourth Area/BHOP Check" method="_on_BHOP_Check_body_entered"]
 [connection signal="body_exited" from="Fifth Area/Next Level" to="Fifth Area/Next Level" method="_on_BoundingBox_body_exited"]
-[connection signal="body_entered" from="Fifth Area/BoundingBox" to="Fifth Area/BoundingBox" method="_on_BoundingBox_body_entered"]
+[connection signal="body_entered" from="Fifth Area/BoundingBox" to="Fifth Area/BoundingBox" method="Level_5"]
 [connection signal="body_entered" from="Fifth Area/Portal" to="Fifth Area/Portal" method="Rocket_Entered"]
-[connection signal="body_entered" from="Fifth Area/BHOP Check" to="Fifth Area/BHOP Check" method="_on_BHOP_Check_body_entered"]
-[connection signal="body_entered" from="Fifth Area/BHOP Check2" to="Fifth Area/BHOP Check2" method="_on_BHOP_Check_body_entered"]
-[connection signal="body_entered" from="Fifth Area/BHOP Check3" to="Fifth Area/BHOP Check3" method="_on_BHOP_Check_body_entered"]
-[connection signal="body_entered" from="Fifth Area/BHOP Check4" to="Fifth Area/BHOP Check4" method="_on_BHOP_Check_body_entered"]
-[connection signal="body_entered" from="Fifth Area/BHOP Check5" to="Fifth Area/BHOP Check5" method="_on_BHOP_Check_body_entered"]
 [connection signal="body_entered" from="BoundingBox3" to="BoundingBox3" method="_on_BoundingBox_body_entered"]
 [connection signal="body_entered" from="End Box" to="End Box" method="_on_End_Box_body_entered"]
 

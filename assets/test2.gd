@@ -48,11 +48,11 @@ func _input(event: InputEvent) -> void:
 	shoot_event()
 	# Camera rotation
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		head.rotate_x(event.relative.y * mouse_sensitivity * 1)
-		self.rotate_y(event.relative.x * mouse_sensitivity * -1)
-		var camera_rot = head.rotation_degrees
-		camera_rot.x = clamp(camera_rot.x, -90, 90)
-		head.rotation_degrees = camera_rot
+		head.rotate_x(deg2rad(event.relative.y * mouse_sensitivity))
+		self.rotate_y(deg2rad((event.relative.x * -mouse_sensitivity)))
+		var camera_rot = head.rotation
+		camera_rot.x = clamp(camera_rot.x, deg2rad(-89), deg2rad(89))
+		head.rotation = camera_rot
 
 func _ready():
 	Globals.player = 1
@@ -62,12 +62,13 @@ func _process(delta):
 	gun_camera.global_transform = camera.global_transform
 
 func _physics_process(delta: float) -> void:
+	#print(wish_jump)
+	queue_jump()
 	var forward_input: float = Input.get_action_strength("move_forward") - Input.get_action_strength("move_back")
 	var strafe_input: float = Input.get_action_strength("move_left") - Input.get_action_strength("move_right")
 	wishdir = Vector3(strafe_input, 0, forward_input).rotated(Vector3.UP, self.global_transform.basis.get_euler().y).normalized() 
 	# wishdir is our normalized horizontal inpur
 	
-	queue_jump()
 	
 	if self.is_on_floor():
 		if wish_jump: # If we're on the ground but wish_jump is still true, this means we've just landed
@@ -76,6 +77,7 @@ func _physics_process(delta: float) -> void:
 			$Jump.play()
 			move_air(velocity, delta) # Mimic Quake's way of treating first frame after landing as still in the air
 			
+			yield(get_tree().create_timer(.3), "timeout")
 			wish_jump = false # We have jumped, the player needs to press jump key again
 			
 		else : # Player is on the ground. Move normally, apply friction
@@ -185,7 +187,6 @@ func shoot_event():
 
 func _on_Footstep_timeout():
 	var my_random_number = rng.randi_range(1,3)
-	print(my_random_number)
 	if self.is_on_floor() and velocity.length() > 3:
 		match my_random_number:
 			1:

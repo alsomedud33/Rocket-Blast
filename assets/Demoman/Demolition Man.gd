@@ -7,9 +7,8 @@ extends KinematicBody
 var rng = RandomNumberGenerator.new()
 var mouse_sensitivity = Globals.mouse_sense * 0.001
 export var max_speed: float = 8 # Meters per second
-export var max_air_speed: float = 0.6
-export var accel: float = 70 # or max_speed * 10 : Reach max speed in 1 / 10th of a second
-
+export var max_air_speed: float = 0.8
+export var accel: float = max_speed * 10 # or max_speed * 10 : Reach max speed in 1 / 10th of a second
 # For now, the friction variable is not used, as the calculations are  not the same as quake's
 # export var friction: float = 2 # Higher friction = less slippery. In quake-based games, usually between 1 and 5
 
@@ -120,7 +119,8 @@ func accelerate(wishdir: Vector3, input_velocity: Vector3, accel: float, max_spe
 	# Next, we calculate the speed to be added for the next frame.
 	# If our current speed is low enough, we will add the max acceleration.
 	# If we're going too fast, our acceleration will be reduced (until it evenutually hits 0, where we don't add any more speed).
-	var add_speed: float = clamp(max_speed - current_speed, 0, accel * delta)
+	#	accel = max(0, min(accel, speedLimit - currentSpeed))
+	var add_speed: float = max(0, min(accel, max_speed - current_speed)) #clamp(max_speed - current_speed, 0, accel * delta)
 	
 	# Put the new velocity in a variable, so the vector can be displayed.
 	accelerate_return = input_velocity + wishdir * add_speed
@@ -151,7 +151,7 @@ func move_ground(input_velocity: Vector3, delta: float)-> void:
 	
 	# Then get back our vertical component, and move the player
 	nextVelocity.y = vertical_velocity
-	velocity = move_and_slide_with_snap(nextVelocity, snap, Vector3.UP,true)
+	velocity = move_and_slide_with_snap(nextVelocity, snap, Vector3.UP)
 
 # Accelerate without applying friction (with a lower allowed max_speed)
 func move_air(input_velocity: Vector3, delta: float)-> void:
@@ -163,7 +163,7 @@ func move_air(input_velocity: Vector3, delta: float)-> void:
 	
 	# Then get back our vertical component, and move the player
 	nextVelocity.y = vertical_velocity
-	velocity = move_and_slide_with_snap(nextVelocity, snap, Vector3.UP,true)
+	velocity = move_and_slide_with_snap(nextVelocity, snap, Vector3.UP,false,4,0.3)
 
 # Set wish_jump depending on player input.
 func queue_jump()-> void:
