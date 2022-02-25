@@ -27,12 +27,12 @@
 [ext_resource path="res://assets/Textures/Rock 035/Rock035_1K_Color.jpg" type="Texture" id=26]
 [ext_resource path="res://assets/Textures/Rock 035/Rock035_1K_NormalGL.jpg" type="Texture" id=27]
 
-[sub_resource type="PanoramaSky" id=80]
+[sub_resource type="PanoramaSky" id=1]
 panorama = ExtResource( 21 )
 
 [sub_resource type="Environment" id=2]
 background_mode = 2
-background_sky = SubResource( 80 )
+background_sky = SubResource( 1 )
 background_sky_custom_fov = 60.0
 fog_enabled = true
 fog_color = Color( 0, 0.0745098, 0.14902, 1 )
@@ -671,14 +671,14 @@ metallic_specular = 1.0
 roughness = 0.33
 roughness_texture = ExtResource( 23 )
 
-[sub_resource type="SpatialMaterial" id=79]
+[sub_resource type="SpatialMaterial" id=76]
 flags_unshaded = true
 params_grow = true
 params_grow_amount = -0.2
 albedo_color = Color( 0.92549, 0.478431, 0.164706, 1 )
 
 [sub_resource type="SpatialMaterial" id=77]
-next_pass = SubResource( 79 )
+next_pass = SubResource( 76 )
 params_cull_mode = 2
 albedo_texture = ExtResource( 26 )
 roughness_texture = ExtResource( 25 )
@@ -3180,7 +3180,6 @@ transform = Transform( -1.5299e-07, -3.5, 1.50996e-07, 3.5, -1.5299e-07, 3.479e-
 transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 24.5, -60.5 )
 
 [node name="MeshInstance" parent="Fifth Area/Rock 036" index="0"]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0 )
 material/0 = SubResource( 77 )
 
 [node name="Rock 037" parent="Fifth Area" instance=ExtResource( 15 )]

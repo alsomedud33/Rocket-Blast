@@ -1,7 +1,7 @@
 extends Node
 
 
-var mouse_sense = 2.5
+var mouse_sense = 50
 var complete = false
 
 var sticky_deployed:int = 0

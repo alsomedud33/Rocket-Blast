@@ -5,7 +5,7 @@
 extends KinematicBody
 
 var rng = RandomNumberGenerator.new()
-var mouse_sensitivity = Globals.mouse_sense * 0.001
+var mouse_sensitivity = Globals.mouse_sense
 export var max_speed: float = 8 # Meters per second
 export var max_air_speed: float = 0.8
 export var accel: float = max_speed * 10 # or max_speed * 10 : Reach max speed in 1 / 10th of a second
@@ -47,14 +47,15 @@ func _input(event: InputEvent) -> void:
 	shoot_event()
 	# Camera rotation
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		head.rotate_x(event.relative.y * mouse_sensitivity * 1)
-		self.rotate_y(event.relative.x * mouse_sensitivity * -1)
-		var camera_rot = head.rotation_degrees
-		camera_rot.x = clamp(camera_rot.x, -90, 90)
-		head.rotation_degrees = camera_rot
+		head.rotate_x(deg2rad(event.relative.y * mouse_sensitivity))
+		self.rotate_y(deg2rad((event.relative.x * -mouse_sensitivity)))
+		var camera_rot = head.rotation
+		camera_rot.x = clamp(camera_rot.x, deg2rad(-89), deg2rad(89))
+		head.rotation = camera_rot
 
 func _ready():
 	Globals.player = 2
+
 func _process(delta):
 	mouse_sensitivity = Globals.mouse_sense * 0.001
 	gun_camera.global_transform = camera.global_transform

@@ -6,23 +6,6 @@
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://assets/Fonts/TF2.ttf"
 
-[sub_resource type="DynamicFont" id=4]
-size = 70
-outline_size = 5
-outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
-use_filter = true
-font_data = SubResource( 1 )
-
-[sub_resource type="DynamicFontData" id=5]
-font_path = "res://assets/Fonts/TF2.ttf"
-
-[sub_resource type="DynamicFont" id=6]
-size = 30
-outline_size = 5
-outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
-use_filter = true
-font_data = SubResource( 5 )
-
 [sub_resource type="DynamicFont" id=2]
 size = 70
 outline_size = 5
@@ -30,43 +13,60 @@ outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
 use_filter = true
 font_data = SubResource( 1 )
 
-[sub_resource type="DynamicFont" id=3]
-size = 50
-outline_size = 5
-outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
-use_filter = true
-font_data = SubResource( 1 )
-
-[sub_resource type="DynamicFont" id=14]
-size = 50
-outline_size = 5
-outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
-use_filter = true
-font_data = SubResource( 1 )
-
-[sub_resource type="DynamicFontData" id=12]
+[sub_resource type="DynamicFontData" id=3]
 font_path = "res://assets/Fonts/TF2.ttf"
 
-[sub_resource type="DynamicFont" id=13]
+[sub_resource type="DynamicFont" id=4]
+size = 30
+outline_size = 5
+outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+use_filter = true
+font_data = SubResource( 3 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 70
+outline_size = 5
+outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+use_filter = true
+font_data = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 50
+outline_size = 5
+outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+use_filter = true
+font_data = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 50
+outline_size = 5
+outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+use_filter = true
+font_data = SubResource( 1 )
+
+[sub_resource type="DynamicFontData" id=8]
+font_path = "res://assets/Fonts/TF2.ttf"
+
+[sub_resource type="DynamicFont" id=9]
 size = 72
 outline_size = 5
 outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
-font_data = SubResource( 12 )
+font_data = SubResource( 8 )
 
-[sub_resource type="DynamicFontData" id=9]
+[sub_resource type="DynamicFontData" id=10]
 font_path = "res://assets/Fonts/TF2.ttf"
 
 [sub_resource type="DynamicFont" id=11]
 size = 40
 outline_size = 3
 outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
-font_data = SubResource( 9 )
+font_data = SubResource( 10 )
 
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="DynamicFont" id=12]
 size = 40
 outline_size = 3
 outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
-font_data = SubResource( 9 )
+font_data = SubResource( 10 )
 
 [node name="HUD" type="CanvasLayer"]
 layer = 3
@@ -107,7 +107,7 @@ margin_left = 947.0
 margin_top = 394.0
 margin_right = 1071.0
 margin_bottom = 465.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 2 )
 text = "2.5"
 align = 1
 valign = 2
@@ -120,7 +120,7 @@ margin_left = 458.0
 margin_top = 471.0
 margin_right = 783.0
 margin_bottom = 502.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 4 )
 text = "Mouse sensitivity: "
 align = 1
 valign = 2
@@ -146,7 +146,7 @@ margin_left = 947.0
 margin_top = 554.0
 margin_right = 1071.0
 margin_bottom = 625.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 5 )
 text = "50%"
 align = 1
 valign = 2
@@ -159,7 +159,7 @@ margin_left = 516.0
 margin_top = 600.0
 margin_right = 823.0
 margin_bottom = 671.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 6 )
 text = "volume:"
 align = 1
 valign = 2
@@ -173,7 +173,7 @@ margin_left = 10.0
 margin_top = 550.0
 margin_right = 456.0
 margin_bottom = 709.0
-custom_fonts/font = SubResource( 14 )
+custom_fonts/font = SubResource( 7 )
 text = "Press the right
 arrow key to 
 reset the timer"
@@ -187,7 +187,7 @@ __meta__ = {
 pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 13 )
+custom_fonts/font = SubResource( 9 )
 text = "Hello"
 align = 2
 script = ExtResource( 2 )
@@ -216,7 +216,7 @@ margin_left = 12.0
 margin_top = 11.0
 margin_right = 408.0
 margin_bottom = 83.0
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 12 )
 text = "Time:"
 __meta__ = {
 "_edit_use_anchors_": false
