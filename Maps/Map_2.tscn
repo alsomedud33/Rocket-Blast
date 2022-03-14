@@ -15,12 +15,12 @@
 [ext_resource path="res://assets/Skybox/BHOP Check.tscn" type="PackedScene" id=13]
 [ext_resource path="res://assets/Skybox/lzd0xr90mlmv.png" type="Texture" id=14]
 
-[sub_resource type="PanoramaSky" id=29]
+[sub_resource type="PanoramaSky" id=1]
 panorama = ExtResource( 14 )
 
-[sub_resource type="Environment" id=30]
+[sub_resource type="Environment" id=2]
 background_mode = 2
-background_sky = SubResource( 29 )
+background_sky = SubResource( 1 )
 background_sky_orientation = Basis( 0.34202, 0, 0.939693, 0, 1, 0, -0.939693, 0, 0.34202 )
 fog_enabled = true
 fog_color = Color( 0, 0.0745098, 0.14902, 1 )
@@ -36,31 +36,31 @@ glow_bicubic_upscale = true
 adjustment_enabled = true
 adjustment_brightness = 1.2
 
-[sub_resource type="ViewportTexture" id=28]
+[sub_resource type="ViewportTexture" id=3]
 viewport_path = NodePath("First Area/sign/3DText/Viewport")
 
-[sub_resource type="ViewportTexture" id=2]
+[sub_resource type="ViewportTexture" id=4]
 viewport_path = NodePath("First Area/sign/3DText2/Viewport")
 
-[sub_resource type="ViewportTexture" id=3]
+[sub_resource type="ViewportTexture" id=5]
 viewport_path = NodePath("First Area/sign3/3DText/Viewport")
 
-[sub_resource type="ViewportTexture" id=4]
+[sub_resource type="ViewportTexture" id=6]
 viewport_path = NodePath("First Area/sign3/3DText2/Viewport")
 
-[sub_resource type="ViewportTexture" id=5]
+[sub_resource type="ViewportTexture" id=7]
 viewport_path = NodePath("First Area/sign3/3DText3/Viewport")
 
-[sub_resource type="ViewportTexture" id=6]
+[sub_resource type="ViewportTexture" id=8]
 viewport_path = NodePath("First Area/sign2/3DText/Viewport")
 
-[sub_resource type="ViewportTexture" id=7]
+[sub_resource type="ViewportTexture" id=9]
 viewport_path = NodePath("First Area/sign2/3DText2/Viewport")
 
-[sub_resource type="ConvexPolygonShape" id=8]
+[sub_resource type="ConvexPolygonShape" id=10]
 points = PoolVector3Array( 2.03175, 4.03095, 2.03175, -1.99961, 0.000783171, -2, -2, 0.000783171, 0.374706, -1.99961, 3.99922, -2, 2, 0.000783171, -2, -2, 3.99922, 2, 2, 0.000783171, 2, 2, 3.99922, -2, -2, 0.000783171, 2 )
 
-[sub_resource type="GDScript" id=9]
+[sub_resource type="GDScript" id=11]
 script/source = "extends Area
 
 
@@ -97,27 +97,8 @@ func Rocket_Entered(body):
 	body.rotation_degrees.x = -90
 "
 
-[sub_resource type="ViewportTexture" id=10]
-viewport_path = NodePath("Fifth Area/sign/3DText2/Viewport")
-
-[sub_resource type="GDScript" id=11]
-script/source = "extends Sprite3D
-
-
-export (String) onready var label_text
-onready var label = $Viewport/Label
-
-func _ready():
-	label.set_text(label_text)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-"
-
 [sub_resource type="ViewportTexture" id=12]
-viewport_path = NodePath("Fifth Area/sign/3DText3/Viewport")
+viewport_path = NodePath("Fifth Area/sign/3DText2/Viewport")
 
 [sub_resource type="GDScript" id=13]
 script/source = "extends Sprite3D
@@ -136,7 +117,7 @@ func _ready():
 "
 
 [sub_resource type="ViewportTexture" id=14]
-viewport_path = NodePath("Fifth Area/sign2/3DText2/Viewport")
+viewport_path = NodePath("Fifth Area/sign/3DText3/Viewport")
 
 [sub_resource type="GDScript" id=15]
 script/source = "extends Sprite3D
@@ -155,7 +136,7 @@ func _ready():
 "
 
 [sub_resource type="ViewportTexture" id=16]
-viewport_path = NodePath("Fifth Area/sign2/3DText3/Viewport")
+viewport_path = NodePath("Fifth Area/sign2/3DText2/Viewport")
 
 [sub_resource type="GDScript" id=17]
 script/source = "extends Sprite3D
@@ -174,7 +155,7 @@ func _ready():
 "
 
 [sub_resource type="ViewportTexture" id=18]
-viewport_path = NodePath("Fifth Area/sign3/3DText2/Viewport")
+viewport_path = NodePath("Fifth Area/sign2/3DText3/Viewport")
 
 [sub_resource type="GDScript" id=19]
 script/source = "extends Sprite3D
@@ -193,7 +174,7 @@ func _ready():
 "
 
 [sub_resource type="ViewportTexture" id=20]
-viewport_path = NodePath("Fifth Area/sign3/3DText3/Viewport")
+viewport_path = NodePath("Fifth Area/sign3/3DText2/Viewport")
 
 [sub_resource type="GDScript" id=21]
 script/source = "extends Sprite3D
@@ -212,7 +193,7 @@ func _ready():
 "
 
 [sub_resource type="ViewportTexture" id=22]
-viewport_path = NodePath("Fifth Area/sign3/3DText4/Viewport")
+viewport_path = NodePath("Fifth Area/sign3/3DText3/Viewport")
 
 [sub_resource type="GDScript" id=23]
 script/source = "extends Sprite3D
@@ -231,7 +212,7 @@ func _ready():
 "
 
 [sub_resource type="ViewportTexture" id=24]
-viewport_path = NodePath("Fifth Area/sign3/3DText5/Viewport")
+viewport_path = NodePath("Fifth Area/sign3/3DText4/Viewport")
 
 [sub_resource type="GDScript" id=25]
 script/source = "extends Sprite3D
@@ -249,7 +230,26 @@ func _ready():
 #	pass
 "
 
-[sub_resource type="GDScript" id=26]
+[sub_resource type="ViewportTexture" id=26]
+viewport_path = NodePath("Fifth Area/sign3/3DText5/Viewport")
+
+[sub_resource type="GDScript" id=27]
+script/source = "extends Sprite3D
+
+
+export (String) onready var label_text
+onready var label = $Viewport/Label
+
+func _ready():
+	label.set_text(label_text)
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
+
+[sub_resource type="GDScript" id=28]
 script/source = "extends Area
 
 
@@ -290,8 +290,11 @@ func Rocket_Entered(body):
 
 [node name="Spatial" type="Node"]
 
+[node name="Demolition Man" parent="." instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -16.5 )
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 30 )
+environment = SubResource( 2 )
 
 [node name="First Area" type="Spatial" parent="."]
 
@@ -307,12 +310,12 @@ spot_angle = 28.86
 
 [node name="3DText" parent="First Area/sign" instance=ExtResource( 3 )]
 transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.462924, 0.41177 )
-texture = SubResource( 28 )
+texture = SubResource( 3 )
 label_text = "To Rocket Jump,"
 
 [node name="3DText2" parent="First Area/sign" instance=ExtResource( 3 )]
 transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.350292, 0.41177 )
-texture = SubResource( 2 )
+texture = SubResource( 4 )
 label_text = " Jump then shoot the ground"
 
 [node name="sign3" parent="First Area" instance=ExtResource( 8 )]
@@ -328,19 +331,19 @@ spot_angle = 28.86
 [node name="3DText" parent="First Area/sign3" instance=ExtResource( 3 )]
 transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.000509664, 0, -0.0999988, -1.04634, 0.462924, 0.41177 )
 layers = 4
-texture = SubResource( 3 )
+texture = SubResource( 5 )
 label_text = "The goal here is for"
 
 [node name="3DText2" parent="First Area/sign3" instance=ExtResource( 3 )]
 transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.350292, 0.41177 )
 layers = 4
-texture = SubResource( 4 )
+texture = SubResource( 6 )
 label_text = "you to reach the other"
 
 [node name="3DText3" parent="First Area/sign3" instance=ExtResource( 3 )]
 transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.250378, 0.41177 )
 layers = 4
-texture = SubResource( 5 )
+texture = SubResource( 7 )
 label_text = "side"
 
 [node name="sign2" parent="First Area" instance=ExtResource( 8 )]
@@ -355,12 +358,12 @@ spot_angle = 28.86
 
 [node name="3DText" parent="First Area/sign2" instance=ExtResource( 3 )]
 transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.462924, 0.41177 )
-texture = SubResource( 6 )
+texture = SubResource( 8 )
 label_text = "Well done!"
 
 [node name="3DText2" parent="First Area/sign2" instance=ExtResource( 3 )]
 transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.350292, 0.41177 )
-texture = SubResource( 7 )
+texture = SubResource( 9 )
 label_text = "Walk forward to the next area"
 
 [node name="Spatial3" parent="First Area" instance=ExtResource( 9 )]
@@ -553,19 +556,16 @@ material/0 = null
 [node name="StaticBody" type="StaticBody" parent="First Area/MeshInstance2"]
 
 [node name="CollisionShape" type="CollisionShape" parent="First Area/MeshInstance2/StaticBody"]
-shape = SubResource( 8 )
+shape = SubResource( 10 )
 
 [node name="BoundingBox2" parent="First Area" instance=ExtResource( 5 )]
 transform = Transform( 3.4, 0, 0, 0, 1, 0, 0, 0, 0.00612051, -16.5, 24, 44.2325 )
-script = SubResource( 9 )
+script = SubResource( 11 )
 
 [node name="Respawn" type="Position3D" parent="First Area/BoundingBox2"]
 transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, 5.91098, -21.9803, -9442.58 )
 
 [node name="HUD" parent="." instance=ExtResource( 11 )]
-
-[node name="Demolition Man" parent="." instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -16.5 )
 
 [node name="Fifth Area" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 239.908, -0.275707, 36.5992 )
@@ -582,13 +582,13 @@ spot_angle = 28.86
 
 [node name="3DText2" parent="Fifth Area/sign" instance=ExtResource( 3 )]
 transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04633, 0.483158, 0.411804 )
-texture = SubResource( 10 )
-script = SubResource( 11 )
+texture = SubResource( 12 )
+script = SubResource( 13 )
 
 [node name="3DText3" parent="Fifth Area/sign" instance=ExtResource( 3 )]
 transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04633, 0.350292, 0.411835 )
-texture = SubResource( 12 )
-script = SubResource( 13 )
+texture = SubResource( 14 )
+script = SubResource( 15 )
 
 [node name="sign2" parent="Fifth Area" instance=ExtResource( 8 )]
 transform = Transform( -2.16375, 0, -0.707107, 0, 3.7632, 0, 2.16375, 0, -0.707107, -7, 57.5, -29.5 )
@@ -602,13 +602,13 @@ spot_angle = 28.86
 
 [node name="3DText2" parent="Fifth Area/sign2" instance=ExtResource( 3 )]
 transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04633, 0.483158, 0.411804 )
-texture = SubResource( 14 )
-script = SubResource( 15 )
+texture = SubResource( 16 )
+script = SubResource( 17 )
 
 [node name="3DText3" parent="Fifth Area/sign2" instance=ExtResource( 3 )]
 transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04633, 0.350292, 0.411835 )
-texture = SubResource( 16 )
-script = SubResource( 17 )
+texture = SubResource( 18 )
+script = SubResource( 19 )
 
 [node name="sign3" parent="Fifth Area" instance=ExtResource( 8 )]
 transform = Transform( 2.31024e-07, 0, -1, 0, 3.7632, 0, 3.06, 0, 7.54979e-08, -6, 1, -12.4645 )
@@ -622,23 +622,23 @@ spot_angle = 28.86
 
 [node name="3DText2" parent="Fifth Area/sign3" instance=ExtResource( 3 )]
 transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.549918, 0.411804 )
-texture = SubResource( 18 )
-script = SubResource( 19 )
-
-[node name="3DText3" parent="Fifth Area/sign3" instance=ExtResource( 3 )]
-transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.445865, 0.411804 )
 texture = SubResource( 20 )
 script = SubResource( 21 )
 
-[node name="3DText4" parent="Fifth Area/sign3" instance=ExtResource( 3 )]
-transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.338316, 0.411804 )
+[node name="3DText3" parent="Fifth Area/sign3" instance=ExtResource( 3 )]
+transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.445865, 0.411804 )
 texture = SubResource( 22 )
 script = SubResource( 23 )
 
-[node name="3DText5" parent="Fifth Area/sign3" instance=ExtResource( 3 )]
-transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.234889, 0.411804 )
+[node name="3DText4" parent="Fifth Area/sign3" instance=ExtResource( 3 )]
+transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.338316, 0.411804 )
 texture = SubResource( 24 )
 script = SubResource( 25 )
+
+[node name="3DText5" parent="Fifth Area/sign3" instance=ExtResource( 3 )]
+transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.234889, 0.411804 )
+texture = SubResource( 26 )
+script = SubResource( 27 )
 
 [node name="MetalPlates006" parent="Fifth Area" instance=ExtResource( 6 )]
 transform = Transform( 1.5299e-07, 5.70222e-07, 1, 3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, 3.5, -1.62921e-07, -6.9729, 6, -13 )
@@ -672,7 +672,7 @@ transform = Transform( 0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, -0.163383
 [node name="Portal" parent="Fifth Area" instance=ExtResource( 5 )]
 transform = Transform( 0.0445536, 0, 0, 0, 0.36288, 0, 0, 0, 0.235953, -6.5, 10.209, -13.5 )
 collision_mask = 4
-script = SubResource( 26 )
+script = SubResource( 28 )
 
 [node name="Respawn" type="Position3D" parent="Fifth Area/Portal"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 0.999999, 177.315, 168.1, 4.23812 )

@@ -5,7 +5,7 @@
 extends KinematicBody
 
 var rng = RandomNumberGenerator.new()
-var mouse_sensitivity = Globals.mouse_sense * 0.001
+var mouse_sensitivity = Globals.mouse_sense
 export var max_speed: float = 6 # Meters per second
 export var max_air_speed: float = 0.6
 export var accel: float = 60 # or max_speed * 10 : Reach max speed in 1 / 10th of a second

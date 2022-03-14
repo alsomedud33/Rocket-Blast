@@ -42,7 +42,7 @@ func _on_HScrollBar_value_changed(value):
 	$"Panel/Volume Percent".text = "%d%%" % (value * 100)
 
 func _on_Mouse_Sense_value_changed(value):
-	Globals.mouse_sense = value*10
+	Globals.mouse_sense = value*20
 	$"Panel/Sense Value".text = "%3.2f" % value
 
 
