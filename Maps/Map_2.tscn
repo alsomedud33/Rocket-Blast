@@ -473,11 +473,7 @@ transform = Transform( 4.37114e-08, 1.74365e-06, 1, 24.4, 4.66207e-14, -1.06656e
 collision_layer = 8
 
 [node name="Spatial7" parent="First Area" instance=ExtResource( 9 )]
-transform = Transform( -19.8908, 1.00989e-06, 0.579182, 14.132, 1.42142e-06, 0.815198, -3.82137e-15, 20.445, 8.06257e-07, -15.5, 4.5, 9.5 )
-collision_layer = 8
-
-[node name="Spatial8" parent="First Area" instance=ExtResource( 9 )]
-transform = Transform( -19.8908, 1.00989e-06, 0.579182, 13.9376, 3.37933, 0.803985, -2.33586, 20.1638, -0.134742, -15.5, 4.5, 18.5 )
+transform = Transform( -13.3452, -2.62187e-06, 0.837174, 20.427, 6.80739e-06, 0.546936, -4.16751e-06, 41.7621, -3.65941e-08, -2.4057, -0.28386, 13 )
 collision_layer = 8
 
 [node name="Spatial5" parent="First Area" instance=ExtResource( 9 )]
@@ -489,31 +485,31 @@ transform = Transform( 4.37114e-08, 1.74365e-06, 1, 24.4, 4.66207e-14, -1.06656e
 collision_layer = 8
 
 [node name="Rock 051" parent="First Area" instance=ExtResource( 7 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, 30.5799 )
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, 46.7614 )
 
 [node name="Rock 052" parent="First Area" instance=ExtResource( 7 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, 30.5799 )
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, 46.7614 )
 
 [node name="Rock 053" parent="First Area" instance=ExtResource( 7 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, 30.5799 )
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, 46.7614 )
 
 [node name="Rock 054" parent="First Area" instance=ExtResource( 7 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, 37.5799 )
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, 53.7614 )
 
 [node name="Rock 055" parent="First Area" instance=ExtResource( 7 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, 37.5799 )
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, 53.7614 )
 
 [node name="Rock 056" parent="First Area" instance=ExtResource( 7 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, 37.5799 )
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, 53.7614 )
 
 [node name="Rock 057" parent="First Area" instance=ExtResource( 7 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, 44.5799 )
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, 60.7614 )
 
 [node name="Rock 058" parent="First Area" instance=ExtResource( 7 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, 44.5799 )
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, 60.7614 )
 
 [node name="Rock 059" parent="First Area" instance=ExtResource( 7 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, 44.5799 )
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, 60.7614 )
 
 [node name="Rock 036" parent="First Area" instance=ExtResource( 7 )]
 transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, -18.5 )

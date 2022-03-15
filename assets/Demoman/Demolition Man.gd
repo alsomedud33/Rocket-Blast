@@ -129,17 +129,13 @@ func accelerate(wishdir: Vector3, input_velocity: Vector3, accel: float, max_spe
 
 # Scale down horizontal velocity
 # For now, we're simply substracting 10% from our current velocity. This is not how it works in engines like idTech or Source !
-func friction(input_velocity: Vector3)-> Vector3:
-	var speed: float = input_velocity.length()
-	var scaled_velocity: Vector3
-
-	scaled_velocity = input_velocity * 0.9 # Reduce current velocity by 10%
-	
-	# If the player is moving too slowly, we stop them completely
-	if scaled_velocity.length() < max_speed / 100:
-		scaled_velocity = Vector3.ZERO
-
-	return scaled_velocity
+#func friction(input_velocity: Vector3,delta)-> Vector3:
+#	var speed: float = input_velocity.length()
+#	var scaled_velocity
+#	if speed != 0:
+#		scaled_velocity = speed * 0.9 *delta# Reduce current velocity by 10%
+#		scaled_velocity *= max(speed - scaled_velocity, 0) / speed
+#	return scaled_velocity
 
 # Apply friction, then accelerate
 func move_ground(input_velocity: Vector3, delta: float)-> void:
@@ -147,7 +143,11 @@ func move_ground(input_velocity: Vector3, delta: float)-> void:
 	var nextVelocity: Vector3 = Vector3.ZERO
 	nextVelocity.x = input_velocity.x
 	nextVelocity.z = input_velocity.z
-	nextVelocity = friction(nextVelocity) #Scale down velocity
+	var speed: float = input_velocity.length()
+	var scaled_velocity
+	if speed != 0:
+		scaled_velocity = speed * 4 *delta# Reduce current velocity by 10%
+		nextVelocity *= max(speed - scaled_velocity, 0) / speed
 	nextVelocity = accelerate(wishdir, nextVelocity, accel, max_speed, delta)
 	
 	# Then get back our vertical component, and move the player
@@ -158,8 +158,8 @@ func move_ground(input_velocity: Vector3, delta: float)-> void:
 func move_air(input_velocity: Vector3, delta: float)-> void:
 	# We first work on only on the horizontal components of our current velocity
 	var nextVelocity: Vector3 = Vector3.ZERO
-	nextVelocity.x = input_velocity.x
-	nextVelocity.z = input_velocity.z
+	#nextVelocity.x = input_velocity.x
+	#nextVelocity.z = input_velocity.z
 	nextVelocity = accelerate(wishdir, nextVelocity, accel, max_air_speed, delta)
 	
 	# Then get back our vertical component, and move the player

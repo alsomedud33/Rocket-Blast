@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/military dnb.mp3-77b2ba9f3b423f99d0ab763c97ab7a49.mp3str"
+
+[deps]
+
+source_file="res://assets/Sounds/Music/military dnb.mp3"
+dest_files=[ "res://.import/military dnb.mp3-77b2ba9f3b423f99d0ab763c97ab7a49.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
