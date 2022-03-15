@@ -116,7 +116,7 @@ func _physics_process(delta: float) -> void:
 		
 
 # This is were we calculate the speed to add to current velocity
-func accelerate(wishdir: Vector3, input_velocity: Vector3, accel: float, max_speed: float, delta: float)-> Vector3:
+func accelerate(wishdir: Vector3, input_velocity: Vector3, accel: float, max_speeds: float, delta: float)-> Vector3:
 	# Current speed is calculated by projecting our velocity onto wishdir.
 	# We can thus manipulate our wishdir to trick the engine into thinking we're going slower than we actually are, allowing us to accelerate further.
 	var current_speed: float = input_velocity.dot(wishdir)
@@ -125,7 +125,7 @@ func accelerate(wishdir: Vector3, input_velocity: Vector3, accel: float, max_spe
 	# If our current speed is low enough, we will add the max acceleration.
 	# If we're going too fast, our acceleration will be reduced (until it evenutually hits 0, where we don't add any more speed).
 	#	accel = max(0, min(accel, speedLimit - currentSpeed))
-	var add_speed: float = max(0, min(accel, max_speed - current_speed)) #clamp(max_speed - current_speed, 0, accel * delta)
+	var add_speed: float = max(0, min(accel, max_speeds - current_speed)) #clamp(max_speed - current_speed, 0, accel * delta)
 	
 	# Put the new velocity in a variable, so the vector can be displayed.
 	accelerate_return = input_velocity + wishdir * add_speed
