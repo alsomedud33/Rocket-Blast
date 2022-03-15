@@ -84,7 +84,11 @@ func _physics_process(delta: float) -> void:
 	
 	else: #We're in the air. Do not apply friction
 		snap = Vector3.DOWN
-		vertical_velocity -= gravity * delta if vertical_velocity >= terminal_velocity else 0 # Stop adding to vertical velocity once terminal velocity is reached
+		vertical_velocity = velocity.y
+		if vertical_velocity >= terminal_velocity:
+			vertical_velocity -= gravity * delta #if vertical_velocity >= terminal_velocity else 0 # Stop adding to vertical velocity once terminal velocity is reached
+		else:
+			vertical_velocity = terminal_velocity
 		move_air(velocity, delta)
 	
 	if self.is_on_ceiling(): #We've hit a ceiling, usually after a jump. Vertical velocity is reset to cancel any remaining jump momentum
@@ -152,20 +156,21 @@ func move_ground(input_velocity: Vector3, delta: float)-> void:
 	
 	# Then get back our vertical component, and move the player
 	nextVelocity.y = vertical_velocity
-	velocity = move_and_slide_with_snap(nextVelocity, snap, Vector3.UP)
+	velocity = move_and_slide(nextVelocity, Vector3.UP)#move_and_slide_with_snap(nextVelocity, snap, Vector3.UP)
 
 # Accelerate without applying friction (with a lower allowed max_speed)
 func move_air(input_velocity: Vector3, delta: float)-> void:
 	# We first work on only on the horizontal components of our current velocity
-	var nextVelocity: Vector3 = Vector3.ZERO
-	#nextVelocity.x = input_velocity.x
-	#nextVelocity.z = input_velocity.z
+	var nextVelocity: Vector3 = input_velocity#Vector3.ZERO
+	nextVelocity.x = input_velocity.x
+	nextVelocity.z = input_velocity.z
+	
 	nextVelocity = accelerate(wishdir, nextVelocity, accel, max_air_speed, delta)
 	
 	# Then get back our vertical component, and move the player
 	nextVelocity.y = vertical_velocity
-	velocity = move_and_slide_with_snap(nextVelocity, snap, Vector3.UP,false,4,0.3)
-
+	print (nextVelocity.y)
+	velocity = move_and_slide(nextVelocity, Vector3.UP,false,4,0.3)#move_and_slide_with_snap(nextVelocity, snap, Vector3.UP,false,4,0.3)
 # Set wish_jump depending on player input.
 func queue_jump()-> void:
 	# If auto_jump is true, the player keeps jumping as long as the key is kept down
@@ -184,7 +189,7 @@ func shoot_event():
 
 func _on_Footstep_timeout():
 	var my_random_number = int(rng.randi_range(1,100) % 3)
-	print(my_random_number)
+	#print(my_random_number)
 	if self.is_on_floor() and velocity.length() > 3:
 		match my_random_number:
 			0:
