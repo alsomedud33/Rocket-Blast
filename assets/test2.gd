@@ -87,8 +87,14 @@ func _physics_process(delta: float) -> void:
 	
 	else: #We're in the air. Do not apply friction
 		snap = Vector3.DOWN
-		vertical_velocity -= gravity * delta if vertical_velocity >= terminal_velocity else 0 # Stop adding to vertical velocity once terminal velocity is reached
+		vertical_velocity = velocity.y
+		
+		if vertical_velocity >= terminal_velocity:
+			vertical_velocity -= gravity * delta #if vertical_velocity >= terminal_velocity else 0 # Stop adding to vertical velocity once terminal velocity is reached
+		else:
+			vertical_velocity = terminal_velocity
 		move_air(velocity, delta)
+		print(vertical_velocity)
 	
 	if self.is_on_ceiling(): #We've hit a ceiling, usually after a jump. Vertical velocity is reset to cancel any remaining jump momentum
 		vertical_velocity = 0

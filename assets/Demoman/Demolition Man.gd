@@ -116,7 +116,7 @@ func _physics_process(delta: float) -> void:
 		
 
 # This is were we calculate the speed to add to current velocity
-func accelerate(wishdir: Vector3, input_velocity: Vector3, accel: float, max_speeds: float, delta: float)-> Vector3:
+func accelerate(wishdir: Vector3, input_velocity: Vector3, accel: float, max_speed: float, delta: float)-> Vector3:
 	# Current speed is calculated by projecting our velocity onto wishdir.
 	# We can thus manipulate our wishdir to trick the engine into thinking we're going slower than we actually are, allowing us to accelerate further.
 	var current_speed: float = input_velocity.dot(wishdir)
@@ -124,8 +124,7 @@ func accelerate(wishdir: Vector3, input_velocity: Vector3, accel: float, max_spe
 	# Next, we calculate the speed to be added for the next frame.
 	# If our current speed is low enough, we will add the max acceleration.
 	# If we're going too fast, our acceleration will be reduced (until it evenutually hits 0, where we don't add any more speed).
-	#	accel = max(0, min(accel, speedLimit - currentSpeed))
-	var add_speed: float = max(0, min(accel, max_speeds - current_speed)) #clamp(max_speed - current_speed, 0, accel * delta)
+	var add_speed: float = clamp(max_speed - current_speed, 0, accel * delta)
 	
 	# Put the new velocity in a variable, so the vector can be displayed.
 	accelerate_return = input_velocity + wishdir * add_speed
@@ -133,13 +132,17 @@ func accelerate(wishdir: Vector3, input_velocity: Vector3, accel: float, max_spe
 
 # Scale down horizontal velocity
 # For now, we're simply substracting 10% from our current velocity. This is not how it works in engines like idTech or Source !
-#func friction(input_velocity: Vector3,delta)-> Vector3:
-#	var speed: float = input_velocity.length()
-#	var scaled_velocity
-#	if speed != 0:
-#		scaled_velocity = speed * 0.9 *delta# Reduce current velocity by 10%
-#		scaled_velocity *= max(speed - scaled_velocity, 0) / speed
-#	return scaled_velocity
+func friction(input_velocity: Vector3)-> Vector3:
+	var speed: float = input_velocity.length()
+	var scaled_velocity: Vector3
+
+	scaled_velocity = input_velocity * 0.9 # Reduce current velocity by 10%
+	
+	# If the player is moving too slowly, we stop them completely
+	if scaled_velocity.length() < max_speed / 100:
+		scaled_velocity = Vector3.ZERO
+
+	return scaled_velocity
 
 # Apply friction, then accelerate
 func move_ground(input_velocity: Vector3, delta: float)-> void:
@@ -147,30 +150,25 @@ func move_ground(input_velocity: Vector3, delta: float)-> void:
 	var nextVelocity: Vector3 = Vector3.ZERO
 	nextVelocity.x = input_velocity.x
 	nextVelocity.z = input_velocity.z
-	var speed: float = input_velocity.length()
-	var scaled_velocity
-	if speed != 0:
-		scaled_velocity = speed * 4 *delta# Reduce current velocity by 10%
-		nextVelocity *= max(speed - scaled_velocity, 0) / speed
+	nextVelocity = friction(nextVelocity) #Scale down velocity
 	nextVelocity = accelerate(wishdir, nextVelocity, accel, max_speed, delta)
 	
 	# Then get back our vertical component, and move the player
 	nextVelocity.y = vertical_velocity
-	velocity = move_and_slide(nextVelocity, Vector3.UP)#move_and_slide_with_snap(nextVelocity, snap, Vector3.UP)
+	velocity = move_and_slide_with_snap(nextVelocity, snap, Vector3.UP,true)
 
 # Accelerate without applying friction (with a lower allowed max_speed)
 func move_air(input_velocity: Vector3, delta: float)-> void:
 	# We first work on only on the horizontal components of our current velocity
-	var nextVelocity: Vector3 = input_velocity#Vector3.ZERO
+	var nextVelocity: Vector3 = Vector3.ZERO
 	nextVelocity.x = input_velocity.x
 	nextVelocity.z = input_velocity.z
-	
 	nextVelocity = accelerate(wishdir, nextVelocity, accel, max_air_speed, delta)
 	
 	# Then get back our vertical component, and move the player
 	nextVelocity.y = vertical_velocity
-	print (nextVelocity.y)
-	velocity = move_and_slide(nextVelocity, Vector3.UP,false,4,0.3)#move_and_slide_with_snap(nextVelocity, snap, Vector3.UP,false,4,0.3)
+	velocity = move_and_slide_with_snap(nextVelocity, snap, Vector3.UP,true)
+
 # Set wish_jump depending on player input.
 func queue_jump()-> void:
 	# If auto_jump is true, the player keeps jumping as long as the key is kept down
@@ -188,13 +186,12 @@ func shoot_event():
 
 
 func _on_Footstep_timeout():
-	var my_random_number = int(rng.randi_range(1,100) % 3)
-	#print(my_random_number)
+	var my_random_number = rng.randi_range(1,3)
 	if self.is_on_floor() and velocity.length() > 3:
 		match my_random_number:
-			0:
-				$Footstep1.play()
 			1:
-				$Footstep2.play()
+				$Footstep1.play()
 			2:
+				$Footstep2.play()
+			3:
 				$Footstep3.play()

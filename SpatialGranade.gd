@@ -9,7 +9,7 @@ export var explosion : PackedScene
 
 onready var main = get_tree().current_scene
 
-onready var explosion_instance = explosion.instance()
+#onready var explosion_instance = explosion.instance()
 
 func _ready():
 	set_as_toplevel(true)
@@ -23,6 +23,8 @@ func _physics_process(delta):
 		self.rotation = Vector3(velocity.bounce(bounce.normal).x,velocity.bounce(bounce.normal).y,velocity.bounce(bounce.normal).z * 1.5)
 		velocity = velocity.bounce(bounce.normal) * 0.8
 		#var explosion_instance = explosion.instance()
+		var explosion_instance = explosion.instance()
+		explosion_instance.y_explode_ratio = 0.5
 		main.add_child(explosion_instance)
 		explosion_instance.global_transform.origin = bounce.get_position()
 		explosion_instance.transform.looking_at(-velocity.bounce(bounce.normal), Vector3.UP)
@@ -31,6 +33,8 @@ func _physics_process(delta):
 	else:
 		for index in get_slide_count():
 			var collision = get_slide_collision(index)
+			var explosion_instance = explosion.instance()
+			explosion_instance.y_explode_ratio = 0.5
 			main.add_child(explosion_instance)
 			explosion_instance.global_transform.origin = collision.get_position()
 			

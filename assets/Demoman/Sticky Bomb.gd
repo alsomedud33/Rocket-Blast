@@ -64,7 +64,7 @@ func explode():
 		explosion_instance.radius_val = 1.5
 		explosion_instance.distance_ratio = 1
 		explosion_instance.explode_force  = 12
-		explosion_instance.y_explode_ratio = 1
+		explosion_instance.y_explode_ratio = 0.5
 		main.add_child(explosion_instance)
 		explosion_instance.global_transform.origin = self.global_transform.origin
 		Globals.sticky_deployed -= 1
