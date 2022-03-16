@@ -34,7 +34,6 @@ glow_levels/2 = true
 glow_intensity = 3.5
 glow_bloom = 0.33
 glow_bicubic_upscale = true
-glow_high_quality = true
 adjustment_enabled = true
 adjustment_brightness = 1.2
 
@@ -298,6 +297,13 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -16.5 )
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 2 )
 
+[node name="SpotLight" type="SpotLight" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 26, -9.53674e-07 )
+light_color = Color( 0.469172, 0.394531, 0.789063, 1 )
+light_energy = 0.2
+spot_range = 340.084
+spot_angle = 89.93
+
 [node name="First Area" type="Spatial" parent="."]
 
 [node name="sign" parent="First Area" instance=ExtResource( 8 )]
@@ -441,18 +447,6 @@ transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.7914
 [node name="Facade 019B24" parent="First Area" instance=ExtResource( 4 )]
 transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 10.5, -16.1982, -8 )
 
-[node name="Facade 019B25" parent="First Area" instance=ExtResource( 4 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -24.5, -23.1982, -8 )
-
-[node name="Facade 019B26" parent="First Area" instance=ExtResource( 4 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -24.5, -16.1982, -8 )
-
-[node name="Facade 019B27" parent="First Area" instance=ExtResource( 4 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -17.5, -23.1982, -8 )
-
-[node name="Facade 019B28" parent="First Area" instance=ExtResource( 4 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -17.5, -16.1982, -8 )
-
 [node name="Facade 019B29" parent="First Area" instance=ExtResource( 4 )]
 transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -10.5, -23.1982, -8 )
 
@@ -475,11 +469,11 @@ transform = Transform( 4.37114e-08, 1.74365e-06, 1, 24.4, 4.66207e-14, -1.06656e
 collision_layer = 8
 
 [node name="Spatial7" parent="First Area" instance=ExtResource( 9 )]
-transform = Transform( -13.3452, -2.62187e-06, 0.837174, 20.427, 6.80739e-06, 0.546936, -4.16751e-06, 41.7621, -3.65941e-08, -2.4057, -0.28386, 13 )
+transform = Transform( -13.3452, -2.62187e-06, 0.837174, 20.427, 6.80739e-06, 0.546936, -4.16751e-06, 41.7621, -3.65941e-08, -32.3887, 18.665, 13 )
 collision_layer = 8
 
 [node name="Spatial8" parent="First Area" instance=ExtResource( 9 )]
-transform = Transform( -11.5269, 4.69804, 0.874168, 21.5055, 2.51813, 0.468549, -4.54484e-06, 41.4205, -0.127636, -1.08329, -0.277128, 24.0365 )
+transform = Transform( -11.5269, 4.69804, 0.874168, 21.5055, 2.51813, 0.468549, -4.54484e-06, 41.4205, -0.127636, -55.5251, -19.2283, 31.3636 )
 collision_layer = 8
 
 [node name="Spatial5" parent="First Area" instance=ExtResource( 9 )]
@@ -489,33 +483,6 @@ collision_layer = 8
 [node name="Spatial6" parent="First Area" instance=ExtResource( 9 )]
 transform = Transform( 4.37114e-08, 1.74365e-06, 1, 24.4, 4.66207e-14, -1.06656e-06, -3.82137e-15, 20.445, 8.06257e-07, -7, 2.5, 38.2815 )
 collision_layer = 8
-
-[node name="Rock 051" parent="First Area" instance=ExtResource( 7 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, 46.7614 )
-
-[node name="Rock 052" parent="First Area" instance=ExtResource( 7 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, 46.7614 )
-
-[node name="Rock 053" parent="First Area" instance=ExtResource( 7 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, 46.7614 )
-
-[node name="Rock 054" parent="First Area" instance=ExtResource( 7 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, 53.7614 )
-
-[node name="Rock 055" parent="First Area" instance=ExtResource( 7 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, 53.7614 )
-
-[node name="Rock 056" parent="First Area" instance=ExtResource( 7 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, 53.7614 )
-
-[node name="Rock 057" parent="First Area" instance=ExtResource( 7 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, 60.7614 )
-
-[node name="Rock 058" parent="First Area" instance=ExtResource( 7 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, 60.7614 )
-
-[node name="Rock 059" parent="First Area" instance=ExtResource( 7 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, 60.7614 )
 
 [node name="Rock 036" parent="First Area" instance=ExtResource( 7 )]
 transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, -18.5 )
@@ -561,11 +528,41 @@ material/0 = null
 shape = SubResource( 10 )
 
 [node name="BoundingBox2" parent="First Area" instance=ExtResource( 5 )]
-transform = Transform( 3.4, 0, 0, 0, 1, 0, 0, 0, 0.00612051, -16.5, 24, 44.2325 )
+transform = Transform( 3.4, 0, 0, 0, 1, 0, 0, 0, 0.00612051, -16.5, 24, 22.8141 )
 script = SubResource( 11 )
 
 [node name="Respawn" type="Position3D" parent="First Area/BoundingBox2"]
-transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, 5.91098, -21.9803, -9442.58 )
+transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, 5.91098, -21.9803, -6417.62 )
+
+[node name="Spatial" type="Spatial" parent="First Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.37498, 0, 20.4888 )
+
+[node name="Rock 051" parent="First Area/Spatial" instance=ExtResource( 7 )]
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -0.37498, 1.5, -6.70498 )
+
+[node name="Rock 052" parent="First Area/Spatial" instance=ExtResource( 7 )]
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -7.37498, 1.5, -6.70498 )
+
+[node name="Rock 053" parent="First Area/Spatial" instance=ExtResource( 7 )]
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 6.62502, 1.5, -6.70498 )
+
+[node name="Rock 054" parent="First Area/Spatial" instance=ExtResource( 7 )]
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -0.37498, 1.5, 0.295017 )
+
+[node name="Rock 055" parent="First Area/Spatial" instance=ExtResource( 7 )]
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -7.37498, 1.5, 0.295017 )
+
+[node name="Rock 056" parent="First Area/Spatial" instance=ExtResource( 7 )]
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 6.62502, 1.5, 0.295017 )
+
+[node name="Rock 057" parent="First Area/Spatial" instance=ExtResource( 7 )]
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -0.37498, 1.5, 7.29502 )
+
+[node name="Rock 058" parent="First Area/Spatial" instance=ExtResource( 7 )]
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -7.37498, 1.5, 7.29502 )
+
+[node name="Rock 059" parent="First Area/Spatial" instance=ExtResource( 7 )]
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 6.62502, 1.5, 7.29502 )
 
 [node name="HUD" parent="." instance=ExtResource( 11 )]
 
@@ -1718,7 +1715,7 @@ transform = Transform( -9.66, -3.0598e-07, -1.36738e-15, 0, -1.5299e-07, 0.35782
 [node name="Respawn" type="Position3D" parent="Fifth Area/BHOP Check5"]
 transform = Transform( 1, -3.55271e-15, -6.61744e-23, 1.7053e-13, 0.999999, -8.88178e-15, 4.06576e-20, 2.84217e-12, 1, 1.70807, 3.85718, 22.3573 )
 
-[connection signal="body_exited" from="First Area/BoundingBox" to="First Area/BoundingBox" method="_on_BoundingBox_body_exited"]
+[connection signal="body_entered" from="First Area/BoundingBox" to="First Area/BoundingBox" method="_on_BoundingBox_body_entered"]
 [connection signal="body_exited" from="First Area/BoundingBox2" to="First Area/BoundingBox2" method="_on_BoundingBox_body_exited"]
 [connection signal="body_exited" from="Fifth Area/Next Level" to="Fifth Area/Next Level" method="_on_BoundingBox_body_exited"]
 [connection signal="body_entered" from="Fifth Area/BoundingBox" to="Fifth Area/BoundingBox" method="_on_BoundingBox_body_entered"]

@@ -192,7 +192,7 @@ visible = false
 
 [node name="OmniLight" type="OmniLight" parent="Pivot/Camera"]
 transform = Transform( -1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, -1, 0.42807, -0.2, -1.40703 )
-layers = 12
+layers = 4
 light_energy = 4.31
 shadow_enabled = true
 shadow_color = Color( 1, 0.698039, 0.458824, 1 )

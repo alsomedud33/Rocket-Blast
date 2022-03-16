@@ -27,12 +27,12 @@
 [ext_resource path="res://assets/Textures/Rock 035/Rock035_1K_Color.jpg" type="Texture" id=26]
 [ext_resource path="res://assets/Textures/Rock 035/Rock035_1K_NormalGL.jpg" type="Texture" id=27]
 
-[sub_resource type="PanoramaSky" id=1]
+[sub_resource type="PanoramaSky" id=79]
 panorama = ExtResource( 21 )
 
 [sub_resource type="Environment" id=2]
 background_mode = 2
-background_sky = SubResource( 1 )
+background_sky = SubResource( 79 )
 background_sky_custom_fov = 60.0
 fog_enabled = true
 fog_color = Color( 0, 0.0745098, 0.14902, 1 )
