@@ -9,7 +9,7 @@ var velocity = Vector3()
 var bounce
 var stick = false
 var delete = false
-export var explosion : PackedScene
+export var explosion = preload("res://assets/Soldier/Explosion_Hitbox.tscn")#: PackedScene
 
 onready var main = get_tree().current_scene
 onready var tick = preload("res://assets/Sounds/Demoman/Explosion Tick.wav")
