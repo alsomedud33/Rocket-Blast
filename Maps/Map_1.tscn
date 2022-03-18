@@ -1,4 +1,4 @@
-[gd_scene load_steps=105 format=2]
+[gd_scene load_steps=120 format=2]
 
 [ext_resource path="res://assets/Soldier/Rocket Launcher.png" type="Texture" id=1]
 [ext_resource path="res://CameraHub.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://assets/Platform Objects/Facade 019B.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/Skybox/BoundingBox.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assets/UI/HUD.tscn" type="PackedScene" id=12]
+[ext_resource path="res://assets/Platform Objects/Door2.png" type="Texture" id=13]
 [ext_resource path="res://assets/Platform Objects/MetalPlates006.tscn" type="PackedScene" id=14]
 [ext_resource path="res://assets/Platform Objects/Rock 035.tscn" type="PackedScene" id=15]
 [ext_resource path="res://assets/Skybox/BHOP Check.tscn" type="PackedScene" id=16]
@@ -26,6 +27,9 @@
 [ext_resource path="res://assets/Textures/Rock 035/Rock035_1K_Roughness.jpg" type="Texture" id=25]
 [ext_resource path="res://assets/Textures/Rock 035/Rock035_1K_Color.jpg" type="Texture" id=26]
 [ext_resource path="res://assets/Textures/Rock 035/Rock035_1K_NormalGL.jpg" type="Texture" id=27]
+[ext_resource path="res://assets/Platform Objects/FirstRamp.tscn" type="PackedScene" id=28]
+[ext_resource path="res://assets/Platform Objects/Door2.obj" type="ArrayMesh" id=29]
+[ext_resource path="res://assets/Fonts/TF2.ttf" type="DynamicFontData" id=30]
 
 [sub_resource type="PanoramaSky" id=79]
 panorama = ExtResource( 21 )
@@ -541,6 +545,14 @@ viewport_path = NodePath("Fifth Area/sign/3DText2/Viewport")
 [sub_resource type="ViewportTexture" id=62]
 viewport_path = NodePath("Fifth Area/sign/3DText3/Viewport")
 
+[sub_resource type="DynamicFont" id=90]
+size = 100
+outline_size = 10
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 30 )
+
 [sub_resource type="ViewportTexture" id=63]
 viewport_path = NodePath("Fifth Area/sign2/3DText2/Viewport")
 
@@ -691,6 +703,38 @@ ao_texture = ExtResource( 22 )
 ao_on_uv2 = true
 ao_texture_channel = 1
 
+[sub_resource type="ViewportTexture" id=80]
+viewport_path = NodePath("First Area/sign/3DText/Viewport")
+
+[sub_resource type="ViewportTexture" id=81]
+viewport_path = NodePath("First Area/sign/3DText2/Viewport")
+
+[sub_resource type="ViewportTexture" id=82]
+viewport_path = NodePath("First Area/sign3/3DText/Viewport")
+
+[sub_resource type="ViewportTexture" id=83]
+viewport_path = NodePath("First Area/sign3/3DText2/Viewport")
+
+[sub_resource type="ViewportTexture" id=84]
+viewport_path = NodePath("First Area/sign3/3DText3/Viewport")
+
+[sub_resource type="ViewportTexture" id=85]
+viewport_path = NodePath("First Area/sign2/3DText/Viewport")
+
+[sub_resource type="ViewportTexture" id=86]
+viewport_path = NodePath("First Area/sign2/3DText2/Viewport")
+
+[sub_resource type="ConcavePolygonShape" id=87]
+data = PoolVector3Array( -0.6, 0, 1.1, -0.6, 6, 2.1, -0.6, 0, 2.1, -0.6, 0, 1.1, -0.6, 6, 1.1, -0.6, 6, 2.1, 1.4, 0, 1.1, 1.4, 2.7, 1.5, 1.4, 0, 1.5, 1.4, 0, 1.1, 1.4, 2.7, 1.1, 1.4, 2.7, 1.5, 1.4, 3.3, 1.1, 1.4, 5.2, 1.5, 1.4, 3.3, 1.5, 1.4, 3.3, 1.1, 1.4, 5.2, 1.1, 1.4, 5.2, 1.5, 3.1, 0, 1.1, 3.1, 2.7, 1.5, 3.1, 0, 2.1, 3.1, 0, 1.1, 3.1, 2.7, 1.1, 3.1, 2.7, 1.5, 3.1, 2.7, 1.5, 3.1, 3.3, 1.5, 3.1, 0, 2.1, 3.1, 3.3, 1.5, 3.1, 5.2, 2.1, 3.1, 0, 2.1, 3.1, 3.3, 1.1, 3.1, 5.2, 2.1, 3.1, 3.3, 1.5, 3.1, 3.3, 1.1, 3.1, 5.2, 1.1, 3.1, 5.2, 2.1, 0.2, 0, 1.1, 0.2, 0, 2.1, 0.2, 2.7, 1.5, 0.2, 0, 1.1, 0.2, 2.7, 1.5, 0.2, 2.7, 1.1, 0.2, 2.7, 1.5, 0.2, 0, 2.1, 0.2, 3.3, 1.5, 0.2, 3.3, 1.5, 0.2, 0, 2.1, 0.2, 5.2, 2.1, 0.2, 3.3, 1.1, 0.2, 3.3, 1.5, 0.2, 5.2, 2.1, 0.2, 3.3, 1.1, 0.2, 5.2, 2.1, 0.2, 5.2, 1.1, 1.9, 0, 1.1, 1.9, 0, 1.5, 1.9, 2.7, 1.5, 1.9, 0, 1.1, 1.9, 2.7, 1.5, 1.9, 2.7, 1.1, 1.9, 3.3, 1.1, 1.9, 3.3, 1.5, 1.9, 5.2, 1.5, 1.9, 3.3, 1.1, 1.9, 5.2, 1.5, 1.9, 5.2, 1.1, 3.9, 0, 1.1, 3.9, 0, 2.1, 3.9, 6, 2.1, 3.9, 0, 1.1, 3.9, 6, 2.1, 3.9, 6, 1.1, -0.6, 6, 2.1, 0.2, 0, 2.1, -0.6, 0, 2.1, -0.6, 6, 2.1, 0.2, 5.2, 2.1, 0.2, 0, 2.1, -0.6, 6, 2.1, 3.1, 5.2, 2.1, 0.2, 5.2, 2.1, 3.1, 5.2, 2.1, 3.9, 0, 2.1, 3.1, 0, 2.1, -0.6, 6, 2.1, 3.9, 6, 2.1, 3.1, 5.2, 2.1, 3.1, 5.2, 2.1, 3.9, 6, 2.1, 3.9, 0, 2.1, 0.2, 3.3, 1.5, 1.4, 2.7, 1.5, 0.2, 2.7, 1.5, 0.2, 3.3, 1.5, 1.4, 3.3, 1.5, 1.4, 2.7, 1.5, 1.4, 2.7, 1.5, 1.9, 0, 1.5, 1.4, 0, 1.5, 1.4, 5.2, 1.5, 1.9, 0, 1.5, 1.4, 3.3, 1.5, 1.4, 3.3, 1.5, 1.9, 0, 1.5, 1.4, 2.7, 1.5, 1.4, 5.2, 1.5, 1.9, 2.7, 1.5, 1.9, 0, 1.5, 1.4, 5.2, 1.5, 1.9, 3.3, 1.5, 1.9, 2.7, 1.5, 1.4, 5.2, 1.5, 1.9, 5.2, 1.5, 1.9, 3.3, 1.5, 1.9, 3.3, 1.5, 3.1, 2.7, 1.5, 1.9, 2.7, 1.5, 1.9, 3.3, 1.5, 3.1, 3.3, 1.5, 3.1, 2.7, 1.5, -0.6, 6, 1.1, -0.6, 0, 1.1, 0.2, 0, 1.1, -0.6, 6, 1.1, 0.2, 0, 1.1, 0.2, 2.7, 1.1, -0.6, 6, 1.1, 0.2, 2.7, 1.1, 0.2, 3.3, 1.1, -0.6, 6, 1.1, 0.2, 3.3, 1.1, 0.2, 5.2, 1.1, 0.2, 3.3, 1.1, 0.2, 2.7, 1.1, 1.4, 2.7, 1.1, 0.2, 3.3, 1.1, 1.4, 2.7, 1.1, 1.4, 3.3, 1.1, -0.6, 6, 1.1, 0.2, 5.2, 1.1, 1.4, 5.2, 1.1, 1.4, 3.3, 1.1, 1.4, 2.7, 1.1, 1.9, 0, 1.1, 1.4, 5.2, 1.1, 1.4, 3.3, 1.1, 1.9, 0, 1.1, 1.4, 2.7, 1.1, 1.4, 0, 1.1, 1.9, 0, 1.1, 1.4, 5.2, 1.1, 1.9, 0, 1.1, 1.9, 2.7, 1.1, 1.4, 5.2, 1.1, 1.9, 2.7, 1.1, 1.9, 3.3, 1.1, -0.6, 6, 1.1, 1.4, 5.2, 1.1, 1.9, 5.2, 1.1, 1.4, 5.2, 1.1, 1.9, 3.3, 1.1, 1.9, 5.2, 1.1, 1.9, 3.3, 1.1, 1.9, 2.7, 1.1, 3.1, 2.7, 1.1, 1.9, 3.3, 1.1, 3.1, 2.7, 1.1, 3.1, 3.3, 1.1, -0.6, 6, 1.1, 1.9, 5.2, 1.1, 3.1, 5.2, 1.1, 3.1, 3.3, 1.1, 3.1, 2.7, 1.1, 3.9, 0, 1.1, 3.1, 5.2, 1.1, 3.1, 3.3, 1.1, 3.9, 0, 1.1, 3.1, 2.7, 1.1, 3.1, 0, 1.1, 3.9, 0, 1.1, -0.6, 6, 1.1, 3.1, 5.2, 1.1, 3.9, 6, 1.1, 3.1, 5.2, 1.1, 3.9, 0, 1.1, 3.9, 6, 1.1, 0.2, 0, 2.1, -0.6, 0, 1.1, -0.6, 0, 2.1, 0.2, 0, 2.1, 0.2, 0, 1.1, -0.6, 0, 1.1, 1.9, 0, 1.5, 1.4, 0, 1.1, 1.4, 0, 1.5, 1.9, 0, 1.5, 1.9, 0, 1.1, 1.4, 0, 1.1, 3.9, 0, 2.1, 3.1, 0, 1.1, 3.1, 0, 2.1, 3.9, 0, 2.1, 3.9, 0, 1.1, 3.1, 0, 1.1, 1.4, 2.7, 1.5, 0.2, 2.7, 1.1, 0.2, 2.7, 1.5, 1.4, 2.7, 1.5, 1.4, 2.7, 1.1, 0.2, 2.7, 1.1, 3.1, 2.7, 1.5, 1.9, 2.7, 1.1, 1.9, 2.7, 1.5, 3.1, 2.7, 1.5, 3.1, 2.7, 1.1, 1.9, 2.7, 1.1, 3.1, 5.2, 2.1, 1.4, 5.2, 1.5, 0.2, 5.2, 2.1, 3.1, 5.2, 2.1, 1.9, 5.2, 1.5, 1.4, 5.2, 1.5, 1.4, 5.2, 1.5, 0.2, 5.2, 1.1, 0.2, 5.2, 2.1, 1.4, 5.2, 1.5, 1.4, 5.2, 1.1, 0.2, 5.2, 1.1, 3.1, 5.2, 2.1, 1.9, 5.2, 1.1, 1.9, 5.2, 1.5, 3.1, 5.2, 2.1, 3.1, 5.2, 1.1, 1.9, 5.2, 1.1, 1.4, 3.3, 1.5, 0.2, 3.3, 1.5, 0.2, 3.3, 1.1, 1.4, 3.3, 1.5, 0.2, 3.3, 1.1, 1.4, 3.3, 1.1, 3.1, 3.3, 1.5, 1.9, 3.3, 1.5, 1.9, 3.3, 1.1, 3.1, 3.3, 1.5, 1.9, 3.3, 1.1, 3.1, 3.3, 1.1, 3.9, 6, 2.1, -0.6, 6, 2.1, -0.6, 6, 1.1, 3.9, 6, 2.1, -0.6, 6, 1.1, 3.9, 6, 1.1 )
+
+[sub_resource type="SpatialMaterial" id=88]
+albedo_texture = ExtResource( 13 )
+emission_enabled = true
+emission = Color( 0.168627, 0, 0.976471, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
+
 [sub_resource type="GDScript" id=78]
 script/source = "extends Area
 
@@ -719,6 +763,43 @@ func _on_BoundingBox_body_entered(body):
 	body.global_transform.origin = $Respawn.global_transform.origin
 "
 
+[sub_resource type="GDScript" id=89]
+script/source = "extends Area
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+
+
+func _on_BoundingBox_body_exited(body):
+	body.global_transform.origin = $Respawn.global_transform.origin
+
+
+
+func _on_BoundingBox_body_entered(body):
+	body.global_transform.origin = $Respawn.global_transform.origin
+
+
+
+
+
+func Rocket_Entered(body):
+	self.rotation_degrees.x = -90
+	body.global_transform.origin = $Respawn.global_transform.origin
+	body.rotation_degrees.x = -90
+"
+
 [node name="Room" type="Node"]
 script = ExtResource( 5 )
 
@@ -732,7 +813,7 @@ shadow_enabled = true
 shadow_bias = 1.2
 
 [node name="Soldier" parent="." instance=ExtResource( 17 )]
-transform = Transform( 1, 0, 4.74853e-07, 0, 1, 0, -4.74853e-07, 0, 1, 4, 3, -15.5001 )
+transform = Transform( 1, 0, 4.74853e-07, 0, 1, 0, -4.74853e-07, 0, 1, 629, 128, -489.5 )
 
 [node name="CameraHub" type="Spatial" parent="."]
 script = ExtResource( 2 )
@@ -2112,6 +2193,14 @@ texture = SubResource( 62 )
 script = SubResource( 43 )
 label_text = "by hugging the wall and rocket jumping"
 
+[node name="Label" type="Label" parent="Fifth Area/sign/3DText3/Viewport" index="0"]
+margin_right = 823.0
+margin_bottom = 100.0
+custom_fonts/font = SubResource( 90 )
+text = "test"
+align = 1
+valign = 1
+
 [node name="sign2" parent="Fifth Area" instance=ExtResource( 18 )]
 transform = Transform( -2.16375, 0, -0.707107, 0, 3.7632, 0, 2.16375, 0, -0.707107, -7, 57.5, -29.5 )
 
@@ -2255,7 +2344,7 @@ transform = Transform( -24.4, -1.78736e-06, 3.82137e-15, 0, -8.93679e-07, -1, 2.
 collision_layer = 8
 
 [node name="Spatial23" parent="Fifth Area/Spatial" instance=ExtResource( 19 )]
-transform = Transform( -24.4, -1.78736e-06, 3.82137e-15, 0, -8.93679e-07, -1, 2.13312e-06, -20.445, 4.37114e-08, 54, 73.1575, -40.8729 )
+transform = Transform( -24.4, -1.78736e-06, 3.82137e-15, 0, -8.93679e-07, -1, 2.13312e-06, -20.445, 4.37114e-08, 54, 73.1575, -41.8729 )
 collision_layer = 8
 
 [node name="Spatial6" parent="Fifth Area/Spatial" instance=ExtResource( 19 )]
@@ -3299,6 +3388,281 @@ transform = Transform( -9.66, -5.28485e-07, -3.30012e-15, 0, -1.5299e-07, 0.5, -
 [node name="Respawn" type="Position3D" parent="Fifth Area/BHOP Check5"]
 transform = Transform( 1, 1.06581e-14, -2.64698e-23, 1.7053e-13, 0.999999, -9.32587e-15, -2.43945e-19, 3.09797e-12, 1, 1.70807, 3.85718, 18.3573 )
 
+[node name="Sixth Area" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 626, 122, -475 )
+
+[node name="sign" parent="Sixth Area" instance=ExtResource( 18 )]
+transform = Transform( -2.16375, 0, -0.707107, 0, 3.7632, 0, 2.16375, 0, -0.707107, -8, 1, -16 )
+
+[node name="SpotLight" type="SpotLight" parent="Sixth Area/sign"]
+transform = Transform( -0.321131, 0.0452905, -0.0402479, 0, 0.176517, 0.198633, 0.185405, 0.734534, -0.652751, -1.08354, 0.870479, -1.39229 )
+light_color = Color( 0.745098, 0.764706, 0.643137, 1 )
+light_indirect_energy = 0.0
+spot_range = 5.939
+spot_angle = 28.86
+
+[node name="3DText" parent="Sixth Area/sign" instance=ExtResource( 9 )]
+transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.462924, 0.41177 )
+texture = SubResource( 80 )
+label_text = "To Rocket Jump,"
+
+[node name="3DText2" parent="Sixth Area/sign" instance=ExtResource( 9 )]
+transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.350292, 0.41177 )
+texture = SubResource( 81 )
+label_text = " Jump then shoot the ground"
+
+[node name="sign3" parent="Sixth Area" instance=ExtResource( 18 )]
+transform = Transform( 2.65004, 0, -0.5, 0, 3.7632, 0, 1.53, 0, 0.866026, -3.56432, 1, -7.24608 )
+
+[node name="SpotLight" type="SpotLight" parent="Sixth Area/sign3"]
+transform = Transform( -0.321131, 0.0452905, -0.0402479, 0, 0.176517, 0.198633, 0.185405, 0.734534, -0.652751, -1.08354, 0.870479, -1.39229 )
+light_color = Color( 0.745098, 0.764706, 0.643137, 1 )
+light_indirect_energy = 0.0
+spot_range = 5.939
+spot_angle = 28.86
+
+[node name="3DText" parent="Sixth Area/sign3" instance=ExtResource( 9 )]
+transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.000509664, 0, -0.0999988, -1.04634, 0.462924, 0.41177 )
+layers = 4
+texture = SubResource( 82 )
+label_text = "The goal here is for"
+
+[node name="3DText2" parent="Sixth Area/sign3" instance=ExtResource( 9 )]
+transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.350292, 0.41177 )
+layers = 4
+texture = SubResource( 83 )
+label_text = "you to reach the other"
+
+[node name="3DText3" parent="Sixth Area/sign3" instance=ExtResource( 9 )]
+transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.250378, 0.41177 )
+layers = 4
+texture = SubResource( 84 )
+label_text = "side"
+
+[node name="sign2" parent="Sixth Area" instance=ExtResource( 18 )]
+transform = Transform( 2.16375, 0, 0.707107, 0, 3.7632, 0, -2.16375, 0, 0.707107, 10.5, 1, 14 )
+
+[node name="SpotLight" type="SpotLight" parent="Sixth Area/sign2"]
+transform = Transform( -0.321131, 0.0452905, -0.0402479, 0, 0.176517, 0.198633, 0.185405, 0.734534, -0.652751, -1.08354, 0.870479, -1.39229 )
+light_color = Color( 0.745098, 0.764706, 0.643137, 1 )
+light_indirect_energy = 0.0
+spot_range = 5.939
+spot_angle = 28.86
+
+[node name="3DText" parent="Sixth Area/sign2" instance=ExtResource( 9 )]
+transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.462924, 0.41177 )
+texture = SubResource( 85 )
+label_text = "Well done!"
+
+[node name="3DText2" parent="Sixth Area/sign2" instance=ExtResource( 9 )]
+transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.350292, 0.41177 )
+texture = SubResource( 86 )
+label_text = "Walk forward to the next area"
+
+[node name="Spatial3" parent="Sixth Area" instance=ExtResource( 19 )]
+transform = Transform( -4.37114e-08, 4.37114e-08, -1, 24.4, 4.66207e-14, -1.06656e-06, 0, -20.445, -8.9368e-07, 10, 2, -1 )
+collision_layer = 8
+
+[node name="Facade 019B" parent="Sixth Area" instance=ExtResource( 10 )]
+transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -3.5, 5, -19.5 )
+
+[node name="Facade 019B2" parent="Sixth Area" instance=ExtResource( 10 )]
+transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -3.5, 12, -19.5 )
+
+[node name="Facade 019B3" parent="Sixth Area" instance=ExtResource( 10 )]
+transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -3.5, 19, -19.5 )
+
+[node name="Facade 019B4" parent="Sixth Area" instance=ExtResource( 10 )]
+transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -3.5, 26, -19.5 )
+
+[node name="Facade 019B5" parent="Sixth Area" instance=ExtResource( 10 )]
+transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 3.5, 5, -19.5 )
+
+[node name="Facade 019B6" parent="Sixth Area" instance=ExtResource( 10 )]
+transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 3.5, 12, -19.5 )
+
+[node name="Facade 019B7" parent="Sixth Area" instance=ExtResource( 10 )]
+transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 3.5, 19, -19.5 )
+
+[node name="Facade 019B8" parent="Sixth Area" instance=ExtResource( 10 )]
+transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 3.5, 26, -19.5 )
+
+[node name="Facade 019B9" parent="Sixth Area" instance=ExtResource( 10 )]
+transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 10.5, 5, -19.5 )
+
+[node name="Facade 019B10" parent="Sixth Area" instance=ExtResource( 10 )]
+transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 10.5, 12, -19.5 )
+
+[node name="Facade 019B11" parent="Sixth Area" instance=ExtResource( 10 )]
+transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 10.5, 19, -19.5 )
+
+[node name="Facade 019B13" parent="Sixth Area" instance=ExtResource( 10 )]
+transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -3.5, -9.19817, -8 )
+
+[node name="Facade 019B14" parent="Sixth Area" instance=ExtResource( 10 )]
+transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -3.5, -2.19817, -8 )
+
+[node name="Facade 019B15" parent="Sixth Area" instance=ExtResource( 10 )]
+transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 3.5, -9.19817, -8 )
+
+[node name="Facade 019B16" parent="Sixth Area" instance=ExtResource( 10 )]
+transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 3.5, -2.19817, -8 )
+
+[node name="Facade 019B17" parent="Sixth Area" instance=ExtResource( 10 )]
+transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 10.5, -9.19817, -8 )
+
+[node name="Facade 019B18" parent="Sixth Area" instance=ExtResource( 10 )]
+transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 10.5, -2.19817, -8 )
+
+[node name="Facade 019B19" parent="Sixth Area" instance=ExtResource( 10 )]
+transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -3.5, -23.1982, -8 )
+
+[node name="Facade 019B20" parent="Sixth Area" instance=ExtResource( 10 )]
+transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -3.5, -16.1982, -8 )
+
+[node name="Facade 019B21" parent="Sixth Area" instance=ExtResource( 10 )]
+transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 3.5, -23.1982, -8 )
+
+[node name="Facade 019B22" parent="Sixth Area" instance=ExtResource( 10 )]
+transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 3.5, -16.1982, -8 )
+
+[node name="Facade 019B23" parent="Sixth Area" instance=ExtResource( 10 )]
+transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 10.5, -23.1982, -8 )
+
+[node name="Facade 019B24" parent="Sixth Area" instance=ExtResource( 10 )]
+transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 10.5, -16.1982, -8 )
+
+[node name="Facade 019B29" parent="Sixth Area" instance=ExtResource( 10 )]
+transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -10.5, -23.1982, -8 )
+
+[node name="Facade 019B30" parent="Sixth Area" instance=ExtResource( 10 )]
+transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -10.5, -16.1982, -8 )
+
+[node name="Facade 019B12" parent="Sixth Area" instance=ExtResource( 10 )]
+transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 10.5, 26, -19.5 )
+
+[node name="MetalPlates006" parent="Sixth Area" instance=ExtResource( 14 )]
+transform = Transform( -1.06656e-06, -20.445, 4.15734e-08, 24.4, -8.93679e-07, -1.79148e-09, 4.37121e-08, 8.49968e-07, 1, 0.5, 2, -19.5 )
+visible = false
+
+[node name="Replace" parent="Sixth Area" instance=ExtResource( 19 )]
+transform = Transform( 1.91069e-15, -20.445, -8.49968e-07, 24.4, 4.66207e-14, -1.06656e-06, 4.37114e-08, 8.49968e-07, 1, 0.5, 2, -19.5 )
+visible = false
+
+[node name="Spatial4" parent="Sixth Area" instance=ExtResource( 19 )]
+transform = Transform( 4.37114e-08, 1.74365e-06, 1, 24.4, 4.66207e-14, -1.06656e-06, -3.82137e-15, 20.445, 8.06257e-07, -7, 2.5, -0.5 )
+collision_layer = 8
+
+[node name="Spatial7" parent="Sixth Area" instance=ExtResource( 19 )]
+transform = Transform( -13.3452, -2.62187e-06, 0.837174, 20.427, 6.80739e-06, 0.546936, -4.16751e-06, 41.7621, -3.65941e-08, -36.7641, 25.3624, -114 )
+collision_layer = 8
+
+[node name="Spatial5" parent="Sixth Area" instance=ExtResource( 19 )]
+transform = Transform( -4.37114e-08, 4.37114e-08, -1, 24.4, 4.66207e-14, -1.06656e-06, 0, -20.445, -8.9368e-07, 10, 2, 37.7815 )
+collision_layer = 8
+
+[node name="Spatial6" parent="Sixth Area" instance=ExtResource( 19 )]
+transform = Transform( 4.37114e-08, 1.74365e-06, 1, 24.4, 4.66207e-14, -1.06656e-06, -3.82137e-15, 20.445, 8.06257e-07, -7, 2.5, 38.2815 )
+collision_layer = 8
+
+[node name="Rock 036" parent="Sixth Area" instance=ExtResource( 15 )]
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, -18.5 )
+
+[node name="Rock 039" parent="Sixth Area" instance=ExtResource( 15 )]
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, -11.5 )
+
+[node name="Rock 040" parent="Sixth Area" instance=ExtResource( 15 )]
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, -11.5 )
+
+[node name="Rock 042" parent="Sixth Area" instance=ExtResource( 15 )]
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, -18.5 )
+
+[node name="Rock 043" parent="Sixth Area" instance=ExtResource( 15 )]
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, -18.5 )
+
+[node name="Rock 044" parent="Sixth Area" instance=ExtResource( 15 )]
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, -11.5 )
+
+[node name="Spatial9" parent="Sixth Area" instance=ExtResource( 19 )]
+transform = Transform( 1.91069e-15, -20.445, -8.49968e-07, -1.11027e-06, -8.49968e-07, -1, 24.4, 9.46746e-15, -1.11027e-06, 0.5, 26.5, 4.5 )
+
+[node name="Spatial11" parent="Sixth Area" instance=ExtResource( 19 )]
+transform = Transform( 1.91069e-15, -20.445, -8.49968e-07, -1.11027e-06, -8.49968e-07, -1, 24.4, 9.46746e-15, -1.11027e-06, 0.5, 26.5, 52.5 )
+
+[node name="BoundingBox" parent="Sixth Area" instance=ExtResource( 11 )]
+transform = Transform( 2.873, 0, 0, 0, 1, 0, 0, 0, 4.38048, 0, -31.3777, 10.6432 )
+script = ExtResource( 8 )
+
+[node name="Respawn" type="Position3D" parent="Sixth Area/BoundingBox"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.88945, 33.5146, -6.25288 )
+
+[node name="Spatial" type="Spatial" parent="Sixth Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.375, 9.5, 67.9888 )
+
+[node name="Door" type="StaticBody" parent="Sixth Area/Spatial"]
+transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0.8125, 1.54019, 11.5056 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="Sixth Area/Spatial/Door"]
+shape = SubResource( 87 )
+disabled = true
+
+[node name="Door2" type="MeshInstance" parent="Sixth Area/Spatial/Door"]
+mesh = ExtResource( 29 )
+skeleton = NodePath("../../..")
+software_skinning_transform_normals = false
+material/0 = SubResource( 88 )
+
+[node name="Rock 051" parent="Sixth Area/Spatial" instance=ExtResource( 15 )]
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -0.37498, 1.5, -6.70498 )
+
+[node name="Rock 052" parent="Sixth Area/Spatial" instance=ExtResource( 15 )]
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -7.37498, 1.5, -6.70498 )
+
+[node name="Rock 053" parent="Sixth Area/Spatial" instance=ExtResource( 15 )]
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 6.62502, 1.5, -6.70498 )
+
+[node name="Rock 054" parent="Sixth Area/Spatial" instance=ExtResource( 15 )]
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -0.37498, 1.5, 0.295017 )
+
+[node name="Rock 055" parent="Sixth Area/Spatial" instance=ExtResource( 15 )]
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -7.37498, 1.5, 0.295017 )
+
+[node name="Rock 056" parent="Sixth Area/Spatial" instance=ExtResource( 15 )]
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 6.62502, 1.5, 0.295017 )
+
+[node name="Rock 057" parent="Sixth Area/Spatial" instance=ExtResource( 15 )]
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -0.37498, 1.5, 7.29502 )
+
+[node name="Rock 058" parent="Sixth Area/Spatial" instance=ExtResource( 15 )]
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -7.37498, 1.5, 7.29502 )
+
+[node name="Rock 059" parent="Sixth Area/Spatial" instance=ExtResource( 15 )]
+transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 6.62502, 1.5, 7.29502 )
+
+[node name="SpotLight2" type="SpotLight" parent="Sixth Area"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 2, 26, -9.53674e-07 )
+light_color = Color( 0.469172, 0.394531, 0.789063, 1 )
+light_energy = 0.2
+spot_range = 340.084
+spot_angle = 89.93
+
+[node name="FirstRamp" parent="Sixth Area" instance=ExtResource( 28 )]
+transform = Transform( -7.4784e-08, -8.74222e-10, -0.02, -0.02, 1.50996e-09, 7.4784e-08, 1.50995e-09, 0.02, -8.74228e-10, -0.00012207, -26, 18.5 )
+
+[node name="BoundingBox4" parent="Sixth Area" instance=ExtResource( 11 )]
+transform = Transform( 15.0001, 0, 0, 0, 6.80064, 0, 0, 0, 3.49343, 3.5, 14.5, 125.643 )
+script = ExtResource( 8 )
+
+[node name="Respawn" type="Position3D" parent="Sixth Area/BoundingBox4"]
+transform = Transform( 0.999999, 0, 0, 0, 0.999998, 0, 0, 0, 1, -0.073349, -1.90518, -40.3259 )
+
+[node name="BoundingBox5" parent="Sixth Area" instance=ExtResource( 11 )]
+transform = Transform( -5.07286e-07, 0, -0.355695, 0, 6.80064, 0, 11.6054, 0, -1.55479e-08, -32.5, 16, 105.143 )
+script = ExtResource( 8 )
+
+[node name="Respawn" type="Position3D" parent="Sixth Area/BoundingBox5"]
+transform = Transform( 1, 0, 0, 0, 0.999999, 0, 2.27374e-13, 0, 1, -10.4159, -1.90518, -96.0375 )
+
 [node name="BoundingBox3" parent="." instance=ExtResource( 11 )]
 transform = Transform( 3.4, 0, 0, 0, 1, 0, 0, 0, 0.035499, 403.5, 24, 118.444 )
 script = SubResource( 78 )
@@ -3306,17 +3670,27 @@ script = SubResource( 78 )
 [node name="Respawn" type="Position3D" parent="BoundingBox3"]
 transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, -117.794, -21.9803, -2372.56 )
 
-[node name="End Box" parent="." instance=ExtResource( 11 )]
+[node name="BoundingBox2" parent="." instance=ExtResource( 11 )]
 transform = Transform( 0.705024, 0, 0, 0, 1, 0, 0, 0, 0.035499, 598.417, 72.5, 12.9444 )
-script = ExtResource( 3 )
+script = SubResource( 89 )
 
-[node name="Respawn" type="Position3D" parent="End Box"]
-transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, -843.916, -69.9803, -809.136 )
+[node name="Respawn" type="Position3D" parent="BoundingBox2"]
+transform = Transform( 0.294118, 0, 0, 0, 0.999999, 0, 0, 0, 1.25, 41.1603, 52.5198, -14218 )
+__meta__ = {
+"_editor_description_": ""
+}
 
 [node name="HUD" parent="." instance=ExtResource( 12 )]
 
 [node name="Respwan" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.5, -14.5 )
+
+[node name="End Box2" parent="." instance=ExtResource( 11 )]
+transform = Transform( 0.136, 0, 6.10623e-16, 0, 0.25, 0, -2.66454e-14, 0, 0.00306025, 627.438, 138.772, -397.849 )
+script = ExtResource( 3 )
+
+[node name="Respawn" type="Position3D" parent="End Box2"]
+transform = Transform( 0.294118, 0, 0, 0, 0.999999, 0, 0, 0, 1.25, -4613.25, -545.48, 124660 )
 
 [connection signal="body_exited" from="First Area/BoundingBox" to="First Area/BoundingBox" method="_on_BoundingBox_body_exited"]
 [connection signal="body_exited" from="First Area/BoundingBox2" to="First Area/BoundingBox2" method="_on_BoundingBox_body_exited"]
@@ -3330,8 +3704,12 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.5, -14.5 )
 [connection signal="body_exited" from="Fifth Area/Next Level" to="Fifth Area/Next Level" method="_on_BoundingBox_body_exited"]
 [connection signal="body_entered" from="Fifth Area/BoundingBox" to="Fifth Area/BoundingBox" method="Level_5"]
 [connection signal="body_entered" from="Fifth Area/Portal" to="Fifth Area/Portal" method="Rocket_Entered"]
+[connection signal="body_entered" from="Sixth Area/BoundingBox" to="Sixth Area/BoundingBox" method="_on_BoundingBox_body_entered"]
+[connection signal="body_entered" from="Sixth Area/BoundingBox4" to="Sixth Area/BoundingBox4" method="_on_BoundingBox_body_entered"]
+[connection signal="body_entered" from="Sixth Area/BoundingBox5" to="Sixth Area/BoundingBox5" method="_on_BoundingBox_body_entered"]
 [connection signal="body_entered" from="BoundingBox3" to="BoundingBox3" method="_on_BoundingBox_body_entered"]
-[connection signal="body_entered" from="End Box" to="End Box" method="_on_End_Box_body_entered"]
+[connection signal="body_entered" from="BoundingBox2" to="BoundingBox2" method="_on_BoundingBox_body_entered"]
+[connection signal="body_entered" from="End Box2" to="End Box2" method="_on_End_Box_body_entered"]
 
 [editable path="First Area/sign/3DText"]
 [editable path="First Area/sign/3DText2"]
@@ -3405,3 +3783,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.5, -14.5 )
 [editable path="Fifth Area/Rock 045"]
 [editable path="Fifth Area/Rock 046"]
 [editable path="Fifth Area/Rock 047"]
+[editable path="Sixth Area/sign/3DText"]
+[editable path="Sixth Area/sign/3DText2"]
+[editable path="Sixth Area/sign3/3DText"]
+[editable path="Sixth Area/sign3/3DText2"]
+[editable path="Sixth Area/sign3/3DText3"]
+[editable path="Sixth Area/sign2/3DText"]
+[editable path="Sixth Area/sign2/3DText2"]
