@@ -163,7 +163,7 @@ func move_air(input_velocity: Vector3, delta: float)-> void:
 	var nextVelocity: Vector3 = Vector3.ZERO
 	nextVelocity.x = input_velocity.x
 	nextVelocity.z = input_velocity.z
-	nextVelocity = accelerate(wishdir, nextVelocity, accel*10, max_air_speed, delta)
+	nextVelocity = accelerate(wishdir, nextVelocity, accel*10, max_air_speed*1.5, delta)
 	
 	# Then get back our vertical component, and move the player
 	nextVelocity.y = vertical_velocity
