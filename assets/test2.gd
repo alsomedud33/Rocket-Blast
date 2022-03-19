@@ -25,7 +25,7 @@ onready var gun_camera = $CanvasLayer/ViewportContainer/Viewport/Camera
 onready var raycast = $Pivot/Camera/RayCast
 onready var anim = $AnimationPlayer
 onready var timer = $Timer
-export var rocket_launcher: PackedScene 
+var rocket_launcher = preload("res://assets/Soldier/Rocket.tscn")#: PackedScene 
 onready var main = get_tree().current_scene
 onready var guns = $"Pivot/Camera/Rocket Launcher/Gun0"
 export var cooldown = 0.8
@@ -45,7 +45,6 @@ var accelerate_return: Vector3 = Vector3.ZERO
 
 
 func _input(event: InputEvent) -> void:
-	shoot_event()
 	# Camera rotation
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		head.rotate_x(deg2rad(event.relative.y * mouse_sensitivity))
