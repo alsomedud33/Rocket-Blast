@@ -76,7 +76,7 @@ func _physics_process(delta: float) -> void:
 			$Jump.play()
 			move_air(velocity, delta) # Mimic Quake's way of treating first frame after landing as still in the air
 			
-			yield(get_tree().create_timer(.3), "timeout")
+			#yield(get_tree().create_timer(.3), "timeout")
 			wish_jump = false # We have jumped, the player needs to press jump key again
 			
 		else : # Player is on the ground. Move normally, apply friction
@@ -175,7 +175,7 @@ func move_air(input_velocity: Vector3, delta: float)-> void:
 	velocity = move_and_slide_with_snap(nextVelocity, snap, Vector3.UP,true)
 
 # Set wish_jump depending on player input.
-func queue_jump()-> void:
+func queue_jump():
 	# If auto_jump is true, the player keeps jumping as long as the key is kept down
 	if auto_jump:
 		wish_jump = true if Input.is_action_pressed("jump") else false
@@ -183,8 +183,10 @@ func queue_jump()-> void:
 	
 	if Input.is_action_just_pressed("jump") and !wish_jump:
 		wish_jump = true
+		return true
 	if Input.is_action_just_released("jump"):
 		wish_jump = false
+		return false
 
 func shoot_event():
 	pass 

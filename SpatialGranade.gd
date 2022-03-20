@@ -12,6 +12,7 @@ onready var main = get_tree().current_scene
 #onready var explosion_instance = explosion.instance()
 
 func _ready():
+	Globals.proj_counter += 1
 	set_as_toplevel(true)
 	$Timer.start(duration)
 
