@@ -14,7 +14,7 @@ export var accel: float = max_speed * 10 # or max_speed * 10 : Reach max speed i
 
 export var gravity: float = 15
 export var jump_impulse: float = 7
-var terminal_velocity: float = gravity * -5 # When this is reached, we stop increasing falling speed
+var terminal_velocity: float = gravity * -2 # When this is reached, we stop increasing falling speed
 
 var snap: Vector3 # Needed for move_and_slide_wit_snap(), which enables to go down slopes without falling
 
@@ -44,7 +44,6 @@ var accelerate_return: Vector3 = Vector3.ZERO
 
 
 func _input(event: InputEvent) -> void:
-	shoot_event()
 	# Camera rotation
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		head.rotate_x(deg2rad(event.relative.y * mouse_sensitivity))
@@ -61,12 +60,12 @@ func _process(delta):
 	gun_camera.global_transform = camera.global_transform
 
 func _physics_process(delta: float) -> void:
+	queue_jump()
 	var forward_input: float = Input.get_action_strength("move_forward") - Input.get_action_strength("move_back")
 	var strafe_input: float = Input.get_action_strength("move_left") - Input.get_action_strength("move_right")
 	wishdir = Vector3(strafe_input, 0, forward_input).rotated(Vector3.UP, self.global_transform.basis.get_euler().y).normalized() 
 	# wishdir is our normalized horizontal inpur
 	
-	queue_jump()
 	
 	if self.is_on_floor():
 		if wish_jump: # If we're on the ground but wish_jump is still true, this means we've just landed
@@ -75,6 +74,7 @@ func _physics_process(delta: float) -> void:
 			$Jump.play()
 			move_air(velocity, delta) # Mimic Quake's way of treating first frame after landing as still in the air
 			
+			yield(get_tree().create_timer(.2), "timeout")
 			wish_jump = false # We have jumped, the player needs to press jump key again
 			
 		else : # Player is on the ground. Move normally, apply friction
@@ -171,7 +171,7 @@ func move_air(input_velocity: Vector3, delta: float)-> void:
 	velocity = move_and_slide_with_snap(nextVelocity, snap, Vector3.UP,true)
 
 # Set wish_jump depending on player input.
-func queue_jump()-> void:
+func queue_jump():
 	# If auto_jump is true, the player keeps jumping as long as the key is kept down
 	if auto_jump:
 		wish_jump = true if Input.is_action_pressed("jump") else false
@@ -179,8 +179,10 @@ func queue_jump()-> void:
 	
 	if Input.is_action_just_pressed("jump") and !wish_jump:
 		wish_jump = true
+		return true
 	if Input.is_action_just_released("jump"):
 		wish_jump = false
+		return true
 
 func shoot_event():
 	pass 

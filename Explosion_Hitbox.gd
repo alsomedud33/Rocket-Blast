@@ -13,7 +13,7 @@ var newbox = SphereShape.new()
 
 
 
-onready var partical = preload("res://assets/Sfx/Explosion.tscn")
+var partical = preload("res://assets/Sfx/Explosion.tscn")
 #export (PackedScene) onready var partical
 
 onready var partical_instance = partical.instance()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=59 format=2]
 
 [ext_resource path="res://assets/Platform Objects/Door2.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://assets/Skybox/BoundingBox.gd" type="Script" id=2]
@@ -19,6 +19,11 @@
 [ext_resource path="res://assets/Platform Objects/FirstRamp.tscn" type="PackedScene" id=17]
 [ext_resource path="res://assets/Platform Objects/Wall2.tscn" type="PackedScene" id=18]
 [ext_resource path="res://assets/Platform Objects/SecondRamp.tscn" type="PackedScene" id=19]
+[ext_resource path="res://assets/Textures/Rock 035/Rock035_1K_NormalGL.jpg" type="Texture" id=20]
+[ext_resource path="res://assets/Textures/Rock 035/Rock035_1K_Color.jpg" type="Texture" id=21]
+[ext_resource path="res://assets/Textures/Rock 035/Rock035_1K_AmbientOcclusion.jpg" type="Texture" id=22]
+[ext_resource path="res://assets/Textures/Rock 035/Rock035_1K_Roughness.jpg" type="Texture" id=23]
+[ext_resource path="res://assets/Skybox/End Box.gd" type="Script" id=24]
 
 [sub_resource type="PanoramaSky" id=1]
 panorama = ExtResource( 14 )
@@ -76,6 +81,92 @@ emission = Color( 0.168627, 0, 0.976471, 1 )
 emission_energy = 1.0
 emission_operator = 0
 emission_on_uv2 = false
+
+[sub_resource type="SpatialMaterial" id=35]
+flags_unshaded = true
+params_grow = true
+params_grow_amount = -0.2
+albedo_color = Color( 0.92549, 0.478431, 0.164706, 1 )
+distance_fade_mode = 3
+distance_fade_min_distance = 13.0
+distance_fade_max_distance = 15.0
+
+[sub_resource type="SpatialMaterial" id=93]
+next_pass = SubResource( 35 )
+params_cull_mode = 2
+albedo_texture = ExtResource( 21 )
+roughness_texture = ExtResource( 23 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 20 )
+ao_enabled = true
+ao_light_affect = 1.0
+ao_texture = ExtResource( 22 )
+ao_on_uv2 = true
+ao_texture_channel = 1
+distance_fade_mode = 3
+distance_fade_min_distance = 13.0
+distance_fade_max_distance = 15.0
+
+[sub_resource type="SpatialMaterial" id=38]
+flags_unshaded = true
+params_grow = true
+params_grow_amount = -0.2
+albedo_color = Color( 0.92549, 0.478431, 0.164706, 1 )
+distance_fade_mode = 3
+distance_fade_min_distance = 13.0
+distance_fade_max_distance = 15.0
+
+[sub_resource type="SpatialMaterial" id=36]
+next_pass = SubResource( 38 )
+params_cull_mode = 2
+albedo_texture = ExtResource( 21 )
+roughness_texture = ExtResource( 23 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 20 )
+ao_enabled = true
+ao_light_affect = 1.0
+ao_texture = ExtResource( 22 )
+ao_on_uv2 = true
+ao_texture_channel = 1
+distance_fade_mode = 3
+distance_fade_min_distance = 13.0
+distance_fade_max_distance = 15.0
+
+[sub_resource type="SpatialMaterial" id=39]
+next_pass = SubResource( 36 )
+params_cull_mode = 2
+albedo_texture = ExtResource( 21 )
+roughness_texture = ExtResource( 23 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 20 )
+ao_enabled = true
+ao_light_affect = 1.0
+ao_texture = ExtResource( 22 )
+ao_on_uv2 = true
+ao_texture_channel = 1
+distance_fade_mode = 3
+distance_fade_min_distance = 8.0
+distance_fade_max_distance = 10.0
+
+[sub_resource type="SpatialMaterial" id=40]
+next_pass = SubResource( 36 )
+params_cull_mode = 2
+albedo_texture = ExtResource( 21 )
+roughness_texture = ExtResource( 23 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 20 )
+ao_enabled = true
+ao_light_affect = 1.0
+ao_texture = ExtResource( 22 )
+ao_on_uv2 = true
+ao_texture_channel = 1
+distance_fade_mode = 3
+distance_fade_min_distance = 8.0
+distance_fade_max_distance = 10.0
 
 [sub_resource type="ViewportTexture" id=12]
 viewport_path = NodePath("Fifth Area/sign/3DText2/Viewport")
@@ -175,7 +266,7 @@ func _ready():
 [sub_resource type="ViewportTexture" id=22]
 viewport_path = NodePath("Fifth Area/sign3/3DText3/Viewport")
 
-[sub_resource type="GDScript" id=23]
+[sub_resource type="GDScript" id=32]
 script/source = "extends Sprite3D
 
 
@@ -271,7 +362,7 @@ func Rocket_Entered(body):
 [node name="Spatial" type="Node"]
 
 [node name="Demolition Man" parent="." instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 48.5, 4, -11.5 )
+transform = Transform( -0.0414571, 0, -0.99914, 0, 1, 0, 0.99914, 0, -0.0414571, 51.7849, -164.577, 498.901 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 2 )
@@ -1437,6 +1528,42 @@ transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.7914
 [node name="Facade 019B24" parent="Fourth Area" instance=ExtResource( 4 )]
 transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 10.5, -16.1982, -8 )
 
+[node name="Facade 019B25" parent="Fourth Area" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, -5, -21.6982, 57.5 )
+
+[node name="Facade 019B26" parent="Fourth Area" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, -5, -14.6982, 57.5 )
+
+[node name="Facade 019B27" parent="Fourth Area" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, 2, -21.6982, 57.5 )
+
+[node name="Facade 019B28" parent="Fourth Area" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, 2, -14.6982, 57.5 )
+
+[node name="Facade 019B31" parent="Fourth Area" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, 9, -21.6982, 57.5 )
+
+[node name="Facade 019B32" parent="Fourth Area" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, 9, -14.6982, 57.5 )
+
+[node name="Facade 019B33" parent="Fourth Area" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, -5, -35.6982, 57.5 )
+
+[node name="Facade 019B34" parent="Fourth Area" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, -5, -28.6982, 57.5 )
+
+[node name="Facade 019B35" parent="Fourth Area" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, 2, -35.6982, 57.5 )
+
+[node name="Facade 019B36" parent="Fourth Area" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, 2, -28.6982, 57.5 )
+
+[node name="Facade 019B37" parent="Fourth Area" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, 9, -35.6982, 57.5 )
+
+[node name="Facade 019B38" parent="Fourth Area" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, 9, -28.6982, 57.5 )
+
 [node name="Facade 019B29" parent="Fourth Area" instance=ExtResource( 4 )]
 transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -10.5, -23.1982, -8 )
 
@@ -1554,17 +1681,17 @@ transform = Transform( -7.4784e-08, -8.74222e-10, -0.02, -0.02, 1.50996e-09, 7.4
 transform = Transform( -7.4784e-08, -8.74222e-10, -0.02, -0.02, 1.50996e-09, 7.4784e-08, 1.50995e-09, 0.02, -8.74228e-10, 1.99983, -37.9163, 113 )
 
 [node name="FirstRamp3" parent="Fourth Area" instance=ExtResource( 17 )]
-transform = Transform( -0.0193185, 0.00517631, 5.53873e-15, -0.00517631, -0.0193185, 1.50995e-09, 3.90805e-10, 1.4585e-09, 0.02, -72.9093, -35.5105, 132.5 )
+transform = Transform( -0.015906, 0.00936223, -3.37401e-10, -0.00842601, -0.0176734, 1.47178e-09, 3.51724e-10, 1.4585e-09, 0.02, -70.9093, -41.0105, 142.5 )
 
 [node name="BoundingBox5" parent="Fourth Area" instance=ExtResource( 5 )]
-transform = Transform( -1.06531e-07, 0, -0.355695, 0, 6.80064, 0, 2.43713, 0, -1.55479e-08, -17.5, 16, 96.143 )
+transform = Transform( -1.06531e-07, 0, -0.355695, 0, 6.80064, 0, 2.43713, 0, -1.55479e-08, -16.5, 16, 91.643 )
 script = ExtResource( 2 )
 
 [node name="Respawn" type="Position3D" parent="Fourth Area/BoundingBox5"]
-transform = Transform( 1, 0, 1.33227e-15, 0, 0.999999, 0, -2.27374e-13, 0, 1, -45.3955, -1.90518, -53.8665 )
+transform = Transform( 1, 0, 1.33227e-15, 0, 0.999999, 0, -2.27374e-13, 0, 1, -44.3697, -1.90518, -53.8665 )
 
 [node name="BoundingBox7" parent="Fourth Area" instance=ExtResource( 5 )]
-transform = Transform( -1.06531e-07, 0, -0.355695, 0, 6.80064, 0, 2.43713, 0, -1.55479e-08, 33, 16, 96.143 )
+transform = Transform( -1.06531e-07, 0, -0.355695, 0, 6.80064, 0, 2.43713, 0, -1.55479e-08, 21, 16, 96.143 )
 script = ExtResource( 2 )
 
 [node name="Respawn" type="Position3D" parent="Fourth Area/BoundingBox7"]
@@ -1894,6 +2021,72 @@ transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, 5.9604
 [node name="Facade 019B86" parent="Fourth Area" instance=ExtResource( 4 )]
 transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, 5.96046e-08, -2.08616e-07, 5.28485e-07, -1, -12.1441, 1.5, -19.6035 )
 
+[node name="Spatial2" type="Spatial" parent="Fourth Area"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 18, -26.5, 66 )
+
+[node name="Facade 019B39" parent="Fourth Area/Spatial2" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, -5, 4.30183, 5.5 )
+
+[node name="Facade 019B40" parent="Fourth Area/Spatial2" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, -5, 11.3018, 5.5 )
+
+[node name="Facade 019B41" parent="Fourth Area/Spatial2" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, 2, 4.30183, 5.5 )
+
+[node name="Facade 019B42" parent="Fourth Area/Spatial2" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, 2, 11.3018, 5.5 )
+
+[node name="Facade 019B43" parent="Fourth Area/Spatial2" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, 9, 4.30183, 5.5 )
+
+[node name="Facade 019B44" parent="Fourth Area/Spatial2" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, 9, 11.3018, 5.5 )
+
+[node name="Facade 019B45" parent="Fourth Area/Spatial2" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, -5, -9.6982, 5.5 )
+
+[node name="Facade 019B46" parent="Fourth Area/Spatial2" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, -5, -2.6982, 5.5 )
+
+[node name="Facade 019B47" parent="Fourth Area/Spatial2" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, 2, -9.6982, 5.5 )
+
+[node name="Facade 019B48" parent="Fourth Area/Spatial2" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, 2, -2.6982, 5.5 )
+
+[node name="Facade 019B49" parent="Fourth Area/Spatial2" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, 9, -9.6982, 5.5 )
+
+[node name="Facade 019B50" parent="Fourth Area/Spatial2" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, 9, -2.6982, 5.5 )
+
+[node name="Spatial3" type="Spatial" parent="Fourth Area"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 18, -26.5, 87 )
+
+[node name="Facade 019B39" parent="Fourth Area/Spatial3" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, -5, 4.30183, 5.5 )
+
+[node name="Facade 019B40" parent="Fourth Area/Spatial3" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, -5, 11.3018, 5.5 )
+
+[node name="Facade 019B41" parent="Fourth Area/Spatial3" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, 2, 4.30183, 5.5 )
+
+[node name="Facade 019B42" parent="Fourth Area/Spatial3" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, 2, 11.3018, 5.5 )
+
+[node name="Facade 019B45" parent="Fourth Area/Spatial3" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, -5, -9.6982, 5.5 )
+
+[node name="Facade 019B46" parent="Fourth Area/Spatial3" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, -5, -2.6982, 5.5 )
+
+[node name="Facade 019B47" parent="Fourth Area/Spatial3" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, 2, -9.6982, 5.5 )
+
+[node name="Facade 019B48" parent="Fourth Area/Spatial3" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, 2, -2.6982, 5.5 )
+
 [node name="Fifth Area" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 40.5, -120.5, 440.258 )
 
@@ -2023,12 +2216,52 @@ collision_layer = 8
 transform = Transform( -4.37114e-08, 4.37114e-08, -1, 24.4, 4.66207e-14, -1.06656e-06, 0, -20.445, -8.9368e-07, 10, 2, 37.7815 )
 collision_layer = 8
 
+[node name="Spatial14" parent="Fifth Area" instance=ExtResource( 9 )]
+transform = Transform( -4.37114e-08, 4.37114e-08, -1, 24.4, 4.66207e-14, -1.06656e-06, 0, -20.445, -8.9368e-07, 10, 1.5, 76.2815 )
+collision_layer = 8
+
 [node name="Spatial6" parent="Fifth Area" instance=ExtResource( 9 )]
 transform = Transform( 4.37114e-08, 1.74365e-06, 1, 24.4, 4.66207e-14, -1.06656e-06, -3.82137e-15, 20.445, 8.06257e-07, -7, 2.5, 38.2815 )
 collision_layer = 8
 
 [node name="Spatial8" parent="Fifth Area" instance=ExtResource( 9 )]
 transform = Transform( -1.06656e-06, -20.445, 4.15735e-08, 24.4, -8.93679e-07, 8.21366e-17, 4.23364e-14, 8.49971e-07, 1, -19, 2.81307, 28.3556 )
+collision_layer = 8
+
+[node name="Spatial13" parent="Fifth Area" instance=ExtResource( 9 )]
+transform = Transform( -1.06656e-06, -20.445, 4.15735e-08, 24.4, -8.93679e-07, 8.21366e-17, 4.23364e-14, 8.49971e-07, 1, -57.5, 2.81307, 28.3556 )
+collision_layer = 8
+
+[node name="Spatial16" parent="Fifth Area" instance=ExtResource( 9 )]
+transform = Transform( -1.06656e-06, -20.445, 4.15735e-08, 24.4, -8.93679e-07, 8.21366e-17, 4.23364e-14, 8.49971e-07, 1, -57.5, -45.1869, 28.3556 )
+collision_layer = 8
+
+[node name="Spatial18" parent="Fifth Area" instance=ExtResource( 9 )]
+transform = Transform( -1.06656e-06, -20.445, 4.15735e-08, 24.4, -8.93679e-07, 8.21366e-17, 4.23364e-14, 8.49971e-07, 1, -19, -45.1869, 28.3556 )
+collision_layer = 8
+
+[node name="Spatial19" parent="Fifth Area" instance=ExtResource( 9 )]
+transform = Transform( -1.06656e-06, -20.445, 4.15735e-08, 24.4, -8.93679e-07, 8.21366e-17, 4.23364e-14, 8.49971e-07, 1, 20, -45.1869, 28.3556 )
+collision_layer = 8
+
+[node name="Spatial20" parent="Fifth Area" instance=ExtResource( 9 )]
+transform = Transform( -1.06656e-06, 8.93679e-07, -1, 24.4, -8.93679e-07, -4.37114e-08, -1.06656e-06, -20.445, -4.37114e-08, 40, -45.1869, 47.8556 )
+collision_layer = 8
+
+[node name="Spatial21" parent="Fifth Area" instance=ExtResource( 9 )]
+transform = Transform( -1.84215e-06, 20.445, 1.50996e-07, 24.4, 1.54355e-06, -4.37114e-08, -1.06656e-06, 3.08711e-06, -1, 21, -45.1869, 67.8556 )
+collision_layer = 8
+
+[node name="Spatial22" parent="Fifth Area" instance=ExtResource( 9 )]
+transform = Transform( -1.84215e-06, 20.445, 1.50996e-07, 24.4, 1.54355e-06, -4.37114e-08, -1.06656e-06, 3.08711e-06, -1, -17.5, -45.1869, 67.8556 )
+collision_layer = 8
+
+[node name="Spatial15" parent="Fifth Area" instance=ExtResource( 9 )]
+transform = Transform( -1.06656e-06, 8.93679e-07, 1, 24.4, -8.93679e-07, 4.37114e-08, 1.06656e-06, 20.445, -4.37114e-08, -76, 2.81307, 47.8556 )
+collision_layer = 8
+
+[node name="Spatial17" parent="Fifth Area" instance=ExtResource( 9 )]
+transform = Transform( -1.06656e-06, 8.93679e-07, 1, 24.4, -8.93679e-07, 4.37114e-08, 1.06656e-06, 20.445, -4.37114e-08, -76, -45.1869, 47.8556 )
 collision_layer = 8
 
 [node name="Spatial9" parent="Fifth Area" instance=ExtResource( 9 )]
@@ -2058,13 +2291,20 @@ transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1
 transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, -11.5 )
 
 [node name="Spatial11" parent="Fifth Area" instance=ExtResource( 9 )]
-transform = Transform( 1.91069e-15, -20.445, -8.49968e-07, -1.11027e-06, -8.49968e-07, -1, 24.4, 9.46746e-15, -1.11027e-06, 0.5, 26.5, 53 )
+transform = Transform( 1.91069e-15, -20.445, -8.49968e-07, -1.11027e-06, -8.49968e-07, -1, 24.4, 9.46746e-15, -1.11027e-06, 0.5, 25.9284, 53 )
 
 [node name="BoundingBox" parent="Fifth Area" instance=ExtResource( 5 )]
-transform = Transform( 1.7, 0, 0, 0, 0.1, 0, 0, 0, 1.872, 0, -26.0241, 10.1432 )
+transform = Transform( 1.7, 0, 0, 0, 0.1, 0, 0, 0, 1.872, 0, -26.0241, -8.35681 )
 script = ExtResource( 2 )
 
 [node name="Respawn" type="Position3D" parent="Fifth Area/BoundingBox"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.27929, 287.515, -3.90382 )
+
+[node name="BoundingBox3" parent="Fifth Area" instance=ExtResource( 5 )]
+transform = Transform( 1.7, 0, 0, 0, 0.1, 0, 0, 0, 1.872, 0, -85.0241, 10.1432 )
+script = ExtResource( 2 )
+
+[node name="Respawn" type="Position3D" parent="Fifth Area/BoundingBox3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.27929, 287.515, -13.7863 )
 
 [node name="BoundingBox2" parent="Fifth Area" instance=ExtResource( 5 )]
@@ -2101,38 +2341,1127 @@ transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -0.3
 [node name="Rock 058" parent="Fifth Area/Spatial" instance=ExtResource( 7 )]
 transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -7.37498, 1.5, 7.29502 )
 
-[node name="Rock 060" parent="Fifth Area/Spatial" instance=ExtResource( 7 )]
-transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -8.87498, 8.5, 28.795 )
-
-[node name="Rock 061" parent="Fifth Area/Spatial" instance=ExtResource( 7 )]
-transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -8.87498, 8.5, 21.795 )
-
-[node name="Rock 062" parent="Fifth Area/Spatial" instance=ExtResource( 7 )]
-transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -8.87498, 15.5, 21.795 )
-
-[node name="Rock 063" parent="Fifth Area/Spatial" instance=ExtResource( 7 )]
-transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -8.87498, 22.5, 21.795 )
-
-[node name="Rock 064" parent="Fifth Area/Spatial" instance=ExtResource( 7 )]
-transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -8.87498, 22.5, 28.795 )
-
-[node name="Rock 065" parent="Fifth Area/Spatial" instance=ExtResource( 7 )]
-transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -8.87498, 22.5, 35.795 )
-
-[node name="Rock 066" parent="Fifth Area/Spatial" instance=ExtResource( 7 )]
-transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -8.87498, 15.5, 35.795 )
-
-[node name="Rock 067" parent="Fifth Area/Spatial" instance=ExtResource( 7 )]
-transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -8.87498, 8.5, 35.795 )
-
 [node name="Rock 059" parent="Fifth Area/Spatial" instance=ExtResource( 7 )]
 transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 6.62502, 1.5, 7.29502 )
+
+[node name="Spatial" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.46424, 15.5, 28.5 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 061" parent="Fifth Area/Spatial/Spatial" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, -6.70499 )
+
+[node name="Rock 062" parent="Fifth Area/Spatial/Spatial" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, -6.70499 )
+
+[node name="Rock 063" parent="Fifth Area/Spatial/Spatial" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, -6.70499 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial/Spatial" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 7.29501 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
+
+[node name="Spatial51" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.46424, 11, 28.5 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial51" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 061" parent="Fifth Area/Spatial/Spatial51" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, -6.70499 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial51" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
+
+[node name="Spatial2" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -19.9642, 15.5, 38.7838 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial2" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 061" parent="Fifth Area/Spatial/Spatial2" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, -6.70499 )
+
+[node name="Rock 062" parent="Fifth Area/Spatial/Spatial2" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, -6.70499 )
+
+[node name="Rock 063" parent="Fifth Area/Spatial/Spatial2" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, -6.70499 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial/Spatial2" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 0.295013 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial/Spatial2" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 7.29501 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial2" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 068" parent="Fifth Area/Spatial/Spatial2" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.375, 0, 0.295013 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial2" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
+
+[node name="Spatial13" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.53576, 15.5, 38.4982 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial13" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 061" parent="Fifth Area/Spatial/Spatial13" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, -6.70499 )
+
+[node name="Rock 062" parent="Fifth Area/Spatial/Spatial13" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, -6.70499 )
+
+[node name="Rock 063" parent="Fifth Area/Spatial/Spatial13" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, -6.70499 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial/Spatial13" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 0.295013 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial/Spatial13" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 7.29501 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial13" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 068" parent="Fifth Area/Spatial/Spatial13" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.375, 0, 0.295013 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial13" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
+
+[node name="Spatial49" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( -4.37114e-08, 0, 1, 0.571702, 0.820461, 2.49899e-08, -0.820461, 0.571702, -3.58635e-08, -3.1818, 8.66019, 35.2803 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial49" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 061" parent="Fifth Area/Spatial/Spatial49" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, -6.70499 )
+
+[node name="Rock 062" parent="Fifth Area/Spatial/Spatial49" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, -6.70499 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial49" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 068" parent="Fifth Area/Spatial/Spatial49" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.375, 0, 0.295013 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial49" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
+
+[node name="Spatial52" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( -4.37114e-08, 0, 1, 0.571702, 0.820461, 2.49899e-08, -0.820461, 0.571702, -3.58635e-08, -3.1818, 19.9938, 43.1794 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial52" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 061" parent="Fifth Area/Spatial/Spatial52" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, -6.70499 )
+
+[node name="Rock 062" parent="Fifth Area/Spatial/Spatial52" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, -6.70499 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial52" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 068" parent="Fifth Area/Spatial/Spatial52" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.375, 0, 0.295013 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial52" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
+
+[node name="Spatial14" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( 1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 14.0358, -47.5, 17.9982 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial14" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 061" parent="Fifth Area/Spatial/Spatial14" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, -6.70499 )
+
+[node name="Rock 062" parent="Fifth Area/Spatial/Spatial14" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, -6.70499 )
+
+[node name="Rock 063" parent="Fifth Area/Spatial/Spatial14" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, -6.70499 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial/Spatial14" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 0.295013 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial/Spatial14" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374985, 7, 7.29501 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial14" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 068" parent="Fifth Area/Spatial/Spatial14" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.375, 0, 0.295013 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial14" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
+
+[node name="Spatial15" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 14.0358, -37.5, 28.0655 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial15" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 061" parent="Fifth Area/Spatial/Spatial15" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, -6.70499 )
+
+[node name="Rock 062" parent="Fifth Area/Spatial/Spatial15" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, -6.70499 )
+
+[node name="Rock 063" parent="Fifth Area/Spatial/Spatial15" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, -6.70499 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial/Spatial15" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 0.295013 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial/Spatial15" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374985, 7, 7.29501 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial15" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 068" parent="Fifth Area/Spatial/Spatial15" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.375, 0, 0.295013 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial15" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
+
+[node name="Spatial16" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( 7.54979e-08, 0, -1, 0, 1, 0, 1, 0, 7.54979e-08, 14.0358, -37.5, 7.9982 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial16" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 061" parent="Fifth Area/Spatial/Spatial16" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, -6.70499 )
+
+[node name="Rock 062" parent="Fifth Area/Spatial/Spatial16" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, -6.70499 )
+
+[node name="Rock 063" parent="Fifth Area/Spatial/Spatial16" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, -6.70499 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial/Spatial16" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 0.295013 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial/Spatial16" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374985, 7, 7.29501 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial16" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 068" parent="Fifth Area/Spatial/Spatial16" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.375, 0, 0.295013 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial16" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374969, -7, 7.29501 )
+
+[node name="Spatial17" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 22.5358, -37.5, 17.9982 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial17" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 061" parent="Fifth Area/Spatial/Spatial17" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, -6.70499 )
+
+[node name="Rock 062" parent="Fifth Area/Spatial/Spatial17" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, -6.70499 )
+
+[node name="Rock 063" parent="Fifth Area/Spatial/Spatial17" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, -6.70499 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial/Spatial17" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 0.295013 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial/Spatial17" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374985, 7, 7.29501 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial17" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 068" parent="Fifth Area/Spatial/Spatial17" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.375, 0, 0.295013 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial17" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
+
+[node name="Spatial18" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( 4.37114e-08, -1, -1.50996e-07, -1, -4.37114e-08, -9.47312e-16, -5.65292e-15, 1.50996e-07, -1, 13.8232, -27.4764, 17.9982 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial18" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 061" parent="Fifth Area/Spatial/Spatial18" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, -6.70499 )
+
+[node name="Rock 062" parent="Fifth Area/Spatial/Spatial18" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, -6.70499 )
+
+[node name="Rock 063" parent="Fifth Area/Spatial/Spatial18" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, -6.70499 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial/Spatial18" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 0.295013 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial/Spatial18" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374985, 7, 7.29501 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial18" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 068" parent="Fifth Area/Spatial/Spatial18" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.375, 0, 0.295013 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial18" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
+
+[node name="Spatial47" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( 4.37114e-08, -1, -1.50996e-07, -1, -4.37114e-08, -9.47312e-16, -5.65292e-15, 1.50996e-07, -1, 14.3232, -20.4764, 17.9982 )
+
+[node name="Rock 063" parent="Fifth Area/Spatial/Spatial47" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, -6.70499 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial/Spatial47" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 0.295013 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial/Spatial47" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374985, 7, 7.29501 )
+
+[node name="Spatial50" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( 4.37114e-08, -1, -1.50996e-07, -1, -4.37114e-08, -9.47312e-16, -5.65292e-15, 1.50996e-07, -1, 14.3232, -20.4764, -3.0018 )
+
+[node name="Rock 063" parent="Fifth Area/Spatial/Spatial50" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, -6.70499 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial/Spatial50" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 0.295013 )
+
+[node name="Spatial3" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -9.96424, 15.5, 7.99997 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial3" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 061" parent="Fifth Area/Spatial/Spatial3" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, -6.70499 )
+
+[node name="Rock 062" parent="Fifth Area/Spatial/Spatial3" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, -6.70499 )
+
+[node name="Rock 063" parent="Fifth Area/Spatial/Spatial3" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, -6.70499 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial/Spatial3" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 0.295013 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial/Spatial3" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 7.29501 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial3" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 068" parent="Fifth Area/Spatial/Spatial3" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.375, 0, 0.295013 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial3" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
+
+[node name="Rock 069" parent="Fifth Area/Spatial/Spatial3" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374977, 7, 14.295 )
+
+[node name="Rock 070" parent="Fifth Area/Spatial/Spatial3" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374977, 0, 14.295 )
+
+[node name="Rock 071" parent="Fifth Area/Spatial/Spatial3" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374977, -7, 14.295 )
+
+[node name="Spatial4" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( 1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, -19.9642, 4.5, 29.5 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial4" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 061" parent="Fifth Area/Spatial/Spatial4" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, -6.70499 )
+
+[node name="Rock 062" parent="Fifth Area/Spatial/Spatial4" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, -6.70499 )
+
+[node name="Rock 063" parent="Fifth Area/Spatial/Spatial4" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, -6.70499 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial/Spatial4" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 0.295013 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial/Spatial4" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 7.29501 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial4" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 068" parent="Fifth Area/Spatial/Spatial4" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.375, 0, 0.295013 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial4" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
+
+[node name="Spatial8" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -47.9642, 14.5, 11 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial8" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial/Spatial8" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 0.295013 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial/Spatial8" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 7.29501 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial8" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 068" parent="Fifth Area/Spatial/Spatial8" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.375, 0, 0.295013 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial8" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
+
+[node name="Spatial19" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -61.9642, 14.5, 11 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial19" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial/Spatial19" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 0.295013 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial/Spatial19" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 7.29501 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial19" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 068" parent="Fifth Area/Spatial/Spatial19" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.375, 0, 0.295013 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial19" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
+
+[node name="Spatial20" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -75.9642, 14.5, 11 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial20" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial/Spatial20" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 0.295013 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial/Spatial20" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 7.29501 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial20" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 068" parent="Fifth Area/Spatial/Spatial20" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.375, 0, 0.295013 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial20" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
+
+[node name="Spatial21" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -61.9642, -6.5, 11 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial21" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial/Spatial21" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 0.295013 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial/Spatial21" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 7.29501 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial21" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 068" parent="Fifth Area/Spatial/Spatial21" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.375, 0, 0.295013 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial21" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
+
+[node name="Spatial22" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -75.9642, -6.5, 11 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial22" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial/Spatial22" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 0.295013 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial/Spatial22" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 7.29501 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial22" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 068" parent="Fifth Area/Spatial/Spatial22" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.375, 0, 0.295013 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial22" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
+
+[node name="Spatial23" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -61.9642, -27.5, 11 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial23" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial/Spatial23" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 0.295013 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial/Spatial23" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 7.29501 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial23" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 068" parent="Fifth Area/Spatial/Spatial23" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.375, 0, 0.295013 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial23" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374969, -7, 7.29501 )
+
+[node name="Spatial25" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -47.9642, -27.5, 11 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial25" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial/Spatial25" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 0.295013 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial/Spatial25" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 7.29501 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial25" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 068" parent="Fifth Area/Spatial/Spatial25" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.375, 0, 0.295013 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial25" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
+
+[node name="Spatial30" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.8025, -56, 14.705 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial30" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial/Spatial30" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 0.295013 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial/Spatial30" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 7.29501 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial30" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 068" parent="Fifth Area/Spatial/Spatial30" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.375, 0, 0.295013 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial30" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
+
+[node name="Spatial31" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.8025, -35.5, 14.705 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial31" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial/Spatial31" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 0.295013 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial/Spatial31" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 7.29501 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial31" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 068" parent="Fifth Area/Spatial/Spatial31" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.375, 0, 0.295013 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial31" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
+
+[node name="Spatial35" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 3.40601, -37.5, 4.21365 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial35" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial/Spatial35" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 0.295013 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial/Spatial35" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 7.29501 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial35" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 068" parent="Fifth Area/Spatial/Spatial35" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.375, 0, 0.295013 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial35" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
+
+[node name="Spatial36" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 3.406, -37.5, -9.78635 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial36" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial/Spatial36" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 0.295013 )
+
+[node name="Rock 068" parent="Fifth Area/Spatial/Spatial36" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.375, 0, 0.295013 )
+
+[node name="Spatial37" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( -1, 1.50996e-07, 6.60024e-15, 0, -4.37114e-08, 1, 1.50996e-07, 1, 4.37114e-08, 3.406, -24, -3.28635 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial/Spatial37" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 0.295013 )
+
+[node name="Rock 068" parent="Fifth Area/Spatial/Spatial37" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.375, 0, 0.295013 )
+
+[node name="Spatial38" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( -1, 1.50996e-07, 6.60024e-15, 0, -4.37114e-08, 1, 1.50996e-07, 1, 4.37114e-08, 3.40601, -24, 17.7137 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial38" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial/Spatial38" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 0.295013 )
+
+[node name="Rock 068" parent="Fifth Area/Spatial/Spatial38" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.375, 0, 0.295013 )
+
+[node name="Spatial39" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( -1, 1.50996e-07, 6.60024e-15, 0, -4.37114e-08, 1, 1.50996e-07, 1, 4.37114e-08, 3.40601, -24, 38.7137 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial39" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Spatial32" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.8025, -14.5, 14.705 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial32" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial/Spatial32" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 0.295013 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial/Spatial32" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 7.29501 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial32" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 068" parent="Fifth Area/Spatial/Spatial32" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.375, 0, 0.295013 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial32" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
+
+[node name="Spatial33" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36.8025, 6.5, 14.705 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial33" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial/Spatial33" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 0.295013 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial/Spatial33" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 7.29501 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial33" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 068" parent="Fifth Area/Spatial/Spatial33" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.375, 0, 0.295013 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial33" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
+
+[node name="Spatial27" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -47.9642, -48.5, 11 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial27" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial/Spatial27" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 0.295013 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial/Spatial27" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 7.29501 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial27" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 068" parent="Fifth Area/Spatial/Spatial27" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.375, 0, 0.295013 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial27" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
+
+[node name="Spatial28" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -61.9642, -48.5, 11 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial28" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial/Spatial28" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 0.295013 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial/Spatial28" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 7.29501 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial28" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 068" parent="Fifth Area/Spatial/Spatial28" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.375, 0, 0.295013 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial28" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
+
+[node name="Spatial29" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -75.9642, -48.5, 11 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial29" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial/Spatial29" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 0.295013 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial/Spatial29" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 7.29501 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial29" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 068" parent="Fifth Area/Spatial/Spatial29" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.375, 0, 0.295013 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial29" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
+
+[node name="Spatial26" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -47.9642, -6.5, 11 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial26" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial/Spatial26" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 0.295013 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial/Spatial26" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 7.29501 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial26" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 068" parent="Fifth Area/Spatial/Spatial26" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.375, 0, 0.295013 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial26" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
+
+[node name="Spatial34" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.46424, -10.5, 29 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial34" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial/Spatial34" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 0.295013 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial/Spatial34" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 7.29501 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial34" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 068" parent="Fifth Area/Spatial/Spatial34" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.375, 0, 0.295013 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial34" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
+
+[node name="Spatial48" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.53576, -10.5, 29 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial48" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial/Spatial48" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 0.295013 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial/Spatial48" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 7.29501 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial48" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 068" parent="Fifth Area/Spatial/Spatial48" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.375, 0, 0.295013 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial48" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
+
+[node name="Spatial40" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -30.8565, -10.5, 23 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial40" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial/Spatial40" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 0.295013 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial/Spatial40" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 7.29501 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial40" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 068" parent="Fifth Area/Spatial/Spatial40" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.375, 0, 0.295013 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial40" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
+
+[node name="Spatial42" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( 0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -36.1065, -10.5, 13.9067 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial42" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial/Spatial42" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 0.295013 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial/Spatial42" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 7.29501 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial42" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 068" parent="Fifth Area/Spatial/Spatial42" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.375, 0, 0.295013 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial42" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
+
+[node name="Spatial43" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -30.8565, -31.5, 23 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial43" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial/Spatial43" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 0.295013 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial/Spatial43" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 7.29501 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial43" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 068" parent="Fifth Area/Spatial/Spatial43" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.375, 0, 0.295013 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial43" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
+
+[node name="Spatial44" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( 0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -36.1065, -31.5, 13.9067 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial44" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial/Spatial44" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 0.295013 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial/Spatial44" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 7.29501 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial44" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 068" parent="Fifth Area/Spatial/Spatial44" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.375, 0, 0.295013 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial44" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
+
+[node name="Spatial45" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -30.8565, -52, 23 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial45" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial/Spatial45" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 0.295013 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial/Spatial45" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.19209e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -2.98023e-08, -0.374969, 7, 7.29501 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial45" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 068" parent="Fifth Area/Spatial/Spatial45" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.375, 0, 0.295013 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial45" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
+
+[node name="Spatial46" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( 0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -36.1065, -52, 13.9067 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial46" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial/Spatial46" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.19209e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -8.9407e-08, -0.374985, 7, 0.295013 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial/Spatial46" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 7.29501 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial46" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 068" parent="Fifth Area/Spatial/Spatial46" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.375, 0, 0.295013 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial46" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
+
+[node name="Spatial41" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -20.4642, -10.5, 29 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial41" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial/Spatial41" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 0.295013 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial/Spatial41" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 7.29501 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial41" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 068" parent="Fifth Area/Spatial/Spatial41" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.375, 0, 0.295013 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial41" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
+
+[node name="Spatial24" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -75.9642, -27.5, 11 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial24" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial/Spatial24" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 0.295013 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial/Spatial24" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 7.29501 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial24" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 068" parent="Fifth Area/Spatial/Spatial24" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.375, 0, 0.295013 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial24" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
+
+[node name="Spatial9" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -29.9642, 15.5, 29 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial9" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial/Spatial9" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 0.295013 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial/Spatial9" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 7.29501 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial9" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 068" parent="Fifth Area/Spatial/Spatial9" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.375, 0, 0.295013 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial9" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
+
+[node name="Spatial10" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -29.9642, 15.5, 15 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial/Spatial10" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 7.29501 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial10" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial10" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
+
+[node name="Spatial11" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( 0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -35.4311, 15.5, 9.58575 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial/Spatial11" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 7.29501 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial11" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial11" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
+
+[node name="Spatial12" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( 0.5, 0, 0.866026, 0, 1, 0, -0.866026, 0, 0.5, -41.307, 15.5, 8.11786 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial/Spatial12" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 7.29501 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial12" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial12" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
+
+[node name="Spatial5" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( 1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, -19.9642, 4.5, 8.99997 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial5" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 061" parent="Fifth Area/Spatial/Spatial5" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, -6.70499 )
+
+[node name="Rock 062" parent="Fifth Area/Spatial/Spatial5" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, -6.70499 )
+
+[node name="Rock 063" parent="Fifth Area/Spatial/Spatial5" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, -6.70499 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial/Spatial5" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 0.295013 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial/Spatial5" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 7.29501 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial5" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 068" parent="Fifth Area/Spatial/Spatial5" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.375, 0, 0.295013 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial5" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
+
+[node name="Spatial6" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( 1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, -19.9642, 4.5, 0.499969 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial6" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 061" parent="Fifth Area/Spatial/Spatial6" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, -6.70499 )
+
+[node name="Rock 062" parent="Fifth Area/Spatial/Spatial6" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, -6.70499 )
+
+[node name="Rock 063" parent="Fifth Area/Spatial/Spatial6" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, -6.70499 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial/Spatial6" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 0.295013 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial/Spatial6" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 7.29501 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial6" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 068" parent="Fifth Area/Spatial/Spatial6" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.375, 0, 0.295013 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial6" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
+
+[node name="Spatial7" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( 0.038318, -4.20365e-08, 0.999266, -0.999266, -4.36793e-08, 0.038318, 4.20365e-08, -1, -4.36793e-08, -40.9451, 4.00037, 0.499969 )
+
+[node name="Rock 060" parent="Fifth Area/Spatial/Spatial7" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 0.295013 )
+
+[node name="Rock 061" parent="Fifth Area/Spatial/Spatial7" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, -6.70499 )
+
+[node name="Rock 062" parent="Fifth Area/Spatial/Spatial7" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, -6.70499 )
+
+[node name="Rock 063" parent="Fifth Area/Spatial/Spatial7" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, -6.70499 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial/Spatial7" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 0.295013 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial/Spatial7" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 7, 7.29501 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial/Spatial7" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, 0, 7.29501 )
+
+[node name="Rock 068" parent="Fifth Area/Spatial/Spatial7" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.375, 0, 0.295013 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial/Spatial7" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
 
 [node name="SecondRamp" parent="Fifth Area" instance=ExtResource( 19 )]
 transform = Transform( -7.4784e-08, 0.02, 0, -0.02, -7.4784e-08, 0, 0, 0, 0.02, -6.49995, 12, 68.2141 )
 
 [node name="SecondRamp2" parent="Fifth Area" instance=ExtResource( 19 )]
 transform = Transform( 0.004303, -0.0179971, -0.00758876, -0.0194842, -0.00449621, -0.000385062, -0.00135953, 0.00747591, -0.0185003, -49.9187, 4.53085, 33.6196 )
+
+[node name="SecondRamp3" parent="Fifth Area" instance=ExtResource( 19 )]
+transform = Transform( 8.44439e-10, -0.0193185, -0.00517638, -0.02, -8.74228e-10, 0, -2.26267e-10, 0.00517638, -0.0193185, -25.9187, -48.9691, 34.1196 )
 
 [node name="SpotLight2" type="SpotLight" parent="Fifth Area"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 2, 26, -9.53674e-07 )
@@ -2189,6 +3518,15 @@ transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.563
 [node name="Wall2" parent="Fifth Area" instance=ExtResource( 18 )]
 transform = Transform( 2, 0, 0, 0, -1.5299e-07, -1, 0, 3.5, -4.37114e-08, 2.3489, 7.5, -19 )
 
+[node name="Wall90" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( 2, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2.3489, 7.5, -12.5 )
+
+[node name="Wall92" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( 2, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2.3489, 7.5, -19 )
+
+[node name="Wall91" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( 2, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2.3489, 7.5, -6 )
+
 [node name="Wall7" parent="Fifth Area" instance=ExtResource( 18 )]
 transform = Transform( 2, 0, 0, 0, -1.5299e-07, -1, 0, 3.5, -4.37114e-08, 2.3489, 7.5, -12.3546 )
 
@@ -2202,10 +3540,28 @@ transform = Transform( 2.1, 0, 0, 0, -3.5, 1.50996e-07, 0, -5.28485e-07, -1, 2.3
 transform = Transform( 2.1, 0, 0, 0, -3.5, 1.50996e-07, 0, -5.28485e-07, -1, 2.3489, 17, -8.70905 )
 
 [node name="Wall3" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( -1.31134e-07, -2.64243e-07, -1, 3, 2.64243e-07, -4.37114e-08, 2.26494e-07, -3.5, 7.54979e-08, 0.385094, 4.51024, -19 )
+
+[node name="Wall88" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( -1.31134e-07, -2.64243e-07, -1, 3, 2.64243e-07, -4.37114e-08, 2.26494e-07, -3.5, 7.54979e-08, 0.385094, 4.51024, -12.5 )
+
+[node name="Wall89" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( -1.31134e-07, -2.64243e-07, -1, 3, 2.64243e-07, -4.37114e-08, 2.26494e-07, -3.5, 7.54979e-08, 0.385094, 4.51024, -6 )
+
+[node name="Wall87" parent="Fifth Area" instance=ExtResource( 18 )]
 transform = Transform( -1.31134e-07, 1.5299e-07, 1, 3, -1.5299e-07, 4.37114e-08, 1.31134e-07, 3.5, -4.37114e-08, 0.385094, 4.51024, -19 )
 
 [node name="Wall4" parent="Fifth Area" instance=ExtResource( 18 )]
 transform = Transform( -1.31134e-07, -2.64243e-07, -1, 3, 2.64243e-07, -4.37114e-08, 2.26494e-07, -3.5, 7.54979e-08, 4.31448, 4.51024, -19 )
+
+[node name="Wall84" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( -1.31134e-07, -1.5299e-07, 1, -3, 2.64243e-07, -4.37114e-08, -2.26494e-07, -3.5, -4.37114e-08, 4.31448, 4.51024, -19 )
+
+[node name="Wall85" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( -1.31134e-07, -1.5299e-07, 1, -3, 2.64243e-07, -4.37114e-08, -2.26494e-07, -3.5, -4.37114e-08, 4.31448, 4.51024, -12.3113 )
+
+[node name="Wall86" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( -1.31134e-07, -1.5299e-07, 1, -3, 2.64243e-07, -4.37114e-08, -2.26494e-07, -3.5, -4.37114e-08, 4.31448, 4.51024, -5.7193 )
 
 [node name="Wall6" parent="Fifth Area" instance=ExtResource( 18 )]
 transform = Transform( -1.31134e-07, -2.64243e-07, -1, 3, 2.64243e-07, -4.37114e-08, 2.26494e-07, -3.5, 7.54979e-08, 4.31148, 4.51024, -12.3489 )
@@ -2432,7 +3788,92 @@ transform = Transform( 3, -1.5299e-07, -1.91069e-15, 0, -1.5299e-07, 1, -1.31134
 [node name="Wall64" parent="Fifth Area" instance=ExtResource( 18 )]
 transform = Transform( 3, -1.5299e-07, -1.91069e-15, 0, -1.5299e-07, 1, -1.31134e-07, -3.5, -4.37114e-08, -5.29287, -27.4148, -7.70612 )
 
+[node name="Spatial2" type="Spatial" parent="Fifth Area"]
+transform = Transform( 2.5, 0, 0, 0, -1.09278e-07, 1, 0, -2.5, -4.37114e-08, 2.5, 2.5, 39.5 )
+
+[node name="BoundingBox4" parent="Fifth Area/Spatial2" instance=ExtResource( 5 )]
+transform = Transform( 0.476, 0, 0, 0, -5.24537e-10, -0.14976, 0, 0.03, -1.63655e-08, -11.3209, 1.74274, 2.97586 )
+script = ExtResource( 2 )
+
+[node name="Respawn" type="Position3D" parent="Fifth Area/Spatial2/BoundingBox4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 2.38228e-22, 1, 24.3698, -83.3333, 21.3677 )
+
+[node name="BoundingBox5" parent="Fifth Area/Spatial2" instance=ExtResource( 5 )]
+transform = Transform( 0.476, 0, 0, 0, -5.24537e-10, -0.14976, 0, 0.03, -1.63655e-08, -11.3209, -4.05727, 2.97586 )
+script = ExtResource( 2 )
+
+[node name="Respawn" type="Position3D" parent="Fifth Area/Spatial2/BoundingBox5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 7.94093e-23, 1, 23.5294, -100, -21.3676 )
+
+[node name="BoundingBox6" parent="Fifth Area/Spatial2" instance=ExtResource( 5 )]
+transform = Transform( 0.476, 0, 0, 0, -5.24537e-10, -0.14976, 0, 0.03, -1.63655e-08, -11.3209, -9.85727, 2.97586 )
+script = ExtResource( 2 )
+
+[node name="Respawn" type="Position3D" parent="Fifth Area/Spatial2/BoundingBox6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 7.94093e-23, 1, 23.5294, -100, -60.0962 )
+
+[node name="BoundingBox7" parent="Fifth Area/Spatial2" instance=ExtResource( 5 )]
+transform = Transform( 0.476, 0, 0, 0, -5.24537e-10, -0.14976, 0, 0.03, -1.63655e-08, -11.3209, -15.6573, 2.97586 )
+script = ExtResource( 2 )
+
+[node name="Respawn" type="Position3D" parent="Fifth Area/Spatial2/BoundingBox7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 1.32349e-22, 1, 23.5294, -116.667, -100.16 )
+
+[node name="BoundingBox8" parent="Fifth Area/Spatial2" instance=ExtResource( 5 )]
+transform = Transform( 0.8092, 0, 0, 0, -5.24537e-10, -0.440294, 0, 0.03, -4.81145e-08, -11.3209, -4.45728, -55.5241 )
+script = ExtResource( 2 )
+
+[node name="Respawn" type="Position3D" parent="Fifth Area/Spatial2/BoundingBox8"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 7.94093e-23, 1, 13.5937, 1716.67, -8.63071 )
+
+[node name="BoundingBox9" parent="Fifth Area/Spatial2" instance=ExtResource( 5 )]
+transform = Transform( 0.8092, 0, 0, 0, -5.24537e-10, -0.440294, 0, 0.03, -4.81145e-08, -36.1209, -4.45728, -49.5241 )
+script = ExtResource( 2 )
+
+[node name="Respawn" type="Position3D" parent="Fifth Area/Spatial2/BoundingBox9"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, -6.61744e-24, 1, 44.9827, 1650, -11.356 )
+
+[node name="Spatial4" type="Spatial" parent="Fifth Area"]
+
+[node name="Rock 037" parent="Fifth Area/Spatial4" instance=ExtResource( 7 )]
+transform = Transform( 2.64243e-07, -3.5, -4.37114e-08, 0, -1.5299e-07, 1, -3.5, -2.64243e-07, -3.30012e-15, -23, -46.8944, 59 )
+collision_mask = 0
+
+[node name="MeshInstance" parent="Fifth Area/Spatial4/Rock 037" index="0"]
+transform = Transform( 2, 0, 0, 0, 2, 7.11863e-23, 1.69407e-21, -2.84217e-14, 1, 0, 0, 0 )
+material/0 = SubResource( 93 )
+
+[node name="Rock 045" parent="Fifth Area/Spatial4" instance=ExtResource( 7 )]
+transform = Transform( 2.64243e-07, -3.5, -4.37114e-08, 0, -1.5299e-07, 1, -3.5, -2.64243e-07, -3.30012e-15, -23, -46.8944, 66 )
+collision_mask = 0
+
+[node name="MeshInstance" parent="Fifth Area/Spatial4/Rock 045" index="0"]
+material/0 = SubResource( 39 )
+
+[node name="Rock 046" parent="Fifth Area/Spatial4" instance=ExtResource( 7 )]
+transform = Transform( 2.64243e-07, -3.5, -4.37114e-08, 0, -1.5299e-07, 1, -3.5, -2.64243e-07, -3.30012e-15, -23, -46.8944, 52 )
+collision_mask = 0
+
+[node name="MeshInstance" parent="Fifth Area/Spatial4/Rock 046" index="0"]
+material/0 = SubResource( 40 )
+
+[node name="CollisionShape" parent="Fifth Area/Spatial4/Rock 046" index="1"]
+transform = Transform( 2, 0, 0, 0, 2, 7.11863e-23, 1.69407e-21, -2.84217e-14, 1, 0, 0, 0 )
+
+[node name="BHOP Check" parent="Fifth Area/Spatial4" instance=ExtResource( 13 )]
+transform = Transform( 7.70079e-07, -3.5, -1.56487e-08, 0, -2.75382e-07, 0.6444, -10.2, -2.64243e-07, -1.18144e-15, -22.9793, -46.9047, 58.5276 )
+
+[node name="Respawn" type="Position3D" parent="Fifth Area/Spatial4/BHOP Check"]
+transform = Transform( 0.999998, 5.32907e-15, 0, -3.83693e-13, 0.999999, -3.9968e-15, -3.93023e-19, -1.59162e-12, 1, 1.97446, -7.23464, 77.0332 )
+
 [node name="HUD" parent="." instance=ExtResource( 11 )]
+
+[node name="End Box2" parent="." instance=ExtResource( 5 )]
+transform = Transform( 0.11492, 0, 1.34917e-13, 0, 1.326, 0, -2.25154e-14, 0, 0.688624, 65.438, -145.728, 496.151 )
+script = ExtResource( 24 )
+
+[node name="Respawn" type="Position3D" parent="End Box2"]
+transform = Transform( 1, 0, 7.58942e-19, 0, 0.999998, 0, -4.40457e-20, 0, 1, -130.526, 111.614, -743.512 )
 
 [node name="10th Area" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 239.908, -0.275707, 36.5992 )
@@ -2495,7 +3936,7 @@ script = SubResource( 21 )
 [node name="3DText3" parent="10th Area/sign3" instance=ExtResource( 3 )]
 transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.445865, 0.411804 )
 texture = SubResource( 22 )
-script = SubResource( 23 )
+script = SubResource( 32 )
 
 [node name="3DText4" parent="10th Area/sign3" instance=ExtResource( 3 )]
 transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.338316, 0.411804 )
@@ -3595,7 +5036,15 @@ transform = Transform( 1, -3.55271e-15, -6.61744e-23, 1.7053e-13, 0.999999, -8.8
 [connection signal="body_entered" from="Fourth Area/BoundingBox5" to="Fourth Area/BoundingBox5" method="_on_BoundingBox_body_entered"]
 [connection signal="body_entered" from="Fourth Area/BoundingBox7" to="Fourth Area/BoundingBox7" method="_on_BoundingBox_body_entered"]
 [connection signal="body_entered" from="Fifth Area/BoundingBox" to="Fifth Area/BoundingBox" method="_on_BoundingBox_body_entered"]
+[connection signal="body_entered" from="Fifth Area/BoundingBox3" to="Fifth Area/BoundingBox3" method="_on_BoundingBox_body_entered"]
 [connection signal="body_entered" from="Fifth Area/BoundingBox2" to="Fifth Area/BoundingBox2" method="_on_BoundingBox_body_entered"]
+[connection signal="body_entered" from="Fifth Area/Spatial2/BoundingBox4" to="Fifth Area/Spatial2/BoundingBox4" method="_on_BoundingBox_body_entered"]
+[connection signal="body_entered" from="Fifth Area/Spatial2/BoundingBox5" to="Fifth Area/Spatial2/BoundingBox5" method="_on_BoundingBox_body_entered"]
+[connection signal="body_entered" from="Fifth Area/Spatial2/BoundingBox6" to="Fifth Area/Spatial2/BoundingBox6" method="_on_BoundingBox_body_entered"]
+[connection signal="body_entered" from="Fifth Area/Spatial2/BoundingBox7" to="Fifth Area/Spatial2/BoundingBox7" method="_on_BoundingBox_body_entered"]
+[connection signal="body_entered" from="Fifth Area/Spatial2/BoundingBox8" to="Fifth Area/Spatial2/BoundingBox8" method="_on_BoundingBox_body_entered"]
+[connection signal="body_entered" from="Fifth Area/Spatial2/BoundingBox9" to="Fifth Area/Spatial2/BoundingBox9" method="_on_BoundingBox_body_entered"]
+[connection signal="body_entered" from="End Box2" to="End Box2" method="_on_End_Box_body_entered"]
 [connection signal="body_exited" from="10th Area/Next Level" to="10th Area/Next Level" method="_on_BoundingBox_body_exited"]
 [connection signal="body_entered" from="10th Area/BoundingBox" to="10th Area/BoundingBox" method="_on_BoundingBox_body_entered"]
 [connection signal="body_entered" from="10th Area/Portal" to="10th Area/Portal" method="Rocket_Entered"]
@@ -3635,3 +5084,6 @@ transform = Transform( 1, -3.55271e-15, -6.61744e-23, 1.7053e-13, 0.999999, -8.8
 [editable path="Fifth Area/sign3/3DText3"]
 [editable path="Fifth Area/sign2/3DText"]
 [editable path="Fifth Area/sign2/3DText2"]
+[editable path="Fifth Area/Spatial4/Rock 037"]
+[editable path="Fifth Area/Spatial4/Rock 045"]
+[editable path="Fifth Area/Spatial4/Rock 046"]

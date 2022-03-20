@@ -20,6 +20,9 @@ func _ready():
 func _on_BHOP_Check_body_entered(body):
 	yield(get_tree().create_timer(.1), "timeout")
 	print (body.wish_jump)
-	if body.wish_jump == false:
+	print (body.name)
+	#print (body.wish_jump)
+	if body.wish_jump == false:#wish_jump == false:
+		print (body.wish_jump)
 		body.global_transform.origin = $Respawn.global_transform.origin
 		body.velocity = Vector3.ZERO
