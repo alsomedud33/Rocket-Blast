@@ -1,7 +1,7 @@
-extends Sprite3D
+extends Spatial
 
 
-export (String) onready var label_text
+export (String) var label_text
 onready var label = $Viewport/Label
 
 func _ready():
