@@ -394,7 +394,7 @@ shadow_enabled = true
 shadow_bias = 1.2
 
 [node name="Soldier" parent="." instance=ExtResource( 17 )]
-transform = Transform( 1, 0, 4.74853e-07, 0, 1, 0, -4.74853e-07, 0, 1, 627, 128.5, -413.5 )
+transform = Transform( 1, 0, 4.74853e-07, 0, 1, 0, -4.74853e-07, 0, 1, 2, 2.5, -13.5 )
 
 [node name="CameraHub" type="Spatial" parent="."]
 script = ExtResource( 2 )
@@ -415,16 +415,15 @@ spot_range = 5.939
 spot_angle = 28.86
 
 [node name="3DText" parent="First Area/sign" instance=ExtResource( 9 )]
-transform = Transform( -0.0993852, -0.0136015, 0.000414153, -0.00898648, 0.0993438, -0.000740773, 0.00135127, -0.0109531, -0.099964, -1.00005, 0.497705, 0.412025 )
-label_text = "To rocket jump, jump and press mouse 1"
-
-[node name="3DText2" parent="First Area/sign" instance=ExtResource( 9 )]
-transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.350292, 0.41177 )
-visible = false
-label_text = "jump and press mouse 1"
+transform = Transform( 0.1, 0, 1.49012e-08, 0, 0.275, 0, 0, 0, 0.999999, -1.00005, 0.401369, 0.412025 )
+label_text = "To rocket jump. Look at the ground, shoot and jump at the same time."
 
 [node name="sign3" parent="First Area" instance=ExtResource( 18 )]
 transform = Transform( 2.65004, 0, -0.5, 0, 3.7632, 0, 1.53, 0, 0.866026, -3.56432, 1, -7.24608 )
+
+[node name="3DText2" parent="First Area/sign3" instance=ExtResource( 9 )]
+transform = Transform( 0.0999826, 0, 0.00611393, 0, 0.275, 0, -0.00572479, 0, 0.999825, -0.999693, 0.401369, 0.376486 )
+label_text = "The goal is for you to reach the other side!"
 
 [node name="SpotLight" type="SpotLight" parent="First Area/sign3"]
 transform = Transform( -0.321131, 0.0452905, -0.0402479, 0, 0.176517, 0.198633, 0.185405, 0.734534, -0.652751, -1.08354, 0.870479, -1.39229 )
@@ -432,18 +431,6 @@ light_color = Color( 0.745098, 0.764706, 0.643137, 1 )
 light_indirect_energy = 0.0
 spot_range = 5.939
 spot_angle = 28.86
-
-[node name="3DText" parent="First Area/sign3" instance=ExtResource( 9 )]
-transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.000509664, 0, -0.0999988, -1.04634, 0.462924, 0.41177 )
-label_text = "The goal here is for"
-
-[node name="3DText2" parent="First Area/sign3" instance=ExtResource( 9 )]
-transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.350292, 0.41177 )
-label_text = "you to reach the other"
-
-[node name="3DText3" parent="First Area/sign3" instance=ExtResource( 9 )]
-transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.250378, 0.41177 )
-label_text = "side"
 
 [node name="sign2" parent="First Area" instance=ExtResource( 18 )]
 transform = Transform( 2.16375, 0, 0.707107, 0, 3.7632, 0, -2.16375, 0, 0.707107, 10.5, 1, 14 )
