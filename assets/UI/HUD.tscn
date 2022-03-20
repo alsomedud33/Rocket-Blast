@@ -92,9 +92,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 1
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Panel" type="Panel" parent="Pause"]
 self_modulate = Color( 1, 1, 1, 0.501961 )
@@ -180,9 +177,6 @@ rect_min_size = Vector2( 100, 0 )
 max_value = 1.0
 step = 0.01
 value = 0.5
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Volume Percent" type="Label" parent="Pause/Panel"]
 margin_left = 947.0
@@ -260,13 +254,14 @@ __meta__ = {
 }
 
 [node name="Counter" type="Panel" parent="."]
+pause_mode = 2
 self_modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 script = ExtResource( 4 )
 
-[node name="Proj_counter" type="Label" parent="Counter"]
+[node name="Proj_name" type="Label" parent="Counter"]
 margin_left = 292.0
 margin_top = 11.0
 margin_right = 688.0
@@ -280,7 +275,7 @@ margin_top = 11.0
 margin_right = 527.0
 margin_bottom = 51.0
 custom_fonts/font = SubResource( 15 )
-text = "1"
+text = "0"
 align = 1
 valign = 1
 

@@ -17,6 +17,7 @@ onready var tick = preload("res://assets/Sounds/Demoman/Explosion Tick.wav")
 
 func _ready():
 	Globals.sticky_deployed += 1
+	Globals.proj_counter += 1
 	set_as_toplevel(true)
 	#$Timer.start(duration)
 

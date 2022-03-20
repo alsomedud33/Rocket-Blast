@@ -15,7 +15,6 @@ func _process(delta):
 		ms = 0
 		sec = 0
 		minutes = 0
-		Globals.complete = false
 	else:
 		if ms > 9:
 			sec += 1

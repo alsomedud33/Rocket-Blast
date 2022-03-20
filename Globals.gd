@@ -12,8 +12,14 @@ var map_2 = preload("res://Maps/Map_2.tscn")
 
 var proj_counter = 0
 
+func _ready():
+	AudioServer.set_bus_volume_db(0, linear2db(0.5))
+
 func _process(delta):
 	if sticky_deployed < 0:
 		sticky_deployed = 0
 	if complete == true:
-		proj_counter = 0
+		yield(get_tree().create_timer(.001), "timeout")
+		complete = false
+
+

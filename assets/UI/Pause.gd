@@ -4,9 +4,13 @@ extends Control
 var Paused = false
 var fullscreen = false
 
+onready var volume_scroll = $"Panel/Volume Scroll"
+
 func _ready():
 	visible = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	#AudioServer.set_bus_volume_db(0, linear2db(0.5))
+	volume_scroll.value = db2linear(AudioServer.get_bus_volume_db(0))
 
 func _input(event):
 	if event.is_action_pressed("ui_focus_next"):
@@ -38,9 +42,8 @@ func _input(event):
 
 
 func _on_HScrollBar_value_changed(value):
-	AudioServer.set_bus_volume_db(0, linear2db(value*2))
+	AudioServer.set_bus_volume_db(0, linear2db(value))
 	$"Panel/Volume Percent".text = "%d%%" % (value * 100)
-
 func _on_Mouse_Sense_value_changed(value):
 	Globals.mouse_sense = value*20
 	$"Panel/Sense Value".text = "%3.2f" % value
