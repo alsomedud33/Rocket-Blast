@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/UI/Pause.gd" type="Script" id=1]
 [ext_resource path="res://assets/UI/Timer.gd" type="Script" id=2]
+[ext_resource path="res://assets/UI/Font.tres" type="DynamicFont" id=3]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://assets/Fonts/TF2.ttf"
@@ -16,7 +17,14 @@ font_data = SubResource( 1 )
 [sub_resource type="DynamicFontData" id=3]
 font_path = "res://assets/Fonts/TF2.ttf"
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=13]
+size = 30
+outline_size = 5
+outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+use_filter = true
+font_data = SubResource( 3 )
+
+[sub_resource type="DynamicFont" id=14]
 size = 30
 outline_size = 5
 outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
@@ -85,9 +93,6 @@ __meta__ = {
 self_modulate = Color( 1, 1, 1, 0.501961 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Mouse Sense" type="HScrollBar" parent="Pause/Panel"]
 margin_left = 818.0
@@ -120,12 +125,43 @@ margin_left = 458.0
 margin_top = 471.0
 margin_right = 783.0
 margin_bottom = 502.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = ExtResource( 3 )
 text = "Mouse sensitivity: "
 align = 1
 valign = 2
 __meta__ = {
 "_edit_use_anchors_": false
+}
+
+[node name="Character" type="Label" parent="Pause/Panel"]
+margin_left = 34.0
+margin_top = 206.0
+margin_right = 359.0
+margin_bottom = 237.0
+custom_fonts/font = ExtResource( 3 )
+text = "Select Character:"
+align = 1
+valign = 2
+
+[node name="Rocket Man" type="Button" parent="Pause/Panel"]
+margin_left = 47.0
+margin_top = 252.0
+margin_right = 261.0
+margin_bottom = 319.0
+custom_colors/font_color = Color( 0.92549, 0.478431, 0.164706, 1 )
+custom_fonts/font = SubResource( 13 )
+text = "Rocket Man"
+
+[node name="Bomber Man" type="Button" parent="Pause/Panel"]
+margin_left = 47.0
+margin_top = 331.0
+margin_right = 261.0
+margin_bottom = 398.0
+custom_colors/font_color = Color( 0.164706, 0.658824, 0.92549, 1 )
+custom_fonts/font = SubResource( 14 )
+text = "Bomber Man"
+__meta__ = {
+"_editor_description_": ""
 }
 
 [node name="Volume Scroll" type="HScrollBar" parent="Pause/Panel"]
@@ -191,9 +227,6 @@ custom_fonts/font = SubResource( 9 )
 text = "Hello"
 align = 2
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Timer2" type="Timer" parent="Timer"]
 pause_mode = 2
@@ -223,5 +256,7 @@ __meta__ = {
 }
 
 [connection signal="value_changed" from="Pause/Panel/Mouse Sense" to="Pause" method="_on_Mouse_Sense_value_changed"]
+[connection signal="pressed" from="Pause/Panel/Rocket Man" to="Pause" method="_on_Rocket_Man_pressed"]
+[connection signal="pressed" from="Pause/Panel/Bomber Man" to="Pause" method="_on_Bomber_Man_pressed"]
 [connection signal="value_changed" from="Pause/Panel/Volume Scroll" to="Pause" method="_on_HScrollBar_value_changed"]
 [connection signal="timeout" from="Timer/Timer2" to="Timer" method="_on_Timer2_timeout"]

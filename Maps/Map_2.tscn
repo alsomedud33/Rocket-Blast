@@ -36,8 +36,10 @@ background_energy = 1.5
 fog_enabled = true
 fog_color = Color( 0, 0.0745098, 0.14902, 1 )
 fog_sun_color = Color( 0.101961, 0, 1, 1 )
+fog_sun_amount = 1.0
 fog_depth_begin = 0.0
-fog_depth_end = 86.4
+fog_height_min = 0.0
+fog_height_max = -70.0
 ss_reflections_max_steps = 512
 ss_reflections_depth_tolerance = 64.9
 ss_reflections_roughness = false
@@ -362,7 +364,7 @@ func Rocket_Entered(body):
 [node name="Spatial" type="Node"]
 
 [node name="Demolition Man" parent="." instance=ExtResource( 12 )]
-transform = Transform( -0.0414571, 0, -0.99914, 0, 1, 0, 0.99914, 0, -0.0414571, 51.7849, -164.577, 498.901 )
+transform = Transform( 0.99914, 0, -0.0414571, 0, 1, 0, 0.0414571, 0, 0.99914, 51.7849, 1.9231, -14.0988 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 2 )
@@ -804,7 +806,7 @@ transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1
 transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, -11.5 )
 
 [node name="Spatial9" parent="Second Area" instance=ExtResource( 9 )]
-transform = Transform( 1.91069e-15, -20.445, -8.49968e-07, -1.11027e-06, -8.49968e-07, -1, 24.4, 9.46746e-15, -1.11027e-06, 0.5, 26.5, 4.5 )
+transform = Transform( 1.91069e-15, -20.445, -8.49968e-07, -1.11027e-06, -8.49968e-07, -1, 24.4, 9.46746e-15, -1.11027e-06, 0.5, 26.6739, 27 )
 
 [node name="Spatial11" parent="Second Area" instance=ExtResource( 9 )]
 transform = Transform( 1.91069e-15, -20.445, -8.49968e-07, -1.11027e-06, -8.49968e-07, -1, 24.4, 9.46746e-15, -1.11027e-06, 0.5, 26.5, 53 )
@@ -1167,7 +1169,15 @@ transform = Transform( -4.37114e-08, 4.37114e-08, -1, 24.4, 4.66207e-14, -1.0665
 collision_layer = 8
 
 [node name="Spatial43" parent="Third Area" instance=ExtResource( 9 )]
-transform = Transform( -4.37114e-08, 4.37114e-08, -1, 24.4, 4.66207e-14, -1.06656e-06, 0, -20.445, -8.9368e-07, 27, 2, 155.281 )
+transform = Transform( -4.37114e-08, 4.37114e-08, -1, 24.4, 4.66207e-14, -1.06656e-06, 0, -20.445, -8.9368e-07, 27, 2, 154.67 )
+collision_layer = 8
+
+[node name="Spatial44" parent="Third Area" instance=ExtResource( 9 )]
+transform = Transform( 1.91069e-15, 20.445, 9.37391e-07, 24.4, 4.66207e-14, -1.06656e-06, -4.37114e-08, 9.37391e-07, -1, 8, 2, 145.67 )
+collision_layer = 8
+
+[node name="Spatial45" parent="Third Area" instance=ExtResource( 9 )]
+transform = Transform( 1.91069e-15, 20.445, 9.37391e-07, 24.4, 4.66207e-14, -1.06656e-06, -4.37114e-08, 9.37391e-07, -1, -29.8378, 2, 145.67 )
 collision_layer = 8
 
 [node name="Spatial6" parent="Third Area" instance=ExtResource( 9 )]
@@ -1289,7 +1299,7 @@ transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 23, 
 transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 30, 1.5, 2.5 )
 
 [node name="Spatial9" parent="Third Area" instance=ExtResource( 9 )]
-transform = Transform( 1.91069e-15, -20.445, -8.49968e-07, -1.11027e-06, -8.49968e-07, -1, 24.4, 9.46746e-15, -1.11027e-06, 0.5, 26.5, 4.5 )
+transform = Transform( 1.91069e-15, -20.445, -8.49968e-07, -1.11027e-06, -8.49968e-07, -1, 24.4, 9.46746e-15, -1.11027e-06, 0.5, 26.729, 4.5 )
 
 [node name="Spatial11" parent="Third Area" instance=ExtResource( 9 )]
 transform = Transform( 1.91069e-15, -20.445, -8.49968e-07, -1.11027e-06, -8.49968e-07, -1, 24.4, 9.46746e-15, -1.11027e-06, 0.5, 26.5, 52.5 )
@@ -1298,7 +1308,7 @@ transform = Transform( 1.91069e-15, -20.445, -8.49968e-07, -1.11027e-06, -8.4996
 transform = Transform( 1.91069e-15, -20.445, -8.49968e-07, -1.11027e-06, -8.49968e-07, -1, 24.4, 9.46746e-15, -1.11027e-06, 0.5, 26.5, 101 )
 
 [node name="Spatial10" parent="Third Area" instance=ExtResource( 9 )]
-transform = Transform( 1.91069e-15, -20.445, -8.49968e-07, -1.11027e-06, -8.49968e-07, -1, 24.4, 9.46746e-15, -1.11027e-06, 39, 26.5, 4.5 )
+transform = Transform( 1.91069e-15, -20.445, -8.49968e-07, -1.11027e-06, -8.49968e-07, -1, 24.4, 9.46746e-15, -1.11027e-06, 39, 26.7577, 4.5 )
 
 [node name="Spatial12" parent="Third Area" instance=ExtResource( 9 )]
 transform = Transform( 1.91069e-15, -20.445, -8.49968e-07, -1.11027e-06, -8.49968e-07, -1, 24.4, 9.46746e-15, -1.11027e-06, 39, 26.5, 53 )
@@ -1563,6 +1573,66 @@ transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.563
 
 [node name="Facade 019B38" parent="Fourth Area" instance=ExtResource( 4 )]
 transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, 9, -28.6982, 57.5 )
+
+[node name="Facade 019B39" parent="Fourth Area" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, 16, -21.6982, 57.5 )
+
+[node name="Facade 019B40" parent="Fourth Area" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, 16, -14.6982, 57.5 )
+
+[node name="Facade 019B41" parent="Fourth Area" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, 16, -35.6982, 57.5 )
+
+[node name="Facade 019B42" parent="Fourth Area" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, 16, -28.6982, 57.5 )
+
+[node name="Facade 019B43" parent="Fourth Area" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, 23, -21.6982, 57.5 )
+
+[node name="Facade 019B44" parent="Fourth Area" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, 23, -14.6982, 57.5 )
+
+[node name="Facade 019B45" parent="Fourth Area" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, 23, -35.6982, 57.5 )
+
+[node name="Facade 019B46" parent="Fourth Area" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, 23, -28.6982, 57.5 )
+
+[node name="Facade 019B47" parent="Fourth Area" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, -12, -21.6982, 57.5 )
+
+[node name="Facade 019B48" parent="Fourth Area" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, -12, -14.6982, 57.5 )
+
+[node name="Facade 019B49" parent="Fourth Area" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, -12, -35.6982, 57.5 )
+
+[node name="Facade 019B50" parent="Fourth Area" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, -12, -28.6982, 57.5 )
+
+[node name="Facade 019B51" parent="Fourth Area" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, -19, -21.6982, 57.5 )
+
+[node name="Facade 019B52" parent="Fourth Area" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, -19, -14.6982, 57.5 )
+
+[node name="Facade 019B53" parent="Fourth Area" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, -19, -35.6982, 57.5 )
+
+[node name="Facade 019B54" parent="Fourth Area" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, -19, -28.6982, 57.5 )
+
+[node name="Facade 019B55" parent="Fourth Area" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, -25.5, -21.6982, 57.5 )
+
+[node name="Facade 019B56" parent="Fourth Area" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, -25.5, -14.6982, 57.5 )
+
+[node name="Facade 019B57" parent="Fourth Area" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, -25.5, -35.6982, 57.5 )
+
+[node name="Facade 019B58" parent="Fourth Area" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, -25.5, -28.6982, 57.5 )
 
 [node name="Facade 019B29" parent="Fourth Area" instance=ExtResource( 4 )]
 transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -10.5, -23.1982, -8 )
@@ -2206,10 +2276,6 @@ transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.7914
 
 [node name="Spatial12" parent="Fifth Area" instance=ExtResource( 9 )]
 transform = Transform( 4.37114e-08, 1.74365e-06, 1, 24.4, 4.66207e-14, -1.06656e-06, -3.82137e-15, 20.445, 8.06257e-07, -7.02291, -5, 11.5 )
-collision_layer = 8
-
-[node name="Spatial7" parent="Fifth Area" instance=ExtResource( 9 )]
-transform = Transform( -13.3452, -2.62187e-06, 0.837174, 20.427, 6.80739e-06, 0.546936, -4.16751e-06, 41.7621, -3.65941e-08, -36.7641, 25.3624, -114 )
 collision_layer = 8
 
 [node name="Spatial5" parent="Fifth Area" instance=ExtResource( 9 )]
@@ -3455,7 +3521,7 @@ transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e
 transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -0.374981, -7, 7.29501 )
 
 [node name="SecondRamp" parent="Fifth Area" instance=ExtResource( 19 )]
-transform = Transform( -7.4784e-08, 0.02, 0, -0.02, -7.4784e-08, 0, 0, 0, 0.02, -6.49995, 12, 68.2141 )
+transform = Transform( -8.74228e-10, 0.02, 0, -0.02, -8.74228e-10, 0, 0, 0, 0.02, -6.49995, 12, 68.2141 )
 
 [node name="SecondRamp2" parent="Fifth Area" instance=ExtResource( 19 )]
 transform = Transform( 0.004303, -0.0179971, -0.00758876, -0.0194842, -0.00449621, -0.000385062, -0.00135953, 0.00747591, -0.0185003, -49.9187, 4.53085, 33.6196 )
@@ -3867,6 +3933,86 @@ transform = Transform( 7.70079e-07, -3.5, -1.56487e-08, 0, -2.75382e-07, 0.6444,
 transform = Transform( 0.999998, 5.32907e-15, 0, -3.83693e-13, 0.999999, -3.9968e-15, -3.93023e-19, -1.59162e-12, 1, 1.97446, -7.23464, 77.0332 )
 
 [node name="HUD" parent="." instance=ExtResource( 11 )]
+
+[node name="Spatial46" parent="." instance=ExtResource( 9 )]
+transform = Transform( -1.79147e-07, 1.07284e-05, -1, 100, -4.37114e-06, -1.79148e-09, -4.37114e-06, -100, -1.07284e-07, 140.5, 16.4874, 226.17 )
+collision_layer = 8
+
+[node name="Spatial49" parent="." instance=ExtResource( 9 )]
+transform = Transform( -1.79147e-07, 1.07284e-05, -1, 100, -4.37114e-06, -1.79148e-09, -4.37114e-06, -100, -1.07284e-07, 140.5, -181.013, 226.17 )
+collision_layer = 8
+
+[node name="Spatial60" parent="." instance=ExtResource( 9 )]
+transform = Transform( 100, -4.37114e-06, 4.19199e-08, -4.19199e-06, -1.07284e-05, 1, -4.37114e-06, -100, -1.07284e-07, 45.5, -274.513, 226.17 )
+collision_layer = 8
+
+[node name="Spatial61" parent="." instance=ExtResource( 9 )]
+transform = Transform( -100, 1.31134e-05, -4.19199e-08, -1.31134e-05, -100, -1.49012e-07, -4.19199e-06, -1.90735e-05, 1, 45.5, -112.013, 129.67 )
+collision_layer = 8
+
+[node name="Spatial63" parent="." instance=ExtResource( 9 )]
+transform = Transform( -100, 1.31134e-05, -4.19199e-08, -1.31134e-05, -100, -1.49012e-07, -4.19199e-06, -1.90735e-05, 1, 168, -20.5126, 129.67 )
+collision_layer = 8
+
+[node name="Spatial65" parent="." instance=ExtResource( 9 )]
+transform = Transform( -100, 1.31134e-05, -4.19199e-08, -1.31134e-05, -100, -1.49012e-07, -4.19199e-06, -1.90735e-05, 1, 47, 168.487, 129.67 )
+collision_layer = 8
+
+[node name="Spatial64" parent="." instance=ExtResource( 9 )]
+transform = Transform( -100, 1.31134e-05, -4.19199e-08, -1.31134e-05, -100, -1.49012e-07, -4.19199e-06, -1.90735e-05, 1, -79, -20.5126, 129.67 )
+collision_layer = 8
+
+[node name="Spatial50" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1.79148e-07, -1.98616e-06, 1, 100, -4.37114e-06, -1.79148e-09, 4.37114e-06, 100, 1.98616e-08, -44, -181.013, 226.17 )
+collision_layer = 8
+
+[node name="Spatial51" parent="." instance=ExtResource( 9 )]
+transform = Transform( 2.18557e-06, 50, 3.17865e-08, 50, -2.18557e-06, -1.79148e-09, -8.95738e-08, 1.58933e-06, -1, -54.5, -126.013, 319.67 )
+collision_layer = 8
+
+[node name="Spatial52" parent="." instance=ExtResource( 9 )]
+transform = Transform( 2.18557e-06, 50, 3.17865e-08, 50, -2.18557e-06, -1.79148e-09, -8.95738e-08, 1.58933e-06, -1, 142.5, -126.013, 319.67 )
+collision_layer = 8
+
+[node name="Spatial53" parent="." instance=ExtResource( 9 )]
+transform = Transform( 2.18557e-06, 50, 3.17865e-08, 50, -2.18557e-06, -1.79148e-09, -8.95738e-08, 1.58933e-06, -1, 142.5, -223.013, 319.67 )
+collision_layer = 8
+
+[node name="Spatial54" parent="." instance=ExtResource( 9 )]
+transform = Transform( 2.18557e-06, 50, 3.17865e-08, 50, -2.18557e-06, -1.79148e-09, -8.95738e-08, 1.58933e-06, -1, 48.5, -223.013, 319.67 )
+collision_layer = 8
+
+[node name="Spatial55" parent="." instance=ExtResource( 9 )]
+transform = Transform( 2.18557e-06, 50, 3.17865e-08, 50, -2.18557e-06, -1.79148e-09, -8.95738e-08, 1.58933e-06, -1, -46, -223.013, 319.67 )
+collision_layer = 8
+
+[node name="Spatial56" parent="." instance=ExtResource( 9 )]
+transform = Transform( 8.74228e-07, 20, 1.50996e-07, 20, -8.74228e-07, -1.79148e-09, -3.58294e-08, 3.01992e-06, -1, 12, -157.013, 319.67 )
+collision_layer = 8
+
+[node name="Spatial57" parent="." instance=ExtResource( 9 )]
+transform = Transform( 8.74228e-07, 20, 1.50996e-07, 20, -8.74228e-07, -1.79148e-09, -3.58294e-08, 3.01992e-06, -1, 49.5, -157.013, 319.67 )
+collision_layer = 8
+
+[node name="Spatial58" parent="." instance=ExtResource( 9 )]
+transform = Transform( 8.74228e-07, 20, 1.50996e-07, 20, -8.74228e-07, -1.79148e-09, -3.58294e-08, 3.01992e-06, -1, 87, -157.013, 319.67 )
+collision_layer = 8
+
+[node name="Spatial59" parent="." instance=ExtResource( 9 )]
+transform = Transform( 8.74228e-07, 20, 1.50996e-07, 20, -8.74228e-07, -1.79148e-09, -3.58294e-08, 3.01992e-06, -1, 87, -157.013, 319.67 )
+collision_layer = 8
+
+[node name="Spatial48" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1.79148e-07, -1.98616e-06, 1, 100, -4.37114e-06, -1.79148e-09, 4.37114e-06, 100, 1.98616e-08, -44, 16.4874, 226.17 )
+collision_layer = 8
+
+[node name="Spatial47" parent="." instance=ExtResource( 9 )]
+transform = Transform( 4.37114e-06, 100, 1.50996e-07, 100, -4.37114e-06, -1.79148e-09, -1.79147e-07, 1.50996e-05, -1, 48.5, 16.4874, 319.17 )
+collision_layer = 8
+
+[node name="Spatial62" parent="." instance=ExtResource( 9 )]
+transform = Transform( 4.37114e-06, 100, 1.50996e-07, -4.55029e-06, 1.50996e-05, -1, -100, 4.37114e-06, 4.55029e-08, 48.5, 100.987, 225.67 )
+collision_layer = 8
 
 [node name="End Box2" parent="." instance=ExtResource( 5 )]
 transform = Transform( 0.11492, 0, 1.34917e-13, 0, 1.326, 0, -2.25154e-14, 0, 0.688624, 65.438, -145.728, 496.151 )

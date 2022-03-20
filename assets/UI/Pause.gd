@@ -47,3 +47,18 @@ func _on_Mouse_Sense_value_changed(value):
 
 
 
+
+
+func _on_Rocket_Man_pressed():
+	get_tree().change_scene("res://Maps/Map_1.tscn")
+	get_tree().paused = false
+	visible = false
+	print ("ui_cancel")
+	Paused = false
+
+func _on_Bomber_Man_pressed():
+	get_tree().change_scene("res://Maps/Map_2.tscn")
+	get_tree().paused = false
+	visible = false
+	print ("ui_cancel")
+	Paused = false
