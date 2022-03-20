@@ -4,7 +4,7 @@ var frame = 0
 var duration = 0.7
 export var gravity = 15
 var terminal_velocity: float = gravity * -5
-export var speed:int = 0
+export var speed:float = 0
 var velocity = Vector3()
 var bounce
 var stick = false

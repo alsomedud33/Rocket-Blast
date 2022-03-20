@@ -382,8 +382,8 @@ func _process(delta) -> void:
 [node name="Sticky Bomb" type="KinematicBody" groups=["Sticky Bomb"]]
 collision_layer = 4
 script = ExtResource( 2 )
-gravity = 7
-speed = 7
+gravity = 8
+speed = 8.0
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 mesh = SubResource( 1 )

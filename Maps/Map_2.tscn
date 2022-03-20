@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=48 format=2]
 
 [ext_resource path="res://assets/Platform Objects/Door2.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://assets/Skybox/BoundingBox.gd" type="Script" id=2]
@@ -18,6 +18,7 @@
 [ext_resource path="res://assets/Platform Objects/Door2.png" type="Texture" id=16]
 [ext_resource path="res://assets/Platform Objects/FirstRamp.tscn" type="PackedScene" id=17]
 [ext_resource path="res://assets/Platform Objects/Wall2.tscn" type="PackedScene" id=18]
+[ext_resource path="res://assets/Platform Objects/SecondRamp.tscn" type="PackedScene" id=19]
 
 [sub_resource type="PanoramaSky" id=1]
 panorama = ExtResource( 14 )
@@ -26,11 +27,14 @@ panorama = ExtResource( 14 )
 background_mode = 2
 background_sky = SubResource( 1 )
 background_sky_orientation = Basis( 0.34202, 0, 0.939693, 0, 1, 0, -0.939693, 0, 0.34202 )
+background_energy = 1.5
 fog_enabled = true
 fog_color = Color( 0, 0.0745098, 0.14902, 1 )
 fog_sun_color = Color( 0.101961, 0, 1, 1 )
 fog_depth_begin = 0.0
 fog_depth_end = 86.4
+ss_reflections_max_steps = 512
+ss_reflections_depth_tolerance = 64.9
 ss_reflections_roughness = false
 dof_blur_far_quality = 2
 glow_enabled = true
@@ -65,9 +69,6 @@ viewport_path = NodePath("First Area/sign2/3DText2/Viewport")
 [sub_resource type="ConvexPolygonShape" id=10]
 points = PoolVector3Array( 2.03175, 4.03095, 2.03175, -1.99961, 0.000783171, -2, -2, 0.000783171, 0.374706, -1.99961, 3.99922, -2, 2, 0.000783171, -2, -2, 3.99922, 2, 2, 0.000783171, 2, 2, 3.99922, -2, -2, 0.000783171, 2 )
 
-[sub_resource type="ConcavePolygonShape" id=29]
-data = PoolVector3Array( -0.6, 0, 1.1, -0.6, 6, 2.1, -0.6, 0, 2.1, -0.6, 0, 1.1, -0.6, 6, 1.1, -0.6, 6, 2.1, 1.4, 0, 1.1, 1.4, 2.7, 1.5, 1.4, 0, 1.5, 1.4, 0, 1.1, 1.4, 2.7, 1.1, 1.4, 2.7, 1.5, 1.4, 3.3, 1.1, 1.4, 5.2, 1.5, 1.4, 3.3, 1.5, 1.4, 3.3, 1.1, 1.4, 5.2, 1.1, 1.4, 5.2, 1.5, 3.1, 0, 1.1, 3.1, 2.7, 1.5, 3.1, 0, 2.1, 3.1, 0, 1.1, 3.1, 2.7, 1.1, 3.1, 2.7, 1.5, 3.1, 2.7, 1.5, 3.1, 3.3, 1.5, 3.1, 0, 2.1, 3.1, 3.3, 1.5, 3.1, 5.2, 2.1, 3.1, 0, 2.1, 3.1, 3.3, 1.1, 3.1, 5.2, 2.1, 3.1, 3.3, 1.5, 3.1, 3.3, 1.1, 3.1, 5.2, 1.1, 3.1, 5.2, 2.1, 0.2, 0, 1.1, 0.2, 0, 2.1, 0.2, 2.7, 1.5, 0.2, 0, 1.1, 0.2, 2.7, 1.5, 0.2, 2.7, 1.1, 0.2, 2.7, 1.5, 0.2, 0, 2.1, 0.2, 3.3, 1.5, 0.2, 3.3, 1.5, 0.2, 0, 2.1, 0.2, 5.2, 2.1, 0.2, 3.3, 1.1, 0.2, 3.3, 1.5, 0.2, 5.2, 2.1, 0.2, 3.3, 1.1, 0.2, 5.2, 2.1, 0.2, 5.2, 1.1, 1.9, 0, 1.1, 1.9, 0, 1.5, 1.9, 2.7, 1.5, 1.9, 0, 1.1, 1.9, 2.7, 1.5, 1.9, 2.7, 1.1, 1.9, 3.3, 1.1, 1.9, 3.3, 1.5, 1.9, 5.2, 1.5, 1.9, 3.3, 1.1, 1.9, 5.2, 1.5, 1.9, 5.2, 1.1, 3.9, 0, 1.1, 3.9, 0, 2.1, 3.9, 6, 2.1, 3.9, 0, 1.1, 3.9, 6, 2.1, 3.9, 6, 1.1, -0.6, 6, 2.1, 0.2, 0, 2.1, -0.6, 0, 2.1, -0.6, 6, 2.1, 0.2, 5.2, 2.1, 0.2, 0, 2.1, -0.6, 6, 2.1, 3.1, 5.2, 2.1, 0.2, 5.2, 2.1, 3.1, 5.2, 2.1, 3.9, 0, 2.1, 3.1, 0, 2.1, -0.6, 6, 2.1, 3.9, 6, 2.1, 3.1, 5.2, 2.1, 3.1, 5.2, 2.1, 3.9, 6, 2.1, 3.9, 0, 2.1, 0.2, 3.3, 1.5, 1.4, 2.7, 1.5, 0.2, 2.7, 1.5, 0.2, 3.3, 1.5, 1.4, 3.3, 1.5, 1.4, 2.7, 1.5, 1.4, 2.7, 1.5, 1.9, 0, 1.5, 1.4, 0, 1.5, 1.4, 5.2, 1.5, 1.9, 0, 1.5, 1.4, 3.3, 1.5, 1.4, 3.3, 1.5, 1.9, 0, 1.5, 1.4, 2.7, 1.5, 1.4, 5.2, 1.5, 1.9, 2.7, 1.5, 1.9, 0, 1.5, 1.4, 5.2, 1.5, 1.9, 3.3, 1.5, 1.9, 2.7, 1.5, 1.4, 5.2, 1.5, 1.9, 5.2, 1.5, 1.9, 3.3, 1.5, 1.9, 3.3, 1.5, 3.1, 2.7, 1.5, 1.9, 2.7, 1.5, 1.9, 3.3, 1.5, 3.1, 3.3, 1.5, 3.1, 2.7, 1.5, -0.6, 6, 1.1, -0.6, 0, 1.1, 0.2, 0, 1.1, -0.6, 6, 1.1, 0.2, 0, 1.1, 0.2, 2.7, 1.1, -0.6, 6, 1.1, 0.2, 2.7, 1.1, 0.2, 3.3, 1.1, -0.6, 6, 1.1, 0.2, 3.3, 1.1, 0.2, 5.2, 1.1, 0.2, 3.3, 1.1, 0.2, 2.7, 1.1, 1.4, 2.7, 1.1, 0.2, 3.3, 1.1, 1.4, 2.7, 1.1, 1.4, 3.3, 1.1, -0.6, 6, 1.1, 0.2, 5.2, 1.1, 1.4, 5.2, 1.1, 1.4, 3.3, 1.1, 1.4, 2.7, 1.1, 1.9, 0, 1.1, 1.4, 5.2, 1.1, 1.4, 3.3, 1.1, 1.9, 0, 1.1, 1.4, 2.7, 1.1, 1.4, 0, 1.1, 1.9, 0, 1.1, 1.4, 5.2, 1.1, 1.9, 0, 1.1, 1.9, 2.7, 1.1, 1.4, 5.2, 1.1, 1.9, 2.7, 1.1, 1.9, 3.3, 1.1, -0.6, 6, 1.1, 1.4, 5.2, 1.1, 1.9, 5.2, 1.1, 1.4, 5.2, 1.1, 1.9, 3.3, 1.1, 1.9, 5.2, 1.1, 1.9, 3.3, 1.1, 1.9, 2.7, 1.1, 3.1, 2.7, 1.1, 1.9, 3.3, 1.1, 3.1, 2.7, 1.1, 3.1, 3.3, 1.1, -0.6, 6, 1.1, 1.9, 5.2, 1.1, 3.1, 5.2, 1.1, 3.1, 3.3, 1.1, 3.1, 2.7, 1.1, 3.9, 0, 1.1, 3.1, 5.2, 1.1, 3.1, 3.3, 1.1, 3.9, 0, 1.1, 3.1, 2.7, 1.1, 3.1, 0, 1.1, 3.9, 0, 1.1, -0.6, 6, 1.1, 3.1, 5.2, 1.1, 3.9, 6, 1.1, 3.1, 5.2, 1.1, 3.9, 0, 1.1, 3.9, 6, 1.1, 0.2, 0, 2.1, -0.6, 0, 1.1, -0.6, 0, 2.1, 0.2, 0, 2.1, 0.2, 0, 1.1, -0.6, 0, 1.1, 1.9, 0, 1.5, 1.4, 0, 1.1, 1.4, 0, 1.5, 1.9, 0, 1.5, 1.9, 0, 1.1, 1.4, 0, 1.1, 3.9, 0, 2.1, 3.1, 0, 1.1, 3.1, 0, 2.1, 3.9, 0, 2.1, 3.9, 0, 1.1, 3.1, 0, 1.1, 1.4, 2.7, 1.5, 0.2, 2.7, 1.1, 0.2, 2.7, 1.5, 1.4, 2.7, 1.5, 1.4, 2.7, 1.1, 0.2, 2.7, 1.1, 3.1, 2.7, 1.5, 1.9, 2.7, 1.1, 1.9, 2.7, 1.5, 3.1, 2.7, 1.5, 3.1, 2.7, 1.1, 1.9, 2.7, 1.1, 3.1, 5.2, 2.1, 1.4, 5.2, 1.5, 0.2, 5.2, 2.1, 3.1, 5.2, 2.1, 1.9, 5.2, 1.5, 1.4, 5.2, 1.5, 1.4, 5.2, 1.5, 0.2, 5.2, 1.1, 0.2, 5.2, 2.1, 1.4, 5.2, 1.5, 1.4, 5.2, 1.1, 0.2, 5.2, 1.1, 3.1, 5.2, 2.1, 1.9, 5.2, 1.1, 1.9, 5.2, 1.5, 3.1, 5.2, 2.1, 3.1, 5.2, 1.1, 1.9, 5.2, 1.1, 1.4, 3.3, 1.5, 0.2, 3.3, 1.5, 0.2, 3.3, 1.1, 1.4, 3.3, 1.5, 0.2, 3.3, 1.1, 1.4, 3.3, 1.1, 3.1, 3.3, 1.5, 1.9, 3.3, 1.5, 1.9, 3.3, 1.1, 3.1, 3.3, 1.5, 1.9, 3.3, 1.1, 3.1, 3.3, 1.1, 3.9, 6, 2.1, -0.6, 6, 2.1, -0.6, 6, 1.1, 3.9, 6, 2.1, -0.6, 6, 1.1, 3.9, 6, 1.1 )
-
 [sub_resource type="SpatialMaterial" id=30]
 albedo_texture = ExtResource( 16 )
 emission_enabled = true
@@ -75,43 +76,6 @@ emission = Color( 0.168627, 0, 0.976471, 1 )
 emission_energy = 1.0
 emission_operator = 0
 emission_on_uv2 = false
-
-[sub_resource type="GDScript" id=11]
-script/source = "extends Area
-
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = \"text\"
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-
-func _on_BoundingBox_body_exited(body):
-	body.global_transform.origin = $Respawn.global_transform.origin
-
-
-
-func _on_BoundingBox_body_entered(body):
-	body.global_transform.origin = $Respawn.global_transform.origin
-
-
-
-
-
-func Rocket_Entered(body):
-	self.rotation_degrees.x = -90
-	body.global_transform.origin = $Respawn.global_transform.origin
-	body.rotation_degrees.x = -90
-"
 
 [sub_resource type="ViewportTexture" id=12]
 viewport_path = NodePath("Fifth Area/sign/3DText2/Viewport")
@@ -307,7 +271,7 @@ func Rocket_Entered(body):
 [node name="Spatial" type="Node"]
 
 [node name="Demolition Man" parent="." instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 49, 3, -17 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 48.5, 4, -11.5 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 2 )
@@ -1533,36 +1497,21 @@ transform = Transform( 1.91069e-15, -20.445, -8.49968e-07, -1.11027e-06, -8.4996
 visible = false
 
 [node name="BoundingBox" parent="Fourth Area" instance=ExtResource( 5 )]
-transform = Transform( 2.873, 0, 0, 0, 1, 0, 0, 0, 4.38048, 0, -31.3777, 10.6432 )
+transform = Transform( 2.873, 0, 0, 0, 1, 0, 0, 0, 4.38048, 0, -32.8777, 10.6432 )
 script = ExtResource( 2 )
 
 [node name="Respawn" type="Position3D" parent="Fourth Area/BoundingBox"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.88945, 33.5146, -6.25288 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.88945, 35.0146, -6.25288 )
 
 [node name="Spatial" type="Spatial" parent="Fourth Area"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.37497, -12.5, 67.9888 )
 
-[node name="Door" type="StaticBody" parent="Fourth Area/Spatial"]
-transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0.8125, 1.54019, 11.5056 )
-
-[node name="CollisionShape2" type="CollisionShape" parent="Fourth Area/Spatial/Door"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.875324, 0, 0 )
-shape = SubResource( 29 )
-disabled = true
-
-[node name="Door2" type="MeshInstance" parent="Fourth Area/Spatial/Door"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.85812, 0, 0 )
+[node name="Door2" type="MeshInstance" parent="Fourth Area/Spatial"]
+transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 1.67062, 1.54019, 11.5056 )
 mesh = ExtResource( 1 )
-skeleton = NodePath("../../..")
+skeleton = NodePath("../..")
 software_skinning_transform_normals = false
 material/0 = SubResource( 30 )
-
-[node name="BoundingBox2" parent="Fourth Area/Spatial/Door" instance=ExtResource( 5 )]
-transform = Transform( -0.136, 0, 4.62086e-10, 0, 0.25, 0, -2.05354e-08, 0, -0.00306025, 1.75, 5.9799, 2.34297 )
-script = SubResource( 11 )
-
-[node name="Respawn" type="Position3D" parent="Fourth Area/Spatial/Door/BoundingBox2"]
-transform = Transform( 0.294118, 0, 0, 0, 1, 0, 7.15573e-18, 0, 1.25, 2440.1, -455.48, 12780.2 )
 
 [node name="Rock 051" parent="Fourth Area/Spatial" instance=ExtResource( 7 )]
 transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -0.37498, 1.5, -6.70498 )
@@ -1601,19 +1550,25 @@ spot_angle = 89.93
 [node name="FirstRamp" parent="Fourth Area" instance=ExtResource( 17 )]
 transform = Transform( -7.4784e-08, -8.74222e-10, -0.02, -0.02, 1.50996e-09, 7.4784e-08, 1.50995e-09, 0.02, -8.74228e-10, 1.99988, -26, 18.5 )
 
-[node name="BoundingBox4" parent="Fourth Area" instance=ExtResource( 5 )]
-transform = Transform( 3.9474, 0, 0, 0, 6.80064, 0, 0, 0, 1.27034, 3.5, 16, 105.143 )
-script = ExtResource( 2 )
+[node name="FirstRamp2" parent="Fourth Area" instance=ExtResource( 17 )]
+transform = Transform( -7.4784e-08, -8.74222e-10, -0.02, -0.02, 1.50996e-09, 7.4784e-08, 1.50995e-09, 0.02, -8.74228e-10, 1.99983, -37.9163, 113 )
 
-[node name="Respawn" type="Position3D" parent="Fourth Area/BoundingBox4"]
-transform = Transform( 1, 0, 0, 0, 0.999999, 0, 0, 0, 1, -0.50666, -1.90518, -96.0375 )
+[node name="FirstRamp3" parent="Fourth Area" instance=ExtResource( 17 )]
+transform = Transform( -0.0193185, 0.00517631, 5.53873e-15, -0.00517631, -0.0193185, 1.50995e-09, 3.90805e-10, 1.4585e-09, 0.02, -72.9093, -35.5105, 132.5 )
 
 [node name="BoundingBox5" parent="Fourth Area" instance=ExtResource( 5 )]
-transform = Transform( -5.07286e-07, 0, -0.355695, 0, 6.80064, 0, 11.6054, 0, -1.55479e-08, -32.5, 16, 105.143 )
+transform = Transform( -1.06531e-07, 0, -0.355695, 0, 6.80064, 0, 2.43713, 0, -1.55479e-08, -17.5, 16, 96.143 )
 script = ExtResource( 2 )
 
 [node name="Respawn" type="Position3D" parent="Fourth Area/BoundingBox5"]
-transform = Transform( 1, 0, 0, 0, 0.999999, 0, 2.27374e-13, 0, 1, -10.4159, -1.90518, -96.0375 )
+transform = Transform( 1, 0, 1.33227e-15, 0, 0.999999, 0, -2.27374e-13, 0, 1, -45.3955, -1.90518, -53.8665 )
+
+[node name="BoundingBox7" parent="Fourth Area" instance=ExtResource( 5 )]
+transform = Transform( -1.06531e-07, 0, -0.355695, 0, 6.80064, 0, 2.43713, 0, -1.55479e-08, 33, 16, 96.143 )
+script = ExtResource( 2 )
+
+[node name="Respawn" type="Position3D" parent="Fourth Area/BoundingBox7"]
+transform = Transform( 1, 0, 1.33227e-15, 0, 0.999999, 0, -2.27374e-13, 0, 1, -45.3955, -1.90518, -53.8665 )
 
 [node name="Facade 019B71" parent="Fourth Area" instance=ExtResource( 4 )]
 transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, 5.96046e-08, -2.08616e-07, 5.28485e-07, -1, 15.8559, 22.5, -19.9941 )
@@ -2011,7 +1966,7 @@ texture = SubResource( 9 )
 label_text = "Walk forward to the next area"
 
 [node name="Spatial3" parent="Fifth Area" instance=ExtResource( 9 )]
-transform = Transform( -4.37114e-08, 4.37114e-08, -1, 24.4, 4.66207e-14, -1.06656e-06, 0, -20.445, -8.9368e-07, 10.0189, 2, 13 )
+transform = Transform( -4.37114e-08, 4.37114e-08, -1, 24.4, 4.66207e-14, -1.06656e-06, 0, -20.445, -8.9368e-07, 10.0189, -4, 11 )
 collision_layer = 8
 
 [node name="Facade 019B13" parent="Fifth Area" instance=ExtResource( 4 )]
@@ -2056,8 +2011,8 @@ transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.7914
 [node name="Facade 019B30" parent="Fifth Area" instance=ExtResource( 4 )]
 transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -10.5, -16.1982, -8 )
 
-[node name="Spatial4" parent="Fifth Area" instance=ExtResource( 9 )]
-transform = Transform( 4.37114e-08, 1.74365e-06, 1, 24.4, 4.66207e-14, -1.06656e-06, -3.82137e-15, 20.445, 8.06257e-07, -7.02291, 2.5, 11.5 )
+[node name="Spatial12" parent="Fifth Area" instance=ExtResource( 9 )]
+transform = Transform( 4.37114e-08, 1.74365e-06, 1, 24.4, 4.66207e-14, -1.06656e-06, -3.82137e-15, 20.445, 8.06257e-07, -7.02291, -5, 11.5 )
 collision_layer = 8
 
 [node name="Spatial7" parent="Fifth Area" instance=ExtResource( 9 )]
@@ -2070,6 +2025,18 @@ collision_layer = 8
 
 [node name="Spatial6" parent="Fifth Area" instance=ExtResource( 9 )]
 transform = Transform( 4.37114e-08, 1.74365e-06, 1, 24.4, 4.66207e-14, -1.06656e-06, -3.82137e-15, 20.445, 8.06257e-07, -7, 2.5, 38.2815 )
+collision_layer = 8
+
+[node name="Spatial8" parent="Fifth Area" instance=ExtResource( 9 )]
+transform = Transform( -1.06656e-06, -20.445, 4.15735e-08, 24.4, -8.93679e-07, 8.21366e-17, 4.23364e-14, 8.49971e-07, 1, -19, 2.81307, 28.3556 )
+collision_layer = 8
+
+[node name="Spatial9" parent="Fifth Area" instance=ExtResource( 9 )]
+transform = Transform( -1.06656e-06, -20.445, 4.15735e-08, 24.4, -8.93679e-07, 8.21366e-17, 4.23364e-14, 8.49971e-07, 1, 23.7664, 2.75899, 28.2815 )
+collision_layer = 8
+
+[node name="Spatial10" parent="Fifth Area" instance=ExtResource( 9 )]
+transform = Transform( -1.06656e-06, -20.445, 4.15735e-08, 24.4, -8.93679e-07, 8.21366e-17, 4.23364e-14, 8.49971e-07, 1, 19.2771, 31.4571, 28.0572 )
 collision_layer = 8
 
 [node name="Rock 036" parent="Fifth Area" instance=ExtResource( 7 )]
@@ -2094,11 +2061,18 @@ transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1
 transform = Transform( 1.91069e-15, -20.445, -8.49968e-07, -1.11027e-06, -8.49968e-07, -1, 24.4, 9.46746e-15, -1.11027e-06, 0.5, 26.5, 53 )
 
 [node name="BoundingBox" parent="Fifth Area" instance=ExtResource( 5 )]
-transform = Transform( 1.7, 0, 0, 0, 1, 0, 0, 0, 1.872, 0, 0, 10.1432 )
+transform = Transform( 1.7, 0, 0, 0, 0.1, 0, 0, 0, 1.872, 0, -26.0241, 10.1432 )
 script = ExtResource( 2 )
 
 [node name="Respawn" type="Position3D" parent="Fifth Area/BoundingBox"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.45576, 2.5146, -13.7863 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.27929, 287.515, -13.7863 )
+
+[node name="BoundingBox2" parent="Fifth Area" instance=ExtResource( 5 )]
+transform = Transform( 1.7, 0, 0, 0, 0.1, 0, 0, 0, 1.872, 0, 0.475861, 72.6432 )
+script = ExtResource( 2 )
+
+[node name="Respawn" type="Position3D" parent="Fifth Area/BoundingBox2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.985172, 12.5146, -16.4573 )
 
 [node name="Spatial" type="Spatial" parent="Fifth Area"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.37498, 0, 38.4888 )
@@ -2127,8 +2101,38 @@ transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -0.3
 [node name="Rock 058" parent="Fifth Area/Spatial" instance=ExtResource( 7 )]
 transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -7.37498, 1.5, 7.29502 )
 
+[node name="Rock 060" parent="Fifth Area/Spatial" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -8.87498, 8.5, 28.795 )
+
+[node name="Rock 061" parent="Fifth Area/Spatial" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -8.87498, 8.5, 21.795 )
+
+[node name="Rock 062" parent="Fifth Area/Spatial" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -8.87498, 15.5, 21.795 )
+
+[node name="Rock 063" parent="Fifth Area/Spatial" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -8.87498, 22.5, 21.795 )
+
+[node name="Rock 064" parent="Fifth Area/Spatial" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -8.87498, 22.5, 28.795 )
+
+[node name="Rock 065" parent="Fifth Area/Spatial" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -8.87498, 22.5, 35.795 )
+
+[node name="Rock 066" parent="Fifth Area/Spatial" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -8.87498, 15.5, 35.795 )
+
+[node name="Rock 067" parent="Fifth Area/Spatial" instance=ExtResource( 7 )]
+transform = Transform( -1.5299e-07, -1.5299e-07, 1, -3.5, -1.5299e-07, -4.37114e-08, 1.5299e-07, -3.5, -4.37114e-08, -8.87498, 8.5, 35.795 )
+
 [node name="Rock 059" parent="Fifth Area/Spatial" instance=ExtResource( 7 )]
 transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 6.62502, 1.5, 7.29502 )
+
+[node name="SecondRamp" parent="Fifth Area" instance=ExtResource( 19 )]
+transform = Transform( -7.4784e-08, 0.02, 0, -0.02, -7.4784e-08, 0, 0, 0, 0.02, -6.49995, 12, 68.2141 )
+
+[node name="SecondRamp2" parent="Fifth Area" instance=ExtResource( 19 )]
+transform = Transform( 0.004303, -0.0179971, -0.00758876, -0.0194842, -0.00449621, -0.000385062, -0.00135953, 0.00747591, -0.0185003, -49.9187, 4.53085, 33.6196 )
 
 [node name="SpotLight2" type="SpotLight" parent="Fifth Area"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 2, 26, -9.53674e-07 )
@@ -2147,7 +2151,7 @@ transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.563
 transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, 3.50001, -9.19816, 28 )
 
 [node name="Facade 019B42" parent="Fifth Area" instance=ExtResource( 4 )]
-transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, 3.50001, -2.19816, 28 )
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, 3.50001, -2.19817, 28 )
 
 [node name="Facade 019B43" parent="Fifth Area" instance=ExtResource( 4 )]
 transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, 10.5, -9.19816, 28 )
@@ -2170,6 +2174,15 @@ transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.563
 [node name="Facade 019B49" parent="Fifth Area" instance=ExtResource( 4 )]
 transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, 10.5, -23.1982, 28 )
 
+[node name="Facade 019B51" parent="Fifth Area" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, -3.49999, -30.1982, 28 )
+
+[node name="Facade 019B52" parent="Fifth Area" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, 3.50001, -30.1982, 28 )
+
+[node name="Facade 019B53" parent="Fifth Area" instance=ExtResource( 4 )]
+transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, 10.5, -30.1982, 28 )
+
 [node name="Facade 019B50" parent="Fifth Area" instance=ExtResource( 4 )]
 transform = Transform( 1.5299e-07, -3.5, -1.50996e-07, -3.5, -1.5299e-07, -8.56313e-08, 2.9971e-07, 5.28485e-07, -1, 10.5, -16.1982, 28 )
 
@@ -2181,6 +2194,12 @@ transform = Transform( 2, 0, 0, 0, -1.5299e-07, -1, 0, 3.5, -4.37114e-08, 2.3489
 
 [node name="Wall8" parent="Fifth Area" instance=ExtResource( 18 )]
 transform = Transform( 2, 0, 0, 0, -1.5299e-07, -1, 0, 3.5, -4.37114e-08, 2.3489, 7.5, -5.70905 )
+
+[node name="Wall82" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( 2.1, 0, 0, 0, -3.5, 1.50996e-07, 0, -5.28485e-07, -1, 2.3489, 11, -8.70905 )
+
+[node name="Wall83" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( 2.1, 0, 0, 0, -3.5, 1.50996e-07, 0, -5.28485e-07, -1, 2.3489, 17, -8.70905 )
 
 [node name="Wall3" parent="Fifth Area" instance=ExtResource( 18 )]
 transform = Transform( -1.31134e-07, 1.5299e-07, 1, 3, -1.5299e-07, 4.37114e-08, 1.31134e-07, 3.5, -4.37114e-08, 0.385094, 4.51024, -19 )
@@ -2198,16 +2217,16 @@ transform = Transform( -2.26494e-07, 2.1, -1.50996e-07, 3, 1.58546e-07, 7.54979e
 transform = Transform( -2.26494e-07, 2.1, -1.50996e-07, 3, 1.58546e-07, 7.54979e-08, 2.26494e-07, -3.17091e-07, -1, 2.34351, -1.41664, -2.36487 )
 
 [node name="Wall37" parent="Fifth Area" instance=ExtResource( 18 )]
-transform = Transform( -4.88762e-07, 2.1, -4.37114e-08, 0, -9.17939e-08, -1, -3, -3.42133e-07, 7.12149e-15, 2.34351, -4.41664, 0.635132 )
+transform = Transform( -4.88762e-07, 2.1, -4.37114e-08, 0, -9.17939e-08, -1, -3, -3.42133e-07, 7.12149e-15, 2.34351, -4.38894, 0.635132 )
 
 [node name="Wall38" parent="Fifth Area" instance=ExtResource( 18 )]
-transform = Transform( -4.88762e-07, 2.1, -4.37114e-08, 0, -9.17939e-08, -1, -3, -3.42133e-07, 7.12149e-15, 2.34351, -4.41664, 6.63513 )
+transform = Transform( -4.88762e-07, 2.1, -4.37114e-08, 0, -9.17939e-08, -1, -3, -3.42133e-07, 7.12149e-15, 2.34351, -4.36903, 6.63513 )
 
 [node name="Wall39" parent="Fifth Area" instance=ExtResource( 18 )]
-transform = Transform( -4.88762e-07, 2.1, -4.37114e-08, 0, -9.17939e-08, -1, -3, -3.42133e-07, 7.12149e-15, 2.34351, -4.41664, 12.6351 )
+transform = Transform( -4.88762e-07, 2.1, -4.37114e-08, 0, -9.17939e-08, -1, -3, -3.42133e-07, 7.12149e-15, 2.34351, -4.37778, 12.5825 )
 
 [node name="Wall40" parent="Fifth Area" instance=ExtResource( 18 )]
-transform = Transform( -4.88762e-07, 2.1, -4.37114e-08, 0, -9.17939e-08, -1, -3, -3.42133e-07, 7.12149e-15, 2.34351, -4.41664, 18.6351 )
+transform = Transform( -4.88762e-07, 2.1, -4.37114e-08, 0, -9.17939e-08, -1, -3, -3.42133e-07, 7.12149e-15, 2.34351, -4.38541, 18.5281 )
 
 [node name="Wall11" parent="Fifth Area" instance=ExtResource( 18 )]
 transform = Transform( -1.31134e-07, -2.64243e-07, -1, 3, 2.64243e-07, -4.37114e-08, 2.26494e-07, -3.5, 7.54979e-08, 4.31148, 4.51024, -5.6825 )
@@ -2221,8 +2240,65 @@ transform = Transform( -1.31134e-07, 1.5299e-07, 1, 3, -1.5299e-07, 4.37114e-08,
 [node name="Wall9" parent="Fifth Area" instance=ExtResource( 18 )]
 transform = Transform( -1.31134e-07, 1.5299e-07, 1, 3, -1.5299e-07, 4.37114e-08, 1.31134e-07, 3.5, -4.37114e-08, 0.374279, 4.51024, -5.70612 )
 
+[node name="Wall70" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( -2.26494e-07, 3.5, -1.50996e-07, 3, 2.64243e-07, 4.93957e-08, 1.48187e-07, -5.28485e-07, -1, -3.12572, 4.51024, -8.20612 )
+
+[node name="Wall71" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( -2.26494e-07, 3.5, -1.50996e-07, 3, 2.64243e-07, 4.93957e-08, 1.48187e-07, -5.28485e-07, -1, -9.62572, 4.51024, -8.20612 )
+
+[node name="Wall72" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( -2.26494e-07, 3.5, -1.50996e-07, 3, 2.64243e-07, 4.93957e-08, 1.48187e-07, -5.28485e-07, -1, -3.12572, 10.5102, -8.20612 )
+
+[node name="Wall73" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( -2.26494e-07, 3.5, -1.50996e-07, 3, 2.64243e-07, 4.93957e-08, 1.48187e-07, -5.28485e-07, -1, -9.62572, 10.5102, -8.20612 )
+
+[node name="Wall76" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( -2.26494e-07, 3.5, -1.50996e-07, 3, 2.64243e-07, 4.93957e-08, 1.48187e-07, -5.28485e-07, -1, 14.1794, 4.51024, -8.20612 )
+
+[node name="Wall77" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( -2.26494e-07, 3.5, -1.50996e-07, 3, 2.64243e-07, 4.93957e-08, 1.48187e-07, -5.28485e-07, -1, 7.67936, 4.51024, -8.20612 )
+
+[node name="Wall78" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( -2.26494e-07, 3.5, -1.50996e-07, 3, 2.64243e-07, 4.93957e-08, 1.48187e-07, -5.28485e-07, -1, 14.1794, 10.5102, -8.20612 )
+
+[node name="Wall79" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( -2.26494e-07, 3.5, -1.50996e-07, 3, 2.64243e-07, 4.93957e-08, 1.48187e-07, -5.28485e-07, -1, 7.67936, 10.5102, -8.20612 )
+
+[node name="Wall80" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( -2.26494e-07, 3.5, -1.50996e-07, 3, 2.64243e-07, 4.93957e-08, 1.48187e-07, -5.28485e-07, -1, 14.1794, 16.5102, -8.20612 )
+
+[node name="Wall81" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( -2.26494e-07, 3.5, -1.50996e-07, 3, 2.64243e-07, 4.93957e-08, 1.48187e-07, -5.28485e-07, -1, 7.67936, 16.5102, -8.20612 )
+
+[node name="Wall74" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( -2.26494e-07, 3.5, -1.50996e-07, 3, 2.64243e-07, 4.93957e-08, 1.48187e-07, -5.28485e-07, -1, -3.12572, 16.5102, -8.20612 )
+
+[node name="Wall75" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( -2.26494e-07, 3.5, -1.50996e-07, 3, 2.64243e-07, 4.93957e-08, 1.48187e-07, -5.28485e-07, -1, -9.62572, 16.5102, -8.20612 )
+
 [node name="Wall14" parent="Fifth Area" instance=ExtResource( 18 )]
 transform = Transform( -1.31134e-07, 1.5299e-07, 1, 3, -1.5299e-07, 4.37114e-08, 1.31134e-07, 3.5, -4.37114e-08, 0.374279, -1.41477, -5.70612 )
+
+[node name="Wall28" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( -2, -3.0598e-07, 3.82137e-15, 0, -1.5299e-07, -1, 1.74846e-07, -3.5, 4.37114e-08, 2.3489, 7.5, 24.791 )
+
+[node name="Wall29" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( 2.26494e-07, -2.1, 2.38419e-07, 3, 1.58546e-07, 1.19249e-08, -3.57747e-08, 5.00679e-07, 1, 2.34352, 4.44802, 21.6689 )
+
+[node name="Wall65" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( 2.26494e-07, -2.1, 2.38419e-07, 3, 1.58546e-07, 1.19249e-08, -3.57747e-08, 5.00679e-07, 1, 2.34352, -1.41664, 21.6696 )
+
+[node name="Wall66" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( 6.55671e-07, 1.09871e-06, -1, -3, 2.64243e-07, -2.18557e-07, 2.26493e-07, 3.5, 3.13916e-07, 4.31149, 4.51024, 24.9457 )
+
+[node name="Wall67" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( 6.55671e-07, 1.09871e-06, -1, -3, 2.64243e-07, -2.18557e-07, 2.26493e-07, 3.5, 3.13916e-07, 4.31149, -1.43228, 24.9607 )
+
+[node name="Wall68" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( -3.93402e-07, -1.5299e-07, 1, -3, 6.81475e-07, -1.31134e-07, -5.84122e-07, -3.5, -4.37114e-08, 0.374279, 4.51024, 25.0233 )
+
+[node name="Wall69" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( -3.93402e-07, -1.5299e-07, 1, -3, 6.81475e-07, -1.31134e-07, -5.84122e-07, -3.5, -4.37114e-08, 0.374279, -1.41477, 25.0276 )
 
 [node name="Wall15" parent="Fifth Area" instance=ExtResource( 18 )]
 transform = Transform( 3, 1.5299e-07, -1.91069e-15, 0, -1.5299e-07, -1, -1.31134e-07, 3.5, -4.37114e-08, -2.57272, -4.41477, -5.70612 )
@@ -2283,6 +2359,78 @@ transform = Transform( 3, 1.5299e-07, -1.91069e-15, 0, -1.5299e-07, -1, -1.31134
 
 [node name="Wall36" parent="Fifth Area" instance=ExtResource( 18 )]
 transform = Transform( 3, 1.5299e-07, -1.91069e-15, 0, -1.5299e-07, -1, -1.31134e-07, 3.5, -4.37114e-08, -8.49561, -4.41477, 28.7939 )
+
+[node name="Wall41" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( 3, -1.5299e-07, -1.91069e-15, 0, -1.5299e-07, 1, -1.31134e-07, -3.5, -4.37114e-08, 6.50439, -27.4148, 24.7939 )
+
+[node name="Wall44" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( 3, -1.5299e-07, -1.91069e-15, 0, -1.5299e-07, 1, -1.31134e-07, -3.5, -4.37114e-08, 12.4068, -27.4148, 24.7939 )
+
+[node name="Wall42" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( 3, -1.5299e-07, -1.91069e-15, 0, -1.5299e-07, 1, -1.31134e-07, -3.5, -4.37114e-08, 0.571632, -27.4148, 24.7939 )
+
+[node name="Wall43" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( 3, -1.5299e-07, -1.91069e-15, 0, -1.5299e-07, 1, -1.31134e-07, -3.5, -4.37114e-08, -5.29287, -27.4148, 24.7939 )
+
+[node name="Wall45" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( 3, -1.5299e-07, -1.91069e-15, 0, -1.5299e-07, 1, -1.31134e-07, -3.5, -4.37114e-08, 6.50439, -27.4148, 18.2939 )
+
+[node name="Wall46" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( 3, -1.5299e-07, -1.91069e-15, 0, -1.5299e-07, 1, -1.31134e-07, -3.5, -4.37114e-08, 12.4068, -27.4148, 18.2939 )
+
+[node name="Wall47" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( 3, -1.5299e-07, -1.91069e-15, 0, -1.5299e-07, 1, -1.31134e-07, -3.5, -4.37114e-08, 0.571632, -27.4148, 18.2939 )
+
+[node name="Wall48" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( 3, -1.5299e-07, -1.91069e-15, 0, -1.5299e-07, 1, -1.31134e-07, -3.5, -4.37114e-08, -5.29287, -27.4148, 18.2939 )
+
+[node name="Wall49" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( 3, -1.5299e-07, -1.91069e-15, 0, -1.5299e-07, 1, -1.31134e-07, -3.5, -4.37114e-08, 6.50439, -27.4148, 11.7939 )
+
+[node name="Wall50" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( 3, -1.5299e-07, -1.91069e-15, 0, -1.5299e-07, 1, -1.31134e-07, -3.5, -4.37114e-08, 12.4068, -27.4148, 11.7939 )
+
+[node name="Wall51" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( 3, -1.5299e-07, -1.91069e-15, 0, -1.5299e-07, 1, -1.31134e-07, -3.5, -4.37114e-08, 0.571632, -27.4148, 11.7939 )
+
+[node name="Wall52" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( 3, -1.5299e-07, -1.91069e-15, 0, -1.5299e-07, 1, -1.31134e-07, -3.5, -4.37114e-08, -5.29287, -27.4148, 11.7939 )
+
+[node name="Wall53" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( 3, -1.5299e-07, -1.91069e-15, 0, -1.5299e-07, 1, -1.31134e-07, -3.5, -4.37114e-08, 6.50439, -27.4148, 5.29388 )
+
+[node name="Wall54" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( 3, -1.5299e-07, -1.91069e-15, 0, -1.5299e-07, 1, -1.31134e-07, -3.5, -4.37114e-08, 12.4068, -27.4148, 5.29388 )
+
+[node name="Wall55" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( 3, -1.5299e-07, -1.91069e-15, 0, -1.5299e-07, 1, -1.31134e-07, -3.5, -4.37114e-08, 0.571632, -27.4148, 5.29388 )
+
+[node name="Wall56" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( 3, -1.5299e-07, -1.91069e-15, 0, -1.5299e-07, 1, -1.31134e-07, -3.5, -4.37114e-08, -5.29287, -27.4148, 5.29388 )
+
+[node name="Wall57" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( 3, -1.5299e-07, -1.91069e-15, 0, -1.5299e-07, 1, -1.31134e-07, -3.5, -4.37114e-08, 6.50439, -27.4148, -1.20612 )
+
+[node name="Wall58" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( 3, -1.5299e-07, -1.91069e-15, 0, -1.5299e-07, 1, -1.31134e-07, -3.5, -4.37114e-08, 12.4068, -27.4148, -1.20612 )
+
+[node name="Wall59" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( 3, -1.5299e-07, -1.91069e-15, 0, -1.5299e-07, 1, -1.31134e-07, -3.5, -4.37114e-08, 0.571632, -27.4148, -1.20612 )
+
+[node name="Wall60" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( 3, -1.5299e-07, -1.91069e-15, 0, -1.5299e-07, 1, -1.31134e-07, -3.5, -4.37114e-08, -5.29287, -27.4148, -1.20612 )
+
+[node name="Wall61" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( 3, -1.5299e-07, -1.91069e-15, 0, -1.5299e-07, 1, -1.31134e-07, -3.5, -4.37114e-08, 6.50439, -27.4148, -7.70612 )
+
+[node name="Wall62" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( 3, -1.5299e-07, -1.91069e-15, 0, -1.5299e-07, 1, -1.31134e-07, -3.5, -4.37114e-08, 12.4068, -27.4148, -7.70612 )
+
+[node name="Wall63" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( 3, -1.5299e-07, -1.91069e-15, 0, -1.5299e-07, 1, -1.31134e-07, -3.5, -4.37114e-08, 0.571632, -27.4148, -7.70612 )
+
+[node name="Wall64" parent="Fifth Area" instance=ExtResource( 18 )]
+transform = Transform( 3, -1.5299e-07, -1.91069e-15, 0, -1.5299e-07, 1, -1.31134e-07, -3.5, -4.37114e-08, -5.29287, -27.4148, -7.70612 )
 
 [node name="HUD" parent="." instance=ExtResource( 11 )]
 
@@ -3444,10 +3592,10 @@ transform = Transform( 1, -3.55271e-15, -6.61744e-23, 1.7053e-13, 0.999999, -8.8
 [connection signal="body_entered" from="Third Area/Spatial/BoundingBox4" to="Third Area/Spatial/BoundingBox4" method="_on_BoundingBox_body_entered"]
 [connection signal="body_entered" from="Third Area/Spatial/BoundingBox6" to="Third Area/Spatial/BoundingBox6" method="_on_BoundingBox_body_entered"]
 [connection signal="body_entered" from="Fourth Area/BoundingBox" to="Fourth Area/BoundingBox" method="_on_BoundingBox_body_entered"]
-[connection signal="body_entered" from="Fourth Area/Spatial/Door/BoundingBox2" to="Fourth Area/Spatial/Door/BoundingBox2" method="_on_BoundingBox_body_entered"]
-[connection signal="body_entered" from="Fourth Area/BoundingBox4" to="Fourth Area/BoundingBox4" method="_on_BoundingBox_body_entered"]
 [connection signal="body_entered" from="Fourth Area/BoundingBox5" to="Fourth Area/BoundingBox5" method="_on_BoundingBox_body_entered"]
+[connection signal="body_entered" from="Fourth Area/BoundingBox7" to="Fourth Area/BoundingBox7" method="_on_BoundingBox_body_entered"]
 [connection signal="body_entered" from="Fifth Area/BoundingBox" to="Fifth Area/BoundingBox" method="_on_BoundingBox_body_entered"]
+[connection signal="body_entered" from="Fifth Area/BoundingBox2" to="Fifth Area/BoundingBox2" method="_on_BoundingBox_body_entered"]
 [connection signal="body_exited" from="10th Area/Next Level" to="10th Area/Next Level" method="_on_BoundingBox_body_exited"]
 [connection signal="body_entered" from="10th Area/BoundingBox" to="10th Area/BoundingBox" method="_on_BoundingBox_body_entered"]
 [connection signal="body_entered" from="10th Area/Portal" to="10th Area/Portal" method="Rocket_Entered"]

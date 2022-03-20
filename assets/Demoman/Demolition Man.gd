@@ -109,9 +109,10 @@ func _physics_process(delta: float) -> void:
 		$Sticky_Launch.play()
 		sticky_instance.global_transform.origin = guns.global_transform.origin
 		if raycast.is_colliding():
-			sticky_instance.look_at(raycast.get_collision_point(), Vector3.UP)
+			sticky_instance.rotation_degrees = Vector3(-$Pivot.rotation_degrees.x+10, self.rotation_degrees.y+180,0)
+			#sticky_instance.look_at(raycast.get_collision_point(), Vector3.UP)
 		else:
-			sticky_instance.rotation_degrees = Vector3(-$Pivot.rotation_degrees.x+1, self.rotation_degrees.y+182,0)
+			sticky_instance.rotation_degrees = Vector3(-$Pivot.rotation_degrees.x+10, self.rotation_degrees.y+180,0)
 		sticky_instance.velocity = sticky_instance.transform.basis.z * -sticky_instance.speed
 		
 

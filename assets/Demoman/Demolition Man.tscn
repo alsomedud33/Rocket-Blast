@@ -184,7 +184,7 @@ collide_with_areas = true
 transform = Transform( -0.1, -2.26267e-09, 8.44439e-09, 0, 0.0965926, 0.0258819, -8.74228e-09, 0.0258819, -0.0965926, 0.78, -0.7, -1.5 )
 
 [node name="Gun0" type="Spatial" parent="Pivot/Camera/Sticky Jumper"]
-transform = Transform( 1, 0, -6.35729e-08, 4.50002e-11, 1, 0.000707851, 6.35729e-08, -0.000707851, 1, 0, 3.18429, -0.00225449 )
+transform = Transform( 0.999996, -1.64538e-08, -6.14059e-08, 4.49987e-11, 0.966108, -0.258135, 6.35729e-08, 0.258135, 0.966108, 5.16534, 6.45948, -5.34777 )
 
 [node name="SpeedRays" parent="Pivot/Camera" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.5 )
