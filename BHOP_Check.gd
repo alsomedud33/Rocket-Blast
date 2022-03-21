@@ -22,7 +22,7 @@ func _on_BHOP_Check_body_entered(body):
 	print (body.wish_jump)
 	print (body.name)
 	#print (body.wish_jump)
-	if body.queue_jump() == false:#wish_jump == false:
+	if body.wish_jump == false:#wish_jump == false:
 		print (body.wish_jump)
 		body.global_transform.origin = $Respawn.global_transform.origin
 		body.velocity = Vector3.ZERO

@@ -394,7 +394,7 @@ shadow_enabled = true
 shadow_bias = 1.2
 
 [node name="Soldier" parent="." instance=ExtResource( 17 )]
-transform = Transform( 1, 0, 4.74853e-07, 0, 1, 0, -4.74853e-07, 0, 1, 2, 2.5, -13.5 )
+transform = Transform( 1, 0, 4.74853e-07, 0, 1, 0, -4.74853e-07, 0, 1, 584.5, 62, 9 )
 
 [node name="CameraHub" type="Spatial" parent="."]
 script = ExtResource( 2 )
@@ -2843,31 +2843,31 @@ transform = Transform( -3.5, -3.0598e-07, -3.82137e-15, 0, -1.5299e-07, 1, -3.05
 material/0 = SubResource( 77 )
 
 [node name="BHOP Check" parent="Fifth Area" instance=ExtResource( 16 )]
-transform = Transform( 10.2, 0, 0, 0, -1.5299e-07, 0.5, 0, -3.5, -2.18557e-08, 2, 24.1655, -60.5 )
+transform = Transform( 10.2, 0, 0, 0, -1.5299e-07, 0.5, 0, -3.5, -2.18557e-08, 2, 24.2793, -60.5 )
 
 [node name="Respawn" type="Position3D" parent="Fifth Area/BHOP Check"]
 transform = Transform( 1, 0, 0, 0, 1, -3.10862e-15, 0, 2.78533e-12, 1, 0, -10.4285, 69.0185 )
 
 [node name="BHOP Check2" parent="Fifth Area" instance=ExtResource( 16 )]
-transform = Transform( -4.22252e-07, 3.5, 2.18557e-08, 0, -1.5299e-07, 0.5, 9.66, 1.5299e-07, 9.55343e-16, 11.5, 32.1362, -75 )
+transform = Transform( -4.22252e-07, 3.5, 2.18557e-08, 0, -1.5299e-07, 0.5, 9.66, 1.5299e-07, 9.55343e-16, 11.5, 32.2699, -75 )
 
 [node name="Respawn" type="Position3D" parent="Fifth Area/BHOP Check2"]
 transform = Transform( 1, -5.32907e-15, -7.27919e-23, 5.68434e-14, 0.999999, -9.32587e-15, 6.43745e-20, 2.89901e-12, 1, 5.0207, -2.99997, 52.6613 )
 
 [node name="BHOP Check3" parent="Fifth Area" instance=ExtResource( 16 )]
-transform = Transform( -4.22252e-07, 3.5, 2.18557e-08, 0, -1.5299e-07, 0.5, 9.66, 1.5299e-07, 9.55343e-16, 27, 38.6597, -75 )
+transform = Transform( -4.22252e-07, 3.5, 2.18557e-08, 0, -1.5299e-07, 0.5, 9.66, 1.5299e-07, 9.55343e-16, 27, 38.7503, -75 )
 
 [node name="Respawn" type="Position3D" parent="Fifth Area/BHOP Check3"]
 transform = Transform( 1, 3.55271e-15, -7.94093e-23, 1.13687e-13, 0.999999, -1.28786e-14, 1.42302e-19, 2.6148e-12, 1, 4.71015, -6.42854, 38.7012 )
 
 [node name="BHOP Check4" parent="Fifth Area" instance=ExtResource( 16 )]
-transform = Transform( -9.66, -5.28485e-07, -3.30012e-15, 0, -1.5299e-07, 0.5, -1.45862e-06, 3.5, 2.18557e-08, 21, 42.6726, -54 )
+transform = Transform( -9.66, -5.28485e-07, -3.30012e-15, 0, -1.5299e-07, 0.5, -1.45862e-06, 3.5, 2.18557e-08, 21, 42.7662, -54 )
 
 [node name="Respawn" type="Position3D" parent="Fifth Area/BHOP Check4"]
 transform = Transform( 1, 6.39488e-14, -2.64698e-23, 3.12639e-13, 0.999999, -8.43769e-15, -6.77626e-20, 2.98428e-12, 1, 1.75983, 7.71432, 31.6506 )
 
 [node name="BHOP Check5" parent="Fifth Area" instance=ExtResource( 16 )]
-transform = Transform( -9.66, -5.28485e-07, -3.30012e-15, 0, -1.5299e-07, 0.5, -1.45862e-06, 3.5, 2.18557e-08, 21, 49.6393, -41.5 )
+transform = Transform( -9.66, -5.28485e-07, -3.30012e-15, 0, -1.5299e-07, 0.5, -1.45862e-06, 3.5, 2.18557e-08, 21, 49.8353, -41.5 )
 
 [node name="Respawn" type="Position3D" parent="Fifth Area/BHOP Check5"]
 transform = Transform( 1, 1.06581e-14, -2.64698e-23, 1.7053e-13, 0.999999, -9.32587e-15, -2.43945e-19, 3.09797e-12, 1, 1.70807, 3.85718, 18.3573 )

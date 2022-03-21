@@ -93,7 +93,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			vertical_velocity = terminal_velocity
 		move_air(velocity, delta)
-		print(vertical_velocity)
+		#print(vertical_velocity)
 	
 	if self.is_on_ceiling(): #We've hit a ceiling, usually after a jump. Vertical velocity is reset to cancel any remaining jump momentum
 		vertical_velocity = 0
@@ -177,9 +177,9 @@ func move_air(input_velocity: Vector3, delta: float)-> void:
 # Set wish_jump depending on player input.
 func queue_jump():
 	# If auto_jump is true, the player keeps jumping as long as the key is kept down
-	if auto_jump:
-		wish_jump = true if Input.is_action_pressed("jump") else false
-		return
+#	if auto_jump:
+#		wish_jump = true if Input.is_action_pressed("jump") else false
+#		return
 	
 	if Input.is_action_just_pressed("jump") and !wish_jump:
 		wish_jump = true
