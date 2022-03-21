@@ -5,7 +5,7 @@ var Paused = false
 var fullscreen = false
 
 onready var volume_scroll = $"Panel/Volume Scroll"
-
+onready var anim = $"../AnimationPlayer"
 func _ready():
 	visible = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -53,6 +53,8 @@ func _on_Mouse_Sense_value_changed(value):
 
 
 func _on_Rocket_Man_pressed():
+	anim.play("Fade In")
+	yield(anim,"animation_finished")
 	get_tree().change_scene("res://Maps/Map_1.tscn")
 	get_tree().paused = false
 	visible = false
@@ -60,6 +62,8 @@ func _on_Rocket_Man_pressed():
 	Paused = false
 
 func _on_Bomber_Man_pressed():
+	anim.play("Fade In")
+	yield(anim,"animation_finished")
 	get_tree().change_scene("res://Maps/Map_2.tscn")
 	get_tree().paused = false
 	visible = false
