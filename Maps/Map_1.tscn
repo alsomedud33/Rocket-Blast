@@ -406,6 +406,7 @@ transform = Transform( 1, 2.22799e-08, -2.47756e-08, -1.49012e-08, 0.9641, 0.265
 
 [node name="sign" parent="First Area" instance=ExtResource( 18 )]
 transform = Transform( 2.95574, 0, 0.258819, 0, 3.7632, 0, -0.791987, 0, 0.965926, -0.558241, 1, -9.70183 )
+visible = false
 
 [node name="SpotLight" type="SpotLight" parent="First Area/sign"]
 transform = Transform( -0.321131, 0.0452905, -0.0402479, 0, 0.176517, 0.198633, 0.185405, 0.734534, -0.652751, -1.08354, 0.870479, -1.39229 )
@@ -420,6 +421,7 @@ label_text = "To rocket jump. Look at the ground, shoot and jump at the same tim
 
 [node name="sign3" parent="First Area" instance=ExtResource( 18 )]
 transform = Transform( 2.65004, 0, -0.5, 0, 3.7632, 0, 1.53, 0, 0.866026, -3.56432, 1, -7.24608 )
+visible = false
 
 [node name="3DText2" parent="First Area/sign3" instance=ExtResource( 9 )]
 transform = Transform( 0.0999826, 0, 0.00611393, 0, 0.275, 0, -0.00572479, 0, 0.999825, -0.999693, 0.401369, 0.376486 )
@@ -434,6 +436,7 @@ spot_angle = 28.86
 
 [node name="sign2" parent="First Area" instance=ExtResource( 18 )]
 transform = Transform( 2.16375, 0, 0.707107, 0, 3.7632, 0, -2.16375, 0, 0.707107, 10.5, 1, 14 )
+visible = false
 
 [node name="SpotLight" type="SpotLight" parent="First Area/sign2"]
 transform = Transform( -0.321131, 0.0452905, -0.0402479, 0, 0.176517, 0.198633, 0.185405, 0.734534, -0.652751, -1.08354, 0.870479, -1.39229 )
@@ -646,6 +649,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -133, 0, 0 )
 
 [node name="sign" parent="First Area B" instance=ExtResource( 18 )]
 transform = Transform( -2.16375, 0, -0.707107, 0, 3.7632, 0, 2.16375, 0, -0.707107, -8, 1, -16 )
+visible = false
 
 [node name="SpotLight" type="SpotLight" parent="First Area B/sign"]
 transform = Transform( -0.321131, 0.0452905, -0.0402479, 0, 0.176517, 0.198633, 0.185405, 0.734534, -0.652751, -1.08354, 0.870479, -1.39229 )
@@ -662,6 +666,7 @@ transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0
 
 [node name="sign3" parent="First Area B" instance=ExtResource( 18 )]
 transform = Transform( 1.53, 0, -0.866026, 0, 3.7632, 0, 2.65004, 0, 0.5, -4.06432, 1, -10.7461 )
+visible = false
 
 [node name="SpotLight" type="SpotLight" parent="First Area B/sign3"]
 transform = Transform( -0.321131, 0.0452906, -0.040248, 0, 0.176517, 0.198633, 0.185405, 0.734534, -0.652751, -1.08354, 0.870479, -1.39229 )
@@ -682,6 +687,7 @@ script = null
 
 [node name="sign2" parent="First Area B" instance=ExtResource( 18 )]
 transform = Transform( 2.16375, 0, 0.707107, 0, 3.7632, 0, -2.16375, 0, 0.707107, 10.5, 1, 48.5 )
+visible = false
 
 [node name="SpotLight" type="SpotLight" parent="First Area B/sign2"]
 transform = Transform( -0.321131, 0.0452905, -0.0402479, 0, 0.176517, 0.198633, 0.185405, 0.734534, -0.652751, -1.08354, 0.870479, -1.39229 )
@@ -976,6 +982,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 129, 0, 0 )
 
 [node name="sign" parent="Second Area" instance=ExtResource( 18 )]
 transform = Transform( -2.16375, 0, -0.707107, 0, 3.7632, 0, 2.16375, 0, -0.707107, -8, 1, -16 )
+visible = false
 
 [node name="SpotLight" type="SpotLight" parent="Second Area/sign"]
 transform = Transform( -0.321131, 0.0452905, -0.0402479, 0, 0.176517, 0.198633, 0.185405, 0.734534, -0.652751, -1.08354, 0.870479, -1.39229 )
@@ -1126,6 +1133,7 @@ transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.7914
 
 [node name="sign2" parent="Second Area" instance=ExtResource( 18 )]
 transform = Transform( 2.16375, 0, 0.707107, 0, 3.7632, 0, -2.16375, 0, 0.707107, 10.7692, 1, 42.7969 )
+visible = false
 
 [node name="SpotLight" type="SpotLight" parent="Second Area/sign2"]
 transform = Transform( -0.321131, 0.0452905, -0.0402479, 0, 0.176517, 0.198633, 0.185405, 0.734534, -0.652751, -1.08354, 0.870479, -1.3923 )
@@ -1147,6 +1155,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 262, 0, 0 )
 
 [node name="sign" parent="Third Area" instance=ExtResource( 18 )]
 transform = Transform( -2.16375, 0, -0.707107, 0, 3.7632, 0, 2.16375, 0, -0.707107, -8, 1, -16 )
+visible = false
 
 [node name="SpotLight" type="SpotLight" parent="Third Area/sign"]
 transform = Transform( -0.321131, 0.0452905, -0.0402479, 0, 0.176517, 0.198633, 0.185405, 0.734534, -0.652751, -1.08354, 0.870479, -1.39229 )
@@ -1165,6 +1174,7 @@ script = null
 
 [node name="sign3" parent="Third Area" instance=ExtResource( 18 )]
 transform = Transform( 2.31024e-07, 0, -1, 0, 3.7632, 0, 3.06, 0, 7.54979e-08, -6, 1, -12.4645 )
+visible = false
 
 [node name="SpotLight" type="SpotLight" parent="Third Area/sign3"]
 transform = Transform( -0.321131, 0.0452905, -0.0402479, 0, 0.176517, 0.198633, 0.185405, 0.734534, -0.652751, -1.08354, 0.870479, -1.39229 )
@@ -1304,6 +1314,7 @@ transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.7914
 
 [node name="sign2" parent="Third Area" instance=ExtResource( 18 )]
 transform = Transform( 2.16375, 0, 0.707107, 0, 3.7632, 0, -2.16375, 0, 0.707107, 10.4156, 1, 24.6149 )
+visible = false
 
 [node name="SpotLight" type="SpotLight" parent="Third Area/sign2"]
 transform = Transform( -0.321131, 0.0452905, -0.0402479, 0, 0.176517, 0.198633, 0.185405, 0.734534, -0.652751, -1.08354, 0.870479, -1.39229 )
@@ -1341,6 +1352,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 436, 0, 0 )
 
 [node name="sign" parent="Fourth Area" instance=ExtResource( 18 )]
 transform = Transform( -2.16375, 0, -0.707107, 0, 3.7632, 0, 2.16375, 0, -0.707107, -8, 1, -16 )
+visible = false
 
 [node name="SpotLight" type="SpotLight" parent="Fourth Area/sign"]
 transform = Transform( -0.321131, 0.0452905, -0.0402479, 0, 0.176517, 0.198633, 0.185405, 0.734534, -0.652751, -1.08354, 0.870479, -1.39229 )
@@ -1359,6 +1371,7 @@ script = null
 
 [node name="sign3" parent="Fourth Area" instance=ExtResource( 18 )]
 transform = Transform( 2.31024e-07, 0, -1, 0, 3.7632, 0, 3.06, 0, 7.54979e-08, -6, 1, -12.4645 )
+visible = false
 
 [node name="SpotLight" type="SpotLight" parent="Fourth Area/sign3"]
 transform = Transform( -0.321131, 0.0452905, -0.0402479, 0, 0.176517, 0.198633, 0.185405, 0.734534, -0.652751, -1.08354, 0.870479, -1.39229 )
@@ -1503,6 +1516,7 @@ transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.7914
 
 [node name="sign2" parent="Fourth Area" instance=ExtResource( 18 )]
 transform = Transform( 2.16375, 0, 0.707107, 0, 3.7632, 0, -2.16375, 0, 0.707107, 9.00137, 1, 61.3845 )
+visible = false
 
 [node name="SpotLight" type="SpotLight" parent="Fourth Area/sign2"]
 transform = Transform( -0.321131, 0.0452905, -0.0402479, 0, 0.176517, 0.198633, 0.185405, 0.734534, -0.652751, -1.08354, 0.870479, -1.39229 )
@@ -1681,6 +1695,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 577, 0, 37 )
 
 [node name="sign" parent="Fifth Area" instance=ExtResource( 18 )]
 transform = Transform( -2.16375, 0, -0.707107, 0, 3.7632, 0, 2.16375, 0, -0.707107, -7.5, 1, -15.5 )
+visible = false
 
 [node name="SpotLight" type="SpotLight" parent="Fifth Area/sign"]
 transform = Transform( -0.321131, 0.0452905, -0.0402479, 0, 0.176517, 0.198633, 0.185405, 0.734534, -0.652751, -1.08354, 0.870479, -1.39229 )
@@ -1699,6 +1714,7 @@ script = null
 
 [node name="sign2" parent="Fifth Area" instance=ExtResource( 18 )]
 transform = Transform( -2.16375, 0, -0.707107, 0, 3.7632, 0, 2.16375, 0, -0.707107, -7, 57.5, -29.5 )
+visible = false
 
 [node name="SpotLight" type="SpotLight" parent="Fifth Area/sign2"]
 transform = Transform( -0.321131, 0.0452905, -0.0402479, 0, 0.176517, 0.198633, 0.185405, 0.734534, -0.652751, -1.08354, 0.870479, -1.39229 )
@@ -1717,6 +1733,7 @@ script = null
 
 [node name="sign3" parent="Fifth Area" instance=ExtResource( 18 )]
 transform = Transform( 2.31024e-07, 0, -1, 0, 3.7632, 0, 3.06, 0, 7.54979e-08, -6, 1, -12.4645 )
+visible = false
 
 [node name="SpotLight" type="SpotLight" parent="Fifth Area/sign3"]
 transform = Transform( -0.321131, 0.0452905, -0.0402479, 0, 0.176517, 0.198633, 0.185405, 0.734534, -0.652751, -1.08354, 0.870479, -1.39229 )
@@ -2877,6 +2894,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 626, 122, -475 )
 
 [node name="sign" parent="Sixth Area" instance=ExtResource( 18 )]
 transform = Transform( -2.16375, 0, -0.707107, 0, 3.7632, 0, 2.16375, 0, -0.707107, -8, 1, -16 )
+visible = false
 
 [node name="SpotLight" type="SpotLight" parent="Sixth Area/sign"]
 transform = Transform( -0.321131, 0.0452905, -0.0402479, 0, 0.176517, 0.198633, 0.185405, 0.734534, -0.652751, -1.08354, 0.870479, -1.39229 )
@@ -2895,6 +2913,7 @@ script = null
 
 [node name="sign3" parent="Sixth Area" instance=ExtResource( 18 )]
 transform = Transform( 2.65004, 0, -0.5, 0, 3.7632, 0, 1.53, 0, 0.866026, -3.56432, 1, -7.24608 )
+visible = false
 
 [node name="SpotLight" type="SpotLight" parent="Sixth Area/sign3"]
 transform = Transform( -0.321131, 0.0452905, -0.0402479, 0, 0.176517, 0.198633, 0.185405, 0.734534, -0.652751, -1.08354, 0.870479, -1.39229 )
@@ -2917,6 +2936,7 @@ script = null
 
 [node name="sign2" parent="Sixth Area" instance=ExtResource( 18 )]
 transform = Transform( 2.16375, 0, 0.707107, 0, 3.7632, 0, -2.16375, 0, 0.707107, 10.5, 1, 14 )
+visible = false
 
 [node name="SpotLight" type="SpotLight" parent="Sixth Area/sign2"]
 transform = Transform( -0.321131, 0.0452905, -0.0402479, 0, 0.176517, 0.198633, 0.185405, 0.734534, -0.652751, -1.08354, 0.870479, -1.39229 )
