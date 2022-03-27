@@ -40,9 +40,6 @@ shape = SubResource( 4 )
 
 [node name="Timer" type="Timer" parent="."]
 
-[node name="Spatial" parent="." instance=ExtResource( 3 )]
-transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.362993, 0, 0, 0.1 )
-
 [node name="Rocket_Trail" type="AudioStreamPlayer3D" parent="."]
 transform = Transform( 1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -1, 0, 0 )
 stream = SubResource( 5 )
@@ -53,6 +50,9 @@ emission_angle_degrees = 67.0
 __meta__ = {
 "_editor_description_": ""
 }
+
+[node name="Spatial" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.362993, 0, 0, 0.1 )
 
 [connection signal="area_entered" from="Area" to="." method="_on_Area_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

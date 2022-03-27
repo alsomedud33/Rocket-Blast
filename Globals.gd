@@ -20,6 +20,7 @@ func _process(delta):
 		sticky_deployed = 0
 	if complete == true:
 		yield(get_tree().create_timer(.001), "timeout")
+		proj_counter = 0
 		complete = false
 
 

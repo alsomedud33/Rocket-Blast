@@ -9,10 +9,22 @@ var explosion4 = preload("res://assets/Materials/Explosion4.tres")
 var explosion5 = preload("res://assets/Materials/Explosion5.tres")
 var fire = preload("res://assets/Materials/Fire.tres")
 var smoke = preload("res://assets/Materials/Smoke3.tres")
+var second_pass = preload("res://assets/Materials/Second Pass.tres")
+var third_pass = preload("res://assets/Materials/Third Pass.tres")
+var materials = [
+	explosion,
+	explosion2,
+	explosion3,
+	explosion4,
+	explosion5,
+	fire,smoke,
+	second_pass,
+	third_pass
+	]
 
-var materials = [explosion,explosion2,explosion3,explosion4,explosion5,fire,smoke]
+var frames = 0
+var loaded = false
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	for material in materials:
 		var particles_instance = Particles.new()
@@ -23,5 +35,8 @@ func _ready():
 		self.add_child(particles_instance)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	if frames >=3:
+		set_physics_process(false)
+		loaded = true
+	frames =+1

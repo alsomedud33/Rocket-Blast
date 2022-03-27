@@ -1,13 +1,13 @@
 [gd_resource type="ParticlesMaterial" load_steps=6 format=2]
 
+[ext_resource path="res://assets/Materials/Third Pass.tres" type="Material" id=1]
+
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0.351351, 0.594595 )
 colors = PoolColorArray( 0, 0, 0, 1, 0.111816, 0.0799313, 0.0799313, 1 )
 
 [sub_resource type="GradientTexture" id=2]
 gradient = SubResource( 1 )
-
-[sub_resource type="ParticlesMaterial" id=3]
 
 [sub_resource type="Curve" id=4]
 _data = [ Vector2( 0, 0.311364 ), 0.0, 3.4375, 0, 0, Vector2( 0.294545, 0.120455 ), 0.0, 0.0, 0, 0, Vector2( 0.763636, 0.420455 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.165909 ), 0.0, 0.0, 0, 0 ]
@@ -16,7 +16,7 @@ _data = [ Vector2( 0, 0.311364 ), 0.0, 3.4375, 0, 0, Vector2( 0.294545, 0.120455
 curve = SubResource( 4 )
 
 [resource]
-next_pass = SubResource( 3 )
+next_pass = ExtResource( 1 )
 trail_divisor = 20
 trail_size_modifier = SubResource( 5 )
 emission_shape = 2
