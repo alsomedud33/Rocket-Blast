@@ -277,6 +277,13 @@ transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, 77.5, -21.9803, -117
 
 [node name="Third Area" parent="." instance=ExtResource( 7 )]
 
+[node name="BoundingBox6" parent="." instance=ExtResource( 11 )]
+transform = Transform( 3.4, 0, 0, 0, 1, 0, 0, 0, 0.00612051, 248, 24, 28.2803 )
+script = SubResource( 94 )
+
+[node name="Respawn" type="Position3D" parent="BoundingBox6"]
+transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, 55.7353, -21.9803, -7403.7 )
+
 [node name="Fourth Area" parent="." instance=ExtResource( 20 )]
 
 [node name="Fifth Area" type="Spatial" parent="."]
@@ -1356,94 +1363,95 @@ transform = Transform( -1.5299e-07, -3.5, 1.50996e-07, 3.5, -1.5299e-07, 3.479e-
 transform = Transform( -1.5299e-07, -3.5, 1.50996e-07, 3.5, -1.5299e-07, 3.479e-07, -1.21765e-06, 5.28485e-07, 1, 9, 75, -83.5 )
 
 [node name="Rock 036" parent="Fifth Area" instance=ExtResource( 15 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 24.5, -60.5 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 24.5, -60.5 )
 
 [node name="MeshInstance" parent="Fifth Area/Rock 036" index="0"]
 material/0 = SubResource( 77 )
 
 [node name="Rock 037" parent="Fifth Area" instance=ExtResource( 15 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 24.5, -60.5 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 24.5, -60.5 )
 
 [node name="MeshInstance" parent="Fifth Area/Rock 037" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0 )
 material/0 = SubResource( 77 )
 
 [node name="Rock 038" parent="Fifth Area" instance=ExtResource( 15 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 24.5, -60.5 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 24.5, -60.5 )
 
 [node name="MeshInstance" parent="Fifth Area/Rock 038" index="0"]
 material/0 = SubResource( 77 )
 
 [node name="Rock 039" parent="Fifth Area" instance=ExtResource( 15 )]
-transform = Transform( -1.5299e-07, 3.5, 4.37114e-08, 0, -1.5299e-07, 1, 3.5, 1.5299e-07, 1.91069e-15, 11.5, 32.5, -76 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 11.5, 32.5, -76 )
 
 [node name="MeshInstance" parent="Fifth Area/Rock 039" index="0"]
 transform = Transform( 2, 0, 0, 0, 2, 2.38625e-23, 0, 5.84632e-22, 1, 0, 0, 0 )
 material/0 = SubResource( 77 )
 
 [node name="Rock 040" parent="Fifth Area" instance=ExtResource( 15 )]
-transform = Transform( -1.5299e-07, 3.5, 4.37114e-08, 0, -1.5299e-07, 1, 3.5, 1.5299e-07, 1.91069e-15, 11.5, 32.5, -69 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 11.5, 32.5, -69 )
 
 [node name="MeshInstance" parent="Fifth Area/Rock 040" index="0"]
 material/0 = SubResource( 77 )
 
 [node name="Rock 041" parent="Fifth Area" instance=ExtResource( 15 )]
-transform = Transform( -1.5299e-07, 3.5, 4.37114e-08, 0, -1.5299e-07, 1, 3.5, 1.5299e-07, 1.91069e-15, 11.5, 32.5, -83 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 11.5, 32.5, -83 )
 
 [node name="MeshInstance" parent="Fifth Area/Rock 041" index="0"]
 material/0 = SubResource( 77 )
 
 [node name="Rock 048" parent="Fifth Area" instance=ExtResource( 15 )]
-transform = Transform( 2.38419e-07, -3.5, -4.37114e-08, 0, -1.5299e-07, 1, -3.5, -2.38419e-07, -2.66454e-15, 27, 39, -76 )
+transform = Transform( 7.54979e-08, 0, 1, 0, 1, 0, -1, 0, 7.54979e-08, 27, 39, -76 )
 
 [node name="MeshInstance" parent="Fifth Area/Rock 048" index="0"]
 transform = Transform( 2, 0, 0, 0, 2, 2.38625e-23, 0, 5.84632e-22, 1, 0, 0, 0 )
 material/0 = SubResource( 77 )
 
 [node name="Rock 049" parent="Fifth Area" instance=ExtResource( 15 )]
-transform = Transform( 2.38419e-07, -3.5, -4.37114e-08, 0, -1.5299e-07, 1, -3.5, -2.38419e-07, -2.66454e-15, 27, 39, -83 )
+transform = Transform( 7.54979e-08, 0, 1, 0, 1, 0, -1, 0, 7.54979e-08, 27, 39, -83 )
 
 [node name="MeshInstance" parent="Fifth Area/Rock 049" index="0"]
 material/0 = SubResource( 77 )
 
 [node name="Rock 050" parent="Fifth Area" instance=ExtResource( 15 )]
-transform = Transform( 2.38419e-07, -3.5, -4.37114e-08, 0, -1.5299e-07, 1, -3.5, -2.38419e-07, -2.66454e-15, 27, 39, -69 )
+transform = Transform( 7.54979e-08, 0, 1, 0, 1, 0, -1, 0, 7.54979e-08, 27, 39, -69 )
 
 [node name="MeshInstance" parent="Fifth Area/Rock 050" index="0"]
 transform = Transform( 2, -1.42109e-14, -5.29396e-23, 1.42109e-14, 2, -3.55271e-15, -1.69407e-21, -2.84217e-14, 1, 0, 0, 0 )
 material/0 = SubResource( 77 )
 
 [node name="Rock 042" parent="Fifth Area" instance=ExtResource( 15 )]
-transform = Transform( -3.5, -3.0598e-07, -3.82137e-15, 0, -1.5299e-07, 1, -3.0598e-07, 3.5, 4.37114e-08, 21.5, 43, -54 )
+transform = Transform( -1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 21.5, 43, -54 )
 
 [node name="MeshInstance" parent="Fifth Area/Rock 042" index="0"]
 material/0 = SubResource( 77 )
 
 [node name="Rock 043" parent="Fifth Area" instance=ExtResource( 15 )]
-transform = Transform( -3.5, -3.0598e-07, -3.82137e-15, 0, -1.5299e-07, 1, -3.0598e-07, 3.5, 4.37114e-08, 14.5, 43, -54 )
+transform = Transform( -1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 14.5, 43, -54 )
 
 [node name="MeshInstance" parent="Fifth Area/Rock 043" index="0"]
 material/0 = SubResource( 77 )
 
 [node name="Rock 044" parent="Fifth Area" instance=ExtResource( 15 )]
-transform = Transform( -3.5, -3.0598e-07, -3.82137e-15, 0, -1.5299e-07, 1, -3.0598e-07, 3.5, 4.37114e-08, 28.5, 43, -54 )
+transform = Transform( -1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 28.5, 43, -54 )
 
 [node name="MeshInstance" parent="Fifth Area/Rock 044" index="0"]
 material/0 = SubResource( 77 )
 
 [node name="Rock 045" parent="Fifth Area" instance=ExtResource( 15 )]
-transform = Transform( -3.5, -3.0598e-07, -3.82137e-15, 0, -1.5299e-07, 1, -3.0598e-07, 3.5, 4.37114e-08, 21.5, 50, -41.5 )
+transform = Transform( -1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 21.5, 50, -41.5 )
 
 [node name="MeshInstance" parent="Fifth Area/Rock 045" index="0"]
 material/0 = SubResource( 77 )
 
 [node name="Rock 046" parent="Fifth Area" instance=ExtResource( 15 )]
-transform = Transform( -3.5, -3.0598e-07, -3.82137e-15, 0, -1.5299e-07, 1, -3.0598e-07, 3.5, 4.37114e-08, 14.5, 50, -41.5 )
+transform = Transform( -1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 14.5, 50, -41.5 )
 
 [node name="MeshInstance" parent="Fifth Area/Rock 046" index="0"]
 material/0 = SubResource( 77 )
 
 [node name="Rock 047" parent="Fifth Area" instance=ExtResource( 15 )]
-transform = Transform( -3.5, -3.0598e-07, -3.82137e-15, 0, -1.5299e-07, 1, -3.0598e-07, 3.5, 4.37114e-08, 28.5, 50, -41.5 )
+transform = Transform( -1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 28.5, 50, -41.5 )
 
 [node name="MeshInstance" parent="Fifth Area/Rock 047" index="0"]
 material/0 = SubResource( 77 )
@@ -1795,6 +1803,7 @@ transform = Transform( 0.294118, 0, 0, 0, 0.999999, 0, 0, 0, 1.25, -4613.25, -51
 
 [connection signal="body_exited" from="BoundingBox4" to="BoundingBox4" method="_on_BoundingBox_body_exited"]
 [connection signal="body_exited" from="BoundingBox5" to="BoundingBox5" method="_on_BoundingBox_body_exited"]
+[connection signal="body_exited" from="BoundingBox6" to="BoundingBox6" method="_on_BoundingBox_body_exited"]
 [connection signal="body_exited" from="Fifth Area/Next Level" to="Fifth Area/Next Level" method="_on_BoundingBox_body_exited"]
 [connection signal="body_entered" from="Fifth Area/BoundingBox" to="Fifth Area/BoundingBox" method="Level_5"]
 [connection signal="body_entered" from="Fifth Area/Portal" to="Fifth Area/Portal" method="Rocket_Entered"]
