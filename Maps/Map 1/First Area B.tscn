@@ -283,7 +283,7 @@ shape = SubResource( 10 )
 transform = Transform( 9.66, 0, 0, 0, -1.5299e-07, 0.357825, 0, -26.95, -1.20436e-07, 2, 0.859756, 17 )
 
 [node name="Respawn" type="Position3D" parent="BHOP Check"]
-transform = Transform( 1, 0, 0, 0, 0.999999, 2.22045e-15, 0, 2.84217e-12, 0.999999, 0, 1.18368, 2.79464 )
+transform = Transform( 1, 0, 0, 0, 0.999999, 8.88178e-16, 0, 2.87059e-12, 0.999999, 0, 1.18368, 4.19197 )
 
 [node name="Orange Plat" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1, -6.5 )
@@ -1230,10 +1230,10 @@ skeleton = NodePath("../..")
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.28102, 3.17075, 55 )
 
 [node name="BoundingBox" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1.7, 0, 0, 0, 1, 0, 0, 0, 1.04, 0, -0.5, 0 )
+transform = Transform( 1.7, 0, 0, 0, 1, 0, 0, 0, 3.744, 0, -0.5, 17.5 )
 script = ExtResource( 2 )
 
 [node name="Respawn" type="Position3D" parent="BoundingBox"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -15 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, -8.85684 )
 
 [connection signal="body_entered" from="BoundingBox" to="BoundingBox" method="_on_BoundingBox_body_entered"]
