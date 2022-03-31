@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/Soldier/Soldier Hat Mesh.tres" type="ArrayMesh" id=1]
 [ext_resource path="res://assets/Skybox/BoundingBox.gd" type="Script" id=2]
@@ -16,43 +16,6 @@
 
 [sub_resource type="ConvexPolygonShape" id=10]
 points = PoolVector3Array( 2.03175, 4.03095, 2.03175, -1.99961, 0.000783171, -2, -2, 0.000783171, 0.374706, -1.99961, 3.99922, -2, 2, 0.000783171, -2, -2, 3.99922, 2, 2, 0.000783171, 2, 2, 3.99922, -2, -2, 0.000783171, 2 )
-
-[sub_resource type="GDScript" id=11]
-script/source = "extends Area
-
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = \"text\"
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-
-func _on_BoundingBox_body_exited(body):
-	body.global_transform.origin = $Respawn.global_transform.origin
-
-
-
-func _on_BoundingBox_body_entered(body):
-	body.global_transform.origin = $Respawn.global_transform.origin
-
-
-
-
-
-func Rocket_Entered(body):
-	self.rotation_degrees.x = -90
-	body.global_transform.origin = $Respawn.global_transform.origin
-	body.rotation_degrees.x = -90
-"
 
 [node name="First Area" type="Spatial"]
 
@@ -222,49 +185,49 @@ transform = Transform( 1.91069e-15, -20.445, -8.49968e-07, 24.4, 4.66207e-14, -1
 visible = false
 
 [node name="Rock 051" parent="." instance=ExtResource( 5 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, 16.0101 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.5, 16.0101 )
 
 [node name="Rock 052" parent="." instance=ExtResource( 5 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, 16.0101 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.5, 16.0101 )
 
 [node name="Rock 053" parent="." instance=ExtResource( 5 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, 16.0101 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 1.5, 16.0101 )
 
 [node name="Rock 054" parent="." instance=ExtResource( 5 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, 23.0101 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.5, 23.0101 )
 
 [node name="Rock 055" parent="." instance=ExtResource( 5 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, 23.0101 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.5, 23.0101 )
 
 [node name="Rock 056" parent="." instance=ExtResource( 5 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, 23.0101 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 1.5, 23.0101 )
 
 [node name="Rock 057" parent="." instance=ExtResource( 5 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, 30.0101 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.5, 30.0101 )
 
 [node name="Rock 058" parent="." instance=ExtResource( 5 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, 30.0101 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.5, 30.0101 )
 
 [node name="Rock 060" parent="." instance=ExtResource( 5 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -12, 1.5, 16.0101 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1.5, 16.0101 )
 
 [node name="Rock 061" parent="." instance=ExtResource( 5 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -12, 1.5, 23.0101 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1.5, 23.0101 )
 
 [node name="Rock 062" parent="." instance=ExtResource( 5 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -12, 1.5, 30.0101 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1.5, 30.0101 )
 
 [node name="Rock 059" parent="." instance=ExtResource( 5 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, 30.0101 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 1.5, 30.0101 )
 
 [node name="Rock 063" parent="." instance=ExtResource( 5 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 16, 1.5, 16.0101 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 1.5, 16.0101 )
 
 [node name="Rock 064" parent="." instance=ExtResource( 5 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 16, 1.5, 23.0101 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 1.5, 23.0101 )
 
 [node name="Rock 065" parent="." instance=ExtResource( 5 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 16, 1.5, 30.0101 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 1.5, 30.0101 )
 
 [node name="Spatial9" parent="." instance=ExtResource( 8 )]
 transform = Transform( 1.91069e-15, -20.445, -8.49968e-07, -1.11027e-06, -8.49968e-07, -1, 24.4, 9.46746e-15, -1.11027e-06, 0.5, 26.5, 4.5 )
@@ -293,46 +256,39 @@ material/0 = null
 [node name="CollisionShape" type="CollisionShape" parent="MeshInstance2/StaticBody"]
 shape = SubResource( 10 )
 
-[node name="BoundingBox2" parent="." instance=ExtResource( 4 )]
-transform = Transform( 3.4, 0, 0, 0, 1, 0, 0, 0, 0.00612051, -16.5, 24, 30.9444 )
-script = SubResource( 11 )
-
-[node name="Respawn" type="Position3D" parent="BoundingBox2"]
-transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, -34.2647, -21.9803, -7893.85 )
-
 [node name="Spatial16" type="Spatial" parent="."]
 
 [node name="Spatial" type="Spatial" parent="Spatial16"]
 
 [node name="Rock 036" parent="Spatial16/Spatial" instance=ExtResource( 5 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, -18.5 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.5, -18.5 )
 
 [node name="Rock 039" parent="Spatial16/Spatial" instance=ExtResource( 5 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, -11.5 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.5, -11.5 )
 
 [node name="Rock 040" parent="Spatial16/Spatial" instance=ExtResource( 5 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, -11.5 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.5, -11.5 )
 
 [node name="Rock 042" parent="Spatial16/Spatial" instance=ExtResource( 5 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, -18.5 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.5, -18.5 )
 
 [node name="Rock 041" parent="Spatial16/Spatial" instance=ExtResource( 5 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -12, 1.5, -11.5 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1.5, -11.5 )
 
 [node name="Rock 047" parent="Spatial16/Spatial" instance=ExtResource( 5 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -12, 1.5, -18.5 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1.5, -18.5 )
 
 [node name="Rock 043" parent="Spatial16/Spatial" instance=ExtResource( 5 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, -18.5 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 1.5, -18.5 )
 
 [node name="Rock 044" parent="Spatial16/Spatial" instance=ExtResource( 5 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, -11.5 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 1.5, -11.5 )
 
 [node name="Rock 045" parent="Spatial16/Spatial" instance=ExtResource( 5 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 16, 1.5, -18.5 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 1.5, -18.5 )
 
 [node name="Rock 046" parent="Spatial16/Spatial" instance=ExtResource( 5 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 16, 1.5, -11.5 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 1.5, -11.5 )
 
 [node name="Spatial2" type="Spatial" parent="Spatial16"]
 
@@ -1169,35 +1125,43 @@ skeleton = NodePath("../../../Facade 019B")
 transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 25.9, -9.1 )
 skeleton = NodePath("../../../Facade 019B")
 
-[node name="Spatial" parent="." instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9, -1.75, -4.55 )
+[node name="Spatial" parent="Spatial16/Spatial6" instance=ExtResource( 12 )]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -15.75, 22.4, -46.55 )
+skeleton = NodePath("../../..")
 
-[node name="Spatial2" parent="." instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, -1.75, -4.55 )
+[node name="Spatial2" parent="Spatial16/Spatial6" instance=ExtResource( 12 )]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -15.75, 15.4, -46.55 )
+skeleton = NodePath("../../..")
 
-[node name="Spatial3" parent="." instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.1, -1.75, -4.55 )
+[node name="Spatial3" parent="Spatial16/Spatial6" instance=ExtResource( 12 )]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -15.75, 8.4, -46.55 )
+skeleton = NodePath("../../..")
 
-[node name="Spatial4" parent="." instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9, -1.75, 2.45 )
+[node name="Spatial4" parent="Spatial16/Spatial6" instance=ExtResource( 12 )]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -15.75, 22.4, -39.55 )
+skeleton = NodePath("../../..")
 
-[node name="Spatial5" parent="." instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, -1.75, 2.45 )
+[node name="Spatial5" parent="Spatial16/Spatial6" instance=ExtResource( 12 )]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -15.75, 15.4, -39.55 )
+skeleton = NodePath("../../..")
 
-[node name="Spatial6" parent="." instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.1, -1.75, 2.45 )
+[node name="Spatial6" parent="Spatial16/Spatial6" instance=ExtResource( 12 )]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -15.75, 8.4, -39.55 )
+skeleton = NodePath("../../..")
 
-[node name="Spatial7" parent="." instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9, -1.75, 9.45 )
+[node name="Spatial7" parent="Spatial16/Spatial6" instance=ExtResource( 12 )]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -15.75, 22.4, -32.55 )
+skeleton = NodePath("../../..")
 
-[node name="Spatial8" parent="." instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, -1.75, 9.45 )
+[node name="Spatial8" parent="Spatial16/Spatial6" instance=ExtResource( 12 )]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -15.75, 15.4, -32.55 )
+skeleton = NodePath("../../..")
 
-[node name="Spatial10" parent="." instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.1, -1.75, 9.45 )
+[node name="Spatial10" parent="Spatial16/Spatial6" instance=ExtResource( 12 )]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -15.75, 8.4, -32.55 )
+skeleton = NodePath("../../..")
 
 [node name="Door" parent="." instance=ExtResource( 13 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.28102, 3.17075, 28 )
 
 [connection signal="body_entered" from="BoundingBox" to="BoundingBox" method="_on_BoundingBox_body_entered"]
-[connection signal="body_exited" from="BoundingBox2" to="BoundingBox2" method="_on_BoundingBox_body_exited"]

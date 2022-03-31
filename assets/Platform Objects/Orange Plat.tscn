@@ -3,8 +3,7 @@
 [ext_resource path="res://assets/Platform Objects/Material_004.material" type="Material" id=1]
 [ext_resource path="res://assets/Platform Objects/Material_002.material" type="Material" id=2]
 
-[sub_resource type="ArrayMesh" id=1]
-resource_name = "Orange Tile_Plane002"
+[sub_resource type="ArrayMesh" id=6]
 surfaces/0 = {
 "aabb": AABB( -3.5, 0, -3.5, 7, 1e-05, 7.00001 ),
 "array_data": PoolByteArray( 0, 0, 96, 192, 0, 0, 0, 0, 0, 0, 96, 64, 0, 127, 127, 63, 141, 6, 255, 59, 0, 0, 96, 64, 0, 0, 0, 0, 0, 0, 96, 64, 0, 127, 127, 63, 255, 59, 255, 59, 0, 0, 96, 192, 0, 0, 0, 0, 0, 0, 96, 192, 0, 127, 127, 63, 141, 6, 141, 6, 0, 0, 96, 64, 0, 0, 0, 0, 0, 0, 96, 192, 0, 127, 127, 63, 255, 59, 141, 6 ),
@@ -18,7 +17,7 @@ surfaces/0 = {
 "vertex_count": 4
 }
 
-[sub_resource type="ArrayMesh" id=2]
+[sub_resource type="ArrayMesh" id=5]
 resource_name = "Orange Tile_Plane003"
 surfaces/0 = {
 "aabb": AABB( -3.5, 0, -3.5, 7, 1e-05, 7.00001 ),
@@ -37,12 +36,12 @@ surfaces/0 = {
 data = PoolVector3Array( -3.5, 0, 3.5, 3.5, 0, -3.5, 3.5, 0, 3.5, -3.5, 0, 3.5, -3.5, 0, -3.5, 3.5, 0, -3.5 )
 
 [node name="Orange Plat" type="MeshInstance"]
-mesh = SubResource( 1 )
+mesh = SubResource( 6 )
 material/0 = null
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.18515, 0 )
-mesh = SubResource( 2 )
+mesh = SubResource( 5 )
 material/0 = null
 
 [node name="StaticBody" type="StaticBody" parent="."]

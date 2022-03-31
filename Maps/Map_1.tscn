@@ -1,10 +1,12 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://Maps/Map 1/First Area B.tscn" type="PackedScene" id=1]
 [ext_resource path="res://CameraHub.gd" type="Script" id=2]
 [ext_resource path="res://assets/Skybox/End Box.gd" type="Script" id=3]
+[ext_resource path="res://Maps/Map 1/Second Area.tscn" type="PackedScene" id=4]
 [ext_resource path="res://World 1.gd" type="Script" id=5]
 [ext_resource path="res://Maps/Map 1/First Area.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Maps/Map 1/Third Area.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/Skybox/BoundingBox.gd" type="Script" id=8]
 [ext_resource path="res://assets/Platform Objects/3DText.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/Platform Objects/Facade 019B.tscn" type="PackedScene" id=10]
@@ -17,6 +19,7 @@
 [ext_resource path="res://assets/Soldier/Soldier.tscn" type="PackedScene" id=17]
 [ext_resource path="res://assets/Kenny/Models/GLTF format/sign.glb" type="PackedScene" id=18]
 [ext_resource path="res://assets/Platform Objects/Wall1.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Maps/Map 1/Fourth Area.tscn" type="PackedScene" id=20]
 [ext_resource path="res://assets/Skybox/environment.png" type="Texture" id=21]
 [ext_resource path="res://assets/Textures/Rock 035/Rock035_1K_AmbientOcclusion.jpg" type="Texture" id=22]
 [ext_resource path="res://assets/Textures/Metal Plate 006/MetalPlates006_1K_Roughness.jpg" type="Texture" id=23]
@@ -50,91 +53,42 @@ glow_enabled = true
 glow_intensity = 2.29
 glow_bloom = 1.0
 
-[sub_resource type="SpatialMaterial" id=38]
-flags_unshaded = true
-params_grow = true
-params_grow_amount = -0.2
-albedo_color = Color( 0.92549, 0.478431, 0.164706, 1 )
-distance_fade_mode = 3
-distance_fade_min_distance = 13.0
-distance_fade_max_distance = 15.0
+[sub_resource type="GDScript" id=94]
+script/source = "extends Area
 
-[sub_resource type="SpatialMaterial" id=36]
-next_pass = SubResource( 38 )
-params_cull_mode = 2
-albedo_texture = ExtResource( 26 )
-roughness_texture = ExtResource( 25 )
-normal_enabled = true
-normal_scale = 1.0
-normal_texture = ExtResource( 27 )
-ao_enabled = true
-ao_light_affect = 1.0
-ao_texture = ExtResource( 22 )
-ao_on_uv2 = true
-ao_texture_channel = 1
-distance_fade_mode = 3
-distance_fade_min_distance = 13.0
-distance_fade_max_distance = 15.0
 
-[sub_resource type="SpatialMaterial" id=35]
-flags_unshaded = true
-params_grow = true
-params_grow_amount = -0.2
-albedo_color = Color( 0.92549, 0.478431, 0.164706, 1 )
-distance_fade_mode = 3
-distance_fade_min_distance = 13.0
-distance_fade_max_distance = 15.0
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
 
-[sub_resource type="SpatialMaterial" id=93]
-next_pass = SubResource( 35 )
-params_cull_mode = 2
-albedo_texture = ExtResource( 26 )
-roughness_texture = ExtResource( 25 )
-normal_enabled = true
-normal_scale = 1.0
-normal_texture = ExtResource( 27 )
-ao_enabled = true
-ao_light_affect = 1.0
-ao_texture = ExtResource( 22 )
-ao_on_uv2 = true
-ao_texture_channel = 1
-distance_fade_mode = 3
-distance_fade_min_distance = 13.0
-distance_fade_max_distance = 15.0
 
-[sub_resource type="SpatialMaterial" id=59]
-next_pass = SubResource( 93 )
-params_cull_mode = 2
-albedo_texture = ExtResource( 26 )
-roughness_texture = ExtResource( 25 )
-normal_enabled = true
-normal_scale = 1.0
-normal_texture = ExtResource( 27 )
-ao_enabled = true
-ao_light_affect = 1.0
-ao_texture = ExtResource( 22 )
-ao_on_uv2 = true
-ao_texture_channel = 1
-distance_fade_mode = 3
-distance_fade_min_distance = 8.0
-distance_fade_max_distance = 10.0
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
 
-[sub_resource type="SpatialMaterial" id=60]
-next_pass = SubResource( 93 )
-params_cull_mode = 2
-albedo_texture = ExtResource( 26 )
-roughness_texture = ExtResource( 25 )
-normal_enabled = true
-normal_scale = 1.0
-normal_texture = ExtResource( 27 )
-ao_enabled = true
-ao_light_affect = 1.0
-ao_texture = ExtResource( 22 )
-ao_on_uv2 = true
-ao_texture_channel = 1
-distance_fade_mode = 3
-distance_fade_min_distance = 8.0
-distance_fade_max_distance = 10.0
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+
+
+func _on_BoundingBox_body_exited(body):
+	body.global_transform.origin = $Respawn.global_transform.origin
+
+
+
+func _on_BoundingBox_body_entered(body):
+	body.global_transform.origin = $Respawn.global_transform.origin
+
+
+
+
+
+func Rocket_Entered(body):
+	self.rotation_degrees.x = -90
+	body.global_transform.origin = $Respawn.global_transform.origin
+	body.rotation_degrees.x = -90
+"
 
 [sub_resource type="GDScript" id=73]
 script/source = "extends Area
@@ -303,720 +257,27 @@ transform = Transform( 1, 2.22799e-08, -2.47756e-08, -1.49012e-08, 0.9641, 0.265
 
 [node name="First Area" parent="." instance=ExtResource( 6 )]
 
+[node name="BoundingBox4" parent="." instance=ExtResource( 11 )]
+transform = Transform( 3.4, 0, 0, 0, 1, 0, 0, 0, 0.00612051, -16.5, 24, 28.2803 )
+script = SubResource( 94 )
+
+[node name="Respawn" type="Position3D" parent="BoundingBox4"]
+transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, -34.2647, -20.9803, -7485.39 )
+
 [node name="First Area B" parent="." instance=ExtResource( 1 )]
 
-[node name="Second Area" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 129, 0, 0 )
+[node name="BoundingBox5" parent="." instance=ExtResource( 11 )]
+transform = Transform( 3.4, 0, 0, 0, 1, 0, 0, 0, 0.00612051, -134.5, 24, 54.7803 )
+script = SubResource( 94 )
 
-[node name="sign" parent="Second Area" instance=ExtResource( 18 )]
-transform = Transform( -2.16375, 0, -0.707107, 0, 3.7632, 0, 2.16375, 0, -0.707107, -8, 1, -16 )
-visible = false
+[node name="Respawn" type="Position3D" parent="BoundingBox5"]
+transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, 77.5, -21.9803, -11733.4 )
 
-[node name="SpotLight" type="SpotLight" parent="Second Area/sign"]
-transform = Transform( -0.321131, 0.0452905, -0.0402479, 0, 0.176517, 0.198633, 0.185405, 0.734534, -0.652751, -1.08354, 0.870479, -1.39229 )
-light_color = Color( 0.745098, 0.764706, 0.643137, 1 )
-light_indirect_energy = 0.0
-spot_range = 5.939
-spot_angle = 28.86
+[node name="Second Area" parent="." instance=ExtResource( 4 )]
 
-[node name="3DText" parent="Second Area/sign" instance=ExtResource( 9 )]
-transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.462924, 0.41177 )
-script = null
+[node name="Third Area" parent="." instance=ExtResource( 7 )]
 
-[node name="3DText2" parent="Second Area/sign" instance=ExtResource( 9 )]
-transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.350292, 0.41177 )
-script = null
-
-[node name="3DText3" parent="Second Area/sign" instance=ExtResource( 9 )]
-transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.249034, 0.411766 )
-script = null
-
-[node name="Spatial3" parent="Second Area" instance=ExtResource( 19 )]
-transform = Transform( -4.37114e-08, 4.37114e-08, -1, 24.4, 4.66207e-14, -1.06656e-06, 0, -20.445, -8.9368e-07, 10, 2, -1 )
-collision_layer = 8
-
-[node name="Spatial4" parent="Second Area" instance=ExtResource( 19 )]
-transform = Transform( 4.37114e-08, 1.74365e-06, 1, 24.4, 4.66207e-14, -1.06656e-06, -3.82137e-15, 20.445, 8.06257e-07, -7, 2.5, -0.5 )
-collision_layer = 8
-
-[node name="Spatial5" parent="Second Area" instance=ExtResource( 19 )]
-transform = Transform( -4.37114e-08, 4.37114e-08, -1, 24.4, 4.66207e-14, -1.06656e-06, 0, -20.445, -8.9368e-07, 10, 2, 37.5445 )
-collision_layer = 8
-
-[node name="Spatial6" parent="Second Area" instance=ExtResource( 19 )]
-transform = Transform( 4.37114e-08, 1.74365e-06, 1, 24.4, 4.66207e-14, -1.06656e-06, -3.82137e-15, 20.445, 8.06257e-07, -7, 2.5, 38.0445 )
-collision_layer = 8
-
-[node name="Rock 037" parent="Second Area" instance=ExtResource( 15 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, 46 )
-
-[node name="Rock 038" parent="Second Area" instance=ExtResource( 15 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, 46 )
-
-[node name="Rock 041" parent="Second Area" instance=ExtResource( 15 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, 46 )
-
-[node name="Rock 036" parent="Second Area" instance=ExtResource( 15 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, 12 )
-
-[node name="MeshInstance" parent="Second Area/Rock 036" index="0"]
-material/0 = SubResource( 36 )
-
-[node name="BHOP Check" parent="Second Area" instance=ExtResource( 16 )]
-transform = Transform( 9.66, 0, 0, 0, -1.5299e-07, 0.357825, 0, -3.5, -1.5641e-08, 2, 1.5, 12 )
-
-[node name="Respawn" type="Position3D" parent="Second Area/BHOP Check"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 2.75691e-12, 1, 0, 7.71429, 2.79465 )
-
-[node name="Rock 042" parent="Second Area" instance=ExtResource( 15 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, 12 )
-
-[node name="MeshInstance" parent="Second Area/Rock 042" index="0"]
-material/0 = SubResource( 36 )
-
-[node name="Rock 043" parent="Second Area" instance=ExtResource( 15 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, 12 )
-
-[node name="MeshInstance" parent="Second Area/Rock 043" index="0"]
-material/0 = SubResource( 36 )
-
-[node name="Spatial11" parent="Second Area" instance=ExtResource( 19 )]
-transform = Transform( 1.91069e-15, -20.445, -8.49968e-07, -1.11027e-06, -8.49968e-07, -1, 24.4, 9.46746e-15, -1.11027e-06, 0.5, 26.5, 4.5 )
-
-[node name="Spatial12" parent="Second Area" instance=ExtResource( 19 )]
-transform = Transform( 1.91069e-15, -20.445, -8.49968e-07, -1.11027e-06, -8.49968e-07, -1, 24.4, 9.46746e-15, -1.11027e-06, 0.5, 26.5, 39.5 )
-
-[node name="Rock 045" parent="Second Area" instance=ExtResource( 15 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, -18.5 )
-
-[node name="Rock 046" parent="Second Area" instance=ExtResource( 15 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, -11.5 )
-
-[node name="Rock 047" parent="Second Area" instance=ExtResource( 15 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, -11.5 )
-
-[node name="Rock 048" parent="Second Area" instance=ExtResource( 15 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, -18.5 )
-
-[node name="Rock 049" parent="Second Area" instance=ExtResource( 15 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, -18.5 )
-
-[node name="Rock 050" parent="Second Area" instance=ExtResource( 15 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, -11.5 )
-
-[node name="BoundingBox" parent="Second Area" instance=ExtResource( 11 )]
-transform = Transform( 3.06, 0, 0, 0, 1.2096, 0, 0, 0, 2.39904, 0, 1.5, 7 )
-script = ExtResource( 8 )
-
-[node name="Respawn" type="Position3D" parent="Second Area/BoundingBox"]
-transform = Transform( 0.999999, 0, 0, 0, 1, 0, 0, 0, 1, 0.816994, 0.60649, -10.248 )
-
-[node name="Facade 019B" parent="Second Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -3.5, 5, -19.5 )
-
-[node name="Facade 019B2" parent="Second Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -3.5, 12, -19.5 )
-
-[node name="Facade 019B3" parent="Second Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -3.5, 19, -19.5 )
-
-[node name="Facade 019B4" parent="Second Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -3.5, 26, -19.5 )
-
-[node name="Facade 019B13" parent="Second Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -10.5, 5, -19.5 )
-
-[node name="Facade 019B14" parent="Second Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -10.5, 12, -19.5 )
-
-[node name="Facade 019B15" parent="Second Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -10.5, 19, -19.5 )
-
-[node name="Facade 019B16" parent="Second Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -10.5, 26, -19.5 )
-
-[node name="Facade 019B5" parent="Second Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 3.5, 5, -19.5 )
-
-[node name="Facade 019B6" parent="Second Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 3.5, 12, -19.5 )
-
-[node name="Facade 019B7" parent="Second Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 3.5, 19, -19.5 )
-
-[node name="Facade 019B8" parent="Second Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 3.5, 26, -19.5 )
-
-[node name="Facade 019B9" parent="Second Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 10.5, 5, -19.5 )
-
-[node name="Facade 019B10" parent="Second Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 10.5, 12, -19.5 )
-
-[node name="Facade 019B11" parent="Second Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 10.5, 19, -19.5 )
-
-[node name="Facade 019B12" parent="Second Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 10.5, 26, -19.5 )
-
-[node name="sign2" parent="Second Area" instance=ExtResource( 18 )]
-transform = Transform( 2.16375, 0, 0.707107, 0, 3.7632, 0, -2.16375, 0, 0.707107, 10.7692, 1, 42.7969 )
-visible = false
-
-[node name="SpotLight" type="SpotLight" parent="Second Area/sign2"]
-transform = Transform( -0.321131, 0.0452905, -0.0402479, 0, 0.176517, 0.198633, 0.185405, 0.734534, -0.652751, -1.08354, 0.870479, -1.3923 )
-light_color = Color( 0.745098, 0.764706, 0.643137, 1 )
-light_indirect_energy = 0.0
-spot_range = 5.939
-spot_angle = 28.86
-
-[node name="3DText" parent="Second Area/sign2" instance=ExtResource( 9 )]
-transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.462924, 0.41177 )
-script = null
-
-[node name="3DText2" parent="Second Area/sign2" instance=ExtResource( 9 )]
-transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.350292, 0.41177 )
-script = null
-
-[node name="Third Area" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 262, 0, 0 )
-
-[node name="sign" parent="Third Area" instance=ExtResource( 18 )]
-transform = Transform( -2.16375, 0, -0.707107, 0, 3.7632, 0, 2.16375, 0, -0.707107, -8, 1, -16 )
-visible = false
-
-[node name="SpotLight" type="SpotLight" parent="Third Area/sign"]
-transform = Transform( -0.321131, 0.0452905, -0.0402479, 0, 0.176517, 0.198633, 0.185405, 0.734534, -0.652751, -1.08354, 0.870479, -1.39229 )
-light_color = Color( 0.745098, 0.764706, 0.643137, 1 )
-light_indirect_energy = 0.0
-spot_range = 5.939
-spot_angle = 28.86
-
-[node name="3DText2" parent="Third Area/sign" instance=ExtResource( 9 )]
-transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.483158, 0.411774 )
-script = null
-
-[node name="3DText3" parent="Third Area/sign" instance=ExtResource( 9 )]
-transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.350292, 0.411774 )
-script = null
-
-[node name="sign3" parent="Third Area" instance=ExtResource( 18 )]
-transform = Transform( 2.31024e-07, 0, -1, 0, 3.7632, 0, 3.06, 0, 7.54979e-08, -6, 1, -12.4645 )
-visible = false
-
-[node name="SpotLight" type="SpotLight" parent="Third Area/sign3"]
-transform = Transform( -0.321131, 0.0452905, -0.0402479, 0, 0.176517, 0.198633, 0.185405, 0.734534, -0.652751, -1.08354, 0.870479, -1.39229 )
-light_color = Color( 0.745098, 0.764706, 0.643137, 1 )
-light_indirect_energy = 0.0
-spot_range = 5.939
-spot_angle = 28.86
-
-[node name="3DText2" parent="Third Area/sign3" instance=ExtResource( 9 )]
-transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.483158, 0.411774 )
-script = null
-
-[node name="3DText3" parent="Third Area/sign3" instance=ExtResource( 9 )]
-transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.350292, 0.411774 )
-script = null
-
-[node name="Spatial10" parent="Third Area" instance=ExtResource( 19 )]
-transform = Transform( -24.4, 2.14483e-06, -3.82137e-15, 0, -1.07242e-06, -1, -2.13312e-06, -24.534, 4.37114e-08, -1.8385e-14, -23.3111, -1 )
-collision_layer = 0
-
-[node name="Spatial3" parent="Third Area" instance=ExtResource( 19 )]
-transform = Transform( -4.37114e-08, 4.37114e-08, -1, 24.4, 4.66207e-14, -1.06656e-06, 0, -20.445, -8.9368e-07, 10, 2, -1 )
-collision_layer = 8
-
-[node name="Spatial4" parent="Third Area" instance=ExtResource( 19 )]
-transform = Transform( 4.37114e-08, 1.74365e-06, 1, 24.4, 4.66207e-14, -1.06656e-06, -3.82137e-15, 20.445, 8.06257e-07, -7, 2.5, -0.5 )
-collision_layer = 8
-
-[node name="MetalPlates006" parent="Third Area" instance=ExtResource( 14 )]
-transform = Transform( 6.27018e-09, 1.5299e-07, 1, 3.5, -1.5299e-07, -1.79148e-09, 1.5299e-07, 3.5, -4.37114e-08, -6.9729, 12.5, 0.5 )
-
-[node name="MetalPlates007" parent="Third Area" instance=ExtResource( 14 )]
-transform = Transform( 2.6167e-07, -6.81475e-07, -1, 3.5, -1.5299e-07, 7.47628e-08, -1.5299e-07, -3.5, 1.94707e-07, 9.98636, 12.5, 0.5 )
-
-[node name="Spatial5" parent="Third Area" instance=ExtResource( 19 )]
-transform = Transform( -4.37114e-08, 4.37114e-08, -1, 24.4, 4.66207e-14, -1.06656e-06, 0, -20.445, -8.9368e-07, 10, 2, 37.5445 )
-collision_layer = 8
-
-[node name="Spatial6" parent="Third Area" instance=ExtResource( 19 )]
-transform = Transform( 4.37114e-08, 1.74365e-06, 1, 24.4, 4.66207e-14, -1.06656e-06, -3.82137e-15, 20.445, 8.06257e-07, -7, 2.5, 38.0445 )
-collision_layer = 8
-
-[node name="Rock 037" parent="Third Area" instance=ExtResource( 15 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, 28 )
-
-[node name="Rock 038" parent="Third Area" instance=ExtResource( 15 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, 28 )
-
-[node name="Rock 041" parent="Third Area" instance=ExtResource( 15 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, 28 )
-
-[node name="Spatial11" parent="Third Area" instance=ExtResource( 19 )]
-transform = Transform( 1.91069e-15, -20.445, -8.49968e-07, -1.11027e-06, -8.49968e-07, -1, 24.4, 9.46746e-15, -1.11027e-06, 0.5, 26.5, 4.5 )
-
-[node name="Spatial12" parent="Third Area" instance=ExtResource( 19 )]
-transform = Transform( 1.91069e-15, -20.445, -8.49968e-07, -1.11027e-06, -8.49968e-07, -1, 24.4, 9.46746e-15, -1.11027e-06, 0.5, 26.5, 39.5 )
-
-[node name="BoundingBox2" parent="Third Area" instance=ExtResource( 11 )]
-transform = Transform( 3.4, 0, 0, 0, 1, 0, 0, 0, 0.00612051, -129, 24, 47.9444 )
-script = ExtResource( 8 )
-
-[node name="Respawn" type="Position3D" parent="Third Area/BoundingBox2"]
-transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, 38.6765, -22.4803, -10181.2 )
-
-[node name="Rock 045" parent="Third Area" instance=ExtResource( 15 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, -18.5 )
-
-[node name="Rock 046" parent="Third Area" instance=ExtResource( 15 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, -11.5 )
-
-[node name="Rock 047" parent="Third Area" instance=ExtResource( 15 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, -11.5 )
-
-[node name="Rock 048" parent="Third Area" instance=ExtResource( 15 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, -18.5 )
-
-[node name="Rock 049" parent="Third Area" instance=ExtResource( 15 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, -18.5 )
-
-[node name="Rock 050" parent="Third Area" instance=ExtResource( 15 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, -11.5 )
-
-[node name="BoundingBox" parent="Third Area" instance=ExtResource( 11 )]
-transform = Transform( 3.06, 0, 0, 0, 1.2096, 0, 0, 0, 2.25792, 0, 1.5, 7 )
-script = ExtResource( 8 )
-
-[node name="Respawn" type="Position3D" parent="Third Area/BoundingBox"]
-transform = Transform( 0.999999, 0, 0, 0, 1, 0, 0, 0, 1, 0.816994, 0.60647, -10.8369 )
-
-[node name="Facade 019B" parent="Third Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -3.5, 5, -19.5 )
-
-[node name="Facade 019B2" parent="Third Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -3.5, 12, -19.5 )
-
-[node name="Facade 019B3" parent="Third Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -3.5, 19, -19.5 )
-
-[node name="Facade 019B4" parent="Third Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -3.5, 26, -19.5 )
-
-[node name="Facade 019B13" parent="Third Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -10.5, 5, -19.5 )
-
-[node name="Facade 019B14" parent="Third Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -10.5, 12, -19.5 )
-
-[node name="Facade 019B15" parent="Third Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -10.5, 19, -19.5 )
-
-[node name="Facade 019B16" parent="Third Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -10.5, 26, -19.5 )
-
-[node name="Facade 019B5" parent="Third Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 3.5, 5, -19.5 )
-
-[node name="Facade 019B6" parent="Third Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 3.5, 12, -19.5 )
-
-[node name="Facade 019B7" parent="Third Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 3.5, 19, -19.5 )
-
-[node name="Facade 019B8" parent="Third Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 3.5, 26, -19.5 )
-
-[node name="Facade 019B9" parent="Third Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 10.5, 5, -19.5 )
-
-[node name="Facade 019B10" parent="Third Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 10.5, 12, -19.5 )
-
-[node name="Facade 019B11" parent="Third Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 10.5, 19, -19.5 )
-
-[node name="Facade 019B12" parent="Third Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 10.5, 26, -19.5 )
-
-[node name="sign2" parent="Third Area" instance=ExtResource( 18 )]
-transform = Transform( 2.16375, 0, 0.707107, 0, 3.7632, 0, -2.16375, 0, 0.707107, 10.4156, 1, 24.6149 )
-visible = false
-
-[node name="SpotLight" type="SpotLight" parent="Third Area/sign2"]
-transform = Transform( -0.321131, 0.0452905, -0.0402479, 0, 0.176517, 0.198633, 0.185405, 0.734534, -0.652751, -1.08354, 0.870479, -1.39229 )
-light_color = Color( 0.745098, 0.764706, 0.643137, 1 )
-light_indirect_energy = 0.0
-spot_range = 5.939
-spot_angle = 28.86
-
-[node name="3DText" parent="Third Area/sign2" instance=ExtResource( 9 )]
-transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.462924, 0.41177 )
-script = null
-
-[node name="3DText2" parent="Third Area/sign2" instance=ExtResource( 9 )]
-transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.350292, 0.41177 )
-script = null
-
-[node name="SpotLight" type="OmniLight" parent="Third Area"]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5, 13, 0.810138 )
-light_color = Color( 1, 0.164706, 0, 1 )
-omni_attenuation = -2.0
-__meta__ = {
-"_editor_description_": ""
-}
-
-[node name="SpotLight3" type="OmniLight" parent="Third Area"]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.5, 13, 0.318984 )
-light_color = Color( 1, 0.164706, 0, 1 )
-omni_attenuation = -2.0
-__meta__ = {
-"_editor_description_": ""
-}
-
-[node name="Fourth Area" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 436, 0, 0 )
-
-[node name="sign" parent="Fourth Area" instance=ExtResource( 18 )]
-transform = Transform( -2.16375, 0, -0.707107, 0, 3.7632, 0, 2.16375, 0, -0.707107, -8, 1, -16 )
-visible = false
-
-[node name="SpotLight" type="SpotLight" parent="Fourth Area/sign"]
-transform = Transform( -0.321131, 0.0452905, -0.0402479, 0, 0.176517, 0.198633, 0.185405, 0.734534, -0.652751, -1.08354, 0.870479, -1.39229 )
-light_color = Color( 0.745098, 0.764706, 0.643137, 1 )
-light_indirect_energy = 0.0
-spot_range = 5.939
-spot_angle = 28.86
-
-[node name="3DText2" parent="Fourth Area/sign" instance=ExtResource( 9 )]
-transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04632, 0.483158, 0.411804 )
-script = null
-
-[node name="3DText3" parent="Fourth Area/sign" instance=ExtResource( 9 )]
-transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04633, 0.350292, 0.411804 )
-script = null
-
-[node name="sign3" parent="Fourth Area" instance=ExtResource( 18 )]
-transform = Transform( 2.31024e-07, 0, -1, 0, 3.7632, 0, 3.06, 0, 7.54979e-08, -6, 1, -12.4645 )
-visible = false
-
-[node name="SpotLight" type="SpotLight" parent="Fourth Area/sign3"]
-transform = Transform( -0.321131, 0.0452905, -0.0402479, 0, 0.176517, 0.198633, 0.185405, 0.734534, -0.652751, -1.08354, 0.870479, -1.39229 )
-light_color = Color( 0.745098, 0.764706, 0.643137, 1 )
-light_indirect_energy = 0.0
-spot_range = 5.939
-spot_angle = 28.86
-
-[node name="3DText2" parent="Fourth Area/sign3" instance=ExtResource( 9 )]
-transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.483158, 0.411774 )
-script = null
-
-[node name="3DText3" parent="Fourth Area/sign3" instance=ExtResource( 9 )]
-transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.350292, 0.411774 )
-script = null
-
-[node name="Spatial3" parent="Fourth Area" instance=ExtResource( 19 )]
-transform = Transform( -4.37114e-08, 4.37114e-08, -1, 24.4, 4.66207e-14, -1.06656e-06, 0, -20.445, -8.9368e-07, 10, 2, -1 )
-collision_layer = 8
-
-[node name="Spatial4" parent="Fourth Area" instance=ExtResource( 19 )]
-transform = Transform( 4.37114e-08, 1.74365e-06, 1, 24.4, 4.66207e-14, -1.06656e-06, -3.82137e-15, 20.445, 8.06257e-07, -7, 2.5, -0.5 )
-collision_layer = 8
-
-[node name="MetalPlates006" parent="Fourth Area" instance=ExtResource( 14 )]
-transform = Transform( 6.27018e-09, 1.5299e-07, 1, 3.5, -1.5299e-07, -1.79148e-09, 1.5299e-07, 3.5, -4.37114e-08, -6.9729, 12.5, 0.5 )
-
-[node name="MetalPlates007" parent="Fourth Area" instance=ExtResource( 14 )]
-transform = Transform( 2.6167e-07, -6.81475e-07, -1, 3.5, -1.5299e-07, 7.47628e-08, -1.5299e-07, -3.5, 1.94707e-07, 9.98636, 12.5, 0.5 )
-
-[node name="Spatial5" parent="Fourth Area" instance=ExtResource( 19 )]
-transform = Transform( -4.37114e-08, 4.37114e-08, -1, 24.4, 4.66207e-14, -1.06656e-06, 0, -20.445, -8.9368e-07, 10, 2, 37.5445 )
-collision_layer = 8
-
-[node name="Spatial6" parent="Fourth Area" instance=ExtResource( 19 )]
-transform = Transform( 4.37114e-08, 1.74365e-06, 1, 24.4, 4.66207e-14, -1.06656e-06, -3.82137e-15, 20.445, 8.06257e-07, -7, 2.5, 38.0445 )
-collision_layer = 8
-
-[node name="Spatial11" parent="Fourth Area" instance=ExtResource( 19 )]
-transform = Transform( 1.91069e-15, -20.445, -8.49968e-07, -1.11027e-06, -8.49968e-07, -1, 24.4, 9.46746e-15, -1.11027e-06, 0.5, 26.5, 4.5 )
-
-[node name="Spatial12" parent="Fourth Area" instance=ExtResource( 19 )]
-transform = Transform( 1.91069e-15, -20.445, -8.49968e-07, -1.11027e-06, -8.49968e-07, -1, 24.4, 9.46746e-15, -1.11027e-06, 0.5, 26.5, 39.5 )
-
-[node name="BoundingBox2" parent="Fourth Area" instance=ExtResource( 11 )]
-transform = Transform( 3.4, 0, 0, 0, 1, 0, 0, 0, 0.00612051, -129, 24, 30.9444 )
-script = ExtResource( 8 )
-
-[node name="Respawn" type="Position3D" parent="Fourth Area/BoundingBox2"]
-transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, 38.6765, -22.4803, -7893.85 )
-
-[node name="Rock 045" parent="Fourth Area" instance=ExtResource( 15 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, -18.5 )
-
-[node name="Rock 046" parent="Fourth Area" instance=ExtResource( 15 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, -11.5 )
-
-[node name="Rock 047" parent="Fourth Area" instance=ExtResource( 15 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, -11.5 )
-
-[node name="Rock 048" parent="Fourth Area" instance=ExtResource( 15 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, -18.5 )
-
-[node name="Rock 049" parent="Fourth Area" instance=ExtResource( 15 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, -18.5 )
-
-[node name="Rock 050" parent="Fourth Area" instance=ExtResource( 15 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, -11.5 )
-
-[node name="Rock 051" parent="Fourth Area" instance=ExtResource( 15 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, 62 )
-
-[node name="Rock 052" parent="Fourth Area" instance=ExtResource( 15 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 1.5, 69 )
-
-[node name="Rock 053" parent="Fourth Area" instance=ExtResource( 15 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, 69 )
-
-[node name="Rock 054" parent="Fourth Area" instance=ExtResource( 15 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 1.5, 62 )
-
-[node name="Rock 055" parent="Fourth Area" instance=ExtResource( 15 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, 62 )
-
-[node name="Rock 056" parent="Fourth Area" instance=ExtResource( 15 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 1.5, 69 )
-
-[node name="BoundingBox" parent="Fourth Area" instance=ExtResource( 11 )]
-transform = Transform( 3.06, 0, 0, 0, 1.2096, 0, 0, 0, 2.94941, 0, 1.5, 7 )
-script = ExtResource( 8 )
-
-[node name="Respawn" type="Position3D" parent="Fourth Area/BoundingBox"]
-transform = Transform( 0.999999, 0, 0, 0, 1, 0, 0, 0, 1, 0.817017, 0.60647, -7.64772 )
-
-[node name="Facade 019B" parent="Fourth Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -3.5, 5, -19.5 )
-
-[node name="Facade 019B2" parent="Fourth Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -3.5, 12, -19.5 )
-
-[node name="Facade 019B3" parent="Fourth Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -3.5, 19, -19.5 )
-
-[node name="Facade 019B4" parent="Fourth Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -3.5, 26, -19.5 )
-
-[node name="Facade 019B13" parent="Fourth Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -10.5, 5, -19.5 )
-
-[node name="Facade 019B14" parent="Fourth Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -10.5, 12, -19.5 )
-
-[node name="Facade 019B15" parent="Fourth Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -10.5, 19, -19.5 )
-
-[node name="Facade 019B16" parent="Fourth Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -10.5, 26, -19.5 )
-
-[node name="Facade 019B5" parent="Fourth Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 3.5, 5, -19.5 )
-
-[node name="Facade 019B6" parent="Fourth Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 3.5, 12, -19.5 )
-
-[node name="Facade 019B7" parent="Fourth Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 3.5, 19, -19.5 )
-
-[node name="Facade 019B8" parent="Fourth Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 3.5, 26, -19.5 )
-
-[node name="Facade 019B9" parent="Fourth Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 10.5, 5, -19.5 )
-
-[node name="Facade 019B10" parent="Fourth Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 10.5, 12, -19.5 )
-
-[node name="Facade 019B11" parent="Fourth Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 10.5, 19, -19.5 )
-
-[node name="Facade 019B12" parent="Fourth Area" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 10.5, 26, -19.5 )
-
-[node name="sign2" parent="Fourth Area" instance=ExtResource( 18 )]
-transform = Transform( 2.16375, 0, 0.707107, 0, 3.7632, 0, -2.16375, 0, 0.707107, 9.00137, 1, 61.3845 )
-visible = false
-
-[node name="SpotLight" type="SpotLight" parent="Fourth Area/sign2"]
-transform = Transform( -0.321131, 0.0452905, -0.0402479, 0, 0.176517, 0.198633, 0.185405, 0.734534, -0.652751, -1.08354, 0.870479, -1.39229 )
-light_color = Color( 0.745098, 0.764706, 0.643137, 1 )
-light_indirect_energy = 0.0
-spot_range = 5.939
-spot_angle = 28.86
-
-[node name="3DText" parent="Fourth Area/sign2" instance=ExtResource( 9 )]
-transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.462924, 0.41177 )
-script = null
-
-[node name="3DText2" parent="Fourth Area/sign2" instance=ExtResource( 9 )]
-transform = Transform( -0.0999987, 0, 0.000509633, 0, 0.1, 0, -0.00050965, 0, -0.0999988, -1.04634, 0.350292, 0.41177 )
-script = null
-
-[node name="SpotLight3" type="OmniLight" parent="Fourth Area"]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5, 13, 0.810138 )
-light_color = Color( 1, 0.164706, 0, 1 )
-omni_attenuation = -2.0
-__meta__ = {
-"_editor_description_": ""
-}
-
-[node name="SpotLight4" type="OmniLight" parent="Fourth Area"]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.5, 13, 0.318984 )
-light_color = Color( 1, 0.164706, 0, 1 )
-omni_attenuation = -2.0
-__meta__ = {
-"_editor_description_": ""
-}
-
-[node name="Rock 036" parent="Fourth Area" instance=ExtResource( 15 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 2, 0.500001, 32.5 )
-
-[node name="MeshInstance" parent="Fourth Area/Rock 036" index="0"]
-material/0 = SubResource( 36 )
-
-[node name="Rock 042" parent="Fourth Area" instance=ExtResource( 15 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, -5, 0.500001, 32.5 )
-
-[node name="MeshInstance" parent="Fourth Area/Rock 042" index="0"]
-material/0 = SubResource( 59 )
-
-[node name="Rock 043" parent="Fourth Area" instance=ExtResource( 15 )]
-transform = Transform( 3.5, 0, 0, 0, -1.5299e-07, 1, 0, -3.5, -4.37114e-08, 9, 0.500001, 32.5 )
-
-[node name="MeshInstance" parent="Fourth Area/Rock 043" index="0"]
-material/0 = SubResource( 60 )
-
-[node name="BHOP Check" parent="Fourth Area" instance=ExtResource( 16 )]
-transform = Transform( 9.66, 0, 0, 0, -1.5299e-07, 0.357825, 0, -3.5, -1.5641e-08, 2, 0.500001, 32.5 )
-
-[node name="Respawn" type="Position3D" parent="Fourth Area/BHOP Check"]
-transform = Transform( 1, 0, 0, 0, 1, -3.9968e-15, 0, 2.75691e-12, 1, 0, 14.4286, 4.19198 )
-
-[node name="Spatial" type="Spatial" parent="Fourth Area"]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -11.5, 0, 71.5 )
-
-[node name="Facade 019B17" parent="Fourth Area/Spatial" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -3.5, 5, 4.5 )
-
-[node name="Facade 019B18" parent="Fourth Area/Spatial" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -3.5, 12, 4.5 )
-
-[node name="Facade 019B19" parent="Fourth Area/Spatial" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -3.5, 19, 4.5 )
-
-[node name="Facade 019B20" parent="Fourth Area/Spatial" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -3.5, 26, 4.5 )
-
-[node name="Facade 019B21" parent="Fourth Area/Spatial" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 3.5, 5, 4.5 )
-
-[node name="Facade 019B22" parent="Fourth Area/Spatial" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 3.5, 12, 4.5 )
-
-[node name="Facade 019B23" parent="Fourth Area/Spatial" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 3.5, 19, 4.5 )
-
-[node name="Facade 019B24" parent="Fourth Area/Spatial" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 3.5, 26, 4.5 )
-
-[node name="Facade 019B25" parent="Fourth Area/Spatial" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 10.5, 5, 4.5 )
-
-[node name="Facade 019B26" parent="Fourth Area/Spatial" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 10.5, 12, 4.5 )
-
-[node name="Facade 019B27" parent="Fourth Area/Spatial" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 10.5, 19, 4.5 )
-
-[node name="Facade 019B28" parent="Fourth Area/Spatial" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 10.5, 26, 4.5 )
-
-[node name="Spatial2" type="Spatial" parent="Fourth Area"]
-transform = Transform( 1.94707e-07, 0, -1, 0, 1, 0, 1, 0, 1.94707e-07, 14, 0, 64 )
-
-[node name="Facade 019B17" parent="Fourth Area/Spatial2" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -3.49999, 5, 4 )
-
-[node name="Facade 019B18" parent="Fourth Area/Spatial2" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -3.49999, 12, 4 )
-
-[node name="Facade 019B19" parent="Fourth Area/Spatial2" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -3.49999, 19, 4 )
-
-[node name="Facade 019B20" parent="Fourth Area/Spatial2" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -3.49999, 26, 4 )
-
-[node name="Facade 019B21" parent="Fourth Area/Spatial2" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 3.5, 5, 4 )
-
-[node name="Facade 019B22" parent="Fourth Area/Spatial2" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 3.5, 12, 4 )
-
-[node name="Facade 019B23" parent="Fourth Area/Spatial2" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 3.5, 19, 4 )
-
-[node name="Facade 019B24" parent="Fourth Area/Spatial2" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 3.5, 26, 4 )
-
-[node name="Facade 019B25" parent="Fourth Area/Spatial2" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 10.5, 5, 4 )
-
-[node name="Facade 019B26" parent="Fourth Area/Spatial2" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 10.5, 12, 4 )
-
-[node name="Facade 019B27" parent="Fourth Area/Spatial2" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 10.5, 19, 4 )
-
-[node name="Facade 019B28" parent="Fourth Area/Spatial2" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 10.5, 26, 4 )
-
-[node name="Spatial7" type="Spatial" parent="Fourth Area"]
-transform = Transform( 1.94707e-07, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, 1.94707e-07, -8.51092e-15, 14, 30.9012, 64 )
-
-[node name="Facade 019B17" parent="Fourth Area/Spatial7" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -3.5, 5, 4.5 )
-
-[node name="Facade 019B18" parent="Fourth Area/Spatial7" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -3.5, 12, 4.5 )
-
-[node name="Facade 019B19" parent="Fourth Area/Spatial7" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -3.5, 19, 4.5 )
-
-[node name="Facade 019B20" parent="Fourth Area/Spatial7" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -3.5, 26, 4.5 )
-
-[node name="Facade 019B21" parent="Fourth Area/Spatial7" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 3.5, 5, 4.5 )
-
-[node name="Facade 019B22" parent="Fourth Area/Spatial7" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 3.5, 12, 4.5 )
-
-[node name="Facade 019B23" parent="Fourth Area/Spatial7" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 3.5, 19, 4.5 )
-
-[node name="Facade 019B24" parent="Fourth Area/Spatial7" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 3.5, 26, 4.5 )
-
-[node name="Facade 019B25" parent="Fourth Area/Spatial7" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 10.5, 5, 4.5 )
-
-[node name="Facade 019B26" parent="Fourth Area/Spatial7" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 10.5, 12, 4.5 )
-
-[node name="Facade 019B27" parent="Fourth Area/Spatial7" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 10.5, 19, 4.5 )
-
-[node name="Facade 019B28" parent="Fourth Area/Spatial7" instance=ExtResource( 10 )]
-transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 10.5, 26, 4.5 )
+[node name="Fourth Area" parent="." instance=ExtResource( 20 )]
 
 [node name="Fifth Area" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 577, 0, 37 )
@@ -2532,11 +1793,8 @@ script = ExtResource( 3 )
 [node name="Respawn" type="Position3D" parent="End Box2"]
 transform = Transform( 0.294118, 0, 0, 0, 0.999999, 0, 0, 0, 1.25, -4613.25, -519.48, 124986 )
 
-[connection signal="body_entered" from="Second Area/BoundingBox" to="Second Area/BoundingBox" method="_on_BoundingBox_body_entered"]
-[connection signal="body_exited" from="Third Area/BoundingBox2" to="Third Area/BoundingBox2" method="_on_BoundingBox_body_exited"]
-[connection signal="body_exited" from="Third Area/BoundingBox" to="Third Area/BoundingBox" method="_on_BoundingBox_body_exited"]
-[connection signal="body_exited" from="Fourth Area/BoundingBox2" to="Fourth Area/BoundingBox2" method="_on_BoundingBox_body_exited"]
-[connection signal="body_exited" from="Fourth Area/BoundingBox" to="Fourth Area/BoundingBox" method="_on_BoundingBox_body_exited"]
+[connection signal="body_exited" from="BoundingBox4" to="BoundingBox4" method="_on_BoundingBox_body_exited"]
+[connection signal="body_exited" from="BoundingBox5" to="BoundingBox5" method="_on_BoundingBox_body_exited"]
 [connection signal="body_exited" from="Fifth Area/Next Level" to="Fifth Area/Next Level" method="_on_BoundingBox_body_exited"]
 [connection signal="body_entered" from="Fifth Area/BoundingBox" to="Fifth Area/BoundingBox" method="Level_5"]
 [connection signal="body_entered" from="Fifth Area/Portal" to="Fifth Area/Portal" method="Rocket_Entered"]
@@ -2547,12 +1805,6 @@ transform = Transform( 0.294118, 0, 0, 0, 0.999999, 0, 0, 0, 1.25, -4613.25, -51
 [connection signal="body_entered" from="BoundingBox2" to="BoundingBox2" method="_on_BoundingBox_body_entered"]
 [connection signal="body_entered" from="End Box2" to="End Box2" method="_on_End_Box_body_entered"]
 
-[editable path="Second Area/Rock 036"]
-[editable path="Second Area/Rock 042"]
-[editable path="Second Area/Rock 043"]
-[editable path="Fourth Area/Rock 036"]
-[editable path="Fourth Area/Rock 042"]
-[editable path="Fourth Area/Rock 043"]
 [editable path="Fifth Area/BoundingBox"]
 [editable path="Fifth Area/Spatial/Spatial18"]
 [editable path="Fifth Area/Rock 036"]

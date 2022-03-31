@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/Platform Objects/Material_006.material" type="Material" id=1]
 
@@ -17,7 +17,16 @@ surfaces/0 = {
 "vertex_count": 24
 }
 
-[node name="Spatial" type="MeshInstance"]
+[sub_resource type="ConvexPolygonShape" id=2]
+points = PoolVector3Array( -1, -1, -1, 1, 1, 1, 1, -1, 1, 1, 1, -1, -1, 1, 1, 1, -1, -1, -1, -1, 1, -1, 1, -1 )
+
+[node name="Orange Wall Tile" type="MeshInstance"]
 transform = Transform( 0.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 0, 0 )
 mesh = SubResource( 1 )
 material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="."]
+
+[node name="CollisionShape2" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+shape = SubResource( 2 )
