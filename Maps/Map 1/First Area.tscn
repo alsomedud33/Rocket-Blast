@@ -115,6 +115,18 @@ transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.7914
 [node name="Facade 019B4" parent="." instance=ExtResource( 10 )]
 transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -3.5, 26, -19.5 )
 
+[node name="Facade 019B25" parent="." instance=ExtResource( 10 )]
+transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -10.5, 5, -19.5 )
+
+[node name="Facade 019B26" parent="." instance=ExtResource( 10 )]
+transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -10.5, 12, -19.5 )
+
+[node name="Facade 019B27" parent="." instance=ExtResource( 10 )]
+transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -10.5, 19, -19.5 )
+
+[node name="Facade 019B28" parent="." instance=ExtResource( 10 )]
+transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -10.5, 26, -19.5 )
+
 [node name="Facade 019B5" parent="." instance=ExtResource( 10 )]
 transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 3.5, 5, -19.5 )
 
@@ -159,6 +171,18 @@ transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.7914
 
 [node name="Facade 019B20" parent="." instance=ExtResource( 10 )]
 transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -3.5, -16.1982, -8 )
+
+[node name="Facade 019B29" parent="." instance=ExtResource( 10 )]
+transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -10.5, -9.19817, -8 )
+
+[node name="Facade 019B30" parent="." instance=ExtResource( 10 )]
+transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -10.5, -2.19817, -8 )
+
+[node name="Facade 019B31" parent="." instance=ExtResource( 10 )]
+transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -10.5, -23.1982, -8 )
+
+[node name="Facade 019B32" parent="." instance=ExtResource( 10 )]
+transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, -10.5, -16.1982, -8 )
 
 [node name="Facade 019B21" parent="." instance=ExtResource( 10 )]
 transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 3.5, -23.1982, -8 )
@@ -484,44 +508,12 @@ skeleton = NodePath("../../Facade 019B")
 transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 4.9, -9.1 )
 skeleton = NodePath("../../Facade 019B")
 
-[node name="No_Hit3" parent="Spatial13" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 4.9, -2.1 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit4" parent="Spatial13" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 4.9, 4.9 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit5" parent="Spatial13" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 4.9, 11.9 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit6" parent="Spatial13" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 4.9, 18.9 )
-skeleton = NodePath("../../Facade 019B")
-
 [node name="No_Hit7" parent="Spatial13" instance=ExtResource( 3 )]
 transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 11.9, -16.1 )
 skeleton = NodePath("../../Facade 019B")
 
 [node name="No_Hit8" parent="Spatial13" instance=ExtResource( 3 )]
 transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 11.9, -9.1 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit9" parent="Spatial13" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 11.9, -2.1 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit10" parent="Spatial13" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 11.9, 4.9 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit11" parent="Spatial13" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 11.9, 11.9 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit12" parent="Spatial13" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 11.9, 18.9 )
 skeleton = NodePath("../../Facade 019B")
 
 [node name="No_Hit13" parent="Spatial13" instance=ExtResource( 3 )]
@@ -532,44 +524,12 @@ skeleton = NodePath("../../Facade 019B")
 transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 18.9, -9.1 )
 skeleton = NodePath("../../Facade 019B")
 
-[node name="No_Hit15" parent="Spatial13" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 18.9, -2.1 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit16" parent="Spatial13" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 18.9, 4.9 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit17" parent="Spatial13" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 18.9, 11.9 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit18" parent="Spatial13" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 18.9, 18.9 )
-skeleton = NodePath("../../Facade 019B")
-
 [node name="No_Hit19" parent="Spatial13" instance=ExtResource( 3 )]
 transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 25.9, -16.1 )
 skeleton = NodePath("../../Facade 019B")
 
 [node name="No_Hit20" parent="Spatial13" instance=ExtResource( 3 )]
 transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 25.9, -9.1 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit21" parent="Spatial13" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 25.9, -2.1 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit22" parent="Spatial13" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 25.9, 4.9 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit23" parent="Spatial13" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 25.9, 11.9 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit24" parent="Spatial13" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 25.9, 18.9 )
 skeleton = NodePath("../../Facade 019B")
 
 [node name="Spatial3" type="Spatial" parent="."]
@@ -583,44 +543,12 @@ skeleton = NodePath("../../Facade 019B")
 transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 4.9, -9.1 )
 skeleton = NodePath("../../Facade 019B")
 
-[node name="No_Hit3" parent="Spatial3" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 4.9, -2.1 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit4" parent="Spatial3" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 4.9, 4.9 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit5" parent="Spatial3" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 4.9, 11.9 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit6" parent="Spatial3" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 4.9, 18.9 )
-skeleton = NodePath("../../Facade 019B")
-
 [node name="No_Hit7" parent="Spatial3" instance=ExtResource( 3 )]
 transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 11.9, -16.1 )
 skeleton = NodePath("../../Facade 019B")
 
 [node name="No_Hit8" parent="Spatial3" instance=ExtResource( 3 )]
 transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 11.9, -9.1 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit9" parent="Spatial3" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 11.9, -2.1 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit10" parent="Spatial3" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 11.9, 4.9 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit11" parent="Spatial3" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 11.9, 11.9 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit12" parent="Spatial3" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 11.9, 18.9 )
 skeleton = NodePath("../../Facade 019B")
 
 [node name="No_Hit13" parent="Spatial3" instance=ExtResource( 3 )]
@@ -631,22 +559,6 @@ skeleton = NodePath("../../Facade 019B")
 transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 18.9, -9.1 )
 skeleton = NodePath("../../Facade 019B")
 
-[node name="No_Hit15" parent="Spatial3" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 18.9, -2.1 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit16" parent="Spatial3" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 18.9, 4.9 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit17" parent="Spatial3" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 18.9, 11.9 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit18" parent="Spatial3" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 18.9, 18.9 )
-skeleton = NodePath("../../Facade 019B")
-
 [node name="No_Hit19" parent="Spatial3" instance=ExtResource( 3 )]
 transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 25.9, -16.1 )
 skeleton = NodePath("../../Facade 019B")
@@ -655,36 +567,8 @@ skeleton = NodePath("../../Facade 019B")
 transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 25.9, -9.1 )
 skeleton = NodePath("../../Facade 019B")
 
-[node name="No_Hit21" parent="Spatial3" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 25.9, -2.1 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit22" parent="Spatial3" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 25.9, 4.9 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit23" parent="Spatial3" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 25.9, 11.9 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit24" parent="Spatial3" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 25.9, 18.9 )
-skeleton = NodePath("../../Facade 019B")
-
 [node name="Spatial5" type="Spatial" parent="."]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5.66798, 0, 42 )
-
-[node name="No_Hit" parent="Spatial5" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 4.9, -16.1 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit2" parent="Spatial5" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 4.9, -9.1 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit3" parent="Spatial5" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 4.9, -2.1 )
-skeleton = NodePath("../../Facade 019B")
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.97383, 0, 42 )
 
 [node name="No_Hit4" parent="Spatial5" instance=ExtResource( 3 )]
 transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 4.9, 4.9 )
@@ -696,18 +580,6 @@ skeleton = NodePath("../../Facade 019B")
 
 [node name="No_Hit6" parent="Spatial5" instance=ExtResource( 3 )]
 transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 4.9, 18.9 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit7" parent="Spatial5" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 11.9, -16.1 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit8" parent="Spatial5" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 11.9, -9.1 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit9" parent="Spatial5" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 11.9, -2.1 )
 skeleton = NodePath("../../Facade 019B")
 
 [node name="No_Hit10" parent="Spatial5" instance=ExtResource( 3 )]
@@ -722,18 +594,6 @@ skeleton = NodePath("../../Facade 019B")
 transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 11.9, 18.9 )
 skeleton = NodePath("../../Facade 019B")
 
-[node name="No_Hit13" parent="Spatial5" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 18.9, -16.1 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit14" parent="Spatial5" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 18.9, -9.1 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit15" parent="Spatial5" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 18.9, -2.1 )
-skeleton = NodePath("../../Facade 019B")
-
 [node name="No_Hit16" parent="Spatial5" instance=ExtResource( 3 )]
 transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 18.9, 4.9 )
 skeleton = NodePath("../../Facade 019B")
@@ -744,18 +604,6 @@ skeleton = NodePath("../../Facade 019B")
 
 [node name="No_Hit18" parent="Spatial5" instance=ExtResource( 3 )]
 transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 18.9, 18.9 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit19" parent="Spatial5" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 25.9, -16.1 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit20" parent="Spatial5" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 25.9, -9.1 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit21" parent="Spatial5" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 25.9, -2.1 )
 skeleton = NodePath("../../Facade 019B")
 
 [node name="No_Hit22" parent="Spatial5" instance=ExtResource( 3 )]
@@ -770,8 +618,142 @@ skeleton = NodePath("../../Facade 019B")
 transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 25.9, 18.9 )
 skeleton = NodePath("../../Facade 019B")
 
+[node name="Spatial14" type="Spatial" parent="."]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 5.66798, 0, 21 )
+
+[node name="No_Hit2" parent="Spatial14" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 4.9, -9.1 )
+skeleton = NodePath("../../Facade 019B")
+
+[node name="No_Hit3" parent="Spatial14" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 4.9, -2.1 )
+skeleton = NodePath("../../Facade 019B")
+
+[node name="No_Hit4" parent="Spatial14" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 4.9, 4.9 )
+skeleton = NodePath("../../Facade 019B")
+
+[node name="No_Hit5" parent="Spatial14" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 4.9, 11.9 )
+skeleton = NodePath("../../Facade 019B")
+
+[node name="No_Hit8" parent="Spatial14" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 11.9, -9.1 )
+skeleton = NodePath("../../Facade 019B")
+
+[node name="No_Hit9" parent="Spatial14" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 11.9, -2.1 )
+skeleton = NodePath("../../Facade 019B")
+
+[node name="No_Hit10" parent="Spatial14" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 11.9, 4.9 )
+skeleton = NodePath("../../Facade 019B")
+
+[node name="No_Hit11" parent="Spatial14" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 11.9, 11.9 )
+skeleton = NodePath("../../Facade 019B")
+
+[node name="No_Hit14" parent="Spatial14" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 18.9, -9.1 )
+skeleton = NodePath("../../Facade 019B")
+
+[node name="No_Hit15" parent="Spatial14" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 18.9, -2.1 )
+skeleton = NodePath("../../Facade 019B")
+
+[node name="No_Hit16" parent="Spatial14" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 18.9, 4.9 )
+skeleton = NodePath("../../Facade 019B")
+
+[node name="No_Hit17" parent="Spatial14" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 18.9, 11.9 )
+skeleton = NodePath("../../Facade 019B")
+
+[node name="No_Hit20" parent="Spatial14" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 25.9, -9.1 )
+skeleton = NodePath("../../Facade 019B")
+
+[node name="No_Hit21" parent="Spatial14" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 25.9, -2.1 )
+skeleton = NodePath("../../Facade 019B")
+
+[node name="No_Hit22" parent="Spatial14" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 25.9, 4.9 )
+skeleton = NodePath("../../Facade 019B")
+
+[node name="No_Hit23" parent="Spatial14" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 25.9, 11.9 )
+skeleton = NodePath("../../Facade 019B")
+
+[node name="Spatial15" type="Spatial" parent="."]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 5.66798, -28, 21 )
+
+[node name="No_Hit2" parent="Spatial15" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 4.9, -9.1 )
+skeleton = NodePath("../../Facade 019B")
+
+[node name="No_Hit3" parent="Spatial15" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 4.9, -2.1 )
+skeleton = NodePath("../../Facade 019B")
+
+[node name="No_Hit4" parent="Spatial15" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 4.9, 4.9 )
+skeleton = NodePath("../../Facade 019B")
+
+[node name="No_Hit5" parent="Spatial15" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 4.9, 11.9 )
+skeleton = NodePath("../../Facade 019B")
+
+[node name="No_Hit8" parent="Spatial15" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 11.9, -9.1 )
+skeleton = NodePath("../../Facade 019B")
+
+[node name="No_Hit9" parent="Spatial15" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 11.9, -2.1 )
+skeleton = NodePath("../../Facade 019B")
+
+[node name="No_Hit10" parent="Spatial15" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 11.9, 4.9 )
+skeleton = NodePath("../../Facade 019B")
+
+[node name="No_Hit11" parent="Spatial15" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 11.9, 11.9 )
+skeleton = NodePath("../../Facade 019B")
+
+[node name="No_Hit14" parent="Spatial15" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 18.9, -9.1 )
+skeleton = NodePath("../../Facade 019B")
+
+[node name="No_Hit15" parent="Spatial15" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 18.9, -2.1 )
+skeleton = NodePath("../../Facade 019B")
+
+[node name="No_Hit16" parent="Spatial15" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 18.9, 4.9 )
+skeleton = NodePath("../../Facade 019B")
+
+[node name="No_Hit17" parent="Spatial15" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 18.9, 11.9 )
+skeleton = NodePath("../../Facade 019B")
+
+[node name="No_Hit20" parent="Spatial15" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 25.9, -9.1 )
+skeleton = NodePath("../../Facade 019B")
+
+[node name="No_Hit21" parent="Spatial15" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 25.9, -2.1 )
+skeleton = NodePath("../../Facade 019B")
+
+[node name="No_Hit22" parent="Spatial15" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 25.9, 4.9 )
+skeleton = NodePath("../../Facade 019B")
+
+[node name="No_Hit23" parent="Spatial15" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 25.9, 11.9 )
+skeleton = NodePath("../../Facade 019B")
+
 [node name="Spatial7" type="Spatial" parent="."]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5.66798, 0, 0 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.96285, 0, 0 )
 
 [node name="No_Hit" parent="Spatial7" instance=ExtResource( 3 )]
 transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 4.9, -16.1 )
@@ -870,7 +852,7 @@ transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 
 skeleton = NodePath("../../Facade 019B")
 
 [node name="Spatial8" type="Spatial" parent="."]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5.66798, -28, 0 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.91798, -28, 0 )
 
 [node name="No_Hit" parent="Spatial8" instance=ExtResource( 3 )]
 transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 4.9, -16.1 )
@@ -969,19 +951,7 @@ transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 
 skeleton = NodePath("../../Facade 019B")
 
 [node name="Spatial10" type="Spatial" parent="."]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5.66798, -28, 42 )
-
-[node name="No_Hit" parent="Spatial10" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 4.9, -16.1 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit2" parent="Spatial10" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 4.9, -9.1 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit3" parent="Spatial10" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 4.9, -2.1 )
-skeleton = NodePath("../../Facade 019B")
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.91798, -28, 42 )
 
 [node name="No_Hit4" parent="Spatial10" instance=ExtResource( 3 )]
 transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 4.9, 4.9 )
@@ -993,18 +963,6 @@ skeleton = NodePath("../../Facade 019B")
 
 [node name="No_Hit6" parent="Spatial10" instance=ExtResource( 3 )]
 transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 4.9, 18.9 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit7" parent="Spatial10" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 11.9, -16.1 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit8" parent="Spatial10" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 11.9, -9.1 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit9" parent="Spatial10" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 11.9, -2.1 )
 skeleton = NodePath("../../Facade 019B")
 
 [node name="No_Hit10" parent="Spatial10" instance=ExtResource( 3 )]
@@ -1019,18 +977,6 @@ skeleton = NodePath("../../Facade 019B")
 transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 11.9, 18.9 )
 skeleton = NodePath("../../Facade 019B")
 
-[node name="No_Hit13" parent="Spatial10" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 18.9, -16.1 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit14" parent="Spatial10" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 18.9, -9.1 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit15" parent="Spatial10" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 18.9, -2.1 )
-skeleton = NodePath("../../Facade 019B")
-
 [node name="No_Hit16" parent="Spatial10" instance=ExtResource( 3 )]
 transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 18.9, 4.9 )
 skeleton = NodePath("../../Facade 019B")
@@ -1041,18 +987,6 @@ skeleton = NodePath("../../Facade 019B")
 
 [node name="No_Hit18" parent="Spatial10" instance=ExtResource( 3 )]
 transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 18.9, 18.9 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit19" parent="Spatial10" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 25.9, -16.1 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit20" parent="Spatial10" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 25.9, -9.1 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit21" parent="Spatial10" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 25.9, -2.1 )
 skeleton = NodePath("../../Facade 019B")
 
 [node name="No_Hit22" parent="Spatial10" instance=ExtResource( 3 )]
@@ -1177,44 +1111,12 @@ skeleton = NodePath("../../Facade 019B")
 transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 4.9, -9.1 )
 skeleton = NodePath("../../Facade 019B")
 
-[node name="No_Hit3" parent="Spatial6" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 4.9, -2.1 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit4" parent="Spatial6" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 4.9, 4.9 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit5" parent="Spatial6" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 4.9, 11.9 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit6" parent="Spatial6" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 4.9, 18.9 )
-skeleton = NodePath("../../Facade 019B")
-
 [node name="No_Hit7" parent="Spatial6" instance=ExtResource( 3 )]
 transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 11.9, -16.1 )
 skeleton = NodePath("../../Facade 019B")
 
 [node name="No_Hit8" parent="Spatial6" instance=ExtResource( 3 )]
 transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 11.9, -9.1 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit9" parent="Spatial6" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 11.9, -2.1 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit10" parent="Spatial6" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 11.9, 4.9 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit11" parent="Spatial6" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 11.9, 11.9 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit12" parent="Spatial6" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 11.9, 18.9 )
 skeleton = NodePath("../../Facade 019B")
 
 [node name="No_Hit13" parent="Spatial6" instance=ExtResource( 3 )]
@@ -1225,44 +1127,12 @@ skeleton = NodePath("../../Facade 019B")
 transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 18.9, -9.1 )
 skeleton = NodePath("../../Facade 019B")
 
-[node name="No_Hit15" parent="Spatial6" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 18.9, -2.1 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit16" parent="Spatial6" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 18.9, 4.9 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit17" parent="Spatial6" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 18.9, 11.9 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit18" parent="Spatial6" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 18.9, 18.9 )
-skeleton = NodePath("../../Facade 019B")
-
 [node name="No_Hit19" parent="Spatial6" instance=ExtResource( 3 )]
 transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 25.9, -16.1 )
 skeleton = NodePath("../../Facade 019B")
 
 [node name="No_Hit20" parent="Spatial6" instance=ExtResource( 3 )]
 transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 25.9, -9.1 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit21" parent="Spatial6" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 25.9, -2.1 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit22" parent="Spatial6" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 25.9, 4.9 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit23" parent="Spatial6" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 25.9, 11.9 )
-skeleton = NodePath("../../Facade 019B")
-
-[node name="No_Hit24" parent="Spatial6" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, -1, 0, 0, 0, -1, 1, -4.37114e-08, 0, 12.6, 25.9, 18.9 )
 skeleton = NodePath("../../Facade 019B")
 
 [connection signal="body_exited" from="BoundingBox" to="BoundingBox" method="_on_BoundingBox_body_exited"]
