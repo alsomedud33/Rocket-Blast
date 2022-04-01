@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/Soldier/Soldier.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/UI/HUD.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/Platform Objects/Measurement.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/Platform Objects/Orange Plat.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -10,7 +12,11 @@
 [node name="Room" type="Node"]
 
 [node name="StaticBody" type="StaticBody" parent="."]
-transform = Transform( 100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0 )
+transform = Transform( 100, 0, 0, 0, 1, 0, 0, 0, 100, 0, -1.5, 0 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
 [node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
 mesh = SubResource( 1 )
@@ -23,3 +29,24 @@ shape = SubResource( 2 )
 
 [node name="Soldier" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
+
+[node name="Spatial" parent="." instance=ExtResource( 3 )]
+transform = Transform( -0.285714, 0, -2.49779e-08, 0, 1, 0, 2.49779e-08, 0, -0.285714, 0, 0, 1 )
+
+[node name="Spatial5" parent="." instance=ExtResource( 3 )]
+transform = Transform( -0.285714, 0, -2.49779e-08, 0, 1, 0, 2.49779e-08, 0, -0.285714, 0, 0, 9 )
+
+[node name="Spatial7" parent="." instance=ExtResource( 3 )]
+transform = Transform( -0.285714, 0, -2.49779e-08, 2.49779e-08, -4.37114e-08, -0.285714, -1.09182e-15, -1, 1.2489e-08, 0, 0, 10 )
+
+[node name="Spatial8" parent="." instance=ExtResource( 3 )]
+transform = Transform( -0.285714, 0, -2.49779e-08, 2.49779e-08, -4.37114e-08, -0.285714, -1.09182e-15, -1, 1.2489e-08, 0, 0, 20 )
+
+[node name="Spatial6" parent="." instance=ExtResource( 3 )]
+transform = Transform( -0.285714, 0, -2.49779e-08, 0, 1, 0, 2.49779e-08, 0, -0.285714, 0, 0, 19 )
+
+[node name="Spatial11" parent="." instance=ExtResource( 3 )]
+transform = Transform( -0.285714, 0, -2.49779e-08, 0, 1, 0, 2.49779e-08, 0, -0.285714, 0, 0, 21 )
+
+[node name="Orange Plat" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 21.0421 )
