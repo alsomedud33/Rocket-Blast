@@ -91,7 +91,7 @@ func _physics_process(delta: float) -> void:
 		if vertical_velocity >= terminal_velocity:
 			vertical_velocity -= gravity * delta #if vertical_velocity >= terminal_velocity else 0 # Stop adding to vertical velocity once terminal velocity is reached
 		else:
-			vertical_velocity = terminal_velocity
+			vertical_velocity = terminal_velocity	
 		move_air(velocity, delta)
 		#print(vertical_velocity)
 	

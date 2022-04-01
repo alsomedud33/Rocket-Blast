@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://Maps/Map 1/First Area B.tscn" type="PackedScene" id=1]
 [ext_resource path="res://CameraHub.gd" type="Script" id=2]
@@ -29,6 +29,7 @@
 [ext_resource path="res://assets/Textures/Rock 035/Rock035_1K_NormalGL.jpg" type="Texture" id=27]
 [ext_resource path="res://assets/Platform Objects/FirstRamp.tscn" type="PackedScene" id=28]
 [ext_resource path="res://assets/Platform Objects/Door2.obj" type="ArrayMesh" id=29]
+[ext_resource path="res://Maps/Map 1/Ground Skip.tscn" type="PackedScene" id=30]
 
 [sub_resource type="PanoramaSky" id=79]
 panorama = ExtResource( 21 )
@@ -1799,6 +1800,9 @@ script = ExtResource( 3 )
 
 [node name="Respawn" type="Position3D" parent="End Box2"]
 transform = Transform( 0.294118, 0, 0, 0, 0.999999, 0, 0, 0, 1.25, -4613.25, -519.48, 124986 )
+
+[node name="Ground Skip" parent="." instance=ExtResource( 30 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -157 )
 
 [connection signal="body_exited" from="BoundingBox4" to="BoundingBox4" method="_on_BoundingBox_body_exited"]
 [connection signal="body_exited" from="BoundingBox5" to="BoundingBox5" method="_on_BoundingBox_body_exited"]

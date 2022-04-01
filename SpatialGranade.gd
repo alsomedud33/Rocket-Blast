@@ -53,5 +53,3 @@ func _on_Area_area_entered(area):
 func _on_Timer_timeout():
 	queue_free()
 
-
-

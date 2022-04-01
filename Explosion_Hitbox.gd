@@ -55,6 +55,7 @@ func _on_Timer_timeout():
 
 
 func _on_Explosion_Hitbox_body_entered(body):
+	print('hit')
 	body.snap = Vector3.ZERO
 	#collision_point = self.translation.direction_to(body.translation) * (4/self.translation.distance_to(body.translation))
 	
