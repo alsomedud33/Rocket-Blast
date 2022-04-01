@@ -1075,14 +1075,14 @@ script = ExtResource( 2 )
 transform = Transform( 1, 0, 0, 0, 0.999999, 0, 0, 0, 1, -94.1176, -1.98511, -2.31435 )
 
 [node name="BoundingBox4" parent="Third Area/Spatial" instance=ExtResource( 5 )]
-transform = Transform( 1.18422, 0, 0, 0, 6.80064, 0, 0, 0, 1.27034, 29.5, 16, 224.643 )
+transform = Transform( 1.18422, 0, 0, 0, 6.80064, 0, 0, 0, 1.27034, 31.5, 16, 224.643 )
 script = ExtResource( 2 )
 
 [node name="Respawn" type="Position3D" parent="Third Area/Spatial/BoundingBox4"]
 transform = Transform( 1, 0, 0, 0, 0.999999, 0, 0, 0, 1, -20.0554, -1.53757, -186.958 )
 
 [node name="BoundingBox6" parent="Third Area/Spatial" instance=ExtResource( 5 )]
-transform = Transform( 1.18422, 0, 0, 0, 6.80064, 0, 0, 0, 1.27034, -25.5, 16, 224.643 )
+transform = Transform( 1.18422, 0, 0, 0, 6.80064, 0, 0, 0, 1.27034, -29, 16, 224.643 )
 script = ExtResource( 2 )
 
 [node name="Respawn" type="Position3D" parent="Third Area/Spatial/BoundingBox6"]
@@ -1376,7 +1376,7 @@ transform = Transform( -7.4784e-08, -8.74222e-10, -0.02, -0.02, 1.50996e-09, 7.4
 transform = Transform( -0.015906, 0.00936223, -3.37401e-10, -0.00842601, -0.0176734, 1.47178e-09, 3.51724e-10, 1.4585e-09, 0.02, -70.9093, -41.0105, 142.5 )
 
 [node name="BoundingBox5" parent="Fourth Area" instance=ExtResource( 5 )]
-transform = Transform( -1.06531e-07, 0, -0.355695, 0, 6.80064, 0, 2.43713, 0, -1.55479e-08, -16.5, 16, 91.643 )
+transform = Transform( -1.06531e-07, 0, -0.355695, 0, 6.80064, 0, 2.43713, 0, -1.55479e-08, -16.5, 16, 91.143 )
 script = ExtResource( 2 )
 
 [node name="Respawn" type="Position3D" parent="Fourth Area/BoundingBox5"]
@@ -2287,7 +2287,7 @@ transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 1.64203e-15, 1.6420
 transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 1.64203e-15, 1.64203e-15, 7.17754e-23, 1, -0.374985, 7, 0.295013 )
 
 [node name="Spatial3" type="Spatial" parent="Fifth Area/Spatial"]
-transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -9.96424, 15.5, 7.99997 )
+transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -9.46424, 18, 7.99997 )
 
 [node name="Rock 060" parent="Fifth Area/Spatial/Spatial3" instance=ExtResource( 7 )]
 transform = Transform( -4.37114e-08, 1, -1.42109e-14, -1, -4.37114e-08, 0, 0, 1.42109e-14, 1, -0.374996, -7, 0.295013 )
@@ -2324,6 +2324,18 @@ transform = Transform( -4.37114e-08, 1, -1.42109e-14, -1, -4.37114e-08, 0, 0, 1.
 
 [node name="Rock 071" parent="Fifth Area/Spatial/Spatial3" instance=ExtResource( 7 )]
 transform = Transform( -4.37114e-08, 1, -1.42109e-14, -1, -4.37114e-08, 0, 0, 1.42109e-14, 1, -0.374962, -7, 14.295 )
+
+[node name="Rock 072" parent="Fifth Area/Spatial/Spatial3" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 1, -1.42109e-14, -1, -4.37114e-08, 0, 0, 1.42109e-14, 1, -0.374996, -14, 0.295013 )
+
+[node name="Rock 073" parent="Fifth Area/Spatial/Spatial3" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 1, -1.42109e-14, -1, -4.37114e-08, 0, 0, 1.42109e-14, 1, -0.374981, -14, -6.70502 )
+
+[node name="Rock 074" parent="Fifth Area/Spatial/Spatial3" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 1, -1.42109e-14, -1, -4.37114e-08, 0, 0, 1.42109e-14, 1, -0.374996, -14, 7.29501 )
+
+[node name="Rock 075" parent="Fifth Area/Spatial/Spatial3" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 1, -1.42109e-14, -1, -4.37114e-08, 0, 0, 1.42109e-14, 1, -0.374954, -14, 14.295 )
 
 [node name="Spatial4" type="Spatial" parent="Fifth Area/Spatial"]
 transform = Transform( 1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, -19.9642, 4.5, 29.5 )
@@ -2586,6 +2598,9 @@ transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.3749
 [node name="Rock 068" parent="Fifth Area/Spatial/Spatial37" instance=ExtResource( 7 )]
 transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.375, 0, 0.295013 )
 
+[node name="Rock 069" parent="Fifth Area/Spatial/Spatial37" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.375, -3.5, 0.295013 )
+
 [node name="Spatial38" type="Spatial" parent="Fifth Area/Spatial"]
 transform = Transform( -1, 1.50996e-07, 6.60024e-15, 0, -4.37114e-08, 1, 1.50996e-07, 1, 4.37114e-08, 3.40601, -24, 17.7137 )
 
@@ -2692,7 +2707,7 @@ transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.3749
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -75.9642, -48.5, 11 )
 
 [node name="Rock 060" parent="Fifth Area/Spatial/Spatial29" instance=ExtResource( 7 )]
-transform = Transform( 1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, -0.374981, -7, 0.295013 )
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.374981, -7, 0.295013 )
 
 [node name="Rock 064" parent="Fifth Area/Spatial/Spatial29" instance=ExtResource( 7 )]
 transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.374981, 7, 0.295013 )
@@ -2707,7 +2722,7 @@ transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.3749
 transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.375, 0, 0.295013 )
 
 [node name="Rock 067" parent="Fifth Area/Spatial/Spatial29" instance=ExtResource( 7 )]
-transform = Transform( 1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, -0.374981, -7, 7.29501 )
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.374981, -7, 7.29501 )
 
 [node name="Spatial26" type="Spatial" parent="Fifth Area/Spatial"]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -47.9642, -6.5, 11 )
@@ -2860,7 +2875,7 @@ transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.3750
 transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -30.8565, -52, 23 )
 
 [node name="Rock 060" parent="Fifth Area/Spatial/Spatial45" instance=ExtResource( 7 )]
-transform = Transform( 1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, -0.374981, -7, 0.295013 )
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.374981, -7, 0.295013 )
 
 [node name="Rock 064" parent="Fifth Area/Spatial/Spatial45" instance=ExtResource( 7 )]
 transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 5.80273e-15, 5.80273e-15, 2.53645e-22, 1, -0.375, 7, 0.295013 )
@@ -2869,19 +2884,19 @@ transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 5.80273e-15, 5.8027
 transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 5.80273e-15, 5.80273e-15, 2.53645e-22, 1, -0.374969, 7, 7.29501 )
 
 [node name="Rock 066" parent="Fifth Area/Spatial/Spatial45" instance=ExtResource( 7 )]
-transform = Transform( 1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, -0.374981, 0, 7.29501 )
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.374981, 0, 7.29501 )
 
 [node name="Rock 068" parent="Fifth Area/Spatial/Spatial45" instance=ExtResource( 7 )]
 transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 5.80273e-15, 5.80273e-15, 2.53645e-22, 1, -0.375, 0, 0.295013 )
 
 [node name="Rock 067" parent="Fifth Area/Spatial/Spatial45" instance=ExtResource( 7 )]
-transform = Transform( 1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, -0.374981, -7, 7.29501 )
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.374981, -7, 7.29501 )
 
 [node name="Spatial46" type="Spatial" parent="Fifth Area/Spatial"]
 transform = Transform( 0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -36.1065, -52, 13.9067 )
 
 [node name="Rock 060" parent="Fifth Area/Spatial/Spatial46" instance=ExtResource( 7 )]
-transform = Transform( 1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, -0.374981, -7, 0.295013 )
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.374981, -7, 0.295013 )
 
 [node name="Rock 064" parent="Fifth Area/Spatial/Spatial46" instance=ExtResource( 7 )]
 transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.374985, 7, 0.295013 )
@@ -2896,7 +2911,7 @@ transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.3749
 transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.375, 0, 0.295013 )
 
 [node name="Rock 067" parent="Fifth Area/Spatial/Spatial46" instance=ExtResource( 7 )]
-transform = Transform( 1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, -0.374981, -7, 7.29501 )
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.374981, -7, 7.29501 )
 
 [node name="Spatial41" type="Spatial" parent="Fifth Area/Spatial"]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -20.4642, -10.5, 29 )
@@ -3195,6 +3210,97 @@ skeleton = NodePath("../../Spatial7")
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 6.92273, 25.0145, 35.5 )
 skeleton = NodePath("../../Spatial7")
 
+[node name="No Hit4" type="Spatial" parent="Fifth Area/Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -28, 0 )
+
+[node name="No_Hit2" parent="Fifth Area/Spatial/No Hit4" instance=ExtResource( 25 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 6.92273, 11.0145, -6.50003 )
+skeleton = NodePath("../../Spatial7")
+
+[node name="No_Hit3" parent="Fifth Area/Spatial/No Hit4" instance=ExtResource( 25 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 6.92273, 18.0145, -6.50003 )
+skeleton = NodePath("../../Spatial7")
+
+[node name="No_Hit4" parent="Fifth Area/Spatial/No Hit4" instance=ExtResource( 25 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 6.92273, 25.0145, -6.50003 )
+skeleton = NodePath("../../Spatial7")
+
+[node name="No_Hit6" parent="Fifth Area/Spatial/No Hit4" instance=ExtResource( 25 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 6.92273, 11.0145, 0.499969 )
+skeleton = NodePath("../../Spatial7")
+
+[node name="No_Hit7" parent="Fifth Area/Spatial/No Hit4" instance=ExtResource( 25 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 6.92273, 18.0145, 0.499969 )
+skeleton = NodePath("../../Spatial7")
+
+[node name="No_Hit8" parent="Fifth Area/Spatial/No Hit4" instance=ExtResource( 25 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 6.92273, 25.0145, 0.499969 )
+skeleton = NodePath("../../Spatial7")
+
+[node name="No_Hit10" parent="Fifth Area/Spatial/No Hit4" instance=ExtResource( 25 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 6.92273, 11.0145, 7.49997 )
+skeleton = NodePath("../../Spatial7")
+
+[node name="No_Hit11" parent="Fifth Area/Spatial/No Hit4" instance=ExtResource( 25 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 6.92273, 18.0145, 7.49997 )
+skeleton = NodePath("../../Spatial7")
+
+[node name="No_Hit12" parent="Fifth Area/Spatial/No Hit4" instance=ExtResource( 25 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 6.92273, 25.0145, 7.49997 )
+skeleton = NodePath("../../Spatial7")
+
+[node name="No_Hit14" parent="Fifth Area/Spatial/No Hit4" instance=ExtResource( 25 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 6.92273, 11.0145, 14.5 )
+skeleton = NodePath("../../Spatial7")
+
+[node name="No_Hit15" parent="Fifth Area/Spatial/No Hit4" instance=ExtResource( 25 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 6.92273, 18.0145, 14.5 )
+skeleton = NodePath("../../Spatial7")
+
+[node name="No_Hit16" parent="Fifth Area/Spatial/No Hit4" instance=ExtResource( 25 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 6.92273, 25.0145, 14.5 )
+skeleton = NodePath("../../Spatial7")
+
+[node name="No_Hit18" parent="Fifth Area/Spatial/No Hit4" instance=ExtResource( 25 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 6.92273, 11.0145, 21.5 )
+skeleton = NodePath("../../Spatial7")
+
+[node name="No_Hit19" parent="Fifth Area/Spatial/No Hit4" instance=ExtResource( 25 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 6.92273, 18.0145, 21.5 )
+skeleton = NodePath("../../Spatial7")
+
+[node name="No_Hit20" parent="Fifth Area/Spatial/No Hit4" instance=ExtResource( 25 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 6.92273, 25.0145, 21.5 )
+skeleton = NodePath("../../Spatial7")
+
+[node name="No_Hit22" parent="Fifth Area/Spatial/No Hit4" instance=ExtResource( 25 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 6.92273, 11.0145, 28.5 )
+skeleton = NodePath("../../Spatial7")
+
+[node name="No_Hit23" parent="Fifth Area/Spatial/No Hit4" instance=ExtResource( 25 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 6.92273, 18.0145, 28.5 )
+skeleton = NodePath("../../Spatial7")
+
+[node name="No_Hit24" parent="Fifth Area/Spatial/No Hit4" instance=ExtResource( 25 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 6.92273, 25.0145, 28.5 )
+skeleton = NodePath("../../Spatial7")
+
+[node name="No_Hit25" parent="Fifth Area/Spatial/No Hit4" instance=ExtResource( 25 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 6.92273, 4.01447, 35.5 )
+skeleton = NodePath("../../Spatial7")
+
+[node name="No_Hit26" parent="Fifth Area/Spatial/No Hit4" instance=ExtResource( 25 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 6.92273, 11.0145, 35.5 )
+skeleton = NodePath("../../Spatial7")
+
+[node name="No_Hit27" parent="Fifth Area/Spatial/No Hit4" instance=ExtResource( 25 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 6.92273, 18.0145, 35.5 )
+skeleton = NodePath("../../Spatial7")
+
+[node name="No_Hit28" parent="Fifth Area/Spatial/No Hit4" instance=ExtResource( 25 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 6.92273, 25.0145, 35.5 )
+skeleton = NodePath("../../Spatial7")
+
 [node name="No Hit2" type="Spatial" parent="Fifth Area/Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -27, -49 )
 
@@ -3423,6 +3529,44 @@ skeleton = NodePath("../../Spatial7")
 
 [node name="No_Hit28" parent="Fifth Area/Spatial/No Hit3" instance=ExtResource( 25 )]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 6.92273, 25.0145, 35.5 )
+skeleton = NodePath("../../Spatial7")
+
+[node name="Spatial53" type="Spatial" parent="Fifth Area/Spatial"]
+
+[node name="No_Hit29" parent="Fifth Area/Spatial/Spatial53" instance=ExtResource( 25 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0772667, 1.01447, 14 )
+skeleton = NodePath("../../Spatial7")
+
+[node name="No_Hit31" parent="Fifth Area/Spatial/Spatial53" instance=ExtResource( 25 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.07727, 1.01447, 14 )
+skeleton = NodePath("../../Spatial7")
+
+[node name="No_Hit30" parent="Fifth Area/Spatial/Spatial53" instance=ExtResource( 25 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.92273, 1.01447, 14 )
+skeleton = NodePath("../../Spatial7")
+
+[node name="No_Hit32" parent="Fifth Area/Spatial/Spatial53" instance=ExtResource( 25 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0772667, 1.01447, 21 )
+skeleton = NodePath("../../Spatial7")
+
+[node name="No_Hit33" parent="Fifth Area/Spatial/Spatial53" instance=ExtResource( 25 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.07727, 1.01447, 21 )
+skeleton = NodePath("../../Spatial7")
+
+[node name="No_Hit34" parent="Fifth Area/Spatial/Spatial53" instance=ExtResource( 25 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.92273, 1.01447, 21 )
+skeleton = NodePath("../../Spatial7")
+
+[node name="No_Hit35" parent="Fifth Area/Spatial/Spatial53" instance=ExtResource( 25 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0772667, 1.01447, 28 )
+skeleton = NodePath("../../Spatial7")
+
+[node name="No_Hit36" parent="Fifth Area/Spatial/Spatial53" instance=ExtResource( 25 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.07727, 1.01447, 28 )
+skeleton = NodePath("../../Spatial7")
+
+[node name="No_Hit37" parent="Fifth Area/Spatial/Spatial53" instance=ExtResource( 25 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.92273, 1.01447, 28 )
 skeleton = NodePath("../../Spatial7")
 
 [node name="SecondRamp" parent="Fifth Area" instance=ExtResource( 19 )]
@@ -3772,7 +3916,7 @@ transform = Transform( 3, -1.5299e-07, -1.91069e-15, 0, -1.5299e-07, 1, -1.31134
 transform = Transform( 2.5, 0, 0, 0, -1.09278e-07, 1, 0, -2.5, -4.37114e-08, 2.5, 2.5, 39.5 )
 
 [node name="BoundingBox4" parent="Fifth Area/Spatial2" instance=ExtResource( 5 )]
-transform = Transform( 0.476, 0, 0, 0, -5.24537e-10, -0.14976, 0, 0.03, -1.63655e-08, -11.3209, 1.74274, 2.97586 )
+transform = Transform( 0.543351, 0, 0, 0, -5.24537e-10, -0.14976, 0, 0.03, -1.63655e-08, -12.1209, 1.74274, 2.97586 )
 script = ExtResource( 2 )
 
 [node name="Respawn" type="Position3D" parent="Fifth Area/Spatial2/BoundingBox4"]
@@ -3800,7 +3944,7 @@ script = ExtResource( 2 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 1.32349e-22, 1, 23.5294, -116.667, -100.16 )
 
 [node name="BoundingBox8" parent="Fifth Area/Spatial2" instance=ExtResource( 5 )]
-transform = Transform( 0.8092, 0, 0, 0, -5.24537e-10, -0.440294, 0, 0.03, -4.81145e-08, -11.3209, -4.45728, -55.5241 )
+transform = Transform( 0.8092, 0, 0, 0, -5.24537e-10, -0.440294, 0, 0.03, -4.81145e-08, -10.7209, -4.45728, -53.0241 )
 script = ExtResource( 2 )
 
 [node name="Respawn" type="Position3D" parent="Fifth Area/Spatial2/BoundingBox8"]
