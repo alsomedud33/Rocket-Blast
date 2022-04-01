@@ -1,8 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/Sounds/Teleport Sound.wav" type="AudioStream" id=1]
 
 [sub_resource type="BoxShape" id=1]
+
+[sub_resource type="CubeMesh" id=2]
 
 [node name="BoundingBox" type="Area"]
 collision_layer = 0
@@ -16,3 +18,9 @@ shape = SubResource( 1 )
 stream = ExtResource( 1 )
 unit_size = 10.0
 max_db = 6.0
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 15.4075, 0, 0, 0, 9.14852, 0, 0, 0, 18.9843, 0, -10.1336, 0 )
+layers = 2
+mesh = SubResource( 2 )
+material/0 = null
