@@ -55,8 +55,3 @@ func _on_Timer_timeout():
 
 
 
-var duration_time = 0
-
-func _on_Duration_timeout():
-	duration_time += 0.05
-	print (duration_time)

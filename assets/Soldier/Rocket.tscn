@@ -55,11 +55,5 @@ __meta__ = {
 [node name="Spatial" parent="." instance=ExtResource( 3 )]
 transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.362993, 0, 0, 0.1 )
 
-[node name="Duration" type="Timer" parent="."]
-process_mode = 0
-wait_time = 0.05
-autostart = true
-
 [connection signal="area_entered" from="Area" to="." method="_on_Area_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
-[connection signal="timeout" from="Duration" to="." method="_on_Duration_timeout"]
