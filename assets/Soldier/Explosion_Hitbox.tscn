@@ -18,8 +18,7 @@ collision_layer = 8
 collision_mask = 2
 script = ExtResource( 1 )
 duration = 0.1
-distance_ratio = 4.0
-explode_force = 4
+explode_force = 5
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 1 )
