@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Maps/Map 1/First Area B.tscn" type="PackedScene" id=1]
 [ext_resource path="res://CameraHub.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Maps/Map 1/Third Area.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Maps/Map 1/Fifth Area.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Maps/Map 1/Sixth Area.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Maps/Map 1/Wall Shots.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/Skybox/BoundingBox.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assets/Soldier/Soldier.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Maps/Map 1/Fourth Area.tscn" type="PackedScene" id=20]
@@ -184,7 +185,7 @@ transform = Transform( 3.4, 0, 0, 0, 1, 0, 0, 0, 0.00612051, 310, 24, -126.328 )
 script = SubResource( 94 )
 
 [node name="Respawn" type="Position3D" parent="BoundingBox8"]
-transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, 23.2353, -21.9803, -9037.56 )
+transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, -26.6177, -21.9803, -10181.3 )
 
 [node name="First_Ground_Skip" parent="." instance=ExtResource( 31 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 335.5, 0, -167 )
@@ -212,6 +213,9 @@ transform = Transform( 0.294118, 0, 0, 0, 0.999999, 0, 0, 0, 1.25, -4613.25, -51
 
 [node name="Respawn" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.5, -14.5 )
+
+[node name="Wall Shots" parent="." instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 218.5, 0, -176 )
 
 [connection signal="body_entered" from="BoundingBox4" to="BoundingBox4" method="_on_BoundingBox_body_entered"]
 [connection signal="body_entered" from="BoundingBox5" to="BoundingBox5" method="_on_BoundingBox_body_entered"]
