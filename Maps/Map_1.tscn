@@ -1802,7 +1802,7 @@ script = ExtResource( 3 )
 transform = Transform( 0.294118, 0, 0, 0, 0.999999, 0, 0, 0, 1.25, -4613.25, -519.48, 124986 )
 
 [node name="Ground Skip" parent="." instance=ExtResource( 30 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -157 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 386.5, 0, -166 )
 
 [connection signal="body_exited" from="BoundingBox4" to="BoundingBox4" method="_on_BoundingBox_body_exited"]
 [connection signal="body_exited" from="BoundingBox5" to="BoundingBox5" method="_on_BoundingBox_body_exited"]
