@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://assets/Platform Objects/Door2.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://assets/Skybox/BoundingBox.gd" type="Script" id=2]
@@ -19,10 +19,7 @@
 [ext_resource path="res://assets/Platform Objects/FirstRamp.tscn" type="PackedScene" id=17]
 [ext_resource path="res://assets/Platform Objects/Wall2.tscn" type="PackedScene" id=18]
 [ext_resource path="res://assets/Platform Objects/SecondRamp.tscn" type="PackedScene" id=19]
-[ext_resource path="res://assets/Textures/Rock 035/Rock035_1K_NormalGL.jpg" type="Texture" id=20]
-[ext_resource path="res://assets/Textures/Rock 035/Rock035_1K_Color.jpg" type="Texture" id=21]
-[ext_resource path="res://assets/Textures/Rock 035/Rock035_1K_AmbientOcclusion.jpg" type="Texture" id=22]
-[ext_resource path="res://assets/Textures/Rock 035/Rock035_1K_Roughness.jpg" type="Texture" id=23]
+[ext_resource path="res://assets/Platform Objects/Orange Plat.tscn" type="PackedScene" id=20]
 [ext_resource path="res://assets/Skybox/End Box.gd" type="Script" id=24]
 [ext_resource path="res://assets/Platform Objects/No_Hit_Wall.tscn" type="PackedScene" id=25]
 
@@ -34,6 +31,8 @@ background_mode = 2
 background_sky = SubResource( 1 )
 background_sky_orientation = Basis( 0.34202, 0, 0.939693, 0, 1, 0, -0.939693, 0, 0.34202 )
 background_energy = 1.5
+ambient_light_color = Color( 0.396078, 0.396078, 0.396078, 1 )
+ambient_light_sky_contribution = 0.8
 fog_enabled = true
 fog_color = Color( 0, 0.0745098, 0.14902, 1 )
 fog_sun_color = Color( 0.101961, 0, 1, 1 )
@@ -41,6 +40,7 @@ fog_sun_amount = 1.0
 fog_depth_begin = 0.0
 fog_height_min = 0.0
 fog_height_max = -70.0
+tonemap_mode = 3
 ss_reflections_max_steps = 512
 ss_reflections_depth_tolerance = 64.9
 ss_reflections_roughness = false
@@ -49,8 +49,6 @@ glow_enabled = true
 glow_levels/2 = true
 glow_intensity = 3.5
 glow_bloom = 0.33
-glow_bicubic_upscale = true
-adjustment_enabled = true
 adjustment_brightness = 1.2
 
 [sub_resource type="ConvexPolygonShape" id=10]
@@ -63,92 +61,6 @@ emission = Color( 0.168627, 0, 0.976471, 1 )
 emission_energy = 1.0
 emission_operator = 0
 emission_on_uv2 = false
-
-[sub_resource type="SpatialMaterial" id=35]
-flags_unshaded = true
-params_grow = true
-params_grow_amount = -0.2
-albedo_color = Color( 0.92549, 0.478431, 0.164706, 1 )
-distance_fade_mode = 3
-distance_fade_min_distance = 13.0
-distance_fade_max_distance = 15.0
-
-[sub_resource type="SpatialMaterial" id=93]
-next_pass = SubResource( 35 )
-params_cull_mode = 2
-albedo_texture = ExtResource( 21 )
-roughness_texture = ExtResource( 23 )
-normal_enabled = true
-normal_scale = 1.0
-normal_texture = ExtResource( 20 )
-ao_enabled = true
-ao_light_affect = 1.0
-ao_texture = ExtResource( 22 )
-ao_on_uv2 = true
-ao_texture_channel = 1
-distance_fade_mode = 3
-distance_fade_min_distance = 13.0
-distance_fade_max_distance = 15.0
-
-[sub_resource type="SpatialMaterial" id=38]
-flags_unshaded = true
-params_grow = true
-params_grow_amount = -0.2
-albedo_color = Color( 0.92549, 0.478431, 0.164706, 1 )
-distance_fade_mode = 3
-distance_fade_min_distance = 13.0
-distance_fade_max_distance = 15.0
-
-[sub_resource type="SpatialMaterial" id=36]
-next_pass = SubResource( 38 )
-params_cull_mode = 2
-albedo_texture = ExtResource( 21 )
-roughness_texture = ExtResource( 23 )
-normal_enabled = true
-normal_scale = 1.0
-normal_texture = ExtResource( 20 )
-ao_enabled = true
-ao_light_affect = 1.0
-ao_texture = ExtResource( 22 )
-ao_on_uv2 = true
-ao_texture_channel = 1
-distance_fade_mode = 3
-distance_fade_min_distance = 13.0
-distance_fade_max_distance = 15.0
-
-[sub_resource type="SpatialMaterial" id=39]
-next_pass = SubResource( 36 )
-params_cull_mode = 2
-albedo_texture = ExtResource( 21 )
-roughness_texture = ExtResource( 23 )
-normal_enabled = true
-normal_scale = 1.0
-normal_texture = ExtResource( 20 )
-ao_enabled = true
-ao_light_affect = 1.0
-ao_texture = ExtResource( 22 )
-ao_on_uv2 = true
-ao_texture_channel = 1
-distance_fade_mode = 3
-distance_fade_min_distance = 8.0
-distance_fade_max_distance = 10.0
-
-[sub_resource type="SpatialMaterial" id=40]
-next_pass = SubResource( 36 )
-params_cull_mode = 2
-albedo_texture = ExtResource( 21 )
-roughness_texture = ExtResource( 23 )
-normal_enabled = true
-normal_scale = 1.0
-normal_texture = ExtResource( 20 )
-ao_enabled = true
-ao_light_affect = 1.0
-ao_texture = ExtResource( 22 )
-ao_on_uv2 = true
-ao_texture_channel = 1
-distance_fade_mode = 3
-distance_fade_min_distance = 8.0
-distance_fade_max_distance = 10.0
 
 [sub_resource type="GDScript" id=28]
 script/source = "extends Area
@@ -3903,30 +3815,20 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, -6.61744e-24, 1, 44.9827, 1650, -11.
 
 [node name="Spatial4" type="Spatial" parent="Fifth Area"]
 
-[node name="Rock 037" parent="Fifth Area/Spatial4" instance=ExtResource( 7 )]
-transform = Transform( 7.54979e-08, 0, 1, 0, 1, 0, -1, 0, 7.54979e-08, -23, -46.8944, 59 )
-
-[node name="MeshInstance" parent="Fifth Area/Spatial4/Rock 037" index="0"]
-transform = Transform( 2, 0, 0, 0, 2, 7.11863e-23, 1.69407e-21, -2.84217e-14, 1, 0, 0, 0 )
-material/0 = SubResource( 93 )
-
-[node name="Rock 045" parent="Fifth Area/Spatial4" instance=ExtResource( 7 )]
-transform = Transform( 7.54979e-08, 0, 1, 0, 1, 0, -1, 0, 7.54979e-08, -23, -46.8944, 66 )
-
-[node name="MeshInstance" parent="Fifth Area/Spatial4/Rock 045" index="0"]
-material/0 = SubResource( 39 )
-
-[node name="Rock 046" parent="Fifth Area/Spatial4" instance=ExtResource( 7 )]
-transform = Transform( 7.54979e-08, 0, 1, 0, 1, 0, -1, 0, 7.54979e-08, -23, -46.8944, 52 )
-
-[node name="MeshInstance" parent="Fifth Area/Spatial4/Rock 046" index="0"]
-material/0 = SubResource( 40 )
-
 [node name="BHOP Check" parent="Fifth Area/Spatial4" instance=ExtResource( 13 )]
 transform = Transform( 7.70079e-07, -3.5, -1.56487e-08, 0, -2.75382e-07, 0.6444, -10.2, -2.64243e-07, -1.18144e-15, -22.9793, -46.9047, 58.5276 )
 
 [node name="Respawn" type="Position3D" parent="Fifth Area/Spatial4/BHOP Check"]
 transform = Transform( 0.999998, 5.32907e-15, 0, -3.83693e-13, 0.999999, -3.9968e-15, -3.93023e-19, -1.59162e-12, 1, 1.97446, -7.23464, 77.0332 )
+
+[node name="Orange Plat" parent="Fifth Area/Spatial4" instance=ExtResource( 20 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23, -47, 52 )
+
+[node name="Orange Plat2" parent="Fifth Area/Spatial4" instance=ExtResource( 20 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23, -47, 59 )
+
+[node name="Orange Plat3" parent="Fifth Area/Spatial4" instance=ExtResource( 20 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23, -47, 66 )
 
 [node name="HUD" parent="." instance=ExtResource( 11 )]
 
@@ -5160,7 +5062,3 @@ transform = Transform( 1, -3.55271e-15, -6.61744e-23, 1.7053e-13, 0.999999, -8.8
 [connection signal="body_exited" from="10th Area/Next Level" to="10th Area/Next Level" method="_on_BoundingBox_body_exited"]
 [connection signal="body_entered" from="10th Area/BoundingBox" to="10th Area/BoundingBox" method="_on_BoundingBox_body_entered"]
 [connection signal="body_entered" from="10th Area/Portal" to="10th Area/Portal" method="Rocket_Entered"]
-
-[editable path="Fifth Area/Spatial4/Rock 037"]
-[editable path="Fifth Area/Spatial4/Rock 045"]
-[editable path="Fifth Area/Spatial4/Rock 046"]

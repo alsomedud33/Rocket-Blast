@@ -5,8 +5,8 @@ var duration = 5
 export var speed:int = 10
 var velocity = Vector3()
 var bounce
-var explosion = preload("res://assets/Soldier/Explosion_Hitbox.tscn")#: PackedScene
-
+onready var explosion = preload("res://assets/Soldier/Explosion_Hitbox.tscn")#: PackedScene
+onready var decal = preload('res://assets/Textures/Bullet Decal.tscn')
 onready var main = get_tree().current_scene
 
 #onready var explosion_instance = explosion.instance()
@@ -36,6 +36,12 @@ func _physics_process(delta):
 		if index == 0:
 			var collision = get_slide_collision(index)
 			var explosion_instance = explosion.instance()
+			
+			var decal_instance = decal.instance()
+			main.add_child(decal_instance)
+			decal_instance.global_transform.origin = collision.get_position()
+			decal_instance.look_at(collision.get_position() + collision.get_normal(), Vector3.UP)
+			
 			explosion_instance.y_explode_ratio = 1
 			main.add_child(explosion_instance)
 			explosion_instance.global_transform.origin = collision.get_position()

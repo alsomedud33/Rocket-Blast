@@ -20,6 +20,7 @@ emission_operator = 0
 emission_on_uv2 = false
 
 [sub_resource type="PrismMesh" id=5]
+size = Vector3( 10, 10, 10 )
 
 [sub_resource type="SpatialMaterial" id=13]
 vertex_color_use_as_albedo = true

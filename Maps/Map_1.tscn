@@ -17,12 +17,12 @@
 [ext_resource path="res://Maps/Map 1/Ground Skip.tscn" type="PackedScene" id=30]
 [ext_resource path="res://Maps/Map 1/First_Ground_Skip.tscn" type="PackedScene" id=31]
 
-[sub_resource type="PanoramaSky" id=79]
+[sub_resource type="PanoramaSky" id=95]
 panorama = ExtResource( 21 )
 
 [sub_resource type="Environment" id=2]
 background_mode = 2
-background_sky = SubResource( 79 )
+background_sky = SubResource( 95 )
 ambient_light_color = Color( 0.396078, 0.396078, 0.396078, 1 )
 ambient_light_sky_contribution = 0.0
 fog_enabled = true
@@ -175,20 +175,20 @@ transform = Transform( 3.4, 0, 0, 0, 1, 0, 0, 0, 0.00612051, 439, 24, 68.1716 )
 script = SubResource( 94 )
 
 [node name="Respawn" type="Position3D" parent="BoundingBox7"]
-transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, -29.7059, -21.9803, -40734.3 )
+transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, -38.3823, -21.9803, -66712.5 )
 
 [node name="Ground Skip" parent="." instance=ExtResource( 30 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 386.5, 0, -166 )
 
 [node name="First_Ground_Skip" parent="." instance=ExtResource( 31 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 335.5, 0, -167 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 306.5, 0, -323.5 )
 
 [node name="BoundingBox8" parent="." instance=ExtResource( 11 )]
-transform = Transform( 3.4, 0, 0, 0, 1, 0, 0, 0, 0.00612051, 310, 24, -126.328 )
+transform = Transform( 3.4, 0, 0, 0, 1, 0, 0, 0, 0.00612051, 310, 24, -282.828 )
 script = SubResource( 94 )
 
 [node name="Respawn" type="Position3D" parent="BoundingBox8"]
-transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, -26.6177, -21.9803, -10181.3 )
+transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, -26.6177, -21.9803, 14980 )
 
 [node name="Wall Shots" parent="." instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 218.5, 0, -176 )
