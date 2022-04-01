@@ -302,6 +302,13 @@ transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, -29.7059, -21.9803, 
 [node name="Ground Skip" parent="." instance=ExtResource( 30 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 386.5, 0, -166 )
 
+[node name="BoundingBox8" parent="." instance=ExtResource( 11 )]
+transform = Transform( 3.4, 0, 0, 0, 1, 0, 0, 0, 0.00612051, 310, 24, -126.328 )
+script = SubResource( 94 )
+
+[node name="Respawn" type="Position3D" parent="BoundingBox8"]
+transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, 23.2353, -21.9803, -9037.56 )
+
 [node name="First_Ground_Skip" parent="." instance=ExtResource( 31 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 335.5, 0, -167 )
 
@@ -1823,6 +1830,7 @@ transform = Transform( 0.294118, 0, 0, 0, 0.999999, 0, 0, 0, 1.25, -4613.25, -51
 [connection signal="body_entered" from="BoundingBox5" to="BoundingBox5" method="_on_BoundingBox_body_entered"]
 [connection signal="body_entered" from="BoundingBox6" to="BoundingBox6" method="_on_BoundingBox_body_entered"]
 [connection signal="body_entered" from="BoundingBox7" to="BoundingBox7" method="_on_BoundingBox_body_entered"]
+[connection signal="body_entered" from="BoundingBox8" to="BoundingBox8" method="_on_BoundingBox_body_entered"]
 [connection signal="body_exited" from="Fifth Area/Next Level" to="Fifth Area/Next Level" method="_on_BoundingBox_body_exited"]
 [connection signal="body_entered" from="Fifth Area/BoundingBox" to="Fifth Area/BoundingBox" method="Level_5"]
 [connection signal="body_entered" from="Fifth Area/Portal" to="Fifth Area/Portal" method="Rocket_Entered"]
