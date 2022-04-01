@@ -6,7 +6,7 @@ var bounce_normal = Vector3()
 export var distance_ratio: float = 3
 export var y_explode_ratio: float =3
 onready var radius = $CollisionShape.shape.radius
-var radius_val= 1
+export var radius_val= 1
 
 var newbox = SphereShape.new()
 

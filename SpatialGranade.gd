@@ -36,7 +36,7 @@ func _physics_process(delta):
 		if index == 0:
 			var collision = get_slide_collision(index)
 			var explosion_instance = explosion.instance()
-			explosion_instance.y_explode_ratio = 0.5
+			explosion_instance.y_explode_ratio = 1
 			main.add_child(explosion_instance)
 			explosion_instance.global_transform.origin = collision.get_position()
 			

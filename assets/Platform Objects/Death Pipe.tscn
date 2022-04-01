@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/Platform Objects/Material_011.material" type="Material" id=1]
 [ext_resource path="res://assets/Platform Objects/Material_010.material" type="Material" id=2]
@@ -33,6 +33,9 @@ surfaces/0 = {
 "vertex_count": 4
 }
 
+[sub_resource type="ConvexPolygonShape" id=3]
+points = PoolVector3Array( -3.51913, 0.0191257, -3.51913, 3.5191, 0.0191257, 3.51913, -3.51913, 0.0191257, 3.51913, 3.5191, 0.0191257, -3.51913 )
+
 [node name="Spatial" type="MeshInstance"]
 mesh = SubResource( 1 )
 material/0 = null
@@ -47,3 +50,8 @@ material/0 = null
 __meta__ = {
 "_editor_description_": ""
 }
+
+[node name="StaticBody" type="StaticBody" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+shape = SubResource( 3 )

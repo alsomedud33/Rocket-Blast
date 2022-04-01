@@ -1372,7 +1372,6 @@ material/0 = SubResource( 77 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 24.5, -60.5 )
 
 [node name="MeshInstance" parent="Fifth Area/Rock 037" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0 )
 material/0 = SubResource( 77 )
 
 [node name="Rock 038" parent="Fifth Area" instance=ExtResource( 15 )]

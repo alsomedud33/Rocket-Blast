@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://assets/test2.gd" type="Script" id=1]
+[ext_resource path="res://assets/UI/HUD.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/Soldier/Soldier Hat.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/Soldier/Rocket Launcher.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/UI/Crosshair_reticle.png" type="Texture" id=5]
@@ -241,5 +242,7 @@ pitch_scale = 0.8
 __meta__ = {
 "_editor_description_": ""
 }
+
+[node name="HUD" parent="." instance=ExtResource( 2 )]
 
 [connection signal="timeout" from="Footstep" to="." method="_on_Footstep_timeout"]
