@@ -50,6 +50,12 @@ transform = Transform( 0.99914, 0, -0.0414571, 0, 1, 0, 0.0414571, 0, 0.99914, 5
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 2 )
 
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.999332, 0.0182782, -0.0316587, 0.0307173, 0.0496711, 0.998293, 0.0198195, -0.998598, 0.0490765, 46, 12.2368, 3.2192 )
+layers = 9
+shadow_enabled = true
+shadow_bias = 1.2
+
 [node name="First Area" parent="." instance=ExtResource( 3 )]
 
 [node name="Second Area" parent="." instance=ExtResource( 1 )]
