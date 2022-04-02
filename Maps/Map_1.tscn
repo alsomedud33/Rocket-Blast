@@ -149,7 +149,7 @@ transform = Transform( 1.02, 0, 0, 0, 1, 0, 0, 0, 0.00612051, 393.5, 18, -76.387
 script = SubResource( 94 )
 
 [node name="Respawn" type="Position3D" parent="BoundingBox10"]
-transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, -192.794, -14.9803, -47514.8 )
+transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, -192.794, -15.9803, -48086.6 )
 
 [node name="First_Ground_Skip" parent="." instance=ExtResource( 31 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 306.5, 0, -323.5 )
