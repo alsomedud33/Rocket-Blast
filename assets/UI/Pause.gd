@@ -69,3 +69,9 @@ func _on_Bomber_Man_pressed():
 	visible = false
 	print ("ui_cancel")
 	Paused = false
+
+
+func _on_Quit_pressed():
+	anim.play("Fade In")
+	yield(anim,"animation_finished")
+	get_tree().quit()

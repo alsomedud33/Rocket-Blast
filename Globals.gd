@@ -7,9 +7,10 @@ var complete = false
 var sticky_deployed:int = 0
 var player: int
 
-var map_1 = preload("res://Maps/Map_1.tscn")
-var map_2 = preload("res://Maps/Map_2.tscn")
-
+#var map_1 = preload("res://Maps/Map_1.tscn")
+#var map_2 = preload("res://Maps/Map_2.tscn")
+onready var explosion_hitbox = preload("res://assets/Soldier/Explosion_Hitbox.tscn")
+onready var partical = preload("res://assets/Sfx/Explosion.tscn")
 var proj_counter = 0
 
 func _ready():
