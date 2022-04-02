@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/WoodFloor020_1K_Color.jpg-8bcd09e92254053f46724c760702d0cc.s3tc.stex"
-path.etc2="res://.import/WoodFloor020_1K_Color.jpg-8bcd09e92254053f46724c760702d0cc.etc2.stex"
+path.s3tc="res://.import/WoodFloor020_1K_Color.jpg-3e0024927842c34e0363056c5261ba38.s3tc.stex"
+path.etc2="res://.import/WoodFloor020_1K_Color.jpg-3e0024927842c34e0363056c5261ba38.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/Textures/WoodFloor020/WoodFloor020_1K_Color.jpg"
-dest_files=[ "res://.import/WoodFloor020_1K_Color.jpg-8bcd09e92254053f46724c760702d0cc.s3tc.stex", "res://.import/WoodFloor020_1K_Color.jpg-8bcd09e92254053f46724c760702d0cc.etc2.stex" ]
+source_file="E:/Steam/Game/assets/Textures/WoodFloor020/WoodFloor020_1K_Color.jpg"
+dest_files=[ "res://.import/WoodFloor020_1K_Color.jpg-3e0024927842c34e0363056c5261ba38.s3tc.stex", "res://.import/WoodFloor020_1K_Color.jpg-3e0024927842c34e0363056c5261ba38.etc2.stex" ]
 
 [params]
 

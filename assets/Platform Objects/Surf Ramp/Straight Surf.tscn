@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/Platform Objects/Surf Ramp/surf.obj" type="ArrayMesh" id=1]
+
+[sub_resource type="ConvexPolygonShape" id=1]
+points = PoolVector3Array( 0.11646, 3.55857, 3.5, 3.61714, -3.44196, 3.5, 0.11646, 3.55857, -3.5, -0.109185, 3.55442, 3.5, 3.61714, -3.44196, -3.5, 3.49972, -3.5, 3.5, -0.109185, 3.55442, -3.5, -3.60916, -3.44611, 3.5, 3.49972, -3.5, -3.5, -3.50023, -3.5, 3.5, -3.60916, -3.44611, -3.5, -3.50023, -3.5, -3.5 )
+
+[node name="Straight Surf" type="MeshInstance"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
+mesh = ExtResource( 1 )
+material/0 = null
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="StaticBody" type="StaticBody" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+shape = SubResource( 1 )
