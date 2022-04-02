@@ -5,7 +5,8 @@
 [sub_resource type="ConvexPolygonShape" id=1]
 points = PoolVector3Array( -6.5, 3.49976, -2, -6.5, 3.55458, -1.89129, 6.5, 3.49976, -2, -6.5, -0.035254, 3.4999, -6.5, 0.0192119, 3.60916, 6.5, 3.55458, -1.89129, 6.5, -0.035254, 3.4999, 6.5, 0.0192119, 3.60916 )
 
-[node name="Spatial" type="MeshInstance"]
+[node name="Surf Vertical" type="MeshInstance"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
 mesh = ExtResource( 1 )
 material/0 = null
 __meta__ = {
