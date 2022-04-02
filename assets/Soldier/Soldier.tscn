@@ -145,10 +145,10 @@ collide_with_areas = true
 
 [node name="Shotgun" parent="Pivot/Camera" instance=ExtResource( 14 )]
 transform = Transform( -1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, -1, 0.71345, -0.4348, -0.9946 )
+visible = false
 
 [node name="Rocket Launcher" parent="Pivot/Camera" groups=["Player"] instance=ExtResource( 4 )]
 transform = Transform( -0.1, 0, -8.74228e-09, 0, 0.1, 0, 8.74228e-09, 0, -0.1, 1, -0.7, 5.96046e-08 )
-visible = false
 
 [node name="Gun0" type="Spatial" parent="Pivot/Camera/Rocket Launcher"]
 transform = Transform( 1, 0, 1.27898e-13, 0, 1, 0, -1.27898e-13, 0, 1, 0, 2.96889, 13.2005 )
