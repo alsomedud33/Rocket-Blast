@@ -11,6 +11,9 @@ var player: int
 #var map_2 = preload("res://Maps/Map_2.tscn")
 onready var explosion_hitbox = preload("res://assets/Soldier/Explosion_Hitbox.tscn")
 onready var partical = preload("res://assets/Sfx/Explosion.tscn")
+onready var rocket = preload("res://assets/Soldier/Rocket.tscn")
+onready var sticky = preload("res://assets/Demoman/Sticky Bomb.tscn")
+
 var proj_counter = 0
 
 func _ready():
