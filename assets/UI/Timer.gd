@@ -10,6 +10,7 @@ func _process(delta):
 		ms = 0
 		sec = 0
 		minutes = 0
+		Globals.proj_counter = 0
 		get_parent().get_parent().global_transform.origin = .get_tree().current_scene.get_node('Respawn').global_transform.origin
 	if Globals.complete == true:
 		$No.text  = self.get_text()
