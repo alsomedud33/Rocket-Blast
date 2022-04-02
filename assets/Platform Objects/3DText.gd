@@ -6,7 +6,7 @@ onready var label = $Viewport/RichLabel
 
 func _ready():
 	label.set_text(label_text)
-	label.scroll_to_line(0)
+#	label.scroll_to_line(0)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -15,7 +15,8 @@ func _ready():
 
 
 func _on_Area_body_entered(body):
-	label.remove_line(1)
+	pass
+#	label.remove_line(1)
 	#label.add_text("hello")
 	#label.scroll_to_line(label.get_line_count()-1)
 	#print (label.get_line_count())

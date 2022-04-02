@@ -1,8 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://BHOP_Check.gd" type="Script" id=1]
 
 [sub_resource type="BoxShape" id=1]
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.92549, 0.478431, 0.164706, 1 )
+
+[sub_resource type="CubeMesh" id=3]
+material = SubResource( 2 )
 
 [node name="BHOP Check" type="Area"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
@@ -19,5 +25,10 @@ shape = SubResource( 1 )
 __meta__ = {
 "_editor_description_": ""
 }
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+layers = 2
+mesh = SubResource( 3 )
+material/0 = null
 
 [connection signal="body_entered" from="." to="." method="_on_BHOP_Check_body_entered"]

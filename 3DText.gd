@@ -1,7 +1,7 @@
 #tool
 extends Viewport
 
-onready var label = $Label
+onready var label = $RichLabel
 
 
 # Called when the node enters the scene tree for the first time.
@@ -10,6 +10,7 @@ onready var label = $Label
 
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	size = label.rect_size *2
+func _process(delta):
+	if label.rect_size.y > 240:
+		size.y = label.rect_size.y*1.2# *2
 ##	pass
