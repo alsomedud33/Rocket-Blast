@@ -317,9 +317,6 @@ margin_right = 408.0
 margin_bottom = 83.0
 custom_fonts/font = SubResource( 12 )
 text = "Time:"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Counter" type="Panel" parent="."]
 pause_mode = 2
@@ -356,6 +353,7 @@ anims/RESET = SubResource( 17 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 pause_mode = 2
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
