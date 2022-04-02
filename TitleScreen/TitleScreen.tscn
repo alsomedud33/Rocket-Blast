@@ -11,6 +11,7 @@ onready var anim = $AnimationPlayer
 #onready var map_1 = preload(\"res://Maps/Map_1.tscn\")
 #onready var map_2 = preload(\"res://Maps/Map_2.tscn\")
 
+
 func _on_Exit_pressed():
 	anim.play(\"Fade In\")
 	yield(anim,\"animation_finished\")
