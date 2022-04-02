@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://assets/test2.gd" type="Script" id=1]
 [ext_resource path="res://assets/UI/HUD.tscn" type="PackedScene" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://assets/Sounds/Rocket_Trail.wav" type="AudioStream" id=11]
 [ext_resource path="res://assets/Sounds/Step_1.wav" type="AudioStream" id=12]
 [ext_resource path="res://assets/Sounds/Step_3.wav" type="AudioStream" id=13]
+[ext_resource path="res://assets/Weapons/Shotgun.tscn" type="PackedScene" id=14]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -142,8 +143,12 @@ enabled = true
 cast_to = Vector3( 0, 0, 100 )
 collide_with_areas = true
 
+[node name="Shotgun" parent="Pivot/Camera" instance=ExtResource( 14 )]
+transform = Transform( -1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, -1, 0.71345, -0.4348, -0.9946 )
+
 [node name="Rocket Launcher" parent="Pivot/Camera" groups=["Player"] instance=ExtResource( 4 )]
 transform = Transform( -0.1, 0, -8.74228e-09, 0, 0.1, 0, 8.74228e-09, 0, -0.1, 1, -0.7, 5.96046e-08 )
+visible = false
 
 [node name="Gun0" type="Spatial" parent="Pivot/Camera/Rocket Launcher"]
 transform = Transform( 1, 0, 1.27898e-13, 0, 1, 0, -1.27898e-13, 0, 1, 0, 2.96889, 13.2005 )
