@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/Platform Objects/default.material" type="Material" id=1]
 
-[sub_resource type="ArrayMesh" id=1]
+[sub_resource type="ArrayMesh" id=18]
 resource_name = "SecondRamp_Plane012"
 surfaces/0 = {
 "aabb": AABB( -320, -1152, -1024, 320.004, 1152, 1152 ),
@@ -22,7 +22,7 @@ data = PoolVector3Array( 0, -0.0005, -128, -320, -112.916, 122.453, 0.0003, -87.
 
 [node name="SecondRamp" type="MeshInstance"]
 transform = Transform( -7.4784e-08, 0.02, 0, -0.02, -7.4784e-08, 0, 0, 0, 0.02, 9, -3.36528e-05, 9 )
-mesh = SubResource( 1 )
+mesh = SubResource( 18 )
 material/0 = null
 __meta__ = {
 "_editor_description_": ""
