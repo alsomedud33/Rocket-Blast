@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Maps/Map 1/First Area B.tscn" type="PackedScene" id=1]
 [ext_resource path="res://CameraHub.gd" type="Script" id=2]
@@ -7,8 +7,6 @@
 [ext_resource path="res://World 1.gd" type="Script" id=5]
 [ext_resource path="res://Maps/Map 1/First Area.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Maps/Map 1/Third Area.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Maps/Map 1/Fifth Area.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Maps/Map 1/Sixth Area.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Maps/Map 1/Wall Shots.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/Skybox/BoundingBox.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Maps/Map 1/Jurf Walls.tscn" type="PackedScene" id=12]
@@ -80,43 +78,6 @@ func Rocket_Entered(body):
 
 func _on_BoundingBox4_body_entered(body):
 	pass # Replace with function body.
-"
-
-[sub_resource type="GDScript" id=89]
-script/source = "extends Area
-
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = \"text\"
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-
-func _on_BoundingBox_body_exited(body):
-	body.global_transform.origin = $Respawn.global_transform.origin
-
-
-
-func _on_BoundingBox_body_entered(body):
-	body.global_transform.origin = $Respawn.global_transform.origin
-
-
-
-
-
-func Rocket_Entered(body):
-	self.rotation_degrees.x = -90
-	body.global_transform.origin = $Respawn.global_transform.origin
-	body.rotation_degrees.x = -90
 "
 
 [node name="Room" type="Node"]
@@ -210,21 +171,6 @@ script = SubResource( 94 )
 [node name="Respawn" type="Position3D" parent="BoundingBox9"]
 transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, 49.853, -17.9803, -15327.9 )
 
-[node name="Fifth Area" parent="." instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 0, -408 )
-
-[node name="Sixth Area" parent="." instance=ExtResource( 9 )]
-
-[node name="BoundingBox2" parent="." instance=ExtResource( 11 )]
-transform = Transform( 0.705024, 0, 0, 0, 1, 0, 0, 0, 0.035499, 598.417, 72.5, 12.9444 )
-script = SubResource( 89 )
-
-[node name="Respawn" type="Position3D" parent="BoundingBox2"]
-transform = Transform( 0.294118, 0, 0, 0, 0.999999, 0, 0, 0, 1.25, 41.1603, 52.5198, -14218 )
-__meta__ = {
-"_editor_description_": ""
-}
-
 [node name="End Box2" parent="." instance=ExtResource( 11 )]
 transform = Transform( 0.6256, 0, 2.80887e-15, 0, 0.5, 0, -2.66454e-14, 0, 0.00306025, 197.438, 29.772, -268.349 )
 script = ExtResource( 3 )
@@ -248,5 +194,4 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 195.5, 0, -357 )
 [connection signal="body_entered" from="BoundingBox10" to="BoundingBox10" method="_on_BoundingBox_body_entered"]
 [connection signal="body_entered" from="BoundingBox8" to="BoundingBox8" method="_on_BoundingBox_body_entered"]
 [connection signal="body_entered" from="BoundingBox9" to="BoundingBox9" method="_on_BoundingBox_body_entered"]
-[connection signal="body_entered" from="BoundingBox2" to="BoundingBox2" method="_on_BoundingBox_body_entered"]
 [connection signal="body_entered" from="End Box2" to="End Box2" method="_on_End_Box_body_entered"]
