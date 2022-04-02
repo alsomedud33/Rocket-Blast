@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Maps/Map 1/First Area B.tscn" type="PackedScene" id=1]
 [ext_resource path="res://CameraHub.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Maps/Map 1/Sixth Area.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Maps/Map 1/Wall Shots.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/Skybox/BoundingBox.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Maps/Map 1/Jurf Walls.tscn" type="PackedScene" id=12]
 [ext_resource path="res://assets/Soldier/Soldier.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Maps/Map 1/Fourth Area.tscn" type="PackedScene" id=20]
 [ext_resource path="res://assets/Skybox/environment.png" type="Texture" id=21]
@@ -24,7 +25,7 @@ panorama = ExtResource( 21 )
 background_mode = 2
 background_sky = SubResource( 95 )
 ambient_light_color = Color( 0.396078, 0.396078, 0.396078, 1 )
-ambient_light_sky_contribution = 0.0
+ambient_light_sky_contribution = 0.7
 fog_enabled = true
 fog_color = Color( 0, 0.0745098, 0.14902, 1 )
 fog_sun_color = Color( 0.101961, 0, 1, 1 )
@@ -177,10 +178,17 @@ transform = Transform( 3.4, 0, 0, 0, 1, 0, 0, 0, 0.00612051, 439, 24, 68.1716 )
 script = SubResource( 94 )
 
 [node name="Respawn" type="Position3D" parent="BoundingBox7"]
-transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, -38.3823, -21.9803, -66712.5 )
+transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, -38.3823, -21.9803, -67121 )
 
 [node name="Ground Skip" parent="." instance=ExtResource( 30 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 386.5, 0, -166 )
+
+[node name="BoundingBox10" parent="." instance=ExtResource( 11 )]
+transform = Transform( 1.02, 0, 0, 0, 1, 0, 0, 0, 0.00612051, 393.5, 18, -76.3876 )
+script = SubResource( 94 )
+
+[node name="Respawn" type="Position3D" parent="BoundingBox10"]
+transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, -192.794, -14.9803, -47514.8 )
 
 [node name="First_Ground_Skip" parent="." instance=ExtResource( 31 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 306.5, 0, -323.5 )
@@ -203,6 +211,7 @@ script = SubResource( 94 )
 transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, 49.853, -17.9803, -15327.9 )
 
 [node name="Fifth Area" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 0, -408 )
 
 [node name="Sixth Area" parent="." instance=ExtResource( 9 )]
 
@@ -217,19 +226,26 @@ __meta__ = {
 }
 
 [node name="End Box2" parent="." instance=ExtResource( 11 )]
-transform = Transform( 0.136, 0, 6.10623e-16, 0, 0.25, 0, -2.66454e-14, 0, 0.00306025, 627.438, 132.272, -397.849 )
+transform = Transform( 0.6256, 0, 2.80887e-15, 0, 0.5, 0, -2.66454e-14, 0, 0.00306025, 197.438, 29.772, -268.349 )
 script = ExtResource( 3 )
 
 [node name="Respawn" type="Position3D" parent="End Box2"]
-transform = Transform( 0.294118, 0, 0, 0, 0.999999, 0, 0, 0, 1.25, -4613.25, -519.48, 124986 )
+transform = Transform( 1, 0, -7.19978e-21, 0, 1, 0, 0, 0, 1, -313.898, -54.5, 82658.4 )
+__meta__ = {
+"_editor_description_": ""
+}
 
 [node name="Respawn" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.5, -14.5 )
+
+[node name="Jurf Walls" parent="." instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 195.5, 0, -357 )
 
 [connection signal="body_entered" from="BoundingBox4" to="BoundingBox4" method="_on_BoundingBox_body_entered"]
 [connection signal="body_entered" from="BoundingBox5" to="BoundingBox5" method="_on_BoundingBox_body_entered"]
 [connection signal="body_entered" from="BoundingBox6" to="BoundingBox6" method="_on_BoundingBox_body_entered"]
 [connection signal="body_entered" from="BoundingBox7" to="BoundingBox7" method="_on_BoundingBox_body_entered"]
+[connection signal="body_entered" from="BoundingBox10" to="BoundingBox10" method="_on_BoundingBox_body_entered"]
 [connection signal="body_entered" from="BoundingBox8" to="BoundingBox8" method="_on_BoundingBox_body_entered"]
 [connection signal="body_entered" from="BoundingBox9" to="BoundingBox9" method="_on_BoundingBox_body_entered"]
 [connection signal="body_entered" from="BoundingBox2" to="BoundingBox2" method="_on_BoundingBox_body_entered"]

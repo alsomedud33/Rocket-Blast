@@ -173,7 +173,7 @@ func move_air(input_velocity: Vector3, delta: float)-> void:
 	# Then get back our vertical component, and move the player
 	nextVelocity.y = vertical_velocity
 	print(sqrt(pow(nextVelocity.x,2) + pow(nextVelocity.z,2)))
-	if sqrt(pow(nextVelocity.x,2) + pow(nextVelocity.z,2)) >15:
+	if sqrt(pow(nextVelocity.x,2) + pow(nextVelocity.z,2)) >10:
 		velocity = move_and_slide_with_snap(nextVelocity, snap, Vector3.UP,true,4,deg2rad(20))
 	else:
 		velocity = move_and_slide_with_snap(nextVelocity, snap, Vector3.UP,true)
