@@ -108,17 +108,18 @@ func _physics_process(delta: float) -> void:
 		timer.start(cooldown)
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		var rocket_instance = rocket_launcher.instance()
-		main.add_child(rocket_instance)
+		#main.add_child(rocket_instance)
 		anim.play("Shoot_Rocket")
 		$Rocket_Launch.play()
 		$Rocket_Trail.play()
-		rocket_instance.global_transform.origin = guns.global_transform.origin
+		#rocket_instance.global_transform.origin = guns.global_transform.origin
 		if raycast.is_colliding():
-			rocket_instance.look_at(raycast.get_collision_point(), Vector3.UP)
+			rocket_instance.look_at_from_position(guns.global_transform.origin,raycast.get_collision_point(), Vector3.UP)
 		else:
+			rocket_instance.global_transform.origin = guns.global_transform.origin
 			rocket_instance.rotation_degrees = Vector3(-$Pivot.rotation_degrees.x+1, self.rotation_degrees.y+182,0)
 		rocket_instance.velocity = rocket_instance.transform.basis.z * -rocket_instance.speed
-		
+		main.call_deferred("add_child",rocket_instance)
 
 # This is were we calculate the speed to add to current velocity
 func accelerate(wish_dir: Vector3, input_velocity: Vector3, accels: float, maxspeed: float, delta: float)-> Vector3:

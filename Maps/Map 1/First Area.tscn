@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/Soldier/Soldier Hat Mesh.tres" type="ArrayMesh" id=1]
 [ext_resource path="res://assets/Skybox/BoundingBox.gd" type="Script" id=2]
@@ -13,7 +13,6 @@
 [ext_resource path="res://assets/Platform Objects/3DText.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assets/Platform Objects/Death Pipe.tscn" type="PackedScene" id=12]
 [ext_resource path="res://assets/Platform Objects/Door.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Maps/Tools/Contact_Point.tscn" type="PackedScene" id=14]
 
 [sub_resource type="GDScript" id=11]
 script/source = "extends Spatial
@@ -1202,8 +1201,5 @@ transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.7914
 
 [node name="Facade 019B12" parent="Map/Spatial" instance=ExtResource( 10 )]
 transform = Transform( -1.5299e-07, -3.5, 4.15734e-08, 3.5, -1.5299e-07, -1.79148e-09, 6.27018e-09, 1.45507e-07, 1, 10.5, 26, -19.5 )
-
-[node name="Contact_Point" parent="." instance=ExtResource( 14 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16.1 )
 
 [connection signal="body_entered" from="Map/BoundingBox" to="Map/BoundingBox" method="_on_BoundingBox_body_entered"]

@@ -20,5 +20,5 @@ func _on_Visibility_collision_area_entered(area):
 
 func _on_Visibility_collision_area_exited(area):
 	items -= 1
-	if items == 0:
+	if items <= 0:
 		area.get_parent().visible = false
