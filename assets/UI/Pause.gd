@@ -30,14 +30,14 @@ func _input(event):
 				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 				get_tree().paused = false
 				visible = false
-				print ("ui_cancel")
+				#print ("ui_cancel")
 				Paused = false
 			false:
 				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 				get_tree().paused = true
 				Physics2DServer.set_active(true)
 				visible = true
-				print ("ui_cancel")
+				#print ("ui_cancel")
 				Paused = true
 
 
@@ -58,7 +58,7 @@ func _on_Rocket_Man_pressed():
 	get_tree().change_scene_to(load("res://Maps/Map_1.tscn"))
 	get_tree().paused = false
 	visible = false
-	print ("ui_cancel")
+#	print ("ui_cancel")
 	Paused = false
 
 func _on_Bomber_Man_pressed():
@@ -67,7 +67,7 @@ func _on_Bomber_Man_pressed():
 	get_tree().change_scene_to(load("res://Maps/Map_2.tscn"))#change_scene("res://Maps/Map_2.tscn")
 	get_tree().paused = false
 	visible = false
-	print ("ui_cancel")
+#	print ("ui_cancel")
 	Paused = false
 
 

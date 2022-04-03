@@ -13,10 +13,10 @@ var newbox = SphereShape.new()
 
 
 
-var partical = preload("res://assets/Sfx/Explosion.tscn")
+#var partical = preload("res://assets/Sfx/Explosion.tscn")
 #export (PackedScene) onready var partical
 
-onready var partical_instance = partical.instance()
+#onready var partical_instance = partical.instance()
 
 onready var main = get_tree().current_scene
 
@@ -27,14 +27,14 @@ func _ready():
 	newbox.radius = radius_val
 	$CollisionShape.shape = newbox
 	$Timer.start(duration)
-	main.add_child(partical_instance)
+	#main.add_child(partical_instance)
 	#print (self.global_transform.origin)
-	partical_instance.global_translate(self.translation) 
-	partical_instance.scale = Vector3(0.01,0.01,0.01)
+	#partical_instance.global_translate(self.translation) 
+	#partical_instance.scale = Vector3(0.01,0.01,0.01)
 #	radius = radius_val
 
 func _process(delta):
-	partical_instance.global_transform.origin = self.global_transform.origin
+	#partical_instance.global_transform.origin = self.global_transform.origin
 	radius = radius_val
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

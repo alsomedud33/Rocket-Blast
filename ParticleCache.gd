@@ -32,11 +32,11 @@ func _ready():
 		#particles_instance.set_modulate(Color(1,1,1,0))
 		particles_instance.set_emitting(true)
 		particles_instance.set_one_shot(true)
-		self.call_deferred("add_child",particles_instance)
+		self.add_child(particles_instance)#call_deferred("add_child",particles_instance)
 		#self.add_child(particles_instance)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _physics_process(delta):
 	if frames >=3:
 		set_physics_process(false)
 		loaded = true
