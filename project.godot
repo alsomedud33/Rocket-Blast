@@ -116,5 +116,4 @@ common/enable_pause_aware_picking=true
 [rendering]
 
 threads/thread_model=2
-quality/depth/hdr=false
 environment/default_environment="res://default_env.tres"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://assets/Soldier/Rocket launcher.tres" type="ArrayMesh" id=1]
 [ext_resource path="res://assets/Skybox/BoundingBox.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/Skybox/BoundingBox.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/Platform Objects/Rock 035.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/Skybox/BHOP Check.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/Soldier/Soldier.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/Platform Objects/No_Hit_Wall.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/Kenny/Models/GLTF format/sign.glb" type="PackedScene" id=9]
 [ext_resource path="res://assets/Platform Objects/Facade 019B.tscn" type="PackedScene" id=11]
@@ -2084,6 +2085,9 @@ script = ExtResource( 2 )
 
 [node name="Respawn" type="Position3D" parent="Map/BoundingBox2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.840347, 3.5, -15.8458 )
+
+[node name="Soldier" parent="Map" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5, 3.45, -59.05 )
 
 [connection signal="body_entered" from="Map/BoundingBox" to="Map/BoundingBox" method="_on_BoundingBox_body_entered"]
 [connection signal="body_entered" from="Map/BoundingBox2" to="Map/BoundingBox2" method="_on_BoundingBox_body_entered"]

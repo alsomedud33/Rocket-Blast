@@ -1,10 +1,9 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Maps/Map 1/First Area B.tscn" type="PackedScene" id=1]
 [ext_resource path="res://CameraHub.gd" type="Script" id=2]
 [ext_resource path="res://assets/Skybox/End Box.gd" type="Script" id=3]
 [ext_resource path="res://Maps/Map 1/Second Area.tscn" type="PackedScene" id=4]
-[ext_resource path="res://World 1.gd" type="Script" id=5]
 [ext_resource path="res://Maps/Map 1/First Area.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Maps/Map 1/Third Area.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Maps/Tools/Contact_Point.tscn" type="PackedScene" id=8]
@@ -80,7 +79,6 @@ func Rocket_Entered(body):
 "
 
 [node name="Room" type="Node"]
-script = ExtResource( 5 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 2 )

@@ -1,0 +1,159 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/Platform Objects/Rock 035.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/Platform Objects/No_Hit_Wall.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/Demoman/Demolition Man.tscn" type="PackedScene" id=3]
+
+[node name="Surf_Fall" type="Spatial"]
+
+[node name="Demolition Man" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+
+[node name="Spatial" type="Spatial" parent="."]
+
+[node name="Rock 035" parent="Spatial" instance=ExtResource( 1 )]
+skeleton = NodePath("../..")
+
+[node name="Rock 036" parent="Spatial" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 0 )
+skeleton = NodePath("../..")
+
+[node name="Rock 037" parent="Spatial" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 0 )
+skeleton = NodePath("../..")
+
+[node name="Rock 038" parent="Spatial" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7 )
+skeleton = NodePath("../..")
+
+[node name="Rock 039" parent="Spatial" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 7 )
+skeleton = NodePath("../..")
+
+[node name="Rock 040" parent="Spatial" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 7 )
+skeleton = NodePath("../..")
+
+[node name="Spatial3" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -45, 0 )
+
+[node name="Rock 035" parent="Spatial3" instance=ExtResource( 1 )]
+skeleton = NodePath("../..")
+
+[node name="Rock 036" parent="Spatial3" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 0 )
+skeleton = NodePath("../..")
+
+[node name="Rock 037" parent="Spatial3" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 0 )
+skeleton = NodePath("../..")
+
+[node name="Rock 038" parent="Spatial3" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7 )
+skeleton = NodePath("../..")
+
+[node name="Rock 039" parent="Spatial3" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 7 )
+skeleton = NodePath("../..")
+
+[node name="Rock 040" parent="Spatial3" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 7 )
+skeleton = NodePath("../..")
+
+[node name="Spatial2" type="Spatial" parent="."]
+
+[node name="Rock 041" parent="Spatial2" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -25.5, 14 )
+skeleton = NodePath("../..")
+
+[node name="Rock 042" parent="Spatial2" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, -25.5, 14 )
+skeleton = NodePath("../..")
+
+[node name="Rock 043" parent="Spatial2" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -25.5, 14 )
+skeleton = NodePath("../..")
+
+[node name="Rock 044" parent="Spatial2" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -25.5, 21 )
+skeleton = NodePath("../..")
+
+[node name="Rock 045" parent="Spatial2" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, -25.5, 21 )
+skeleton = NodePath("../..")
+
+[node name="Rock 046" parent="Spatial2" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -25.5, 21 )
+skeleton = NodePath("../..")
+
+[node name="No_Hit" parent="." instance=ExtResource( 2 )]
+transform = Transform( -1, -8.74228e-08, 0, 0, 0, -1, 8.74228e-08, -1, 0, 0, 0, 25.8681 )
+
+[node name="No_Hit2" parent="." instance=ExtResource( 2 )]
+transform = Transform( -1, -8.74228e-08, 0, 0, 0, -1, 8.74228e-08, -1, 0, -7, 0, 25.8681 )
+
+[node name="No_Hit3" parent="." instance=ExtResource( 2 )]
+transform = Transform( -1, -8.74228e-08, 0, 0, 0, -1, 8.74228e-08, -1, 0, 7, 0, 25.8681 )
+
+[node name="No_Hit4" parent="." instance=ExtResource( 2 )]
+transform = Transform( -1, -8.74228e-08, 0, 0, 0, -1, 8.74228e-08, -1, 0, 0, -7, 25.8681 )
+
+[node name="No_Hit5" parent="." instance=ExtResource( 2 )]
+transform = Transform( -1, -8.74228e-08, 0, 0, 0, -1, 8.74228e-08, -1, 0, -7, -7, 25.8681 )
+
+[node name="No_Hit6" parent="." instance=ExtResource( 2 )]
+transform = Transform( -1, -8.74228e-08, 0, 0, 0, -1, 8.74228e-08, -1, 0, 7, -7, 25.8681 )
+
+[node name="No_Hit7" parent="." instance=ExtResource( 2 )]
+transform = Transform( -1, -8.74228e-08, 0, 0, 0, -1, 8.74228e-08, -1, 0, 0, -14, 25.8681 )
+
+[node name="No_Hit8" parent="." instance=ExtResource( 2 )]
+transform = Transform( -1, -8.74228e-08, 0, 0, 0, -1, 8.74228e-08, -1, 0, -7, -14, 25.8681 )
+
+[node name="No_Hit9" parent="." instance=ExtResource( 2 )]
+transform = Transform( -1, -8.74228e-08, 0, 0, 0, -1, 8.74228e-08, -1, 0, 7, -14, 25.8681 )
+
+[node name="No_Hit10" parent="." instance=ExtResource( 2 )]
+transform = Transform( -1, -8.74228e-08, 0, 0, 0, -1, 8.74228e-08, -1, 0, 0, -21, 25.8681 )
+
+[node name="No_Hit11" parent="." instance=ExtResource( 2 )]
+transform = Transform( -1, -8.74228e-08, 0, 0, 0, -1, 8.74228e-08, -1, 0, -7, -21, 25.8681 )
+
+[node name="No_Hit12" parent="." instance=ExtResource( 2 )]
+transform = Transform( -1, -8.74228e-08, 0, 0, 0, -1, 8.74228e-08, -1, 0, 7, -21, 25.8681 )
+
+[node name="No_Hit13" parent="." instance=ExtResource( 2 )]
+transform = Transform( -1, -8.74228e-08, 0, 0, 0, -1, 8.74228e-08, -1, 0, 0, -28, 25.8681 )
+
+[node name="No_Hit14" parent="." instance=ExtResource( 2 )]
+transform = Transform( -1, -8.74228e-08, 0, 0, 0, -1, 8.74228e-08, -1, 0, -7, -28, 25.8681 )
+
+[node name="No_Hit15" parent="." instance=ExtResource( 2 )]
+transform = Transform( -1, -8.74228e-08, 0, 0, 0, -1, 8.74228e-08, -1, 0, 7, -28, 25.8681 )
+
+[node name="No_Hit16" parent="." instance=ExtResource( 2 )]
+transform = Transform( -1, -8.74228e-08, 0, 0, 0, -1, 8.74228e-08, -1, 0, 0, -35, 25.8681 )
+
+[node name="No_Hit17" parent="." instance=ExtResource( 2 )]
+transform = Transform( -1, -8.74228e-08, 0, 0, 0, -1, 8.74228e-08, -1, 0, -7, -35, 25.8681 )
+
+[node name="No_Hit18" parent="." instance=ExtResource( 2 )]
+transform = Transform( -1, -8.74228e-08, 0, 0, 0, -1, 8.74228e-08, -1, 0, 7, -35, 25.8681 )
+
+[node name="No_Hit19" parent="." instance=ExtResource( 2 )]
+transform = Transform( -1, -8.74228e-08, 0, 0, 0, -1, 8.74228e-08, -1, 0, 0, -42, 25.8681 )
+
+[node name="No_Hit20" parent="." instance=ExtResource( 2 )]
+transform = Transform( -1, -8.74228e-08, 0, 0, 0, -1, 8.74228e-08, -1, 0, -7, -42, 25.8681 )
+
+[node name="No_Hit21" parent="." instance=ExtResource( 2 )]
+transform = Transform( -1, -8.74228e-08, 0, 0, 0, -1, 8.74228e-08, -1, 0, 7, -42, 25.8681 )
+
+[node name="No_Hit22" parent="." instance=ExtResource( 2 )]
+transform = Transform( -1, -8.74228e-08, 0, 0, 0, -1, 8.74228e-08, -1, 0, 0, -49, 25.8681 )
+
+[node name="No_Hit23" parent="." instance=ExtResource( 2 )]
+transform = Transform( -1, -8.74228e-08, 0, 0, 0, -1, 8.74228e-08, -1, 0, -7, -49, 25.8681 )
+
+[node name="No_Hit24" parent="." instance=ExtResource( 2 )]
+transform = Transform( -1, -8.74228e-08, 0, 0, 0, -1, 8.74228e-08, -1, 0, 7, -49, 25.8681 )
