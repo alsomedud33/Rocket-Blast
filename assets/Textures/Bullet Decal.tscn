@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://assets/Textures/Bullet Decal.gd" type="Script" id=1]
 [ext_resource path="res://assets/Textures/Explosion Decal.png" type="Texture" id=2]
+[ext_resource path="res://assets/Textures/explosion.png" type="Texture" id=3]
 
 [sub_resource type="QuadMesh" id=1]
 
@@ -9,6 +10,89 @@
 flags_transparent = true
 albedo_color = Color( 0.305882, 0.305882, 0.305882, 1 )
 albedo_texture = ExtResource( 2 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 23
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 23
+atlas = ExtResource( 3 )
+region = Rect2( 192, 0, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 23
+atlas = ExtResource( 3 )
+region = Rect2( 384, 0, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 23
+atlas = ExtResource( 3 )
+region = Rect2( 576, 0, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 23
+atlas = ExtResource( 3 )
+region = Rect2( 768, 0, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 23
+atlas = ExtResource( 3 )
+region = Rect2( 0, 192, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 23
+atlas = ExtResource( 3 )
+region = Rect2( 192, 192, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 23
+atlas = ExtResource( 3 )
+region = Rect2( 384, 192, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 23
+atlas = ExtResource( 3 )
+region = Rect2( 576, 192, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=12]
+flags = 23
+atlas = ExtResource( 3 )
+region = Rect2( 768, 192, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=13]
+flags = 23
+atlas = ExtResource( 3 )
+region = Rect2( 0, 384, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=14]
+flags = 23
+atlas = ExtResource( 3 )
+region = Rect2( 192, 384, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=16]
+flags = 23
+atlas = ExtResource( 3 )
+region = Rect2( 384, 384, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=17]
+flags = 23
+atlas = ExtResource( 3 )
+region = Rect2( 576, 384, 192, 192 )
+
+[sub_resource type="AtlasTexture" id=18]
+flags = 23
+atlas = ExtResource( 3 )
+region = Rect2( 768, 384, 192, 192 )
+
+[sub_resource type="SpriteFrames" id=15]
+animations = [ {
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ) ],
+"loop": false,
+"name": "Explosion",
+"speed": 100.0
+} ]
 
 [node name="Bullet Decal" type="Spatial"]
 script = ExtResource( 1 )
@@ -23,5 +107,10 @@ process_mode = 0
 wait_time = 5.0
 one_shot = true
 autostart = true
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+billboard = 1
+frames = SubResource( 15 )
+animation = "Explosion"
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

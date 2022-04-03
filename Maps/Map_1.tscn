@@ -101,7 +101,6 @@ script = ExtResource( 2 )
 transform = Transform( 1, 2.22799e-08, -2.47756e-08, -1.49012e-08, 0.9641, 0.265539, 2.98023e-08, -0.265539, 0.9641, 2.21349, 6.95739, 12.4384 )
 
 [node name="First Area" parent="." instance=ExtResource( 6 )]
-visible = false
 
 [node name="Contact_Point" parent="First Area" instance=ExtResource( 8 )]
 
