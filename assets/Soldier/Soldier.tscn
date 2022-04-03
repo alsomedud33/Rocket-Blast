@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://assets/test2.gd" type="Script" id=1]
 [ext_resource path="res://assets/UI/HUD.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://assets/Sounds/Step_1.wav" type="AudioStream" id=12]
 [ext_resource path="res://assets/Sounds/Step_3.wav" type="AudioStream" id=13]
 [ext_resource path="res://assets/Weapons/Shotgun.tscn" type="PackedScene" id=14]
+[ext_resource path="res://assets/Soldier/Visibility collision.gd" type="Script" id=15]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -111,6 +112,10 @@ tracks/3/keys = {
 "update": 0,
 "values": [ Transform( -0.1, 0, 1.50996e-08, 0, 0.1, 0, -1.50996e-08, 0, -0.1, 1, -0.7, 5.96046e-08 ), Transform( -0.1, 6.84943e-09, -1.34567e-08, 0, 0.0891197, 0.0453617, 1.50996e-08, 0.0453617, -0.0891196, 1, -0.7, 5.96046e-08 ), Transform( -0.1, 0, 1.50996e-08, 0, 0.1, 0, -1.50996e-08, 0, -0.1, 1, -0.7, 5.96046e-08 ) ]
 }
+
+[sub_resource type="SphereShape" id=5]
+
+[sub_resource type="SphereMesh" id=6]
 
 [node name="Soldier" type="KinematicBody" groups=["Player"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
@@ -250,4 +255,21 @@ __meta__ = {
 
 [node name="HUD" parent="." instance=ExtResource( 2 )]
 
+[node name="Visibility collision" type="Area" parent="."]
+collision_layer = 0
+collision_mask = 16
+script = ExtResource( 15 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Visibility collision"]
+transform = Transform( 50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0 )
+shape = SubResource( 5 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Visibility collision/CollisionShape"]
+layers = 2
+cast_shadow = 0
+mesh = SubResource( 6 )
+material/0 = null
+
 [connection signal="timeout" from="Footstep" to="." method="_on_Footstep_timeout"]
+[connection signal="area_entered" from="Visibility collision" to="Visibility collision" method="_on_Visibility_collision_area_entered"]
+[connection signal="area_exited" from="Visibility collision" to="Visibility collision" method="_on_Visibility_collision_area_exited"]

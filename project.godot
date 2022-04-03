@@ -99,10 +99,15 @@ shoot2={
 
 [layer_names]
 
+3d_render/layer_1="Everything"
+3d_render/layer_2="Invisible"
+3d_render/layer_3="Viewport"
+3d_render/layer_4="Ontop"
 3d_physics/layer_1="Environment"
 3d_physics/layer_2="Player"
 3d_physics/layer_3="Projectile"
 3d_physics/layer_4="Explosions"
+3d_physics/layer_5="Contact Point (Map)"
 
 [physics]
 
