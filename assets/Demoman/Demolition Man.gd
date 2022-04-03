@@ -117,10 +117,10 @@ func _physics_process(delta: float) -> void:
 		
 
 # This is were we calculate the speed to add to current velocity
-func accelerate(wishdir: Vector3, input_velocity: Vector3, accels: float, max_speed: float, delta: float)-> Vector3:
+func accelerate(wish_dir: Vector3, input_velocity: Vector3, accels: float, max_speed: float, delta: float)-> Vector3:
 	# Current speed is calculated by projecting our velocity onto wishdir.
 	# We can thus manipulate our wishdir to trick the engine into thinking we're going slower than we actually are, allowing us to accelerate further.
-	var current_speed: float = input_velocity.dot(wishdir)
+	var current_speed: float = input_velocity.dot(wish_dir)
 	
 	# Next, we calculate the speed to be added for the next frame.
 	# If our current speed is low enough, we will add the max acceleration.
@@ -128,13 +128,13 @@ func accelerate(wishdir: Vector3, input_velocity: Vector3, accels: float, max_sp
 	var add_speed: float = clamp(max_speed - current_speed, 0, accels * delta)
 	
 	# Put the new velocity in a variable, so the vector can be displayed.
-	accelerate_return = input_velocity + wishdir * add_speed
+	accelerate_return = input_velocity + wish_dir * add_speed
 	return accelerate_return
 
 # Scale down horizontal velocity
 # For now, we're simply substracting 10% from our current velocity. This is not how it works in engines like idTech or Source !
 func friction(input_velocity: Vector3)-> Vector3:
-	var speed: float = input_velocity.length()
+	#var speed: float = input_velocity.length()
 	var scaled_velocity: Vector3
 
 	scaled_velocity = input_velocity * 0.9 # Reduce current velocity by 10%

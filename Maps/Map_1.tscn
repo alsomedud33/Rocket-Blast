@@ -76,8 +76,6 @@ func Rocket_Entered(body):
 	body.rotation_degrees.x = -90
 
 
-func _on_BoundingBox4_body_entered(body):
-	pass # Replace with function body.
 "
 
 [node name="Room" type="Node"]
@@ -123,6 +121,7 @@ transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, -7.94116, -21.9803, 
 
 [node name="Second Area" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -161.5, 0, -185 )
+visible = false
 
 [node name="BoundingBox11" parent="." instance=ExtResource( 11 )]
 transform = Transform( 3.4, 0, 0, 0, 1, 0, 0, 0, 0.00612051, -135.5, 24, -138.22 )
@@ -132,6 +131,7 @@ script = SubResource( 94 )
 transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, 117.647, -21.4803, 19636.5 )
 
 [node name="Third Area" parent="." instance=ExtResource( 7 )]
+visible = false
 
 [node name="BoundingBox6" parent="." instance=ExtResource( 11 )]
 transform = Transform( 3.4, 0, 0, 0, 1, 0, 0, 0, 0.00612051, 248, 24, 28.2803 )
@@ -141,6 +141,7 @@ script = SubResource( 94 )
 transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, 55.7353, -21.9803, -7403.7 )
 
 [node name="Fourth Area" parent="." instance=ExtResource( 20 )]
+visible = false
 
 [node name="BoundingBox7" parent="." instance=ExtResource( 11 )]
 transform = Transform( 3.4, 0, 0, 0, 1, 0, 0, 0, 0.00612051, 439, 24, 68.1716 )
@@ -151,6 +152,7 @@ transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, -38.3823, -21.9803, 
 
 [node name="Ground Skip" parent="." instance=ExtResource( 30 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 386.5, 0, -166 )
+visible = false
 
 [node name="BoundingBox10" parent="." instance=ExtResource( 11 )]
 transform = Transform( 1.02, 0, 0, 0, 1, 0, 0, 0, 0.00612051, 393.5, 18, -76.3876 )
@@ -161,6 +163,7 @@ transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, -192.794, -15.9803, 
 
 [node name="First_Ground_Skip" parent="." instance=ExtResource( 31 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 306.5, 0, -323.5 )
+visible = false
 
 [node name="BoundingBox8" parent="." instance=ExtResource( 11 )]
 transform = Transform( 3.4, 0, 0, 0, 1, 0, 0, 0, 0.00612051, 310, 24, -282.828 )
@@ -171,6 +174,7 @@ transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, -26.6177, -21.9803, 
 
 [node name="Wall Shots" parent="." instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 218.5, 0, -176 )
+visible = false
 
 [node name="BoundingBox9" parent="." instance=ExtResource( 11 )]
 transform = Transform( 3.4, 0, 0, 0, 1, 0, 0, 0, 0.00612051, 216.5, 20.5, -86.8876 )
@@ -194,6 +198,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.5, -14.5 )
 
 [node name="Jurf Walls" parent="." instance=ExtResource( 12 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 195.5, 0, -357 )
+visible = false
 
 [connection signal="body_entered" from="BoundingBox4" to="BoundingBox4" method="_on_BoundingBox_body_entered"]
 [connection signal="body_entered" from="BoundingBox5" to="BoundingBox5" method="_on_BoundingBox_body_entered"]
