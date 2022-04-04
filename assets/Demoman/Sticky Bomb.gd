@@ -2,14 +2,15 @@ extends KinematicBody
 
 var frame = 0 
 var duration = 0.7
-export var gravity = 15
+export var gravity = 9
 var terminal_velocity: float = gravity * -5
-export var speed:float = 0
+export var speed:float = 7
 var velocity = Vector3()
 var bounce
 var stick = false
 var delete = false
 export var explosion = preload("res://assets/Soldier/Explosion_Hitbox.tscn")#: PackedScene
+onready var decal = preload('res://assets/Textures/Bullet Decal.tscn')
 
 onready var main = get_tree().current_scene
 onready var tick = preload("res://assets/Sounds/Demoman/Explosion Tick.wav")
@@ -25,6 +26,8 @@ func _ready():
 
 
 func _physics_process(delta):
+	if velocity:
+		$RayCast.look_at(transform.origin + velocity,Vector3.UP)
 	if delete == true:
 		Globals.sticky_deployed = 0
 		queue_free()
@@ -63,6 +66,17 @@ func _process(delta):
 		explode()
 
 func explode():
+		var decal_instance = decal.instance()
+		#main.add_child(decal_instance)
+		if $RayCast.is_colliding():
+			main.add_child(decal_instance)
+			decal_instance.transform.origin = $RayCast.get_collision_point()#collision.get_position()
+			print ($RayCast.get_collision_point())
+			decal_instance.look_at($RayCast.get_collision_point() + $RayCast.get_collision_normal(), Vector3.UP)#(collision.get_position() + collision.get_normal()*2, Vector3.UP)
+		else:
+			decal_instance.transform.origin = self.global_transform.origin
+			decal_instance.decal = false
+			main.add_child(decal_instance)
 		var explosion_instance = explosion.instance()
 		explosion_instance.radius_val = 1.5
 		explosion_instance.distance_ratio = 1

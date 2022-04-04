@@ -5,7 +5,6 @@ var Paused = false
 var fullscreen = false
 
 onready var volume_scroll = $"Panel/Volume Scroll"
-onready var anim = $"../AnimationPlayer"
 func _ready():
 	Transitions.fade_out()
 	visible = false

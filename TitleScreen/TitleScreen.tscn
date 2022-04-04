@@ -6,8 +6,6 @@
 script/source = "extends Control
 
 
-onready var anim = $AnimationPlayer
-
 #onready var map_1 = preload(\"res://Maps/Map_1.tscn\")
 #onready var map_2 = preload(\"res://Maps/Map_2.tscn\")
 

@@ -56,7 +56,8 @@ func _ready():
 	Globals.player = 2
 	yield(get_tree().create_timer(.2), "timeout")
 	main = get_tree().current_scene
-
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
 func _process(delta):
 
 	mouse_sensitivity = Globals.mouse_sense * 0.001

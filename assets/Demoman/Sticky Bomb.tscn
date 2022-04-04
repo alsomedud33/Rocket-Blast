@@ -379,8 +379,6 @@ func _process(delta) -> void:
 [node name="Sticky Bomb" type="KinematicBody" groups=["Sticky Bomb"]]
 collision_layer = 4
 script = ExtResource( 2 )
-gravity = 9
-speed = 7.0
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 mesh = SubResource( 1 )
@@ -408,3 +406,9 @@ script = SubResource( 7 )
 segments = 30
 base_width = 0.1
 smoothing_iterations = 3
+
+[node name="RayCast" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0618126 )
+enabled = true
+cast_to = Vector3( 0, 0, -1 )
+debug_shape_custom_color = Color( 1, 0, 0, 1 )
