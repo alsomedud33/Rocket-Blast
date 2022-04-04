@@ -263,7 +263,7 @@ collision_mask = 16
 script = ExtResource( 15 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Visibility collision"]
-transform = Transform( 80, 0, 0, 0, 80, 0, 0, 0, 80, 0, 0, 0 )
+transform = Transform( 70, 0, 0, 0, 70, 0, 0, 0, 70, 0, 0, 0 )
 shape = SubResource( 5 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Visibility collision/CollisionShape"]
