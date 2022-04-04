@@ -15,6 +15,7 @@ func goto_scene(path, current_scene):
 	var loader = ResourceLoader.load_interactive(path)
 	var loading_bar = load("res://LoadingBar.tscn").instance()
 	get_tree().get_root().call_deferred('add_child',loading_bar)
+	#immediately remove current scene to free up memory and load next scene faster
 	current_scene.queue_free()
 	while true:
 		var err = loader.poll()

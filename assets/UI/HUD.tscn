@@ -97,6 +97,7 @@ outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
 font_data = SubResource( 10 )
 
 [node name="HUD" type="CanvasLayer"]
+layer = 3
 follow_viewport_enable = true
 
 [node name="Pause" type="Control" parent="."]
