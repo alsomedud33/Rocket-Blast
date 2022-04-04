@@ -19,11 +19,12 @@ onready var sixth_area = preload("res://Maps/Map 1/Jurf Walls.tscn")
 
 onready var explosion_hitbox = preload("res://assets/Soldier/Explosion_Hitbox.tscn")
 onready var partical = preload("res://assets/Sfx/Explosion.tscn")
+onready var decal = preload("res://assets/Textures/Bullet Decal.tscn")
 onready var rocket = preload("res://assets/Soldier/Rocket.tscn")
 onready var sticky = preload("res://assets/Demoman/Sticky Bomb.tscn")
 
-#onready var soldier = preload("res://assets/Soldier/Soldier.tscn")
-#onready var demo = preload("res://assets/Demoman/Demolition Man.tscn")
+onready var soldier = preload("res://assets/Soldier/Soldier.tscn")
+onready var demo = preload("res://assets/Demoman/Demolition Man.tscn")
 
 onready var text_3d = preload("res://assets/Platform Objects/3DText.tscn")
 
