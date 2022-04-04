@@ -39,8 +39,11 @@ func _physics_process(delta):
 			
 			var decal_instance = decal.instance()
 			main.add_child(decal_instance)
-			decal_instance.global_transform.origin = collision.get_position()
-			decal_instance.look_at(collision.get_position() + collision.get_normal()*2, Vector3.UP)
+			#$RayCast.get_collider().add_child(decal_instance)
+			#collision.get_collider().add_child(decal_instance)
+			decal_instance.transform.origin = $RayCast.get_collision_point()#collision.get_position()
+			print ($RayCast.get_collision_point())
+			decal_instance.look_at($RayCast.get_collision_point() + $RayCast.get_collision_normal(), Vector3.UP)#(collision.get_position() + collision.get_normal()*2, Vector3.UP)
 			
 			explosion_instance.y_explode_ratio = 1
 			main.add_child(explosion_instance)
