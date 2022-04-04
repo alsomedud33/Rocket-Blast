@@ -100,7 +100,6 @@ script = ExtResource( 2 )
 transform = Transform( 1, 2.22799e-08, -2.47756e-08, -1.49012e-08, 0.9641, 0.265539, 2.98023e-08, -0.265539, 0.9641, 2.21349, 6.95739, 12.4384 )
 
 [node name="First Area" parent="." instance=ExtResource( 6 )]
-visible = false
 
 [node name="Contact_Point" parent="First Area" instance=ExtResource( 8 )]
 
@@ -112,7 +111,6 @@ script = SubResource( 94 )
 transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, -41.7647, -21.4803, -14102.5 )
 
 [node name="First Area B" parent="." instance=ExtResource( 1 )]
-visible = false
 
 [node name="Contact_Point2" parent="First Area B" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 0 )
@@ -129,7 +127,6 @@ transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, -7.94116, -21.9803, 
 
 [node name="Second Area" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -161.5, 0, -185 )
-visible = false
 
 [node name="Contact_Point4" parent="Second Area" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -6.5 )
@@ -145,7 +142,6 @@ script = SubResource( 94 )
 transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, 117.647, -21.4803, 19636.5 )
 
 [node name="Third Area" parent="." instance=ExtResource( 7 )]
-visible = false
 
 [node name="Contact_Point" parent="Third Area" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 5 )
@@ -161,7 +157,6 @@ script = SubResource( 94 )
 transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, 55.7353, -21.9803, -7403.7 )
 
 [node name="Fourth Area" parent="." instance=ExtResource( 20 )]
-visible = false
 
 [node name="Contact_Point3" parent="Fourth Area" instance=ExtResource( 8 )]
 
@@ -177,7 +172,6 @@ transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, -38.3823, -21.9803, 
 
 [node name="Ground Skip" parent="." instance=ExtResource( 30 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 386.5, 0, -166 )
-visible = false
 
 [node name="Contact_Point" parent="Ground Skip" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -4 )
@@ -194,7 +188,6 @@ transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, -192.794, -15.9803, 
 
 [node name="First_Ground_Skip" parent="." instance=ExtResource( 31 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 306.5, 0, -323.5 )
-visible = false
 
 [node name="Contact_Point" parent="First_Ground_Skip" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, -14.5 )
@@ -211,7 +204,6 @@ transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, -26.6177, -21.9803, 
 
 [node name="Wall Shots" parent="." instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 218.5, 0, -176 )
-visible = false
 
 [node name="Contact_Point" parent="Wall Shots" instance=ExtResource( 8 )]
 
@@ -243,7 +235,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.5, -14.5 )
 
 [node name="Jurf Walls" parent="." instance=ExtResource( 12 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 195.5, 0, -357 )
-visible = false
 
 [node name="Contact_Point" parent="Jurf Walls" instance=ExtResource( 8 )]
 
