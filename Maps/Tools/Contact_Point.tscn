@@ -18,5 +18,6 @@ shape = SubResource( 12 )
 
 [node name="MeshInstance" type="MeshInstance" parent="CollisionShape"]
 layers = 2
+cast_shadow = 0
 mesh = SubResource( 14 )
 material/0 = null

@@ -40,7 +40,7 @@ func _physics_process(delta):
 			var decal_instance = decal.instance()
 			main.add_child(decal_instance)
 			decal_instance.global_transform.origin = collision.get_position()
-			decal_instance.look_at(collision.get_position() + collision.get_normal(), Vector3.UP)
+			decal_instance.look_at(collision.get_position() + collision.get_normal()*2, Vector3.UP)
 			
 			explosion_instance.y_explode_ratio = 1
 			main.add_child(explosion_instance)

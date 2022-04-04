@@ -1,8 +1,10 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://assets/Textures/Bullet Decal.gd" type="Script" id=1]
 [ext_resource path="res://assets/Textures/Explosion Decal.png" type="Texture" id=2]
 [ext_resource path="res://assets/Textures/explosion.png" type="Texture" id=3]
+[ext_resource path="res://assets/Sounds/Demoman/Explosion 2.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/Sounds/Rocket_Launch_2.wav" type="AudioStream" id=5]
 
 [sub_resource type="QuadMesh" id=1]
 
@@ -109,8 +111,18 @@ one_shot = true
 autostart = true
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+cast_shadow = 0
 billboard = 1
 frames = SubResource( 15 )
 animation = "Explosion"
+
+[node name="Explosion" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 5 )
+attenuation_model = 1
+unit_size = 30.0
+
+[node name="Explosion2" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 4 )
+unit_size = 30.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
