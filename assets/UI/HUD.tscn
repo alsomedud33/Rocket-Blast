@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://assets/UI/Pause.gd" type="Script" id=1]
 [ext_resource path="res://assets/UI/Timer.gd" type="Script" id=2]
@@ -96,53 +96,7 @@ outline_size = 3
 outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
 font_data = SubResource( 10 )
 
-[sub_resource type="Animation" id=18]
-resource_name = "Fade In"
-tracks/0/type = "value"
-tracks/0/path = NodePath("ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
-}
-
-[sub_resource type="Animation" id=16]
-resource_name = "Fade out"
-tracks/0/type = "value"
-tracks/0/path = NodePath("ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
-}
-
-[sub_resource type="Animation" id=17]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 0, 0, 0, 1 ) ]
-}
-
 [node name="HUD" type="CanvasLayer"]
-layer = 3
 follow_viewport_enable = true
 
 [node name="Pause" type="Control" parent="."]
@@ -346,20 +300,6 @@ custom_fonts/font = SubResource( 15 )
 text = "0"
 align = 1
 valign = 1
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-pause_mode = 2
-autoplay = "Fade out"
-"anims/Fade In" = SubResource( 18 )
-"anims/Fade out" = SubResource( 16 )
-anims/RESET = SubResource( 17 )
-
-[node name="ColorRect" type="ColorRect" parent="."]
-pause_mode = 2
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-color = Color( 0, 0, 0, 1 )
 
 [connection signal="value_changed" from="Pause/Panel/Mouse Sense" to="Pause" method="_on_Mouse_Sense_value_changed"]
 [connection signal="pressed" from="Pause/Panel/Rocket Man" to="Pause" method="_on_Rocket_Man_pressed"]

@@ -7,6 +7,7 @@ var fullscreen = false
 onready var volume_scroll = $"Panel/Volume Scroll"
 onready var anim = $"../AnimationPlayer"
 func _ready():
+	Transitions.fade_out()
 	visible = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	#AudioServer.set_bus_volume_db(0, linear2db(0.5))
@@ -53,18 +54,20 @@ func _on_Mouse_Sense_value_changed(value):
 
 
 func _on_Rocket_Man_pressed():
-	anim.play("Fade In")
-	yield(anim,"animation_finished")
-	get_tree().change_scene_to(load("res://Maps/Map_1.tscn"))
+	Transitions.fade_in()
+	yield(Transitions.anim,"animation_finished")
+	SceneChanger.goto_scene("res://Maps/Map_1.tscn",get_tree().get_current_scene())
+	#get_tree().change_scene_to(load("res://Maps/Map_1.tscn"))
 	get_tree().paused = false
 	visible = false
 #	print ("ui_cancel")
 	Paused = false
 
 func _on_Bomber_Man_pressed():
-	anim.play("Fade In")
-	yield(anim,"animation_finished")
-	get_tree().change_scene_to(load("res://Maps/Map_2.tscn"))#change_scene("res://Maps/Map_2.tscn")
+	Transitions.fade_in()
+	yield(Transitions.anim,"animation_finished")
+	SceneChanger.goto_scene("res://Maps/Map_2.tscn",get_tree().get_current_scene())
+	#get_tree().change_scene_to(load("res://Maps/Map_2.tscn"))#change_scene("res://Maps/Map_2.tscn")
 	get_tree().paused = false
 	visible = false
 #	print ("ui_cancel")
@@ -72,6 +75,6 @@ func _on_Bomber_Man_pressed():
 
 
 func _on_Quit_pressed():
-	anim.play("Fade In")
-	yield(anim,"animation_finished")
+	Transitions.fade_in()
+	yield(Transitions.anim,"animation_finished")
 	get_tree().quit()

@@ -22,8 +22,8 @@ onready var partical = preload("res://assets/Sfx/Explosion.tscn")
 onready var rocket = preload("res://assets/Soldier/Rocket.tscn")
 onready var sticky = preload("res://assets/Demoman/Sticky Bomb.tscn")
 
-onready var soldier = preload("res://assets/Soldier/Soldier.tscn")
-onready var demo = preload("res://assets/Demoman/Demolition Man.tscn")
+#onready var soldier = preload("res://assets/Soldier/Soldier.tscn")
+#onready var demo = preload("res://assets/Demoman/Demolition Man.tscn")
 
 onready var text_3d = preload("res://assets/Platform Objects/3DText.tscn")
 

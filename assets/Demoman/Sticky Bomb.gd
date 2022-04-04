@@ -19,6 +19,8 @@ func _ready():
 	Globals.sticky_deployed += 1
 	Globals.proj_counter += 1
 	set_as_toplevel(true)
+	yield(get_tree().create_timer(.2), "timeout")
+	main = get_tree().current_scene
 	#$Timer.start(duration)
 
 
