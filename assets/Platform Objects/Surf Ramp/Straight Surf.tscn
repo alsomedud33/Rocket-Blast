@@ -1,17 +1,14 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/Platform Objects/Surf Ramp/surf.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://assets/Textures/WoodFloor020/WoodFloor020_1K_Roughness.jpg" type="Texture" id=2]
 [ext_resource path="res://assets/Textures/WoodFloor020/WoodFloor020_1K_Color.png" type="Texture" id=3]
-[ext_resource path="res://assets/Textures/WoodFloor020/WoodFloor020_1K_NormalGL.jpg" type="Texture" id=4]
 
 [sub_resource type="SpatialMaterial" id=2]
 params_cull_mode = 2
 albedo_texture = ExtResource( 3 )
+roughness = 0.0
 roughness_texture = ExtResource( 2 )
-normal_enabled = true
-normal_scale = 16.0
-normal_texture = ExtResource( 4 )
 
 [sub_resource type="ConvexPolygonShape" id=1]
 points = PoolVector3Array( 0.11646, 3.55857, 3.5, 3.61714, -3.44196, 3.5, 0.11646, 3.55857, -3.5, -0.109185, 3.55442, 3.5, 3.61714, -3.44196, -3.5, 3.49972, -3.5, 3.5, -0.109185, 3.55442, -3.5, -3.60916, -3.44611, 3.5, 3.49972, -3.5, -3.5, -3.50023, -3.5, 3.5, -3.60916, -3.44611, -3.5, -3.50023, -3.5, -3.5 )
