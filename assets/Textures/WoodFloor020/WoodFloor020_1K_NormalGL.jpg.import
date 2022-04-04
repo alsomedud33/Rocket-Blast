@@ -2,28 +2,26 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/WoodFloor020_1K_NormalGL.jpg-93d0d6a6725766b8afa83dfd233ef595.s3tc.stex"
-path.etc2="res://.import/WoodFloor020_1K_NormalGL.jpg-93d0d6a6725766b8afa83dfd233ef595.etc2.stex"
+path="res://.import/WoodFloor020_1K_NormalGL.jpg-93d0d6a6725766b8afa83dfd233ef595.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc2" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/Textures/WoodFloor020/WoodFloor020_1K_NormalGL.jpg"
-dest_files=[ "res://.import/WoodFloor020_1K_NormalGL.jpg-93d0d6a6725766b8afa83dfd233ef595.s3tc.stex", "res://.import/WoodFloor020_1K_NormalGL.jpg-93d0d6a6725766b8afa83dfd233ef595.etc2.stex" ]
+dest_files=[ "res://.import/WoodFloor020_1K_NormalGL.jpg-93d0d6a6725766b8afa83dfd233ef595.stex" ]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=1
-flags/repeat=true
-flags/filter=true
-flags/mipmaps=true
+flags/repeat=0
+flags/filter=false
+flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
 process/fix_alpha_border=true

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/WoodFloor020_1K_NormalDX.jpg-6fd319bd0887c49385f089b0df31ceca.stex"
+path="res://.import/WoodFloor020_1K_Color.png-a02b668eda5a4f4d7f1163441d55ab0f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Textures/WoodFloor020/WoodFloor020_1K_NormalDX.jpg"
-dest_files=[ "res://.import/WoodFloor020_1K_NormalDX.jpg-6fd319bd0887c49385f089b0df31ceca.stex" ]
+source_file="res://assets/Textures/WoodFloor020/WoodFloor020_1K_Color.png"
+dest_files=[ "res://.import/WoodFloor020_1K_Color.png-a02b668eda5a4f4d7f1163441d55ab0f.stex" ]
 
 [params]
 
@@ -23,7 +23,7 @@ flags/repeat=0
 flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
-flags/srgb=2
+flags/srgb=1
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
