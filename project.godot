@@ -33,10 +33,10 @@ config/icon="res://icon.png"
 [autoload]
 
 Globals="*res://Globals.gd"
+MusicController="*res://assets/Music/MusicConroller.tscn"
 ParticleCache="*res://ParticleCache.gd"
 SceneChanger="*res://SceneChanger.gd"
 Transitions="*res://Transitions.tscn"
-MusicConroller="*res://assets/Music/MusicConroller.tscn"
 
 [display]
 

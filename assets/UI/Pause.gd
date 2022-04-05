@@ -4,6 +4,7 @@ extends Control
 
 var fullscreen = false
 
+
 onready var masterVol_scroll = $"Panel/Master Volume"
 onready var effecctsVol_scroll = $"Panel/Effects Volume"
 onready var musicVol_scroll = $"Panel/Music2"
@@ -88,7 +89,26 @@ func _on_Bomber_Man_pressed():
 
 func _on_Quit_pressed():
 	Transitions.fade_in()
+	MusicController.fade_out()
 	yield(Transitions.anim,"animation_finished")
 	get_tree().quit()
 
 
+
+
+func _on_Quit2_pressed():
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	var my_random_number = rng.randi_range(1,2)
+	MusicController.fade_out()
+	#yield(MusicController.tween,"tween_completed")
+	match my_random_number:
+		1:
+			MusicController.play_music(MusicController.military_track)
+			MusicController.fade_in()
+		2:
+			MusicController.play_music(MusicController.jungle_track)
+			MusicController.fade_in()
+#		3:
+#			MusicController.play_music(MusicController.airport_track)
+#			MusicController.fade_in()

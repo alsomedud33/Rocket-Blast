@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://assets/test2.gd" type="Script" id=1]
 [ext_resource path="res://assets/UI/HUD.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://assets/Sounds/Step_1.wav" type="AudioStream" id=12]
 [ext_resource path="res://assets/Sounds/Step_3.wav" type="AudioStream" id=13]
 [ext_resource path="res://assets/Weapons/Shotgun.tscn" type="PackedScene" id=14]
+[ext_resource path="res://assets/Soldier/Crosshair.gd" type="Script" id=15]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -207,7 +208,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 stretch = true
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ViewportContainer"]
+[node name="Crosshair" type="TextureRect" parent="CanvasLayer/ViewportContainer"]
 margin_left = 625.0
 margin_top = 351.0
 margin_right = 655.0
@@ -216,9 +217,10 @@ rect_pivot_offset = Vector2( 15, 9 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource( 5 )
+script = ExtResource( 15 )
 
 [node name="Viewport" type="Viewport" parent="CanvasLayer/ViewportContainer"]
-size = Vector2( 1280, 720 )
+size = Vector2( 1920, 1080 )
 transparent_bg = true
 handle_input_locally = false
 hdr = false

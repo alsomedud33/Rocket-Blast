@@ -347,12 +347,15 @@ mouse_filter = 2
 script = ExtResource( 5 )
 
 [node name="Panel" type="MarginContainer" parent="CanvasLayer/Stage Select"]
-margin_left = 866.0
-margin_top = 64.0
-margin_right = 1276.0
-margin_bottom = 396.0
+anchor_left = 0.676562
+anchor_top = 0.0888889
+anchor_right = 0.996875
+anchor_bottom = 0.55
 size_flags_horizontal = 5
 size_flags_vertical = 5
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Stage Select/Panel"]
 margin_right = 410.0

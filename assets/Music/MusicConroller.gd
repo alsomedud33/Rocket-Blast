@@ -25,3 +25,7 @@ func fade_in():
 	tween.start()
 
 
+
+
+func _on_Music_finished():
+	music.play()
