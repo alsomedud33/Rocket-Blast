@@ -1,7 +1,7 @@
 extends Control
 
 
-var Paused = false
+
 var fullscreen = false
 
 onready var volume_scroll = $"Panel/Volume Scroll"
@@ -25,20 +25,20 @@ func _input(event):
 				fullscreen = false
 
 	if event.is_action_pressed("ui_cancel"):
-		match Paused:
+		match Globals.Paused:
 			true:
 				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 				get_tree().paused = false
 				visible = false
 				#print ("ui_cancel")
-				Paused = false
+				Globals.Paused = false
 			false:
 				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 				get_tree().paused = true
 				Physics2DServer.set_active(true)
 				visible = true
 				#print ("ui_cancel")
-				Paused = true
+				Globals.Paused = true
 
 
 func _on_HScrollBar_value_changed(value):
@@ -60,7 +60,7 @@ func _on_Rocket_Man_pressed():
 	get_tree().paused = false
 	visible = false
 #	print ("ui_cancel")
-	Paused = false
+	Globals.Paused = false
 
 func _on_Bomber_Man_pressed():
 	Transitions.fade_in()
@@ -70,7 +70,7 @@ func _on_Bomber_Man_pressed():
 	get_tree().paused = false
 	visible = false
 #	print ("ui_cancel")
-	Paused = false
+	Globals.Paused = false
 
 
 func _on_Quit_pressed():

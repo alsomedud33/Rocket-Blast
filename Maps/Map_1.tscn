@@ -1,9 +1,10 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Maps/Map 1/First Area B.tscn" type="PackedScene" id=1]
 [ext_resource path="res://CameraHub.gd" type="Script" id=2]
 [ext_resource path="res://assets/Skybox/End Box.gd" type="Script" id=3]
 [ext_resource path="res://Maps/Map 1/Second Area.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Maps/Stage Select.gd" type="Script" id=5]
 [ext_resource path="res://Maps/Map 1/First Area.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Maps/Map 1/Third Area.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Maps/Tools/Contact_Point.tscn" type="PackedScene" id=8]
@@ -77,6 +78,72 @@ func Rocket_Entered(body):
 
 "
 
+[sub_resource type="DynamicFontData" id=106]
+font_path = "res://assets/Fonts/TF2.ttf"
+
+[sub_resource type="DynamicFont" id=97]
+size = 30
+outline_size = 5
+outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+use_filter = true
+font_data = SubResource( 106 )
+
+[sub_resource type="DynamicFont" id=98]
+size = 30
+outline_size = 5
+outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+use_filter = true
+font_data = SubResource( 106 )
+
+[sub_resource type="DynamicFont" id=99]
+size = 30
+outline_size = 5
+outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+use_filter = true
+font_data = SubResource( 106 )
+
+[sub_resource type="DynamicFont" id=100]
+size = 30
+outline_size = 5
+outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+use_filter = true
+font_data = SubResource( 106 )
+
+[sub_resource type="DynamicFont" id=101]
+size = 30
+outline_size = 5
+outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+use_filter = true
+font_data = SubResource( 106 )
+
+[sub_resource type="DynamicFont" id=102]
+size = 30
+outline_size = 5
+outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+use_filter = true
+font_data = SubResource( 106 )
+
+[sub_resource type="DynamicFont" id=103]
+size = 30
+outline_size = 5
+outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+use_filter = true
+font_data = SubResource( 106 )
+
+[sub_resource type="DynamicFont" id=104]
+size = 30
+outline_size = 5
+outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+use_filter = true
+font_data = SubResource( 106 )
+
+[sub_resource type="DynamicFont" id=105]
+size = 30
+outline_size = 5
+outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+use_filter = true
+font_data = SubResource( 106 )
+
 [node name="Room" type="Node"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -103,6 +170,9 @@ transform = Transform( 1, 2.22799e-08, -2.47756e-08, -1.49012e-08, 0.9641, 0.265
 
 [node name="Contact_Point" parent="First Area" instance=ExtResource( 8 )]
 
+[node name="Position3D" type="Position3D" parent="First Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.5, -15 )
+
 [node name="BoundingBox4" parent="." instance=ExtResource( 11 )]
 transform = Transform( 3.4, 0, 0, 0, 1, 0, 0, 0, 0.00612051, -16.5, 24, 28.2803 )
 script = SubResource( 94 )
@@ -117,6 +187,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 0 )
 
 [node name="Contact_Point3" parent="First Area B" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -26.5, 0, -55.5 )
+
+[node name="Position3D" type="Position3D" parent="First Area B"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -25.5, 2.5, -58.5 )
 
 [node name="BoundingBox5" parent="." instance=ExtResource( 11 )]
 transform = Transform( 3.4, 0, 0, 0, 1, 0, 0, 0, 0.00612051, -134.5, 24, 54.7803 )
@@ -134,6 +207,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -6.5 )
 [node name="Contact_Point5" parent="Second Area" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 0, 210.5 )
 
+[node name="Position3D" type="Position3D" parent="Second Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.5, -15 )
+
 [node name="BoundingBox11" parent="." instance=ExtResource( 11 )]
 transform = Transform( 3.4, 0, 0, 0, 1, 0, 0, 0, 0.00612051, -135.5, 24, -138.22 )
 script = SubResource( 94 )
@@ -149,6 +225,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 5 )
 [node name="Contact_Point2" parent="Third Area" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -422, 6, -139 )
 
+[node name="Position3D" type="Position3D" parent="Third Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.5, -18 )
+
 [node name="BoundingBox6" parent="." instance=ExtResource( 11 )]
 transform = Transform( 3.4, 0, 0, 0, 1, 0, 0, 0, 0.00612051, 248, 24, 28.2803 )
 script = SubResource( 94 )
@@ -162,6 +241,9 @@ transform = Transform( 0.294118, 0, 0, 0, 1, 0, 0, 0, 1.25, 55.7353, -21.9803, -
 
 [node name="Contact_Point4" parent="Fourth Area" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 51 )
+
+[node name="Position3D" type="Position3D" parent="Fourth Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.5, -15 )
 
 [node name="BoundingBox7" parent="." instance=ExtResource( 11 )]
 transform = Transform( 3.4, 0, 0, 0, 1, 0, 0, 0, 0.00612051, 439, 24, 68.1716 )
@@ -179,6 +261,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -4 )
 [node name="Contact_Point2" parent="Ground Skip" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 83 )
 
+[node name="Position3D" type="Position3D" parent="Ground Skip"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.5, -15 )
+
 [node name="BoundingBox10" parent="." instance=ExtResource( 11 )]
 transform = Transform( 1.02, 0, 0, 0, 1, 0, 0, 0, 0.00612051, 393.5, 18, -76.3876 )
 script = SubResource( 94 )
@@ -194,6 +279,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, -14.5 )
 
 [node name="Contact_Point2" parent="First_Ground_Skip" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 35 )
+
+[node name="Position3D" type="Position3D" parent="First_Ground_Skip"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 3, -15 )
 
 [node name="BoundingBox8" parent="." instance=ExtResource( 11 )]
 transform = Transform( 3.4, 0, 0, 0, 1, 0, 0, 0, 0.00612051, 310, 24, -282.828 )
@@ -212,6 +300,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 61 )
 
 [node name="Contact_Point3" parent="Wall Shots" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 23 )
+
+[node name="Position3D" type="Position3D" parent="Wall Shots"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.5, -15 )
 
 [node name="BoundingBox9" parent="." instance=ExtResource( 11 )]
 transform = Transform( 3.4, 0, 0, 0, 1, 0, 0, 0, 0.00612051, 216.5, 20.5, -86.8876 )
@@ -241,12 +332,172 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 195.5, 0, -357 )
 [node name="Contact_Point2" parent="Jurf Walls" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 24, 80.5 )
 
+[node name="Position3D" type="Position3D" parent="Jurf Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.5, -14 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Stage Select" type="Control" parent="CanvasLayer"]
+pause_mode = 2
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 5 )
+
+[node name="Panel" type="MarginContainer" parent="CanvasLayer/Stage Select"]
+margin_left = 866.0
+margin_top = 64.0
+margin_right = 1276.0
+margin_bottom = 396.0
+size_flags_horizontal = 5
+size_flags_vertical = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Stage Select/Panel"]
+margin_right = 410.0
+margin_bottom = 332.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Stage Select/Panel/VBoxContainer"]
+margin_right = 410.0
+margin_bottom = 108.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Stage" type="Button" parent="CanvasLayer/Stage Select/Panel/VBoxContainer/HBoxContainer"]
+margin_right = 134.0
+margin_bottom = 108.0
+rect_min_size = Vector2( 134, 108 )
+custom_colors/font_color = Color( 0.92549, 0.478431, 0.164706, 1 )
+custom_fonts/font = SubResource( 97 )
+disabled = true
+text = "Stage 1"
+
+[node name="Stage2" type="Button" parent="CanvasLayer/Stage Select/Panel/VBoxContainer/HBoxContainer"]
+margin_left = 138.0
+margin_right = 272.0
+margin_bottom = 108.0
+rect_min_size = Vector2( 134, 108 )
+custom_colors/font_color = Color( 0.92549, 0.478431, 0.164706, 1 )
+custom_fonts/font = SubResource( 98 )
+disabled = true
+text = "Stage 2"
+
+[node name="Stage3" type="Button" parent="CanvasLayer/Stage Select/Panel/VBoxContainer/HBoxContainer"]
+margin_left = 276.0
+margin_right = 410.0
+margin_bottom = 108.0
+rect_min_size = Vector2( 134, 108 )
+custom_colors/font_color = Color( 0.92549, 0.478431, 0.164706, 1 )
+custom_fonts/font = SubResource( 99 )
+disabled = true
+text = "Stage 3"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Stage Select/Panel/VBoxContainer"]
+margin_top = 112.0
+margin_right = 410.0
+margin_bottom = 220.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Stage4" type="Button" parent="CanvasLayer/Stage Select/Panel/VBoxContainer/HBoxContainer2"]
+margin_right = 134.0
+margin_bottom = 108.0
+rect_min_size = Vector2( 134, 108 )
+custom_colors/font_color = Color( 0.92549, 0.478431, 0.164706, 1 )
+custom_fonts/font = SubResource( 100 )
+disabled = true
+text = "Stage 4"
+
+[node name="Stage5" type="Button" parent="CanvasLayer/Stage Select/Panel/VBoxContainer/HBoxContainer2"]
+margin_left = 138.0
+margin_right = 272.0
+margin_bottom = 108.0
+rect_min_size = Vector2( 134, 108 )
+custom_colors/font_color = Color( 0.92549, 0.478431, 0.164706, 1 )
+custom_fonts/font = SubResource( 101 )
+disabled = true
+text = "Stage 5"
+
+[node name="Stage6" type="Button" parent="CanvasLayer/Stage Select/Panel/VBoxContainer/HBoxContainer2"]
+margin_left = 276.0
+margin_right = 410.0
+margin_bottom = 108.0
+rect_min_size = Vector2( 134, 108 )
+custom_colors/font_color = Color( 0.92549, 0.478431, 0.164706, 1 )
+custom_fonts/font = SubResource( 102 )
+disabled = true
+text = "Stage 6"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/Stage Select/Panel/VBoxContainer"]
+margin_top = 224.0
+margin_right = 410.0
+margin_bottom = 332.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Stage7" type="Button" parent="CanvasLayer/Stage Select/Panel/VBoxContainer/HBoxContainer3"]
+margin_right = 134.0
+margin_bottom = 108.0
+rect_min_size = Vector2( 134, 108 )
+custom_colors/font_color = Color( 0.92549, 0.478431, 0.164706, 1 )
+custom_fonts/font = SubResource( 103 )
+disabled = true
+text = "Stage 7"
+
+[node name="Stage8" type="Button" parent="CanvasLayer/Stage Select/Panel/VBoxContainer/HBoxContainer3"]
+margin_left = 138.0
+margin_right = 272.0
+margin_bottom = 108.0
+rect_min_size = Vector2( 134, 108 )
+custom_colors/font_color = Color( 0.92549, 0.478431, 0.164706, 1 )
+custom_fonts/font = SubResource( 104 )
+disabled = true
+text = "Stage 8"
+
+[node name="Stage9" type="Button" parent="CanvasLayer/Stage Select/Panel/VBoxContainer/HBoxContainer3"]
+margin_left = 276.0
+margin_right = 410.0
+margin_bottom = 108.0
+rect_min_size = Vector2( 134, 108 )
+custom_colors/font_color = Color( 0.92549, 0.478431, 0.164706, 1 )
+custom_fonts/font = SubResource( 105 )
+disabled = true
+text = "Stage 9"
+
+[connection signal="area_entered" from="First Area/Contact_Point" to="CanvasLayer/Stage Select" method="contact_1"]
+[connection signal="body_entered" from="First Area/Contact_Point" to="CanvasLayer/Stage Select" method="contact_1"]
 [connection signal="body_entered" from="BoundingBox4" to="BoundingBox4" method="_on_BoundingBox_body_entered"]
+[connection signal="area_entered" from="First Area B/Contact_Point3" to="CanvasLayer/Stage Select" method="contact_2"]
+[connection signal="body_entered" from="First Area B/Contact_Point3" to="CanvasLayer/Stage Select" method="contact_2"]
 [connection signal="body_entered" from="BoundingBox5" to="BoundingBox5" method="_on_BoundingBox_body_entered"]
+[connection signal="area_entered" from="Second Area/Contact_Point4" to="CanvasLayer/Stage Select" method="contact_3"]
+[connection signal="body_entered" from="Second Area/Contact_Point4" to="CanvasLayer/Stage Select" method="contact_3"]
 [connection signal="body_entered" from="BoundingBox11" to="BoundingBox11" method="_on_BoundingBox_body_entered"]
+[connection signal="area_entered" from="Third Area/Contact_Point" to="CanvasLayer/Stage Select" method="contact_4"]
+[connection signal="body_entered" from="Third Area/Contact_Point" to="CanvasLayer/Stage Select" method="contact_4"]
 [connection signal="body_entered" from="BoundingBox6" to="BoundingBox6" method="_on_BoundingBox_body_entered"]
+[connection signal="area_entered" from="Fourth Area/Contact_Point3" to="CanvasLayer/Stage Select" method="contact_5"]
+[connection signal="body_entered" from="Fourth Area/Contact_Point3" to="CanvasLayer/Stage Select" method="contact_5"]
 [connection signal="body_entered" from="BoundingBox7" to="BoundingBox7" method="_on_BoundingBox_body_entered"]
+[connection signal="area_entered" from="Ground Skip/Contact_Point" to="CanvasLayer/Stage Select" method="contact_6"]
+[connection signal="body_entered" from="Ground Skip/Contact_Point" to="CanvasLayer/Stage Select" method="contact_6"]
 [connection signal="body_entered" from="BoundingBox10" to="BoundingBox10" method="_on_BoundingBox_body_entered"]
+[connection signal="area_entered" from="First_Ground_Skip/Contact_Point" to="CanvasLayer/Stage Select" method="contact_7"]
+[connection signal="body_entered" from="First_Ground_Skip/Contact_Point" to="CanvasLayer/Stage Select" method="contact_7"]
 [connection signal="body_entered" from="BoundingBox8" to="BoundingBox8" method="_on_BoundingBox_body_entered"]
+[connection signal="area_entered" from="Wall Shots/Contact_Point" to="CanvasLayer/Stage Select" method="contact_8"]
+[connection signal="body_entered" from="Wall Shots/Contact_Point" to="CanvasLayer/Stage Select" method="contact_8"]
 [connection signal="body_entered" from="BoundingBox9" to="BoundingBox9" method="_on_BoundingBox_body_entered"]
 [connection signal="body_entered" from="End Box2" to="End Box2" method="_on_End_Box_body_entered"]
+[connection signal="area_entered" from="Jurf Walls/Contact_Point" to="CanvasLayer/Stage Select" method="contact_9"]
+[connection signal="body_entered" from="Jurf Walls/Contact_Point" to="CanvasLayer/Stage Select" method="contact_9"]
+[connection signal="pressed" from="CanvasLayer/Stage Select/Panel/VBoxContainer/HBoxContainer/Stage" to="CanvasLayer/Stage Select" method="_on_Stage_pressed"]
+[connection signal="pressed" from="CanvasLayer/Stage Select/Panel/VBoxContainer/HBoxContainer/Stage2" to="CanvasLayer/Stage Select" method="_on_Stage2_pressed"]
+[connection signal="pressed" from="CanvasLayer/Stage Select/Panel/VBoxContainer/HBoxContainer/Stage3" to="CanvasLayer/Stage Select" method="_on_Stage3_pressed"]
+[connection signal="pressed" from="CanvasLayer/Stage Select/Panel/VBoxContainer/HBoxContainer2/Stage4" to="CanvasLayer/Stage Select" method="_on_Stage4_pressed"]
+[connection signal="pressed" from="CanvasLayer/Stage Select/Panel/VBoxContainer/HBoxContainer2/Stage5" to="CanvasLayer/Stage Select" method="_on_Stage5_pressed"]
+[connection signal="pressed" from="CanvasLayer/Stage Select/Panel/VBoxContainer/HBoxContainer2/Stage6" to="CanvasLayer/Stage Select" method="_on_Stage6_pressed"]
+[connection signal="pressed" from="CanvasLayer/Stage Select/Panel/VBoxContainer/HBoxContainer3/Stage7" to="CanvasLayer/Stage Select" method="_on_Stage7_pressed"]
+[connection signal="pressed" from="CanvasLayer/Stage Select/Panel/VBoxContainer/HBoxContainer3/Stage8" to="CanvasLayer/Stage Select" method="_on_Stage8_pressed"]
+[connection signal="pressed" from="CanvasLayer/Stage Select/Panel/VBoxContainer/HBoxContainer3/Stage9" to="CanvasLayer/Stage Select" method="_on_Stage9_pressed"]

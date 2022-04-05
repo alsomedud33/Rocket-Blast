@@ -6,6 +6,7 @@ var complete = false
 
 var sticky_deployed:int = 0
 var player: int
+var Paused = false
 
 #var map_1 = preload("res://Maps/Map_1.tscn")
 #var map_2 = preload("res://Maps/Map_2.tscn")
