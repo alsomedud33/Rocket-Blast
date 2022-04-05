@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/jungle track 1.wav-02cb4353adf6603fd0a4d6c174371603.sample"
+
+[deps]
+
+source_file="res://assets/Music/jungle track 1.wav"
+dest_files=[ "res://.import/jungle track 1.wav-02cb4353adf6603fd0a4d6c174371603.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
