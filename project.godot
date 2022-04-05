@@ -36,6 +36,7 @@ Globals="*res://Globals.gd"
 ParticleCache="*res://ParticleCache.gd"
 SceneChanger="*res://SceneChanger.gd"
 Transitions="*res://Transitions.tscn"
+MusicConroller="*res://assets/Music/MusicConroller.tscn"
 
 [display]
 
