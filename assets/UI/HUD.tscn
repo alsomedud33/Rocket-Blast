@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://assets/UI/Pause.gd" type="Script" id=1]
 [ext_resource path="res://assets/UI/Timer.gd" type="Script" id=2]
@@ -48,8 +48,8 @@ font_data = SubResource( 3 )
 [sub_resource type="DynamicFontData" id=20]
 font_path = "res://assets/Fonts/TF2.ttf"
 
-[sub_resource type="DynamicFont" id=5]
-size = 70
+[sub_resource type="DynamicFont" id=23]
+size = 40
 outline_size = 5
 outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
 use_filter = true
@@ -68,6 +68,13 @@ outline_size = 5
 outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
 use_filter = true
 font_data = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=24]
+size = 30
+outline_size = 5
+outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+use_filter = true
+font_data = SubResource( 20 )
 
 [sub_resource type="DynamicFontData" id=8]
 font_path = "res://assets/Fonts/TF2.ttf"
@@ -194,43 +201,84 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="Volume Scroll" type="HScrollBar" parent="Pause/Panel"]
-margin_left = 818.0
-margin_top = 617.0
-margin_right = 1218.0
-margin_bottom = 667.0
+[node name="Master Volume" type="HScrollBar" parent="Pause/Panel"]
+margin_left = 743.0
+margin_top = 552.0
+margin_right = 1143.0
+margin_bottom = 573.0
 rect_min_size = Vector2( 100, 0 )
+rect_pivot_offset = Vector2( 5, -17 )
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="Effects Volume" type="HScrollBar" parent="Pause/Panel"]
+margin_left = 743.0
+margin_top = 609.0
+margin_right = 1143.0
+margin_bottom = 630.0
+rect_min_size = Vector2( 100, 0 )
+rect_pivot_offset = Vector2( 5, -17 )
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="Music2" type="HScrollBar" parent="Pause/Panel"]
+margin_left = 743.0
+margin_top = 661.0
+margin_right = 1143.0
+margin_bottom = 682.0
+rect_min_size = Vector2( 100, 0 )
+rect_pivot_offset = Vector2( 5, -17 )
 max_value = 1.0
 step = 0.01
 value = 0.5
 
 [node name="Volume Percent" type="Label" parent="Pause/Panel"]
-margin_left = 947.0
-margin_top = 554.0
-margin_right = 1071.0
-margin_bottom = 625.0
-custom_fonts/font = SubResource( 5 )
+margin_left = 1140.0
+margin_top = 522.0
+margin_right = 1264.0
+margin_bottom = 593.0
+rect_pivot_offset = Vector2( 62, 36 )
+custom_fonts/font = SubResource( 23 )
 text = "50%"
 align = 1
-valign = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
+valign = 1
 
-[node name="Label2" type="Label" parent="Pause/Panel"]
-margin_left = 516.0
-margin_top = 600.0
-margin_right = 823.0
-margin_bottom = 671.0
+[node name="Volume Percent2" type="Label" parent="Pause/Panel"]
+margin_left = 1140.0
+margin_top = 583.0
+margin_right = 1264.0
+margin_bottom = 654.0
+rect_pivot_offset = Vector2( 62, 36 )
+custom_fonts/font = SubResource( 23 )
+text = "50%"
+align = 1
+valign = 1
+
+[node name="Volume Percent3" type="Label" parent="Pause/Panel"]
+margin_left = 1140.0
+margin_top = 638.0
+margin_right = 1264.0
+margin_bottom = 709.0
+rect_pivot_offset = Vector2( 62, 36 )
+custom_fonts/font = SubResource( 23 )
+text = "50%"
+align = 1
+valign = 1
+
+[node name="Volume" type="Label" parent="Pause/Panel"]
+margin_left = 429.0
+margin_top = 592.0
+margin_right = 736.0
+margin_bottom = 663.0
+rect_pivot_offset = Vector2( -108, 117 )
 custom_fonts/font = SubResource( 6 )
 text = "volume:"
 align = 1
 valign = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Label3" type="Label" parent="Pause/Panel"]
+[node name="Tip" type="Label" parent="Pause/Panel"]
 self_modulate = Color( 1, 1, 1, 0.341176 )
 margin_left = 10.0
 margin_top = 550.0
@@ -246,6 +294,36 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Master" type="Label" parent="Pause/Panel"]
+margin_left = 788.0
+margin_top = 524.0
+margin_right = 1095.0
+margin_bottom = 555.0
+custom_fonts/font = SubResource( 24 )
+text = "Master"
+align = 1
+valign = 1
+
+[node name="Effects" type="Label" parent="Pause/Panel"]
+margin_left = 788.0
+margin_top = 578.0
+margin_right = 1095.0
+margin_bottom = 609.0
+custom_fonts/font = SubResource( 24 )
+text = "Effects"
+align = 1
+valign = 1
+
+[node name="Music" type="Label" parent="Pause/Panel"]
+margin_left = 788.0
+margin_top = 634.0
+margin_right = 1095.0
+margin_bottom = 665.0
+custom_fonts/font = SubResource( 24 )
+text = "Music"
+align = 1
+valign = 1
+
 [node name="Timer" type="Label" parent="."]
 pause_mode = 2
 anchor_right = 1.0
@@ -254,6 +332,9 @@ custom_fonts/font = SubResource( 9 )
 text = "Hello"
 align = 2
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Timer2" type="Timer" parent="Timer"]
 pause_mode = 2
@@ -284,8 +365,12 @@ pause_mode = 2
 self_modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 567, 441 )
 mouse_filter = 2
 script = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Proj_name" type="Label" parent="Counter"]
 margin_left = 292.0
@@ -309,5 +394,7 @@ valign = 1
 [connection signal="pressed" from="Pause/Panel/Rocket Man" to="Pause" method="_on_Rocket_Man_pressed"]
 [connection signal="pressed" from="Pause/Panel/Bomber Man" to="Pause" method="_on_Bomber_Man_pressed"]
 [connection signal="pressed" from="Pause/Panel/Quit" to="Pause" method="_on_Quit_pressed"]
-[connection signal="value_changed" from="Pause/Panel/Volume Scroll" to="Pause" method="_on_HScrollBar_value_changed"]
+[connection signal="value_changed" from="Pause/Panel/Master Volume" to="Pause" method="_on_HScrollBar_value_changed"]
+[connection signal="value_changed" from="Pause/Panel/Effects Volume" to="Pause" method="_on_Volume_Scroll2_value_changed"]
+[connection signal="value_changed" from="Pause/Panel/Music2" to="Pause" method="_on_Music2_value_changed"]
 [connection signal="timeout" from="Timer/Timer2" to="Timer" method="_on_Timer2_timeout"]

@@ -286,23 +286,29 @@ autostart = true
 [node name="Sticky_Launch" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 volume_db = -8.0
+bus = "Effects"
 
 [node name="Jump" type="AudioStreamPlayer" parent="."]
 stream = SubResource( 7 )
+bus = "Effects"
 
 [node name="Footstep1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
+bus = "Effects"
 
 [node name="Footstep2" type="AudioStreamPlayer" parent="."]
 stream = SubResource( 9 )
 volume_db = -3.0
+bus = "Effects"
 
 [node name="Footstep3" type="AudioStreamPlayer" parent="."]
 stream = SubResource( 10 )
 volume_db = -3.0
+bus = "Effects"
 
 [node name="land" type="AudioStreamPlayer" parent="."]
 stream = SubResource( 11 )
+bus = "Effects"
 
 [node name="HUD" parent="." instance=ExtResource( 9 )]
 

@@ -4,13 +4,17 @@ extends Control
 
 var fullscreen = false
 
-onready var volume_scroll = $"Panel/Volume Scroll"
+onready var masterVol_scroll = $"Panel/Master Volume"
+onready var effecctsVol_scroll = $"Panel/Effects Volume"
+onready var musicVol_scroll = $"Panel/Music2"
 func _ready():
 	Transitions.fade_out()
 	visible = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	#AudioServer.set_bus_volume_db(0, linear2db(0.5))
-	volume_scroll.value = db2linear(AudioServer.get_bus_volume_db(0))
+	masterVol_scroll.value = db2linear(AudioServer.get_bus_volume_db(0))
+	effecctsVol_scroll.value = db2linear(AudioServer.get_bus_volume_db(1))
+	musicVol_scroll.value = db2linear(AudioServer.get_bus_volume_db(2))
 
 func _input(event):
 	if event.is_action_pressed("ui_focus_next"):
@@ -44,6 +48,15 @@ func _input(event):
 func _on_HScrollBar_value_changed(value):
 	AudioServer.set_bus_volume_db(0, linear2db(value))
 	$"Panel/Volume Percent".text = "%d%%" % (value * 100)
+
+func _on_Volume_Scroll2_value_changed(value):
+	AudioServer.set_bus_volume_db(1, linear2db(value))
+	$"Panel/Volume Percent2".text = "%d%%" % (value * 100)
+
+func _on_Music2_value_changed(value):
+	AudioServer.set_bus_volume_db(2, linear2db(value))
+	$"Panel/Volume Percent3".text = "%d%%" % (value * 100)
+
 func _on_Mouse_Sense_value_changed(value):
 	Globals.mouse_sense = value*20
 	$"Panel/Sense Value".text = "%3.2f" % value
@@ -77,3 +90,5 @@ func _on_Quit_pressed():
 	Transitions.fade_in()
 	yield(Transitions.anim,"animation_finished")
 	get_tree().quit()
+
+

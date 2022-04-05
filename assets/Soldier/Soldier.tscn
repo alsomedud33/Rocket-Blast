@@ -252,29 +252,36 @@ autostart = true
 
 [node name="Rocket_Launch" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
+bus = "Effects"
 
 [node name="Jump" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
+bus = "Effects"
 
 [node name="Footstep1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 12 )
 volume_db = -3.0
+bus = "Effects"
 
 [node name="Footstep2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
 volume_db = -3.0
+bus = "Effects"
 
 [node name="Footstep3" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 13 )
 volume_db = -3.0
+bus = "Effects"
 
 [node name="land" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
+bus = "Effects"
 
 [node name="Rocket_Trail" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
 volume_db = -12.0
 pitch_scale = 0.8
+bus = "Effects"
 __meta__ = {
 "_editor_description_": ""
 }
