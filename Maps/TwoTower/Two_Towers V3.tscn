@@ -216,7 +216,6 @@ data = PoolVector3Array( -1, -1, 1, 0, 1, -1, 0, 1, 1, -1, -1, 1, -1, -1, -1, 0,
 [node name="Skybox001" type="MeshInstance" parent="."]
 transform = Transform( 40.7698, 0, 0, 0, -40.7698, 1.32845e-05, 0, -1.32845e-05, -40.7698, 0, 0, 0 )
 cast_shadow = 0
-use_in_baked_light = true
 lightmap_scale = 3
 mesh = SubResource( 1 )
 material/0 = null
