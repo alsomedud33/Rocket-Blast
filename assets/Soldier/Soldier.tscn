@@ -220,7 +220,7 @@ texture = ExtResource( 5 )
 script = ExtResource( 15 )
 
 [node name="Viewport" type="Viewport" parent="CanvasLayer/ViewportContainer"]
-size = Vector2( 1920, 1080 )
+size = Vector2( 1280, 720 )
 transparent_bg = true
 handle_input_locally = false
 hdr = false
@@ -300,10 +300,16 @@ transform = Transform( 70, 0, 0, 0, 70, 0, 0, 0, 70, 0, 0, 0 )
 shape = SubResource( 5 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Visibility collision/CollisionShape"]
+visible = false
 layers = 2
 cast_shadow = 0
 mesh = SubResource( 6 )
 material/0 = null
+
+[node name="GroundCheck" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3242, 0 )
+enabled = true
+cast_to = Vector3( 0, -1.3, 0 )
 
 [connection signal="timeout" from="Footstep" to="." method="_on_Footstep_timeout"]
 [connection signal="area_entered" from="Visibility collision" to="Visibility collision" method="_on_Visibility_collision_area_entered"]

@@ -25,6 +25,7 @@ onready var gun_camera = $CanvasLayer/ViewportContainer/Viewport/Camera
 onready var raycast = $Pivot/Camera/RayCast
 onready var anim = $AnimationPlayer
 onready var timer = $Timer
+onready var ground_check = $GroundCheck
 onready var rocket_launcher = preload("res://assets/Soldier/Rocket.tscn")#: PackedScene 
 onready var main = get_tree().current_scene
 onready var guns = $"Pivot/Camera/Rocket Launcher/Gun0"
@@ -82,7 +83,14 @@ func _physics_process(delta: float) -> void:
 			wish_jump = false # We have jumped, the player needs to press jump key again
 			
 		else : # Player is on the ground. Move normally, apply friction
-			vertical_velocity = -1
+			if ground_check.is_colliding() == true:
+				var normal = ground_check.get_collision_normal()
+				if normal.dot(Vector3.UP) > .92:
+					print ("true")
+					vertical_velocity = -1
+				else:
+					print (false)
+					vertical_velocity = 2
 			snap = -get_floor_normal() #Turn snapping on, so we stick to slopes
 			move_ground(velocity, delta)
 	
@@ -163,7 +171,8 @@ func move_ground(input_velocity: Vector3, delta: float)-> void:
 	
 	# Then get back our vertical component, and move the player
 	nextVelocity.y = vertical_velocity
-	velocity = move_and_slide_with_snap(nextVelocity, snap, Vector3.UP,true)
+	#print (vertical_velocity)
+	velocity = move_and_slide_with_snap(nextVelocity, -get_floor_normal(), Vector3.UP,true,4,deg2rad(60))
 
 # Accelerate without applying friction (with a lower allowed max_speed)
 func move_air(input_velocity: Vector3, delta: float)-> void:

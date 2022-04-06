@@ -11,23 +11,23 @@ var Paused = false
 #var map_1 = preload("res://Maps/Map_1.tscn")
 #var map_2 = preload("res://Maps/Map_2.tscn")
 
-onready var first_area = preload("res://Maps/Map 1/First Area.tscn")
-onready var second_area = preload("res://Maps/Map 1/First Area B.tscn")
-onready var third_area = preload("res://Maps/Map 1/Second Area.tscn")
-onready var fourth_area = preload("res://Maps/Map 1/Third Area.tscn")
-onready var fith_area = preload("res://Maps/Map 1/Fourth Area.tscn")
-onready var sixth_area = preload("res://Maps/Map 1/Jurf Walls.tscn")
-
-onready var explosion_hitbox = preload("res://assets/Soldier/Explosion_Hitbox.tscn")
-onready var partical = preload("res://assets/Sfx/Explosion.tscn")
-onready var decal = preload("res://assets/Textures/Bullet Decal.tscn")
-onready var rocket = preload("res://assets/Soldier/Rocket.tscn")
-onready var sticky = preload("res://assets/Demoman/Sticky Bomb.tscn")
-
-onready var soldier = preload("res://assets/Soldier/Soldier.tscn")
-onready var demo = preload("res://assets/Demoman/Demolition Man.tscn")
-
-onready var text_3d = preload("res://assets/Platform Objects/3DText.tscn")
+#onready var first_area = preload("res://Maps/Map 1/First Area.tscn")
+#onready var second_area = preload("res://Maps/Map 1/First Area B.tscn")
+#onready var third_area = preload("res://Maps/Map 1/Second Area.tscn")
+#onready var fourth_area = preload("res://Maps/Map 1/Third Area.tscn")
+#onready var fith_area = preload("res://Maps/Map 1/Fourth Area.tscn")
+#onready var sixth_area = preload("res://Maps/Map 1/Jurf Walls.tscn")
+#
+#onready var explosion_hitbox = preload("res://assets/Soldier/Explosion_Hitbox.tscn")
+#onready var partical = preload("res://assets/Sfx/Explosion.tscn")
+#onready var decal = preload("res://assets/Textures/Bullet Decal.tscn")
+#onready var rocket = preload("res://assets/Soldier/Rocket.tscn")
+#onready var sticky = preload("res://assets/Demoman/Sticky Bomb.tscn")
+#
+#onready var soldier = preload("res://assets/Soldier/Soldier.tscn")
+#onready var demo = preload("res://assets/Demoman/Demolition Man.tscn")
+#
+#onready var text_3d = preload("res://assets/Platform Objects/3DText.tscn")
 
 var proj_counter = 0
 
