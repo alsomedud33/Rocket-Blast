@@ -8,6 +8,6 @@ extends TextureRect
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	self.rect_position.x = ProjectSettings.get_setting('display/window/size/width')/2 -25
+	self.rect_position.x = ProjectSettings.get_setting('display/window/size/width')/2 -15
 	self.rect_position.y = ProjectSettings.get_setting('display/window/size/height')/2 -9
 

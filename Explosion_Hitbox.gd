@@ -60,7 +60,8 @@ func _on_Explosion_Hitbox_body_entered(body):
 	#collision_point = self.translation.direction_to(body.translation) * (4/self.translation.distance_to(body.translation))
 	
 	#body.velocity += explode_force*get_global_transform().origin.direction_to(body.get_global_transform().origin)#collision_point * *15 #body.global_transform.origin,collision_point*10)
-	#body.wish_jump = true
+	if body.is_on_floor():
+		body.wish_jump = true
 	body.velocity += explode_force*get_global_transform().origin.direction_to(body.get_global_transform().origin) * distance_ratio/self.translation.distance_to(body.translation)
 	body.velocity.y += explode_force*y_explode_ratio*get_global_transform().origin.direction_to(body.get_global_transform().origin).y
 
