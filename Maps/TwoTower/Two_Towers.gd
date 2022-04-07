@@ -25,7 +25,6 @@ func _player_disconnected(id):
 func _instance_player(id):
 	print("creating player " +str(id))
 	var p = soldier.instance()
-	p.online = true
 	p.set_network_master(id)
 	p.name = str(id)
 	NetNodes.add_child(p)

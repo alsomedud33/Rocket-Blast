@@ -50,24 +50,27 @@ onready var net_tween =$"Tween"
 var puppet_position = Vector3()
 var puppet_velocity = Vector3()
 var puppet_rotation = Vector3()
-var online = false
+var puppet_rocket_transform:Transform 
+
 	#when a packet is sent via the network_timer, puppet versions of soldier are updated 
 func _on_network_timer_timeout():
 	if is_network_master() and name == str(get_tree().get_network_unique_id()):
-		rpc_unreliable("update_state", global_transform.origin, velocity, Vector2(head.rotation.x, rotation.y))
-
+		rpc_unreliable("update_state", global_transform.origin, velocity, Vector2(head.rotation.x, rotation.y),camera.global_transform)
 	#only executed on puppet soldiers. Their rotation, position and velocity are adjusted to match where they roughly are
-puppet func update_state(p_pos, p_vel, p_rot):
+puppet func update_state(p_pos, p_vel, p_rot, rocket_trans):
 	puppet_position = p_pos
 	puppet_velocity = p_vel
 	puppet_rotation = p_rot
-	net_tween.interpolate_property(self,"global_transform", global_transform, Transform(global_transform.basis,p_pos),.1)
-	net_tween.start
+	puppet_rocket_transform = rocket_trans
+	$Tween.interpolate_property(self,"global_transform", global_transform, Transform(global_transform.basis,p_pos),.1)
+	$Tween2.interpolate_property(gun_camera,"global_transform", global_transform, rocket_trans,.1)
+	$Tween.start
+	$Tween2.start
 #Networking end
 
 
 func _input(event: InputEvent) -> void:
-	if (online == false || (online == true && is_network_master())):
+	if is_network_master():
 		# Camera rotation
 		if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			head.rotate_x(deg2rad(event.relative.y * mouse_sensitivity))
@@ -77,30 +80,29 @@ func _input(event: InputEvent) -> void:
 			head.rotation = camera_rot
 
 func _ready():
-	if (online == false || (online == true && is_network_master())):
-		Globals.player = 1
-		yield(get_tree().create_timer(.2), "timeout")
-		main = get_tree().current_scene
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		if online == true:
-			print("we are online")
-			camera.current = is_network_master() 
-	$"CanvasLayer/ViewportContainer".visible = is_network_master() 
+	Globals.player = 1
+	yield(get_tree().create_timer(.2), "timeout")
+	main = get_tree().current_scene
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	camera.current = is_network_master() 
+	#$"CanvasLayer/ViewportContainer".visible = is_network_master() 
 
 func _process(delta):
 	mouse_sensitivity = Globals.mouse_sense * 0.001
-	gun_camera.global_transform = camera.global_transform
-	if Input.is_action_just_pressed("ui_cancel"):
-		get_tree().quit()
+	if is_network_master():
+		gun_camera.global_transform = camera.global_transform
+		if Input.is_action_just_pressed("ui_cancel"):
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _physics_process(delta: float) -> void:
-	if !is_network_master() and online == true:
+	if !is_network_master():
 		global_transform.origin = puppet_position
 		velocity.x = puppet_velocity.x
 		velocity.y = puppet_velocity.y
 		velocity.z = puppet_velocity.z
 		head.rotation.x = puppet_rotation.x
-	else:
+		gun_camera.global_transform = puppet_rocket_transform
+	if is_network_master():
 		#print(wish_jump)
 		queue_jump()
 		var forward_input: float = Input.get_action_strength("move_forward") - Input.get_action_strength("move_back")
@@ -150,27 +152,28 @@ func _physics_process(delta: float) -> void:
 			#print(get_slide_collision(i).get_collider().name)
 			if get_slide_collision(i).get_collider().name == "Explosion_Hitbox":
 				velocity += get_slide_collision(i).normal *15
-
-		if Input.is_action_pressed("shoot1") and timer.is_stopped():
-		#if event is InputEventMouseButton and event.pressed and event.button_index == 1 and timer.is_stopped():
-			timer.start(cooldown)
+		if Input.is_action_pressed("shoot1"):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-			var rocket_instance = rocket_launcher.instance()
-			#main.add_child(rocket_instance)
-			anim.play("Shoot_Rocket")
-			$Rocket_Launch.play()
-			$Rocket_Trail.play()
-			#rocket_instance.global_transform.origin = guns.global_transform.origin
-			if raycast.is_colliding():
-				rocket_instance.look_at_from_position(guns.global_transform.origin,raycast.get_collision_point(), Vector3.UP)
-			else:
-				rocket_instance.global_transform.origin = guns.global_transform.origin
-				rocket_instance.rotation_degrees = Vector3(-$Pivot.rotation_degrees.x+1, self.rotation_degrees.y+182,0)
-			rocket_instance.velocity = rocket_instance.transform.basis.z * -rocket_instance.speed
-			main.call_deferred("add_child",rocket_instance)
+#		if Input.is_action_pressed("shoot1") and timer.is_stopped():
+#		#if event is InputEventMouseButton and event.pressed and event.button_index == 1 and timer.is_stopped():
+#			timer.start(cooldown)
+#			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+#			var rocket_instance = rocket_launcher.instance()
+#			#main.add_child(rocket_instance)
+#			anim.play("Shoot_Rocket")
+#			$Rocket_Launch.play()
+#			$Rocket_Trail.play()
+#			#rocket_instance.global_transform.origin = guns.global_transform.origin
+#			if raycast.is_colliding():
+#				rocket_instance.look_at_from_position(guns.global_transform.origin,raycast.get_collision_point(), Vector3.UP)
+#			else:
+#				rocket_instance.global_transform.origin = guns.global_transform.origin
+#				rocket_instance.rotation_degrees = Vector3(-$Pivot.rotation_degrees.x+1, self.rotation_degrees.y+182,0)
+#			rocket_instance.velocity = rocket_instance.transform.basis.z * -rocket_instance.speed
+#			main.call_deferred("add_child",rocket_instance)
 
 # This is were we calculate the speed to add to current velocity
-func accelerate(wish_dir: Vector3, input_velocity: Vector3, accels: float, maxspeed: float, delta: float)-> Vector3:
+master func accelerate(wish_dir: Vector3, input_velocity: Vector3, accels: float, maxspeed: float, delta: float)-> Vector3:
 	# Current speed is calculated by projecting our velocity onto wishdir.
 	# We can thus manipulate our wishdir to trick the engine into thinking we're going slower than we actually are, allowing us to accelerate further.
 	var current_speed: float = input_velocity.dot(wish_dir)
@@ -186,7 +189,7 @@ func accelerate(wish_dir: Vector3, input_velocity: Vector3, accels: float, maxsp
 
 # Scale down horizontal velocity
 # For now, we're simply substracting 10% from our current velocity. This is not how it works in engines like idTech or Source !
-func friction(input_velocity: Vector3)-> Vector3:
+master func friction(input_velocity: Vector3)-> Vector3:
 	#var speed: float = input_velocity.length()
 	var scaled_velocity: Vector3
 
@@ -199,7 +202,7 @@ func friction(input_velocity: Vector3)-> Vector3:
 	return scaled_velocity
 
 # Apply friction, then accelerate
-func move_ground(input_velocity: Vector3, delta: float)-> void:
+master func move_ground(input_velocity: Vector3, delta: float)-> void:
 	# We first work on only on the horizontal components of our current velocity
 	var nextVelocity: Vector3 = Vector3.ZERO
 	nextVelocity.x = input_velocity.x
@@ -213,7 +216,7 @@ func move_ground(input_velocity: Vector3, delta: float)-> void:
 	velocity = move_and_slide_with_snap(nextVelocity, -get_floor_normal(), Vector3.UP,true,4,deg2rad(60))
 
 # Accelerate without applying friction (with a lower allowed max_speed)
-func move_air(input_velocity: Vector3, delta: float)-> void:
+master func move_air(input_velocity: Vector3, delta: float)-> void:
 	# We first work on only on the horizontal components of our current velocity
 	var nextVelocity: Vector3 = Vector3.ZERO
 	nextVelocity.x = input_velocity.x
@@ -229,7 +232,7 @@ func move_air(input_velocity: Vector3, delta: float)-> void:
 		velocity = move_and_slide_with_snap(nextVelocity, snap, Vector3.UP,true)
 
 # Set wish_jump depending on player input.
-func queue_jump():
+master func queue_jump():
 	# If auto_jump is true, the player keeps jumping as long as the key is kept down
 #	if auto_jump:
 #		wish_jump = true if Input.is_action_pressed("jump") else false
@@ -242,11 +245,11 @@ func queue_jump():
 		wish_jump = false
 		return false
 
-func shoot_event():
+master func shoot_event():
 	pass 
 
 
-func _on_Footstep_timeout():
+master func _on_Footstep_timeout():
 	var my_random_number = rng.randi_range(1,3)
 	if self.is_on_floor() and velocity.length() > 3:
 		match my_random_number:
