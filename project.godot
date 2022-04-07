@@ -37,6 +37,7 @@ MusicController="*res://assets/Music/MusicConroller.tscn"
 ParticleCache="*res://ParticleCache.gd"
 SceneChanger="*res://SceneChanger.gd"
 Transitions="*res://Transitions.tscn"
+Network="*res://Networking/network.gd"
 
 [display]
 

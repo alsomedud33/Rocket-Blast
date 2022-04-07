@@ -1,0 +1,190 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://assets/UI/Font Info.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Networking/Network_ui.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFontData" id=4]
+font_path = "res://assets/Fonts/TF2.ttf"
+
+[sub_resource type="DynamicFont" id=5]
+size = 30
+outline_size = 5
+outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+use_filter = true
+font_data = SubResource( 4 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.333333, 0.333333, 0.372549, 1 )
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 1, 0.698039, 0.458824, 1 )
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0.0196078, 0.0196078, 0.0196078, 1 )
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="DynamicFontData" id=3]
+font_path = "res://assets/Fonts/TF2.ttf"
+
+[sub_resource type="DynamicFont" id=10]
+size = 30
+outline_size = 5
+outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+use_filter = true
+font_data = SubResource( 3 )
+
+[sub_resource type="StyleBoxFlat" id=11]
+bg_color = Color( 0.333333, 0.333333, 0.372549, 1 )
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id=12]
+bg_color = Color( 1, 0.698039, 0.458824, 1 )
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id=13]
+bg_color = Color( 0.0196078, 0.0196078, 0.0196078, 1 )
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id=14]
+bg_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="DynamicFont" id=15]
+size = 30
+outline_size = 5
+outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+use_filter = true
+font_data = SubResource( 3 )
+
+[sub_resource type="StyleBoxFlat" id=16]
+bg_color = Color( 0.333333, 0.333333, 0.372549, 1 )
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id=17]
+bg_color = Color( 1, 0.698039, 0.458824, 1 )
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id=18]
+bg_color = Color( 0.0196078, 0.0196078, 0.0196078, 1 )
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id=19]
+bg_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[node name="Network_ui" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="Create_button" type="Button" parent="."]
+anchor_left = 0.0726563
+anchor_top = 0.3875
+anchor_right = 0.317187
+anchor_bottom = 0.495833
+focus_mode = 0
+custom_colors/font_color = Color( 0.568627, 0, 1, 1 )
+custom_fonts/font = SubResource( 5 )
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 7 )
+custom_styles/disabled = SubResource( 8 )
+custom_styles/normal = SubResource( 9 )
+enabled_focus_mode = 0
+text = "Create"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Exit_button" type="Button" parent="."]
+anchor_left = 0.371094
+anchor_top = 0.722222
+anchor_right = 0.615625
+anchor_bottom = 0.830556
+focus_mode = 0
+custom_colors/font_color = Color( 0.568627, 0, 1, 1 )
+custom_fonts/font = SubResource( 10 )
+custom_styles/hover = SubResource( 11 )
+custom_styles/pressed = SubResource( 12 )
+custom_styles/disabled = SubResource( 13 )
+custom_styles/normal = SubResource( 14 )
+enabled_focus_mode = 0
+text = "exit"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Join_button" type="Button" parent="."]
+anchor_left = 0.664063
+anchor_top = 0.394444
+anchor_right = 0.910937
+anchor_bottom = 0.5
+focus_mode = 0
+custom_colors/font_color = Color( 0.568627, 0, 1, 1 )
+custom_fonts/font = SubResource( 15 )
+custom_styles/hover = SubResource( 16 )
+custom_styles/pressed = SubResource( 17 )
+custom_styles/disabled = SubResource( 18 )
+custom_styles/normal = SubResource( 19 )
+enabled_focus_mode = 0
+text = "Join"
+__meta__ = {
+"_edit_use_anchors_": true,
+"_editor_description_": ""
+}
+
+[node name="LineEdit" type="LineEdit" parent="."]
+margin_left = 433.0
+margin_top = 451.0
+margin_right = 817.0
+margin_bottom = 475.0
+custom_colors/font_color = Color( 0.568627, 0, 1, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "enter ip address"
+align = 1
+
+[connection signal="pressed" from="Create_button" to="." method="_on_Create_button_pressed"]
+[connection signal="pressed" from="Exit_button" to="." method="_on_Exit_button_pressed"]
+[connection signal="pressed" from="Join_button" to="." method="_on_Join_button_pressed"]
+[connection signal="text_changed" from="LineEdit" to="." method="_on_LineEdit_text_changed"]
