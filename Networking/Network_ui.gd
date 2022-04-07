@@ -28,8 +28,18 @@ func _on_Join_button_pressed():
 	print(str(get_tree().get_network_unique_id()) + " jointed server")
 
 func _on_Exit_button_pressed():
+	MusicController.fade_out()
+	Transitions.fade_in()
+	yield(Transitions.anim,"animation_finished")
 	get_tree().quit()
 
 
 func _on_LineEdit_text_changed(new_text):
 	Network.ip_address = new_text
+
+
+func _on_Back_pressed():
+	MusicController.fade_out()
+	Transitions.fade_in()
+	yield(Transitions.anim,"animation_finished")
+	SceneChanger.goto_scene("res://TitleScreen/TitleScreen.tscn",get_parent())

@@ -11,7 +11,10 @@ script/source = "extends Control
 var rng = RandomNumberGenerator.new()
 
 func _ready():
+	Transitions.fade_out()
+	rng.randomize()
 	var my_random_number = rng.randi_range(1,2)
+	print (my_random_number)
 	match my_random_number:
 		1:
 			MusicController.play_music(MusicController.military_track)
@@ -47,7 +50,7 @@ func _on_Bomber_Man_pressed():
 func _on_Online_pressed():
 	Transitions.fade_in()
 	yield(Transitions.anim,\"animation_finished\")
-	SceneChanger.goto_scene(\"res://Networking/Network_ui.tscn\",self)
+	SceneChanger.goto_scene(\"res://Maps/TwoTower/Two_Towers.tscn\",self)
 "
 
 [sub_resource type="DynamicFontData" id=16]
