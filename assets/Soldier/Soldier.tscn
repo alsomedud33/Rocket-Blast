@@ -311,12 +311,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3242, 0 )
 enabled = true
 cast_to = Vector3( 0, -1.3, 0 )
 
-[node name="network_timer" type="Timer" parent="."]
-wait_time = 0.05
-
-[node name="Tween" type="Tween" parent="."]
-
 [connection signal="timeout" from="Footstep" to="." method="_on_Footstep_timeout"]
 [connection signal="area_entered" from="Visibility collision" to="Visibility collision" method="_on_Visibility_collision_area_entered"]
 [connection signal="area_exited" from="Visibility collision" to="Visibility collision" method="_on_Visibility_collision_area_exited"]
-[connection signal="timeout" from="network_timer" to="." method="_on_network_timer_timeout"]

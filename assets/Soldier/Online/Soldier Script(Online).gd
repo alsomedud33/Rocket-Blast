@@ -85,10 +85,13 @@ func _ready():
 		if online == true:
 			print("we are online")
 			camera.current = is_network_master() 
+	$"CanvasLayer/ViewportContainer".visible = is_network_master() 
 
 func _process(delta):
 	mouse_sensitivity = Globals.mouse_sense * 0.001
 	gun_camera.global_transform = camera.global_transform
+	if Input.is_action_just_pressed("ui_cancel"):
+		get_tree().quit()
 
 func _physics_process(delta: float) -> void:
 	if !is_network_master() and online == true:

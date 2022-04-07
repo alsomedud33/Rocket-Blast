@@ -1,7 +1,7 @@
 extends Node
 
 
-var soldier = preload("res://assets/Online/Soldier(online).tscn")
+var soldier = preload("res://assets/Soldier/Online/Soldier(online).tscn")
 
 
 # Called when the node enters the scene tree for the first time.
