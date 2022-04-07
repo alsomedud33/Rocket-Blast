@@ -24,7 +24,7 @@ onready var camera: Camera = $Pivot/Camera
 onready var gun_camera = $CanvasLayer/ViewportContainer/Viewport/Camera
 onready var raycast = $Pivot/Camera/RayCast
 onready var anim = $AnimationPlayer
-onready var timer = $Timer
+onready var timer = $"Rocket_Cooldown"
 onready var ground_check = $GroundCheck
 onready var rocket_launcher = preload("res://assets/Soldier/Rocket.tscn")#: PackedScene 
 onready var main = get_tree().current_scene
@@ -45,92 +45,110 @@ var debug_horizontal_velocity: Vector3 = Vector3.ZERO
 var accelerate_return: Vector3 = Vector3.ZERO
 
 
+#Networking variables
+var puppet_position = Vector3()
+var puppet_velocity = Vector3()
+var puppet_rotation = Vector3()
+var online = false
+
 func _input(event: InputEvent) -> void:
-	# Camera rotation
-	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		head.rotate_x(deg2rad(event.relative.y * mouse_sensitivity))
-		self.rotate_y(deg2rad((event.relative.x * -mouse_sensitivity)))
-		var camera_rot = head.rotation
-		camera_rot.x = clamp(camera_rot.x, deg2rad(-89), deg2rad(89))
-		head.rotation = camera_rot
+	if (online == false || (online == true && is_network_master())):
+		# Camera rotation
+		if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+			head.rotate_x(deg2rad(event.relative.y * mouse_sensitivity))
+			self.rotate_y(deg2rad((event.relative.x * -mouse_sensitivity)))
+			var camera_rot = head.rotation
+			camera_rot.x = clamp(camera_rot.x, deg2rad(-89), deg2rad(89))
+			head.rotation = camera_rot
 
 func _ready():
 	Globals.player = 1
 	yield(get_tree().create_timer(.2), "timeout")
 	main = get_tree().current_scene
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	if online == true:
+		print("we are online")
+		camera.current = is_network_master() 
+
 func _process(delta):
 	mouse_sensitivity = Globals.mouse_sense * 0.001
 	gun_camera.global_transform = camera.global_transform
 
 func _physics_process(delta: float) -> void:
-	#print(wish_jump)
-	queue_jump()
-	var forward_input: float = Input.get_action_strength("move_forward") - Input.get_action_strength("move_back")
-	var strafe_input: float = Input.get_action_strength("move_left") - Input.get_action_strength("move_right")
-	wishdir = Vector3(strafe_input, 0, forward_input).rotated(Vector3.UP, self.global_transform.basis.get_euler().y).normalized() 
-	# wishdir is our normalized horizontal inpur
-	
-	
-	if self.is_on_floor():
-		if wish_jump: # If we're on the ground but wish_jump is still true, this means we've just landed
-			snap = Vector3.ZERO #Set snapping to zero so we can get off the ground
-			vertical_velocity = jump_impulse # Jump
-			$Jump.play()
-			move_air(velocity, delta) # Mimic Quake's way of treating first frame after landing as still in the air
-			
-			#yield(get_tree().create_timer(.3), "timeout")
-			wish_jump = false # We have jumped, the player needs to press jump key again
-			
-		else : # Player is on the ground. Move normally, apply friction
-			if ground_check.is_colliding() == true:
-				var normal = ground_check.get_collision_normal()
-				print(normal.dot(Vector3.UP))
-				if normal.dot(Vector3.UP) > .92:
-					#print ("true")
-					vertical_velocity = -1
-				else:
-					#print (false)
-					vertical_velocity = 2
-			snap = -get_floor_normal() #Turn snapping on, so we stick to slopes
-			move_ground(velocity, delta)
-	
-	else: #We're in the air. Do not apply friction
-		snap = Vector3.DOWN
-		vertical_velocity = velocity.y
+	if !is_network_master() and online == true:
+		global_transform.origin = puppet_position
+		velocity.x = puppet_velocity.x
+		velocity.y = puppet_velocity.y
+		velocity.z = puppet_velocity.z
+		head.rotation.x = puppet_rotation.x
+	else:
+		#print(wish_jump)
+		queue_jump()
+		var forward_input: float = Input.get_action_strength("move_forward") - Input.get_action_strength("move_back")
+		var strafe_input: float = Input.get_action_strength("move_left") - Input.get_action_strength("move_right")
+		wishdir = Vector3(strafe_input, 0, forward_input).rotated(Vector3.UP, self.global_transform.basis.get_euler().y).normalized() 
+		# wishdir is our normalized horizontal inpur
 		
-		if vertical_velocity >= terminal_velocity:
-			vertical_velocity -= gravity * delta #if vertical_velocity >= terminal_velocity else 0 # Stop adding to vertical velocity once terminal velocity is reached
-		else:
-			vertical_velocity = terminal_velocity	
-		move_air(velocity, delta)
-		#print(vertical_velocity)
-	
-	if self.is_on_ceiling(): #We've hit a ceiling, usually after a jump. Vertical velocity is reset to cancel any remaining jump momentum
-		vertical_velocity = 0
-	for i in self.get_slide_count():
-		#print (state.get_contact_collider_object(i).name)
-		#print(get_slide_collision(i).get_collider().name)
-		if get_slide_collision(i).get_collider().name == "Explosion_Hitbox":
-			velocity += get_slide_collision(i).normal *15
+		
+		if self.is_on_floor():
+			if wish_jump: # If we're on the ground but wish_jump is still true, this means we've just landed
+				snap = Vector3.ZERO #Set snapping to zero so we can get off the ground
+				vertical_velocity = jump_impulse # Jump
+				$Jump.play()
+				move_air(velocity, delta) # Mimic Quake's way of treating first frame after landing as still in the air
+				
+				#yield(get_tree().create_timer(.3), "timeout")
+				wish_jump = false # We have jumped, the player needs to press jump key again
+				
+			else : # Player is on the ground. Move normally, apply friction
+				if ground_check.is_colliding() == true:
+					var normal = ground_check.get_collision_normal()
+					#print(normal.dot(Vector3.UP))
+					if normal.dot(Vector3.UP) > .92:
+						#print ("true")
+						vertical_velocity = -1
+					else:
+						#print (false)
+						vertical_velocity = 2
+				snap = -get_floor_normal() #Turn snapping on, so we stick to slopes
+				move_ground(velocity, delta)
+		
+		else: #We're in the air. Do not apply friction
+			snap = Vector3.DOWN
+			vertical_velocity = velocity.y
+			
+			if vertical_velocity >= terminal_velocity:
+				vertical_velocity -= gravity * delta #if vertical_velocity >= terminal_velocity else 0 # Stop adding to vertical velocity once terminal velocity is reached
+			else:
+				vertical_velocity = terminal_velocity	
+			move_air(velocity, delta)
+			#print(vertical_velocity)
+		
+		if self.is_on_ceiling(): #We've hit a ceiling, usually after a jump. Vertical velocity is reset to cancel any remaining jump momentum
+			vertical_velocity = 0
+		for i in self.get_slide_count():
+			#print (state.get_contact_collider_object(i).name)
+			#print(get_slide_collision(i).get_collider().name)
+			if get_slide_collision(i).get_collider().name == "Explosion_Hitbox":
+				velocity += get_slide_collision(i).normal *15
 
-	if Input.is_action_pressed("shoot1") and timer.is_stopped():
-	#if event is InputEventMouseButton and event.pressed and event.button_index == 1 and timer.is_stopped():
-		timer.start(cooldown)
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		var rocket_instance = rocket_launcher.instance()
-		#main.add_child(rocket_instance)
-		anim.play("Shoot_Rocket")
-		$Rocket_Launch.play()
-		$Rocket_Trail.play()
-		#rocket_instance.global_transform.origin = guns.global_transform.origin
-		if raycast.is_colliding():
-			rocket_instance.look_at_from_position(guns.global_transform.origin,raycast.get_collision_point(), Vector3.UP)
-		else:
-			rocket_instance.global_transform.origin = guns.global_transform.origin
-			rocket_instance.rotation_degrees = Vector3(-$Pivot.rotation_degrees.x+1, self.rotation_degrees.y+182,0)
-		rocket_instance.velocity = rocket_instance.transform.basis.z * -rocket_instance.speed
-		main.call_deferred("add_child",rocket_instance)
+		if Input.is_action_pressed("shoot1") and timer.is_stopped():
+		#if event is InputEventMouseButton and event.pressed and event.button_index == 1 and timer.is_stopped():
+			timer.start(cooldown)
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			var rocket_instance = rocket_launcher.instance()
+			#main.add_child(rocket_instance)
+			anim.play("Shoot_Rocket")
+			$Rocket_Launch.play()
+			$Rocket_Trail.play()
+			#rocket_instance.global_transform.origin = guns.global_transform.origin
+			if raycast.is_colliding():
+				rocket_instance.look_at_from_position(guns.global_transform.origin,raycast.get_collision_point(), Vector3.UP)
+			else:
+				rocket_instance.global_transform.origin = guns.global_transform.origin
+				rocket_instance.rotation_degrees = Vector3(-$Pivot.rotation_degrees.x+1, self.rotation_degrees.y+182,0)
+			rocket_instance.velocity = rocket_instance.transform.basis.z * -rocket_instance.speed
+			main.call_deferred("add_child",rocket_instance)
 
 # This is were we calculate the speed to add to current velocity
 func accelerate(wish_dir: Vector3, input_velocity: Vector3, accels: float, maxspeed: float, delta: float)-> Vector3:

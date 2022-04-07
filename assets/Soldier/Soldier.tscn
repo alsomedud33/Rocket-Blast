@@ -243,7 +243,7 @@ next/RESET = "Sway"
 next/Shoot_Rocket = "Sway"
 blend_times = [ "Shoot_Rocket", "Sway", 0.5, "Sway", "Sway", 0.5 ]
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Rocket_Cooldown" type="Timer" parent="."]
 process_mode = 0
 one_shot = true
 
@@ -310,6 +310,9 @@ material/0 = null
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3242, 0 )
 enabled = true
 cast_to = Vector3( 0, -1.3, 0 )
+
+[node name="Packet_Rate" type="Timer" parent="."]
+wait_time = 0.05
 
 [connection signal="timeout" from="Footstep" to="." method="_on_Footstep_timeout"]
 [connection signal="area_entered" from="Visibility collision" to="Visibility collision" method="_on_Visibility_collision_area_entered"]
