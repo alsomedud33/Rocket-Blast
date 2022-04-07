@@ -46,11 +46,24 @@ var accelerate_return: Vector3 = Vector3.ZERO
 
 
 #Networking variables
+onready var net_tween =$"Tween"
 var puppet_position = Vector3()
 var puppet_velocity = Vector3()
 var puppet_rotation = Vector3()
 var online = false
+	#when a packet is sent via the network_timer, puppet versions of soldier are updated 
+func _on_network_timer_timeout():
+	if is_network_master() and name == str(get_tree().get_network_unique_id()):
+		rpc_unreliable("update_state", global_transform.origin, velocity, Vector2(head.rotation.x, rotation.y))
 
+	#only executed on puppet soldiers. Their rotation, position and velocity are adjusted to match where they roughly are
+puppet func update_state(p_pos, p_vel, p_rot):
+	puppet_position = p_pos
+	puppet_velocity = p_vel
+	puppet_rotation = p_rot
+	net_tween.interpolate_property(self,"global_transform", global_transform, Transform(global_transform.basis,p_pos),.1)
+	net_tween.start
+#Networking end
 func _input(event: InputEvent) -> void:
 	if (online == false || (online == true && is_network_master())):
 		# Camera rotation
@@ -237,3 +250,5 @@ func _on_Footstep_timeout():
 				$Footstep2.play()
 			3:
 				$Footstep3.play()
+
+
