@@ -2,7 +2,8 @@ extends Node
 
 
 var soldier = preload("res://assets/Soldier/Online/Soldier(online).tscn")
-
+func _on_Skybox_Area_body_exited(body):
+	body.global_transform.origin = $"Skybox_Area/Respawn".global_transform.origin
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,7 +12,7 @@ func _ready():
 	get_tree().connect("network_peer_connected",self,"_player_joined")
 	Network.connect("instance_player",self,"_instance_player")
 	Network.connect("player_shot",self,"_player_shot")
-	Network.connect("explode_rocket",self,"_explode_rocket")
+	Network.connect("destroy_rocket",self,"_destroy_rocket")
 
 func _player_joined(id):
 	print(str(id) + " connected")
@@ -32,8 +33,9 @@ func _instance_player(id):
 	NetNodes.players.add_child(p)
 
 func _player_shot(id,position):
-	rpc("_Player_shot_remote", id,position)
+	rpc("_player_shot_remote", id,position)
 	var r = Network.rocket.instance()
+	r.real = true
 	if NetNodes.players.get_node(str(id)).raycast.is_colliding():
 		r.look_at_from_position(NetNodes.players.get_node(str(id)).guns.global_transform.origin,NetNodes.players.get_node(str(id)).raycast.get_collision_point(), Vector3.UP)
 	else:
@@ -48,6 +50,7 @@ func _player_shot(id,position):
 
 remote func _player_shot_remote(id, position):
 	var r = Network.rocket.instance()
+	r.real = false
 	if NetNodes.players.get_node(str(id)).raycast.is_colliding():
 		r.look_at_from_position(NetNodes.players.get_node(str(id)).guns.global_transform.origin,NetNodes.players.get_node(str(id)).raycast.get_collision_point(), Vector3.UP)
 	else:
@@ -60,13 +63,16 @@ remote func _player_shot_remote(id, position):
 	NetNodes.players.get_node(str(id)).rocket_num += 1
 	NetNodes.rockets.add_child(r)
 
-func _explode_rocket(rocket):
-	rpc ("_explode_rocket_remote")
+func _destroy_rocket(rocket):
+	rpc ("_explode_rocket_remote",rocket)
 	if NetNodes.rockets.has_node(rocket):
 		NetNodes.rockets.get_node(rocket).queue_free()
 		print (rocket + " has been destroyed")
 
-remote func _explode_rocket_remote(rocket):
+remote func _destroy_rocket_remote(rocket):
 	if NetNodes.rockets.has_node(rocket):
 		NetNodes.rockets.get_node(rocket).queue_free()
 		print (rocket + " has been destroyed")
+
+
+

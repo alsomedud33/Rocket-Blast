@@ -10,7 +10,7 @@ var ip_address = "127.0.0.1"
 
 signal instance_player(id)
 signal player_shot(id,location)
-signal explode_rocket(rocket)
+signal destroy_rocket(rocket)
 signal rocket_hit(rocket, damage, location)
 
 var rocket_launcher = preload("res://assets/Soldier/Rocket Launcher.tscn")
