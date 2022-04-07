@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Maps/TwoTower/Two_Towers V3.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/Soldier/Soldier.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Networking/Network_ui.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/Platform Objects/Orange Wall Tile.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Maps/TwoTower/Two_Towers.lmbake" type="BakedLightmapData" id=4]
+[ext_resource path="res://CameraHub.gd" type="Script" id=5]
 
 [sub_resource type="Environment" id=1]
 background_mode = 6
@@ -11,9 +12,6 @@ background_mode = 6
 [node name="Two_Towers" type="Node"]
 
 [node name="Two_Towers V3" parent="." instance=ExtResource( 1 )]
-
-[node name="Soldier" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="Orange Wall Tile" parent="." instance=ExtResource( 3 )]
 transform = Transform( 0.129409, 3.38074, 0, -0.482963, 0.905867, 0, 0, 0, 3.5, 5, -1, 0 )
@@ -35,3 +33,11 @@ light_data = ExtResource( 4 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
+
+[node name="Network_ui" parent="." instance=ExtResource( 2 )]
+
+[node name="CameraHub" type="Spatial" parent="."]
+script = ExtResource( 5 )
+
+[node name="Camera" type="Camera" parent="CameraHub"]
+transform = Transform( 1, 2.22799e-08, -2.47756e-08, -1.49012e-08, 0.9641, 0.265539, 2.98023e-08, -0.265539, 0.9641, 2.21349, 6.95739, 12.4384 )
