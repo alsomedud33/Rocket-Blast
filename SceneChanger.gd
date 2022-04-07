@@ -11,12 +11,16 @@ func _ready():
 	pass # Replace with function body.
 
 
-func goto_scene(path, current_scene):
+func goto_scene(path, current_scene, multiple: bool = false):
 	var loader = ResourceLoader.load_interactive(path)
 	var loading_bar = load("res://LoadingBar.tscn").instance()
 	get_tree().get_root().call_deferred('add_child',loading_bar)
 	#immediately remove current scene to free up memory and load next scene faster
-	current_scene.queue_free()
+	if multiple == true:
+		for i in current_scene:
+			i.queue_free()
+	else:
+		current_scene.queue_free()
 	while true:
 		var err = loader.poll()
 		if err == ERR_FILE_EOF:

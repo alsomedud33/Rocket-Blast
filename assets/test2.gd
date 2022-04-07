@@ -85,11 +85,12 @@ func _physics_process(delta: float) -> void:
 		else : # Player is on the ground. Move normally, apply friction
 			if ground_check.is_colliding() == true:
 				var normal = ground_check.get_collision_normal()
+				print(normal.dot(Vector3.UP))
 				if normal.dot(Vector3.UP) > .92:
-					print ("true")
+					#print ("true")
 					vertical_velocity = -1
 				else:
-					print (false)
+					#print (false)
 					vertical_velocity = 2
 			snap = -get_floor_normal() #Turn snapping on, so we stick to slopes
 			move_ground(velocity, delta)

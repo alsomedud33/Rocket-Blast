@@ -31,6 +31,10 @@ var Paused = false
 
 var proj_counter = 0
 
+signal instance_player(id)
+
+
+
 func _ready():
 	AudioServer.set_bus_volume_db(0, linear2db(0.5))
 

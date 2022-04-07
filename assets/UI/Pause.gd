@@ -94,7 +94,10 @@ func _on_Quit_pressed():
 #	get_tree().quit()
 	Transitions.fade_in()
 	yield(Transitions.anim,"animation_finished")
-	SceneChanger.goto_scene("res://TitleScreen/TitleScreen.tscn",get_parent().get_parent().get_parent())
+	if get_tree().current_scene.name == "Two_Towers":
+		SceneChanger.goto_scene("res://TitleScreen/TitleScreen.tscn",[get_tree().current_scene, get_node("/root/NetNodes/"+ str(get_tree().get_network_unique_id()))], true)
+	else:
+		SceneChanger.goto_scene("res://TitleScreen/TitleScreen.tscn",get_parent().get_parent().get_parent())
 	get_tree().paused = false
 	visible = false
 	Globals.Paused = false

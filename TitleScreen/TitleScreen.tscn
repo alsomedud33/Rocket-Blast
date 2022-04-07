@@ -26,7 +26,14 @@ func _ready():
 #			MusicController.play_music(MusicController.menu_music)
 #	MusicController.fade_in()
 
+func disable_buttons():
+	$\"Bomber Man\".disabled = true
+	$\"Rocket Man\".disabled = true
+	$\"Online\".disabled = true
+	$\"Exit\".disabled = true
+
 func _on_Exit_pressed():
+	disable_buttons()
 	MusicController.fade_out()
 	Transitions.fade_in()
 	yield(Transitions.anim,\"animation_finished\")
@@ -34,6 +41,7 @@ func _on_Exit_pressed():
 
 
 func _on_Rocket_Man_pressed():
+	disable_buttons()
 	Transitions.fade_in()
 	yield(Transitions.anim,\"animation_finished\")
 	SceneChanger.goto_scene(\"res://Maps/Map_1.tscn\",self)
@@ -42,6 +50,7 @@ func _on_Rocket_Man_pressed():
 
 
 func _on_Bomber_Man_pressed():
+	disable_buttons()
 	Transitions.fade_in()
 	yield(Transitions.anim,\"animation_finished\")
 	SceneChanger.goto_scene(\"res://Maps/Map_2.tscn\",self)
@@ -50,6 +59,7 @@ func _on_Bomber_Man_pressed():
 
 
 func _on_Online_pressed():
+	disable_buttons()
 	Transitions.fade_in()
 	yield(Transitions.anim,\"animation_finished\")
 	SceneChanger.goto_scene(\"res://Maps/TwoTower/Two_Towers.tscn\",self)
