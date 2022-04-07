@@ -143,7 +143,7 @@ func _on_Visibility_collision_area_exited(area):
 
 [sub_resource type="SphereMesh" id=6]
 
-[node name="Soldier" type="KinematicBody" groups=["Player"]]
+[node name="Soldier(online)" type="KinematicBody" groups=["Player"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 collision_layer = 2
 collision_mask = 9
@@ -155,7 +155,6 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0
 shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="CollisionShape"]
-visible = false
 mesh = SubResource( 2 )
 material/0 = null
 
@@ -165,7 +164,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0 )
 [node name="Camera" type="Camera" parent="Pivot"]
 transform = Transform( -1, 0, -5.96046e-08, 0, 1, 0, 5.96046e-08, 0, -1, 0, 0, 0 )
 cull_mask = 1048569
-current = true
 near = 0.01
 far = 80.0
 
@@ -183,6 +181,21 @@ visible = false
 transform = Transform( -0.1, 0, -8.74228e-09, 0, 0.1, 0, 8.74228e-09, 0, -0.1, 1, -0.7, 5.96046e-08 )
 
 [node name="MeshInstance" parent="Pivot/Camera/Rocket Launcher" index="0"]
+layers = 1
+
+[node name="Smoke3" parent="Pivot/Camera/Rocket Launcher/MeshInstance/Spatial" index="0"]
+layers = 1
+
+[node name="Smoke2" parent="Pivot/Camera/Rocket Launcher/MeshInstance/Spatial" index="1"]
+layers = 1
+
+[node name="Smoke" parent="Pivot/Camera/Rocket Launcher/MeshInstance/Spatial" index="2"]
+layers = 1
+
+[node name="Fire2" parent="Pivot/Camera/Rocket Launcher/MeshInstance/Spatial" index="3"]
+layers = 1
+
+[node name="Fire" parent="Pivot/Camera/Rocket Launcher/MeshInstance/Spatial" index="4"]
 layers = 1
 
 [node name="Gun0" type="Spatial" parent="Pivot/Camera/Rocket Launcher"]
@@ -207,7 +220,6 @@ transform = Transform( -0.3, 0, -2.62268e-08, 0, 0.3, 0, 2.62268e-08, 0, -0.3, 0
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ViewportContainer" type="ViewportContainer" parent="CanvasLayer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 stretch = true
@@ -228,10 +240,11 @@ size = Vector2( 1280, 720 )
 transparent_bg = true
 handle_input_locally = false
 hdr = false
-render_target_update_mode = 0
+render_target_update_mode = 3
 
 [node name="Camera" type="Camera" parent="CanvasLayer/ViewportContainer/Viewport"]
 transform = Transform( -1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 1.7, 0 )
+visible = false
 cull_mask = 4
 near = 0.01
 far = 2.0
@@ -255,36 +268,33 @@ process_mode = 0
 wait_time = 0.4
 autostart = true
 
-[node name="Rocket_Launch" type="AudioStreamPlayer" parent="."]
+[node name="Rocket_Launch" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 4 )
 bus = "Effects"
 
-[node name="Jump" type="AudioStreamPlayer" parent="."]
+[node name="Jump" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 3 )
 bus = "Effects"
 
-[node name="Footstep1" type="AudioStreamPlayer" parent="."]
+[node name="Footstep1" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 5 )
-volume_db = -3.0
 bus = "Effects"
 
-[node name="Footstep2" type="AudioStreamPlayer" parent="."]
+[node name="Footstep2" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 8 )
-volume_db = -3.0
 bus = "Effects"
 
-[node name="Footstep3" type="AudioStreamPlayer" parent="."]
+[node name="Footstep3" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 6 )
-volume_db = -3.0
 bus = "Effects"
 
-[node name="land" type="AudioStreamPlayer" parent="."]
+[node name="land" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 8 )
 bus = "Effects"
 
-[node name="Rocket_Trail" type="AudioStreamPlayer" parent="."]
+[node name="Rocket_Trail" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 2 )
-volume_db = -12.0
+unit_db = -9.0
 pitch_scale = 0.8
 bus = "Effects"
 __meta__ = {

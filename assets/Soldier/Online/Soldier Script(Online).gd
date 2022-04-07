@@ -52,20 +52,22 @@ var puppet_velocity = Vector3()
 var puppet_rotation = Vector3()
 var puppet_rocket_transform:Transform 
 
+var rocket_num = 0
+
 	#when a packet is sent via the network_timer, puppet versions of soldier are updated 
 func _on_network_timer_timeout():
 	if is_network_master() and name == str(get_tree().get_network_unique_id()):
-		rpc_unreliable("update_state", global_transform.origin, velocity, Vector2(head.rotation.x, rotation.y),camera.global_transform)
+		rpc_unreliable("update_state", global_transform.origin, velocity, Vector2(head.rotation.x, self.rotation.y),camera.global_transform)
 	#only executed on puppet soldiers. Their rotation, position and velocity are adjusted to match where they roughly are
 puppet func update_state(p_pos, p_vel, p_rot, rocket_trans):
 	puppet_position = p_pos
 	puppet_velocity = p_vel
 	puppet_rotation = p_rot
 	puppet_rocket_transform = rocket_trans
-	$Tween.interpolate_property(self,"global_transform", global_transform, Transform(global_transform.basis,p_pos),.1)
+	$Tween.interpolate_property(self,"global_transform", global_transform, Transform(global_transform.basis,p_pos),0.1)
 	$Tween2.interpolate_property(gun_camera,"global_transform", global_transform, rocket_trans,.1)
-	$Tween.start
-	$Tween2.start
+	$Tween.start()
+	$Tween2.start()
 #Networking end
 
 
@@ -75,9 +77,7 @@ func _input(event: InputEvent) -> void:
 		if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			head.rotate_x(deg2rad(event.relative.y * mouse_sensitivity))
 			self.rotate_y(deg2rad((event.relative.x * -mouse_sensitivity)))
-			var camera_rot = head.rotation
-			camera_rot.x = clamp(camera_rot.x, deg2rad(-89), deg2rad(89))
-			head.rotation = camera_rot
+			head.rotation.x = clamp(head.rotation.x, deg2rad(-89), deg2rad(89))
 
 func _ready():
 	Globals.player = 1
@@ -101,6 +101,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = puppet_velocity.y
 		velocity.z = puppet_velocity.z
 		head.rotation.x = puppet_rotation.x
+		rotation.y = puppet_rotation.y
 		gun_camera.global_transform = puppet_rocket_transform
 	if is_network_master():
 		#print(wish_jump)
@@ -154,15 +155,20 @@ func _physics_process(delta: float) -> void:
 				velocity += get_slide_collision(i).normal *15
 		if Input.is_action_pressed("shoot1"):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-#		if Input.is_action_pressed("shoot1") and timer.is_stopped():
-#		#if event is InputEventMouseButton and event.pressed and event.button_index == 1 and timer.is_stopped():
-#			timer.start(cooldown)
-#			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+		if Input.is_action_pressed("shoot1") and timer.is_stopped():
+			
+		#if event is InputEventMouseButton and event.pressed and event.button_index == 1 and timer.is_stopped():
+			timer.start(cooldown)
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			
+			Network.emit_signal("player_shot",name,guns.global_transform.origin)
+			
 #			var rocket_instance = rocket_launcher.instance()
 #			#main.add_child(rocket_instance)
-#			anim.play("Shoot_Rocket")
-#			$Rocket_Launch.play()
-#			$Rocket_Trail.play()
+			anim.play("Shoot_Rocket")
+			$Rocket_Launch.play()
+			$Rocket_Trail.play()
 #			#rocket_instance.global_transform.origin = guns.global_transform.origin
 #			if raycast.is_colliding():
 #				rocket_instance.look_at_from_position(guns.global_transform.origin,raycast.get_collision_point(), Vector3.UP)

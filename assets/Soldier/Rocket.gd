@@ -5,6 +5,7 @@ var duration = 5
 export var speed:int = 10
 var velocity = Vector3()
 var bounce
+var rocket_owner = ""
 onready var explosion = preload("res://assets/Soldier/Explosion_Hitbox.tscn")#: PackedScene
 onready var decal = preload('res://assets/Textures/Bullet Decal.tscn')
 onready var main = get_tree().current_scene

@@ -9,7 +9,9 @@ func _ready():
 	print("signals connected")
 	get_tree().connect("network_peer_disconnected",self,"_player_disconnected")
 	get_tree().connect("network_peer_connected",self,"_player_joined")
-	Globals.connect("instance_player",self,"_instance_player")
+	Network.connect("instance_player",self,"_instance_player")
+	Network.connect("player_shot",self,"_player_shot")
+	Network.connect("explode_rocket",self,"_explode_rocket")
 
 func _player_joined(id):
 	print(str(id) + " connected")
@@ -27,4 +29,44 @@ func _instance_player(id):
 	var p = soldier.instance()
 	p.set_network_master(id)
 	p.name = str(id)
-	NetNodes.add_child(p)
+	NetNodes.players.add_child(p)
+
+func _player_shot(id,position):
+	rpc("_Player_shot_remote", id,position)
+	var r = Network.rocket.instance()
+	if NetNodes.players.get_node(str(id)).raycast.is_colliding():
+		r.look_at_from_position(NetNodes.players.get_node(str(id)).guns.global_transform.origin,NetNodes.players.get_node(str(id)).raycast.get_collision_point(), Vector3.UP)
+	else:
+		r.global_transform.origin = NetNodes.players.get_node(str(id)).guns.global_transform.origin
+		r.rotation_degrees = Vector3(-NetNodes.players.get_node(str(id)).head.rotation_degrees.x+1, NetNodes.players.get_node(str(id)).rotation_degrees.y+182,0)
+	r.velocity = r.transform.basis.z * -r.speed
+	
+	r.rocket_owner = NetNodes.players.get_node(str(id)).name
+	r.name = NetNodes.players.get_node(str(id)).name + str(NetNodes.players.get_node(str(id)).rocket_num)
+	NetNodes.players.get_node(str(id)).rocket_num += 1
+	NetNodes.rockets.add_child(r)
+
+remote func _player_shot_remote(id, position):
+	var r = Network.rocket.instance()
+	if NetNodes.players.get_node(str(id)).raycast.is_colliding():
+		r.look_at_from_position(NetNodes.players.get_node(str(id)).guns.global_transform.origin,NetNodes.players.get_node(str(id)).raycast.get_collision_point(), Vector3.UP)
+	else:
+		r.global_transform.origin = NetNodes.players.get_node(str(id)).guns.global_transform.origin
+		r.rotation_degrees = Vector3(-NetNodes.players.get_node(str(id)).head.rotation_degrees.x+1, NetNodes.players.get_node(str(id)).rotation_degrees.y+182,0)
+	r.velocity = r.transform.basis.z * -r.speed
+	
+	r.rocket_owner = NetNodes.players.get_node(str(id)).name
+	r.name = NetNodes.players.get_node(str(id)).name + str(NetNodes.players.get_node(str(id)).rocket_num)
+	NetNodes.players.get_node(str(id)).rocket_num += 1
+	NetNodes.rockets.add_child(r)
+
+func _explode_rocket(rocket):
+	rpc ("_explode_rocket_remote")
+	if NetNodes.rockets.has_node(rocket):
+		NetNodes.rockets.get_node(rocket).queue_free()
+		print (rocket + " has been destroyed")
+
+remote func _explode_rocket_remote(rocket):
+	if NetNodes.rockets.has_node(rocket):
+		NetNodes.rockets.get_node(rocket).queue_free()
+		print (rocket + " has been destroyed")

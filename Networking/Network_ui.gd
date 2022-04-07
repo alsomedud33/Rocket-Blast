@@ -20,13 +20,13 @@ func _ready():
 func _on_Create_button_pressed():
 	Network.create_server()
 	hide()
-	Globals.emit_signal("instance_player",get_tree().get_network_unique_id())
+	Network.emit_signal("instance_player",get_tree().get_network_unique_id())
 	print(str(get_tree().get_network_unique_id()) + " started server")
 
 func _on_Join_button_pressed():
 	Network.join_server()
 	hide()
-	Globals.emit_signal("instance_player",get_tree().get_network_unique_id())
+	Network.emit_signal("instance_player",get_tree().get_network_unique_id())
 	print(str(get_tree().get_network_unique_id()) + " jointed server")
 
 func _on_Exit_button_pressed():
