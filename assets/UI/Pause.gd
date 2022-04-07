@@ -88,27 +88,32 @@ func _on_Bomber_Man_pressed():
 
 
 func _on_Quit_pressed():
+#	Transitions.fade_in()
+#	MusicController.fade_out()
+#	yield(Transitions.anim,"animation_finished")
+#	get_tree().quit()
 	Transitions.fade_in()
-	MusicController.fade_out()
 	yield(Transitions.anim,"animation_finished")
-	get_tree().quit()
-
-
+	SceneChanger.goto_scene("res://TitleScreen/TitleScreen.tscn",get_parent().get_parent().get_parent())
+	get_tree().paused = false
+	visible = false
+	Globals.Paused = false
 
 
 func _on_Quit2_pressed():
-	var rng = RandomNumberGenerator.new()
-	rng.randomize()
-	var my_random_number = rng.randi_range(1,2)
-	MusicController.fade_out()
-	#yield(MusicController.tween,"tween_completed")
-	match my_random_number:
-		1:
-			MusicController.play_music(MusicController.military_track)
-			MusicController.fade_in()
-		2:
-			MusicController.play_music(MusicController.jungle_track)
-			MusicController.fade_in()
-#		3:
-#			MusicController.play_music(MusicController.airport_track)
+	MusicController.random_song()
+#	var rng = RandomNumberGenerator.new()
+#	rng.randomize()
+#	var my_random_number = rng.randi_range(1,2)
+#	MusicController.fade_out()
+#	#yield(MusicController.tween,"tween_completed")
+#	match my_random_number:
+#		1:
+#			MusicController.play_music(MusicController.military_track)
+#			MusicController.fade_in()
+#		2:
+#			MusicController.play_music(MusicController.jungle_track)
+#			MusicController.fade_in()
+##		3:
+##			MusicController.play_music(MusicController.airport_track)
 #			MusicController.fade_in()

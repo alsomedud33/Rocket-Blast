@@ -11,18 +11,20 @@ script/source = "extends Control
 var rng = RandomNumberGenerator.new()
 
 func _ready():
+	yield(get_tree().create_timer(.3), \"timeout\")
 	Transitions.fade_out()
-	rng.randomize()
-	var my_random_number = rng.randi_range(1,2)
-	print (my_random_number)
-	match my_random_number:
-		1:
-			MusicController.play_music(MusicController.military_track)
-		2:
-			MusicController.play_music(MusicController.jungle_track)
+	MusicController.random_song()
+#	rng.randomize()
+#	var my_random_number = rng.randi_range(1,3)
+#	print (\"song: \" + str(my_random_number))
+#	match my_random_number:
+#		1:
+#			MusicController.play_music(MusicController.military_track)
+#		2:
+#			MusicController.play_music(MusicController.jungle_track)
 #		3:
-#			MusicController.play_music(MusicController.airport_track)
-	MusicController.fade_in()
+#			MusicController.play_music(MusicController.menu_music)
+#	MusicController.fade_in()
 
 func _on_Exit_pressed():
 	MusicController.fade_out()
@@ -131,6 +133,7 @@ font_data = SubResource( 10 )
 [node name="TitleScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 1
 script = SubResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": true
@@ -167,6 +170,7 @@ margin_right = 6.0
 margin_bottom = 0.000183105
 rect_pivot_offset = Vector2( 157, 39.0002 )
 focus_mode = 0
+mouse_filter = 1
 custom_colors/font_color = Color( 0, 0.556863, 0.0823529, 1 )
 custom_fonts/font = SubResource( 7 )
 custom_styles/hover = SubResource( 12 )

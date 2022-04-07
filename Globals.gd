@@ -42,4 +42,3 @@ func _process(delta):
 		proj_counter = 0
 		complete = false
 
-
