@@ -64,6 +64,8 @@ puppet func update_state(p_pos, p_vel, p_rot):
 	net_tween.interpolate_property(self,"global_transform", global_transform, Transform(global_transform.basis,p_pos),.1)
 	net_tween.start
 #Networking end
+
+
 func _input(event: InputEvent) -> void:
 	if (online == false || (online == true && is_network_master())):
 		# Camera rotation
@@ -75,13 +77,14 @@ func _input(event: InputEvent) -> void:
 			head.rotation = camera_rot
 
 func _ready():
-	Globals.player = 1
-	yield(get_tree().create_timer(.2), "timeout")
-	main = get_tree().current_scene
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	if online == true:
-		print("we are online")
-		camera.current = is_network_master() 
+	if (online == false || (online == true && is_network_master())):
+		Globals.player = 1
+		yield(get_tree().create_timer(.2), "timeout")
+		main = get_tree().current_scene
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		if online == true:
+			print("we are online")
+			camera.current = is_network_master() 
 
 func _process(delta):
 	mouse_sensitivity = Globals.mouse_sense * 0.001
