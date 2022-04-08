@@ -16,6 +16,8 @@ signal rocket_hit(rocket, damage, location)
 var rocket_launcher = preload("res://assets/Soldier/Rocket Launcher.tscn")
 var soldier = preload("res://assets/Soldier/Online/Soldier(online).tscn")
 var rocket = preload ("res://assets/Soldier/Online/Rocket(online).tscn")
+var explosion = preload("res://assets/Soldier/Explosion_Hitbox.tscn")
+var decal = preload('res://assets/Textures/Bullet Decal.tscn')
 
 func _ready():
 	

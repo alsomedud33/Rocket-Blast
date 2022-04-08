@@ -13,6 +13,8 @@ func _ready():
 	Network.connect("instance_player",self,"_instance_player")
 	Network.connect("player_shot",self,"_player_shot")
 	Network.connect("destroy_rocket",self,"_destroy_rocket")
+	Network.connect("rocket_hit",self,"_rocket_hit")
+
 
 func _player_joined(id):
 	print(str(id) + " connected")
@@ -62,6 +64,52 @@ remote func _player_shot_remote(id, position):
 	r.name = NetNodes.players.get_node(str(id)).name + str(NetNodes.players.get_node(str(id)).rocket_num)
 	NetNodes.players.get_node(str(id)).rocket_num += 1
 	NetNodes.rockets.add_child(r)
+
+func _rocket_hit(rocket, damage, location):
+	rpc ("_rocket_hit_remote",rocket, damage, location)
+	if NetNodes.rockets.has_node(rocket):
+#		var explosion_instance = Network.explosion.instance()
+#		var decal_instance = Network.decal.instance()
+		for index in NetNodes.rockets.get_node(rocket).get_slide_count():
+			#print (get_slide_collision(index).get_collider().name)
+			if index == 0 and NetNodes.rockets.get_node(rocket).get_slide_collision(index).get_collider().name !=NetNodes.rockets.get_node(rocket).rocket_owner:
+					var collision = NetNodes.rockets.get_node(rocket).get_slide_collision(index)
+					var explosion_instance = Network.explosion.instance()
+					
+					var decal_instance = Network.decal.instance()
+					NetNodes.hitboxes.add_child(decal_instance)
+					decal_instance.global_transform.origin = collision.get_position()
+					#print ($RayCast.get_collision_point())
+					decal_instance.look_at(collision.get_position() + collision.get_normal() , Vector3.UP)
+#					NetNodes.hitboxes.add_child(decal_instance)
+
+					explosion_instance.y_explode_ratio = 1
+					explosion_instance.global_transform.origin = collision.get_position()
+					NetNodes.hitboxes.add_child(explosion_instance)
+					NetNodes.rockets.get_node(rocket).queue_free()
+	pass
+
+remote func _rocket_hit_remote(rocket, damage, location):
+	if NetNodes.rockets.has_node(rocket):
+#		var explosion_instance = Network.explosion.instance()
+#		var decal_instance = Network.decal.instance()
+		for index in NetNodes.rockets.get_node(rocket).get_slide_count():
+			#print (get_slide_collision(index).get_collider().name)
+			if index == 0 and NetNodes.rockets.get_node(rocket).get_slide_collision(index).get_collider().name !=NetNodes.rockets.get_node(rocket).rocket_owner:
+					var collision = NetNodes.rockets.get_node(rocket).get_slide_collision(index)
+					var explosion_instance = Network.explosion.instance()
+					
+					var decal_instance = Network.decal.instance()
+					decal_instance.transform.origin = collision.get_position()
+					#print ($RayCast.get_collision_point())
+					decal_instance.look_at(collision.get_position() + collision.get_normal() , Vector3.UP)
+					NetNodes.hitboxes.add_child(decal_instance)
+
+					explosion_instance.y_explode_ratio = 1
+					explosion_instance.global_transform.origin = collision.get_position()
+					NetNodes.hitboxes.add_child(explosion_instance)
+					NetNodes.rockets.get_node(rocket).queue_free()
+
 
 func _destroy_rocket(rocket):
 	rpc ("_explode_rocket_remote",rocket)

@@ -23,23 +23,24 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity, Vector3.UP,false, 4, PI/4, false)
 	bounce = move_and_collide(velocity * delta)
 	#if real:
-	for index in get_slide_count():
-		#print (get_slide_collision(index).get_collider().name)
-		if index == 0 and get_slide_collision(index).get_collider().name !=rocket_owner:
-			Network.emit_signal("rocket_hit",self)
-			var collision = get_slide_collision(index)
-			var explosion_instance = explosion.instance()
-			
-			var decal_instance = decal.instance()
-			main.add_child(decal_instance)
-			decal_instance.transform.origin = collision.get_position()
-			print ($RayCast.get_collision_point())
-			decal_instance.look_at(collision.get_position() + collision.get_normal() , Vector3.UP)
-			
-			explosion_instance.y_explode_ratio = 1
-			main.add_child(explosion_instance)
-			explosion_instance.global_transform.origin = collision.get_position()
-			queue_free()
+	Network.emit_signal("rocket_hit",name,0,0)
+#	for index in get_slide_count():
+#		#print (get_slide_collision(index).get_collider().name)
+#		if index == 0 and get_slide_collision(index).get_collider().name !=rocket_owner:
+#			if real == true:
+#				var collision = get_slide_collision(index)
+#				var explosion_instance = explosion.instance()
+#
+#				var decal_instance = decal.instance()
+#				main.add_child(decal_instance)
+#				decal_instance.transform.origin = collision.get_position()
+#				print ($RayCast.get_collision_point())
+#				decal_instance.look_at(collision.get_position() + collision.get_normal() , Vector3.UP)
+#
+#				explosion_instance.y_explode_ratio = 1
+#				main.add_child(explosion_instance)
+#				explosion_instance.global_transform.origin = collision.get_position()
+#				queue_free()
 
 
 func _on_Area_area_entered(area):
