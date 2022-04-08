@@ -79,9 +79,7 @@ func _rocket_hit(rocket, damage, location):
 					var decal_instance = Network.decal.instance()
 					NetNodes.hitboxes.add_child(decal_instance)
 					decal_instance.global_transform.origin = collision.get_position()
-					#print ($RayCast.get_collision_point())
 					decal_instance.look_at(collision.get_position() + collision.get_normal() , Vector3.UP)
-#					NetNodes.hitboxes.add_child(decal_instance)
 
 					explosion_instance.y_explode_ratio = 1
 					explosion_instance.global_transform.origin = collision.get_position()
@@ -100,15 +98,15 @@ remote func _rocket_hit_remote(rocket, damage, location):
 					var explosion_instance = Network.explosion.instance()
 					
 					var decal_instance = Network.decal.instance()
-					decal_instance.transform.origin = collision.get_position()
-					#print ($RayCast.get_collision_point())
-					decal_instance.look_at(collision.get_position() + collision.get_normal() , Vector3.UP)
 					NetNodes.hitboxes.add_child(decal_instance)
+					decal_instance.global_transform.origin = collision.get_position()
+					decal_instance.look_at(collision.get_position() + collision.get_normal() , Vector3.UP)
 
 					explosion_instance.y_explode_ratio = 1
 					explosion_instance.global_transform.origin = collision.get_position()
 					NetNodes.hitboxes.add_child(explosion_instance)
 					NetNodes.rockets.get_node(rocket).queue_free()
+	pass
 
 
 func _destroy_rocket(rocket):
