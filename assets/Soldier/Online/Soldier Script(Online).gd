@@ -53,7 +53,7 @@ var puppet_position = Vector3()
 var puppet_velocity = Vector3()
 var puppet_rotation = Vector3()
 var puppet_rocket_transform:Transform 
-var tick_rate = 0.01
+export var tick_rate:float = 0.007
 var rocket_num = 0
 
 	#when a packet is sent via the network_timer, puppet versions of soldier are updated 

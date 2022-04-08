@@ -10,7 +10,7 @@ export var radius_val= 1
 
 var newbox = SphereShape.new()
 var real = false
-
+var explosion_owner = ""
 
 
 #var partical = preload("res://assets/Sfx/Explosion.tscn")
@@ -55,8 +55,8 @@ func _on_Timer_timeout():
 
 
 func _on_Explosion_Hitbox_body_entered(body):
-	if real == true:
-		Network.emit_signal("explosion_hitbox",name,body,0)
+	#if real == true:
+	Network.emit_signal("explosion_hitbox",name,get_overlapping_bodies(),0)
 #	print('hit')
 #	body.snap = Vector3.ZERO
 #	if body.is_on_floor():
