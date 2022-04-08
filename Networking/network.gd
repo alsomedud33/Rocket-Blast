@@ -11,12 +11,13 @@ var ip_address = "127.0.0.1"
 signal instance_player(id)
 signal player_shot(id,location)
 signal destroy_rocket(rocket)
-signal rocket_hit(rocket, damage, location)
+signal rocket_hit(rocket, damage)
+signal explosion_hitbox(hitbox,players,damage)
 
 var rocket_launcher = preload("res://assets/Soldier/Rocket Launcher.tscn")
 var soldier = preload("res://assets/Soldier/Online/Soldier(online).tscn")
 var rocket = preload ("res://assets/Soldier/Online/Rocket(online).tscn")
-var explosion = preload("res://assets/Soldier/Explosion_Hitbox.tscn")
+var explosion = preload("res://Online/Explosion_Hitbox(online).tscn")
 var decal = preload('res://assets/Textures/Bullet Decal.tscn')
 
 func _ready():

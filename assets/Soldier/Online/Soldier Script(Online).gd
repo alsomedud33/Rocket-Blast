@@ -15,6 +15,7 @@ export var accel: float = 60 # or max_speed * 10 : Reach max speed in 1 / 10th o
 
 export var gravity: float = 15
 export var jump_impulse: float = 7
+var rocket_impulse: float = 0
 var terminal_velocity: float = gravity * -5 # When this is reached, we stop increasing falling speed
 
 var snap: Vector3 # Needed for move_and_slide_wit_snap(), which enables to go down slopes without falling
@@ -36,6 +37,7 @@ var wishdir: Vector3 = Vector3.ZERO # Desired travel direction of the player
 var vertical_velocity: float = 0 # Vertical component of our velocity. 
 # We separate it from 'velocity' to make calculations easier, then join both vectors before moving the player
 
+var rocket_jump: bool = false
 var wish_jump: bool = false # If true, player has queued a jump : the jump key can be held down before hitting the ground to jump.
 var auto_jump: bool = false # Auto bunnyhopping
 
@@ -51,7 +53,7 @@ var puppet_position = Vector3()
 var puppet_velocity = Vector3()
 var puppet_rotation = Vector3()
 var puppet_rocket_transform:Transform 
-
+var tick_rate = 0.01
 var rocket_num = 0
 
 	#when a packet is sent via the network_timer, puppet versions of soldier are updated 
@@ -64,8 +66,8 @@ puppet func update_state(p_pos, p_vel, p_rot, rocket_trans):
 	puppet_velocity = p_vel
 	puppet_rotation = p_rot
 	puppet_rocket_transform = rocket_trans
-	$Tween.interpolate_property(self,"global_transform", global_transform, Transform(global_transform.basis,p_pos),0.1)
-	$Tween2.interpolate_property(gun_camera,"global_transform", global_transform, rocket_trans,.1)
+	$Tween.interpolate_property(self,"global_transform", global_transform, Transform(global_transform.basis,p_pos),tick_rate)
+	$Tween2.interpolate_property(gun_camera,"global_transform", global_transform, rocket_trans,tick_rate)
 	$Tween.start()
 	$Tween2.start()
 #Networking end
@@ -80,6 +82,7 @@ func _input(event: InputEvent) -> void:
 			head.rotation.x = clamp(head.rotation.x, deg2rad(-89), deg2rad(89))
 
 func _ready():
+	$network_timer.wait_time = tick_rate
 	Globals.player = 1
 	yield(get_tree().create_timer(.2), "timeout")
 	main = get_tree().current_scene
@@ -121,6 +124,14 @@ func _physics_process(delta: float) -> void:
 				
 				#yield(get_tree().create_timer(.3), "timeout")
 				wish_jump = false # We have jumped, the player needs to press jump key again
+			elif rocket_jump: # If we're on the ground but wish_jump is still true, this means we've just landed
+				snap = Vector3.ZERO #Set snapping to zero so we can get off the ground
+				vertical_velocity = rocket_impulse # Jump
+				$Jump.play()
+				move_air(velocity, delta) # Mimic Quake's way of treating first frame after landing as still in the air
+				
+				#yield(get_tree().create_timer(.3), "timeout")
+				rocket_jump = false # We have jumped, the player needs to press jump key again
 				
 			else : # Player is on the ground. Move normally, apply friction
 				if ground_check.is_colliding() == true:
@@ -219,7 +230,7 @@ master func move_ground(input_velocity: Vector3, delta: float)-> void:
 	# Then get back our vertical component, and move the player
 	nextVelocity.y = vertical_velocity
 	#print (vertical_velocity)
-	velocity = move_and_slide_with_snap(nextVelocity, -get_floor_normal(), Vector3.UP,true,4,deg2rad(60))
+	velocity = move_and_slide_with_snap(nextVelocity, snap, Vector3.UP,true,4,deg2rad(60))
 
 # Accelerate without applying friction (with a lower allowed max_speed)
 master func move_air(input_velocity: Vector3, delta: float)-> void:

@@ -9,7 +9,7 @@ onready var radius = $CollisionShape.shape.radius
 export var radius_val= 1
 
 var newbox = SphereShape.new()
-
+var real = false
 
 
 
@@ -55,19 +55,13 @@ func _on_Timer_timeout():
 
 
 func _on_Explosion_Hitbox_body_entered(body):
-	print('hit')
-	body.snap = Vector3.ZERO
-	#collision_point = self.translation.direction_to(body.translation) * (4/self.translation.distance_to(body.translation))
-	
-	#body.velocity += explode_force*get_global_transform().origin.direction_to(body.get_global_transform().origin)#collision_point * *15 #body.global_transform.origin,collision_point*10)
-	if body.is_on_floor():
-		body.wish_jump = true
-	body.velocity += explode_force*get_global_transform().origin.direction_to(body.get_global_transform().origin) * distance_ratio/self.translation.distance_to(body.translation)
-	body.velocity.y += explode_force*y_explode_ratio*get_global_transform().origin.direction_to(body.get_global_transform().origin).y
-
-	#print (explode_force*get_global_transform().origin.direction_to(body.get_global_transform().origin))
-	#print(3/self.translation.distance_to(body.translation))
-
-
-
+	if real == true:
+		Network.emit_signal("explosion_hitbox",name,body,0)
+#	print('hit')
+#	body.snap = Vector3.ZERO
+#	if body.is_on_floor():
+#		body.rocket_impulse = explode_force*y_explode_ratio*2*get_global_transform().origin.direction_to(body.get_global_transform().origin).y
+#		body.rocket_jump = true
+#	body.velocity += explode_force*get_global_transform().origin.direction_to(body.get_global_transform().origin) * distance_ratio/self.translation.distance_to(body.translation)
+#	body.velocity.y += explode_force*y_explode_ratio*get_global_transform().origin.direction_to(body.get_global_transform().origin).y
 

@@ -61,5 +61,12 @@ debug_shape_custom_color = Color( 1, 0, 0, 1 )
 [node name="Spatial" parent="." instance=ExtResource( 3 )]
 transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.362993, 0, 0, 0.1 )
 
+[node name="network_timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="Tween" type="Tween" parent="."]
+
 [connection signal="area_entered" from="Area" to="." method="_on_Area_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="network_timer" to="." method="_on_network_timer_timeout"]
