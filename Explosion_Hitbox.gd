@@ -20,7 +20,7 @@ var newbox = SphereShape.new()
 
 onready var main = get_tree().current_scene
 
-export var explode_force = 1
+export var explode_force = 5
 var collision_point
 # Called when the node enters the scene tree for the first time.
 func _ready():
