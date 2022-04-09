@@ -7,10 +7,12 @@ export var distance_ratio: float = 3
 export var y_explode_ratio: float =3
 onready var radius = $CollisionShape.shape.radius
 export var radius_val= 1
+export var damage = 10
 
 var newbox = SphereShape.new()
 var real = false
 var explosion_owner = ""
+
 
 
 #var partical = preload("res://assets/Sfx/Explosion.tscn")
@@ -57,7 +59,7 @@ func _on_Timer_timeout():
 func _on_Explosion_Hitbox_body_entered(body):
 	if real == true:
 		for p in get_overlapping_bodies():
-			Network.emit_signal("explosion_hitbox",name,p.name,0)
+			Network.emit_signal("explosion_hitbox",name,p.name,damage)
 #	print('hit')
 #	body.snap = Vector3.ZERO
 #	if body.is_on_floor():

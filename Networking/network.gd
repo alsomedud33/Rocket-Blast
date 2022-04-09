@@ -13,7 +13,7 @@ signal player_shot(id,location)
 signal destroy_rocket(rocket)
 signal rocket_hit(rocket, damage)
 signal explosion_hitbox(hitbox,players,damage)
-
+signal hit(dmg,location)
 var rocket_launcher = preload("res://assets/Soldier/Rocket Launcher.tscn")
 var soldier = preload("res://assets/Soldier/Online/Soldier(online).tscn")
 var rocket = preload ("res://assets/Soldier/Online/Rocket(online).tscn")

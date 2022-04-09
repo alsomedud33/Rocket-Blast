@@ -58,8 +58,7 @@ remote func _player_shot_remote(id, position):
 	else:
 		r.global_transform.origin = NetNodes.players.get_node(str(id)).guns.global_transform.origin
 		r.rotation_degrees = Vector3(-NetNodes.players.get_node(str(id)).head.rotation_degrees.x+1, NetNodes.players.get_node(str(id)).rotation_degrees.y+182,0)
-	r.velocity = r.transform.basis.z * -r.speed
-	
+	r.velocity = r.transform.basis.z * -r.speedw
 	r.rocket_owner = NetNodes.players.get_node(str(id)).name
 	r.name = NetNodes.players.get_node(str(id)).name + str(NetNodes.players.get_node(str(id)).rocket_num)
 	NetNodes.players.get_node(str(id)).rocket_num += 1
@@ -68,9 +67,7 @@ remote func _player_shot_remote(id, position):
 func _rocket_hit(rocket, damage):
 	rpc ("_rocket_hit_remote",rocket, damage,NetNodes.rockets.get_node(rocket).global_transform.origin)
 	if NetNodes.rockets.has_node(rocket):
-		print (NetNodes.rockets.get_node(rocket).speed)
 		for index in NetNodes.rockets.get_node(rocket).get_slide_count():
-			#print (get_slide_collision(index).get_collider().name)
 			if index == 0 and NetNodes.rockets.get_node(rocket).get_slide_collision(index).get_collider().name !=NetNodes.rockets.get_node(rocket).rocket_owner:
 					var collision = NetNodes.rockets.get_node(rocket).get_slide_collision(index)
 					var explosion_instance = Network.explosion.instance()
@@ -96,7 +93,7 @@ func _rocket_hit(rocket, damage):
 
 remote func _rocket_hit_remote(rocket, damage,origin):
 	if NetNodes.rockets.has_node(rocket):
-		NetNodes.rockets.get_node(rocket).global_transform.origin = origin
+		NetNodes.rockets.get_node(rocket).global_transform.origin = lerp(NetNodes.rockets.get_node(rocket).global_transform.origin,origin,0.1)
 		for index in NetNodes.rockets.get_node(rocket).get_slide_count():
 			#print (get_slide_collision(index).get_collider().name)
 			if index == 0 and NetNodes.rockets.get_node(rocket).get_slide_collision(index).get_collider().name !=NetNodes.rockets.get_node(rocket).rocket_owner:
@@ -139,6 +136,9 @@ func _explosion_hitbox(hitbox,players,damage):
 	print(players)
 	print(hitbox)
 	rpc("_explosion_hitbox_remote",hitbox,players,damage,NetNodes.hitboxes.get_node(hitbox).get_global_transform().origin,NetNodes.hitboxes.get_node(hitbox).explode_force,NetNodes.hitboxes.get_node(hitbox).y_explode_ratio,NetNodes.hitboxes.get_node(hitbox).distance_ratio,NetNodes.hitboxes.get_node(hitbox).translation)
+	if NetNodes.hitboxes.get_node(hitbox).explosion_owner == str(get_tree().get_network_unique_id()):
+		Network.emit_signal("hit",round(damage *1/NetNodes.hitboxes.get_node(hitbox).get_global_transform().origin.distance_to(NetNodes.players.get_node(players).get_global_transform().origin)),NetNodes.players.get_node(players).get_global_transform().origin)
+	NetNodes.players.get_node(players).take_damage(round(damage *1/NetNodes.hitboxes.get_node(hitbox).get_global_transform().origin.distance_to(NetNodes.players.get_node(players).get_global_transform().origin)))
 	NetNodes.players.get_node(players).snap = Vector3.ZERO
 	if NetNodes.players.get_node(players).is_on_floor():
 		NetNodes.players.get_node(players).rocket_impulse = 1.5*NetNodes.hitboxes.get_node(hitbox).explode_force*NetNodes.hitboxes.get_node(hitbox).y_explode_ratio*2*NetNodes.hitboxes.get_node(hitbox).get_global_transform().origin.direction_to(NetNodes.players.get_node(players).get_global_transform().origin).y
@@ -148,6 +148,7 @@ func _explosion_hitbox(hitbox,players,damage):
 	print("real")
 
 remote func _explosion_hitbox_remote(hitbox,players,damage,origin,explode_force,y_explode_ratio,distance_ratio,translation):
+	NetNodes.players.get_node(players).take_damage(round(damage *1/NetNodes.hitboxes.get_node(hitbox).get_global_transform().origin.distance_to(NetNodes.players.get_node(players).get_global_transform().origin)))
 	NetNodes.players.get_node(players).snap = Vector3.ZERO
 	if NetNodes.players.get_node(players).is_on_floor():
 		NetNodes.players.get_node(players).rocket_impulse = 1.5*explode_force*y_explode_ratio*2*origin.direction_to(NetNodes.players.get_node(players).get_global_transform().origin).y

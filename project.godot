@@ -40,6 +40,14 @@ Transitions="*res://Transitions.tscn"
 Network="*res://Networking/network.gd"
 NetNodes="*res://Networking/Net_Nodes.tscn"
 
+[debug]
+
+multirun/number_of_windows=2
+multirun/window_distance=1270
+multirun/add_custom_args=true
+multirun/first_window_args="listen"
+multirun/other_window_args="join"
+
 [display]
 
 window/size/width=1280
@@ -50,7 +58,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/Trail/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/Trail/plugin.cfg", "res://addons/multirun/plugin.cfg" )
 
 [global]
 

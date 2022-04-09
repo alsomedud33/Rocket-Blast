@@ -4,6 +4,8 @@
 
 extends KinematicBody
 
+
+var health = 100
 var rng = RandomNumberGenerator.new()
 var mouse_sensitivity = Globals.mouse_sense
 export var max_speed: float = 6 # Meters per second
@@ -29,7 +31,11 @@ onready var timer = $"Rocket_Cooldown"
 onready var ground_check = $GroundCheck
 onready var rocket_launcher = preload("res://assets/Soldier/Rocket.tscn")#: PackedScene 
 onready var main = get_tree().current_scene
+onready var get_rocket_launcher = $"Pivot/Camera/Rocket Launcher"
 onready var guns = $"Pivot/Camera/Rocket Launcher/Gun0"
+onready var hat = $"Soldier Hat"
+onready var health_label = $Health
+onready var damage_label = $damage
 export var cooldown = 0.8
 var velocity: Vector3 = Vector3.ZERO # The current velocity vector
 var wishdir: Vector3 = Vector3.ZERO # Desired travel direction of the player
@@ -88,8 +94,11 @@ func _ready():
 	main = get_tree().current_scene
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	camera.current = is_network_master() 
-	#$"CanvasLayer/ViewportContainer".visible = is_network_master() 
-
+	get_rocket_launcher.get_node("MeshInstance").set_layer_mask_bit(2,is_network_master())
+	hat.get_node("MeshInstance").set_layer_mask_bit(0,!is_network_master())#visible = !is_network_master() 
+	$"CanvasLayer/ViewportContainer".visible = is_network_master() 
+	Network.connect("hit",self,"_hit")
+	
 func _process(delta):
 	mouse_sensitivity = Globals.mouse_sense * 0.001
 	if is_network_master():
@@ -107,6 +116,7 @@ func _physics_process(delta: float) -> void:
 		rotation.y = puppet_rotation.y
 		gun_camera.global_transform = puppet_rocket_transform
 	if is_network_master():
+		health_label.text = str(health)
 		#print(wish_jump)
 		queue_jump()
 		var forward_input: float = Input.get_action_strength("move_forward") - Input.get_action_strength("move_back")
@@ -125,6 +135,7 @@ func _physics_process(delta: float) -> void:
 				#yield(get_tree().create_timer(.3), "timeout")
 				wish_jump = false # We have jumped, the player needs to press jump key again
 			elif rocket_jump: # If we're on the ground but wish_jump is still true, this means we've just landed
+				print("rocket jump: "+name)
 				snap = Vector3.ZERO #Set snapping to zero so we can get off the ground
 				vertical_velocity = rocket_impulse # Jump
 				$Jump.play()
@@ -277,4 +288,20 @@ master func _on_Footstep_timeout():
 			3:
 				$Footstep3.play()
 
+func take_damage(dmg):
+	rpc("take_damage_remote",dmg)
+	health -= dmg
+	print (name + "" + str(health))
 
+remote func take_damage_remote(dmg):
+	health -= dmg
+	print (name + "" + str(health))
+
+func _hit(dmg,location):
+	if is_network_master():
+		damage_label.rect_position = camera.unproject_position(location)
+		damage_label.rect_position.y = lerp(damage_label.rect_position.y,damage_label.rect_position.y+100,0.5)
+		damage_label.modulate = Color(1, 0.913725, 0)
+		damage_label.text = "-"+str(dmg)
+		damage_label.show()
+		damage_label.modulate = lerp(damage_label.modulate, Color.transparent,0.1)
