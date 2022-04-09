@@ -85,6 +85,8 @@ func _on_Timer_timeout():
 
 
 func _on_Hitbox_body_entered(body):
+#	for i in $Hitbox.get_overlapping_bodies():
+#		print ("hit " + i.name)
 #	print(is_network_master())
 	var rocket = name
 #	print (body.name + " owns "+ rocket_owner)
@@ -100,13 +102,16 @@ func _on_Hitbox_body_entered(body):
 			
 			explosion_instance.name = rocket
 			explosion_instance.real = NetNodes.rockets.get_node(rocket).real#true
-			NetNodes.hitboxes.add_child(explosion_instance)
+			#NetNodes.hitboxes.add_child(explosion_instance)
+			explosion_instance.explosion_owner = self.rocket_owner
 			explosion_instance.distance_ratio = 3
 			explosion_instance.y_explode_ratio = 1
-			explosion_instance.radius_val = 1
+			explosion_instance.radius_val = 3
 			explosion_instance.explode_force = 5
-			explosion_instance.global_transform.origin = global_transform.origin
+			explosion_instance.global_transform.origin = self.global_transform.origin
+			NetNodes.hitboxes.add_child(explosion_instance)
 			Network.emit_signal("destroy_rocket",rocket)
 		else:
-			if NetNodes.rockets.has_node(rocket):
-				NetNodes.rockets.get_node(rocket).queue_free()
+			Network.emit_signal("destroy_rocket",rocket)
+#			if NetNodes.rockets.has_node(rocket):
+#				NetNodes.rockets.get_node(rocket).queue_free()

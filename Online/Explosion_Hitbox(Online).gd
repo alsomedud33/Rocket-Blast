@@ -57,6 +57,8 @@ func _on_Timer_timeout():
 
 
 func _on_Explosion_Hitbox_body_entered(body):
+	for i in get_overlapping_bodies():
+		print ("HITBOX hit " + i.name)
 	if real == true:
 		for p in get_overlapping_bodies():
 			Network.emit_signal("explosion_hitbox",name,p.name,damage)

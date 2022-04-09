@@ -94,6 +94,7 @@ func _ready():
 	main = get_tree().current_scene
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	camera.current = is_network_master() 
+	health_label.visible = is_network_master()
 	get_rocket_launcher.get_node("MeshInstance").set_layer_mask_bit(2,is_network_master())
 	hat.get_node("MeshInstance").set_layer_mask_bit(0,!is_network_master())#visible = !is_network_master() 
 	$"CanvasLayer/ViewportContainer".visible = is_network_master() 
@@ -291,11 +292,11 @@ master func _on_Footstep_timeout():
 func take_damage(dmg):
 	rpc("take_damage_remote",dmg)
 	health -= dmg
-	print (name + "" + str(health))
+#	print (name + "" + str(health))
 
 remote func take_damage_remote(dmg):
 	health -= dmg
-	print (name + "" + str(health))
+#	print (name + "" + str(health))
 
 func _hit(dmg,location):
 	if is_network_master():
