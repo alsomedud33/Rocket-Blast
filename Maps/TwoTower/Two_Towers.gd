@@ -66,7 +66,7 @@ remote func _player_shot_remote(id, position):
 	NetNodes.rockets.add_child(r)
 
 func _rocket_hit(rocket, damage):
-	rpc ("_rocket_hit_remote",rocket, damage)
+	rpc ("_rocket_hit_remote",rocket, damage,NetNodes.rockets.get_node(rocket).global_transform.origin)
 	if NetNodes.rockets.has_node(rocket):
 		print (NetNodes.rockets.get_node(rocket).speed)
 		for index in NetNodes.rockets.get_node(rocket).get_slide_count():
@@ -94,8 +94,9 @@ func _rocket_hit(rocket, damage):
 
 
 
-remote func _rocket_hit_remote(rocket, damage):
+remote func _rocket_hit_remote(rocket, damage,origin):
 	if NetNodes.rockets.has_node(rocket):
+		NetNodes.rockets.get_node(rocket).global_transform.origin = origin
 		for index in NetNodes.rockets.get_node(rocket).get_slide_count():
 			#print (get_slide_collision(index).get_collider().name)
 			if index == 0 and NetNodes.rockets.get_node(rocket).get_slide_collision(index).get_collider().name !=NetNodes.rockets.get_node(rocket).rocket_owner:
@@ -117,7 +118,7 @@ remote func _rocket_hit_remote(rocket, damage):
 					explosion_instance.radius_val = 1
 					explosion_instance.explode_force = 5
 					explosion_instance.global_transform.origin = collision.get_position()
-				#	Network.emit_signal("destroy_rocket",rocket)
+					Network.emit_signal("destroy_rocket",rocket)
 
 
 
