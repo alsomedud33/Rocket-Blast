@@ -67,11 +67,7 @@ remote func _player_shot_remote(id, position):
 
 func _rocket_hit(rocket, damage):
 	rpc ("_rocket_hit_remote",rocket, damage)
-#	NetNodes.rockets.get_node(rocket).velocity = NetNodes.rockets.get_node(rocket).move_and_slide(NetNodes.rockets.get_node(rocket).velocity, Vector3.UP,false, 4, PI/4, false)
 	if NetNodes.rockets.has_node(rocket):
-#		var explosion_instance = Network.explosion.instance()
-#		var decal_instance = Network.decal.instance()
-		#NetNodes.rockets.get_node(rocket).velocity = NetNodes.rockets.get_node(rocket).move_and_slide(NetNodes.rockets.get_node(rocket).velocity, Vector3.UP,false, 4, PI/4, false)
 		print (NetNodes.rockets.get_node(rocket).speed)
 		for index in NetNodes.rockets.get_node(rocket).get_slide_count():
 			#print (get_slide_collision(index).get_collider().name)
@@ -94,17 +90,12 @@ func _rocket_hit(rocket, damage):
 					explosion_instance.explode_force = 5
 					explosion_instance.global_transform.origin = collision.get_position()
 					Network.emit_signal("destroy_rocket",rocket)
-					#_destroy_rocket(rocket)
-					#NetNodes.rockets.get_node(rocket).queue_free()
+
 
 
 
 remote func _rocket_hit_remote(rocket, damage):
-#	NetNodes.rockets.get_node(rocket).velocity = NetNodes.rockets.get_node(rocket).move_and_slide(NetNodes.rockets.get_node(rocket).velocity, Vector3.UP,false, 4, PI/4, false)
 	if NetNodes.rockets.has_node(rocket):
-#		var explosion_instance = Network.explosion.instance()
-#		var decal_instance = Network.decal.instance()
-		#NetNodes.rockets.get_node(rocket).velocity = NetNodes.rockets.get_node(rocket).move_and_slide(NetNodes.rockets.get_node(rocket).velocity, Vector3.UP,false, 4, PI/4, false)
 		for index in NetNodes.rockets.get_node(rocket).get_slide_count():
 			#print (get_slide_collision(index).get_collider().name)
 			if index == 0 and NetNodes.rockets.get_node(rocket).get_slide_collision(index).get_collider().name !=NetNodes.rockets.get_node(rocket).rocket_owner:
@@ -126,9 +117,8 @@ remote func _rocket_hit_remote(rocket, damage):
 					explosion_instance.radius_val = 1
 					explosion_instance.explode_force = 5
 					explosion_instance.global_transform.origin = collision.get_position()
-					Network.emit_signal("destroy_rocket",rocket)
-					#_destroy_rocket(rocket)
-					#NetNodes.rockets.get_node(rocket).queue_free()
+				#	Network.emit_signal("destroy_rocket",rocket)
+
 
 
 
@@ -147,11 +137,7 @@ remote func _destroy_rocket_remote(rocket):
 func _explosion_hitbox(hitbox,players,damage):
 	print(players)
 	print(hitbox)
-#	if NetNodes.players.get_node(players).is_network_master() ==false:
-#		print ("fake explosion")
 	rpc("_explosion_hitbox_remote",hitbox,players,damage,NetNodes.hitboxes.get_node(hitbox).get_global_transform().origin,NetNodes.hitboxes.get_node(hitbox).explode_force,NetNodes.hitboxes.get_node(hitbox).y_explode_ratio,NetNodes.hitboxes.get_node(hitbox).distance_ratio,NetNodes.hitboxes.get_node(hitbox).translation)
-#	else:
-		#print(players.name)
 	NetNodes.players.get_node(players).snap = Vector3.ZERO
 	if NetNodes.players.get_node(players).is_on_floor():
 		NetNodes.players.get_node(players).rocket_impulse = 1.5*NetNodes.hitboxes.get_node(hitbox).explode_force*NetNodes.hitboxes.get_node(hitbox).y_explode_ratio*2*NetNodes.hitboxes.get_node(hitbox).get_global_transform().origin.direction_to(NetNodes.players.get_node(players).get_global_transform().origin).y
@@ -161,9 +147,6 @@ func _explosion_hitbox(hitbox,players,damage):
 	print("real")
 
 remote func _explosion_hitbox_remote(hitbox,players,damage,origin,explode_force,y_explode_ratio,distance_ratio,translation):
-#	if NetNodes.hitboxes.has_node(hitbox):
-		#print("fake")
-		#print(NetNodes.players.get_node(players).name)
 	NetNodes.players.get_node(players).snap = Vector3.ZERO
 	if NetNodes.players.get_node(players).is_on_floor():
 		NetNodes.players.get_node(players).rocket_impulse = 1.5*explode_force*y_explode_ratio*2*origin.direction_to(NetNodes.players.get_node(players).get_global_transform().origin).y
