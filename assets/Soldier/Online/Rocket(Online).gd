@@ -46,17 +46,11 @@ remote func update_position(pos,rot):
 	global_transform.origin = pos
 	rotation = rot
 func _physics_process(delta):
-#	if !is_network_master():
-#		global_transform.origin = puppet_position
-#		velocity.x = puppet_velocity.x
-#		velocity.y = puppet_velocity.y
-#		velocity.z = puppet_velocity.z
-#		rotation = puppet_rotation
 	velocity = move_and_slide(velocity, Vector3.UP,false, 4, PI/4, false)
 	bounce = move_and_collide(velocity * delta)
 	#if real:
 	Network.emit_signal("rocket_hit",name,0)
-	rpc_unreliable("update_position",global_transform.origin,rotation)
+#	rpc_unreliable("update_position",global_transform.origin,rotation)
 	
 	#	for index in get_slide_count():
 	#		#print (get_slide_collision(index).get_collider().name)

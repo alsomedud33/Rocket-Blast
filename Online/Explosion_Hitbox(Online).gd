@@ -55,8 +55,9 @@ func _on_Timer_timeout():
 
 
 func _on_Explosion_Hitbox_body_entered(body):
-	#if real == true:
-	Network.emit_signal("explosion_hitbox",name,get_overlapping_bodies(),0)
+	if real == true:
+		for p in get_overlapping_bodies():
+			Network.emit_signal("explosion_hitbox",name,p.name,0)
 #	print('hit')
 #	body.snap = Vector3.ZERO
 #	if body.is_on_floor():
