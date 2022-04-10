@@ -136,7 +136,7 @@ func _physics_process(delta: float) -> void:
 				#yield(get_tree().create_timer(.3), "timeout")
 				wish_jump = false # We have jumped, the player needs to press jump key again
 			elif rocket_jump: # If we're on the ground but wish_jump is still true, this means we've just landed
-				print("rocket jump: "+name)
+				#print("rocket jump: "+name)
 				snap = Vector3.ZERO #Set snapping to zero so we can get off the ground
 				vertical_velocity = rocket_impulse # Jump
 				$Jump.play()
@@ -300,9 +300,17 @@ remote func take_damage_remote(dmg):
 
 func _hit(dmg,location):
 	if is_network_master():
-		damage_label.rect_position = camera.unproject_position(location)
-		damage_label.rect_position.y = lerp(damage_label.rect_position.y,damage_label.rect_position.y+100,0.5)
-		damage_label.modulate = Color(1, 0.913725, 0)
-		damage_label.text = "-"+str(dmg)
 		damage_label.show()
-		damage_label.modulate = lerp(damage_label.modulate, Color.transparent,0.1)
+		damage_label.rect_position =  get_viewport().get_camera().unproject_position(location)#camera.unproject_position(location)
+		damage_label.get_node("Tween").interpolate_property(damage_label,'rect_position',Vector2(damage_label.rect_position.x,damage_label.rect_position.y),Vector2(damage_label.rect_position.x,damage_label.rect_position.y-500),2)
+		damage_label.get_node("Tween").start()
+		#damage_label.modulate = Color(1, 0.913725, 0)  #Yellow colour
+		damage_label.text = "-"+str(dmg)
+		damage_label.get_node("Tween").interpolate_property(damage_label,'modulate',Color(1, 0.913725, 0),Color.transparent,2)
+		damage_label.get_node("Tween").start()
+#		damage_label.get_node("Tween").connect("tween_all_completed",self,"_reset_damage_label_tween")
+	#	damage_label.modulate = lerp(damage_label.modulate, Color.transparent,0.1)
+
+#func _reset_damage_label_tween():
+#	if is_network_master():
+#		damage_label.rect_position = Vector2.ZERO

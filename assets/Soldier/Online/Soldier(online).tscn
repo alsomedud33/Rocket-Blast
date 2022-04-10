@@ -376,6 +376,8 @@ custom_fonts/font = SubResource( 19 )
 text = "61"
 align = 1
 
+[node name="Tween" type="Tween" parent="damage"]
+
 [connection signal="timeout" from="Footstep" to="." method="_on_Footstep_timeout"]
 [connection signal="area_entered" from="Visibility collision" to="Visibility collision" method="_on_Visibility_collision_area_entered"]
 [connection signal="area_exited" from="Visibility collision" to="Visibility collision" method="_on_Visibility_collision_area_exited"]

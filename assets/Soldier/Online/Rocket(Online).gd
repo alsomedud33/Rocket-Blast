@@ -43,15 +43,17 @@ func _ready():
 #	set_collision_mask_bit(1,real)
 #	$network_timer.wait_time = tick_rate
 
-remote func update_position(pos,rot):
-	global_transform.origin = pos
-	rotation = rot
+remote func update_position(velocity):#pos,rot):
+	velocity = move_and_slide(velocity, Vector3.UP,false, 4, PI/4, false)
+#	global_transform.origin = pos
+#	rotation = rot
 func _physics_process(delta):
 	velocity = move_and_slide(velocity, Vector3.UP,false, 4, PI/4, false)
 	bounce = move_and_collide(velocity * delta)
 	#if real:
 #	Network.emit_signal("rocket_hit",name,0)
-#	rpc_unreliable("update_position",global_transform.origin,rotation)
+	if is_network_master():
+		rpc_unreliable("update_position",velocity)#global_transform.origin,rotation)
 	
 	#	for index in get_slide_count():
 	#		#print (get_slide_collision(index).get_collider().name)
@@ -91,6 +93,7 @@ func _on_Hitbox_body_entered(body):
 	var rocket = name
 #	print (body.name + " owns "+ rocket_owner)
 	if body.name !=rocket_owner:
+		#print("AM I REAL: " + str(real))
 		if real:
 			var explosion_instance = Network.explosion.instance()
 			
@@ -111,7 +114,7 @@ func _on_Hitbox_body_entered(body):
 			explosion_instance.global_transform.origin = self.global_transform.origin
 			NetNodes.hitboxes.add_child(explosion_instance)
 			Network.emit_signal("destroy_rocket",rocket)
-		else:
-			Network.emit_signal("destroy_rocket",rocket)
-#			if NetNodes.rockets.has_node(rocket):
-#				NetNodes.rockets.get_node(rocket).queue_free()
+		#else:
+		#	Network.emit_signal("destroy_rocket",rocket)
+			#if NetNodes.rockets.has_node(rocket):
+			#	NetNodes.rockets.get_node(rocket).queue_free()
