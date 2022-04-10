@@ -180,7 +180,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0 )
 transform = Transform( -1, 0, -5.96046e-08, 0, 1, 0, 5.96046e-08, 0, -1, 0, 0, 0 )
 cull_mask = 1048569
 near = 0.01
-far = 80.0
 
 [node name="RayCast" type="RayCast" parent="Pivot/Camera"]
 transform = Transform( -1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, -1, 3.0604e-08, 0, -0.51345 )

@@ -59,23 +59,24 @@ var puppet_position = Vector3()
 var puppet_velocity = Vector3()
 var puppet_rotation = Vector3()
 var puppet_rocket_transform:Transform 
+var puppet_animation:String
 export var tick_rate:float = 0.007
 var rocket_num = 0
 
 	#when a packet is sent via the network_timer, puppet versions of soldier are updated 
 func _on_network_timer_timeout():
 	if is_network_master() and name == str(get_tree().get_network_unique_id()):
-		rpc_unreliable("update_state", global_transform.origin, velocity, Vector2(head.rotation.x, self.rotation.y),camera.global_transform)
+		rpc_unreliable("update_state", global_transform.origin, velocity, Vector2(head.rotation.x, self.rotation.y),camera.global_transform,anim.get_current_animation())
 	#only executed on puppet soldiers. Their rotation, position and velocity are adjusted to match where they roughly are
-puppet func update_state(p_pos, p_vel, p_rot, rocket_trans):
+puppet func update_state(p_pos, p_vel, p_rot, rocket_trans, anim_name):
 	puppet_position = p_pos
 	puppet_velocity = p_vel
 	puppet_rotation = p_rot
 	puppet_rocket_transform = rocket_trans
+	puppet_animation = anim_name
 	$Tween.interpolate_property(self,"global_transform", global_transform, Transform(global_transform.basis,p_pos),tick_rate)
-	$Tween2.interpolate_property(gun_camera,"global_transform", global_transform, rocket_trans,tick_rate)
+	$Tween.interpolate_property(gun_camera,"global_transform", global_transform, rocket_trans,tick_rate)
 	$Tween.start()
-	$Tween2.start()
 #Networking end
 
 
@@ -116,6 +117,7 @@ func _physics_process(delta: float) -> void:
 		head.rotation.x = puppet_rotation.x
 		rotation.y = puppet_rotation.y
 		gun_camera.global_transform = puppet_rocket_transform
+		anim.play(puppet_animation)
 	if is_network_master():
 		health_label.text = str(health)
 		#print(wish_jump)
