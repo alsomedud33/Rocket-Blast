@@ -36,6 +36,10 @@ onready var guns = $"Pivot/Camera/Rocket Launcher/Gun0"
 onready var hat = $"Soldier Hat"
 onready var health_label = $Health
 onready var damage_label = $damage
+onready var usr_tag = $Username
+
+onready var armature = $"Armature"
+
 export var cooldown = 0.8
 var velocity: Vector3 = Vector3.ZERO # The current velocity vector
 var wishdir: Vector3 = Vector3.ZERO # Desired travel direction of the player
@@ -96,19 +100,25 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	camera.current = is_network_master() 
 	health_label.visible = is_network_master()
-	get_rocket_launcher.get_node("MeshInstance").set_layer_mask_bit(2,is_network_master())
-	hat.get_node("MeshInstance").set_layer_mask_bit(0,!is_network_master())#visible = !is_network_master() 
+	get_rocket_launcher.visible = is_network_master()
+	#get_rocket_launcher.get_node("MeshInstance").set_layer_mask_bit(2,is_network_master())
+#	hat.get_node("MeshInstance").set_layer_mask_bit(0,!is_network_master())#visible = !is_network_master() 
 	$"CanvasLayer/ViewportContainer".visible = is_network_master() 
 	Network.connect("hit",self,"_hit")
-	
+	armature.get_node("Skeleton/Soldier").set_layer_mask_bit(0,!is_network_master())#.visible = !is_network_master()
+	armature.get_node("Skeleton/Rocket Launcher/Rocket Launcher").set_layer_mask_bit(0,!is_network_master())
+	armature.get_node("Skeleton/Hat/Soldier Hat2").set_layer_mask_bit(0,!is_network_master())
 func _process(delta):
 	mouse_sensitivity = Globals.mouse_sense * 0.001
 	if is_network_master():
 		gun_camera.global_transform = camera.global_transform
 		if Input.is_action_just_pressed("ui_cancel"):
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-
+#	else:
+#		usr_tag.rect_position = puppet_usertag# get_viewport().get_camera().unproject_position(head.transform.origin)
 func _physics_process(delta: float) -> void:
+	usr_tag.rect_global_position =  get_viewport().get_camera().unproject_position(head.global_transform.origin)
+
 	if !is_network_master():
 		global_transform.origin = puppet_position
 		velocity.x = puppet_velocity.x

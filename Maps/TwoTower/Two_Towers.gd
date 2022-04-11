@@ -122,11 +122,11 @@ remote func _rocket_hit_remote(rocket, damage,origin):
 
 func _destroy_rocket(rocket):
 	rpc ("_destroy_rocket_remote",rocket)
-	if NetNodes.rockets.has_node(rocket):
-		NetNodes.rockets.get_node(rocket).queue_free()
-		print (rocket + " has been destroyed")
+#	if NetNodes.rockets.has_node(rocket):
+#		NetNodes.rockets.get_node(rocket).queue_free()
+#		print (rocket + " has been destroyed")
 
-remote func _destroy_rocket_remote(rocket): 
+remotesync  func _destroy_rocket_remote(rocket): 
 	if NetNodes.rockets.has_node(rocket):
 		NetNodes.rockets.get_node(rocket).queue_free()
 		print (rocket + " has been destroyed")

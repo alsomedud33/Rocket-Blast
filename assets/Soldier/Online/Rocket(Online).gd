@@ -32,14 +32,18 @@ onready var main = get_tree().current_scene
 #	$Tween.interpolate_property(self,"global_transform",Transform(global_transform.basis,p_pos),tick_rate)
 #	$Tween.start()
 ##Networking end
-
-
-
+puppet var puppet_position setget puppet_position_set
+puppet var puppet_velocity
+puppet var puppet_transform 
 
 func _ready():
 	Globals.proj_counter += 1
 	set_as_toplevel(true)
 	$Timer.start(duration)
+	if is_network_master():
+		rset("puppet_position",global_transform.origin)
+		rset("puppet_velocity",velocity)
+		rset("puppet_transform",global_transform.basis)
 #	set_collision_mask_bit(1,real)
 #	$network_timer.wait_time = tick_rate
 
@@ -48,12 +52,17 @@ remote func update_position(velocity):#pos,rot):
 #	global_transform.origin = pos
 #	rotation = rot
 func _physics_process(delta):
-	velocity = move_and_slide(velocity, Vector3.UP,false, 4, PI/4, false)
-	bounce = move_and_collide(velocity * delta)
+	if is_network_master():
+		velocity = move_and_slide(velocity, Vector3.UP,false, 4, PI/4, false)
+		bounce = move_and_collide(velocity * delta)
+		rset("puppet_position",global_transform.origin)
+		rset("puppet_transform",global_transform.basis)
+#	else:
+#		global_transform.basis =  puppet_transform
 	#if real:
 #	Network.emit_signal("rocket_hit",name,0)
-	if is_network_master():
-		rpc_unreliable("update_position",velocity)#global_transform.origin,rotation)
+	#if NetNodes.players.get_node(rocket_owner).is_network_master():
+	#rpc_unreliable("update_position",velocity)#global_transform.origin,rotation)
 	
 	#	for index in get_slide_count():
 	#		#print (get_slide_collision(index).get_collider().name)
@@ -73,6 +82,12 @@ func _physics_process(delta):
 	#				explosion_instance.global_transform.origin = collision.get_position()
 	#				queue_free()
 
+
+func puppet_position_set(position):
+	puppet_position = position
+	$Tween.interpolate_property(self,"global_transform",global_transform,Transform(global_transform.basis,puppet_position),0.1)
+	$Tween.start()
+	#global_transform.origin = puppet_position#lerp(global_transform.origin,puppet_position,0.1)
 
 func _on_Area_area_entered(area):
 	if area.name !=("Portal"):
