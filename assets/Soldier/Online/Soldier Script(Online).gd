@@ -170,6 +170,13 @@ func _physics_process(delta: float) -> void:
 						vertical_velocity = 2
 				snap = -get_floor_normal() #Turn snapping on, so we stick to slopes
 				move_ground(velocity, delta)
+				print (sqrt(pow(velocity.x,2) + pow(velocity.z,2)))
+				if (sqrt(pow(velocity.x,2) + pow(velocity.z,2)) <3) or forward_input in range(-0.2,0.2):
+					anim_tree.set("parameters/Is_Moving/current", 0)
+				else:
+					anim_tree.set("parameters/Is_Moving/current", 1)
+					anim_tree.set("parameters/Run_Dir/blend_amount", int(velocity.z>0))
+					#if velocity.z >
 		
 		else: #We're in the air. Do not apply friction
 			snap = Vector3.DOWN

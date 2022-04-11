@@ -1777,7 +1777,7 @@ skin = SubResource( 22 )
 material/0 = null
 
 [node name="Rocket Launcher" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.06779, -0.103362, 0.992331, -0.0174679, 0.994589, 0.102404, -0.997545, -0.0103913, -0.0692285, -4.9338, 4.67203, 1.36644 )
+transform = Transform( -0.06779, -0.103362, 0.992331, -0.017468, 0.994589, 0.102404, -0.997545, -0.0103914, -0.0692285, -4.9338, 4.90747, 1.38682 )
 bone_name = "Arm.R"
 
 [node name="Rocket Launcher" type="MeshInstance" parent="Armature/Skeleton/Rocket Launcher"]
@@ -1788,7 +1788,7 @@ skeleton = NodePath("../../../..")
 material/0 = null
 
 [node name="Hat" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 0.997616, 0.0085044, 0.068499, -0.00672425, 0.999635, -0.0261692, -0.0686969, 0.0256454, 0.997307, 1.1816e-07, 4.11911, 0.955822 )
+transform = Transform( 0.997616, 0.0085044, 0.068499, -0.00672426, 0.999635, -0.0261692, -0.0686969, 0.0256454, 0.997307, 1.89024e-07, 4.35455, 0.976202 )
 bone_name = "Head"
 
 [node name="Soldier Hat2" type="MeshInstance" parent="Armature/Skeleton/Hat"]
@@ -1829,9 +1829,9 @@ parameters/Air_Hit/blend_amount = 0.0
 parameters/Air_State/current = 1
 parameters/Airborne/current = 0
 parameters/Char_State/current = 0
-parameters/Is_Moving/blend_amount = 1.0
+parameters/Is_Moving/current = 1
 parameters/Is_Shooting/active = false
-parameters/Run_Dir/blend_amount = 1.0
+parameters/Run_Dir/blend_amount = 0.0
 
 [connection signal="timeout" from="Footstep" to="." method="_on_Footstep_timeout"]
 [connection signal="area_entered" from="Visibility collision" to="Visibility collision" method="_on_Visibility_collision_area_entered"]
