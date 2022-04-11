@@ -1,0 +1,101 @@
+[gd_resource type="AnimationNodeBlendTree" load_steps=17 format=2]
+
+[sub_resource type="AnimationNodeAnimation" id=33]
+animation = "Run"
+
+[sub_resource type="AnimationNodeAnimation" id=34]
+animation = "Shoot"
+
+[sub_resource type="AnimationNodeAnimation" id=41]
+animation = "AIr (Beginning)"
+
+[sub_resource type="AnimationNodeAnimation" id=42]
+animation = "AIr (Hit)"
+
+[sub_resource type="AnimationNodeAnimation" id=52]
+animation = "Landing"
+
+[sub_resource type="AnimationNodeAnimation" id=53]
+animation = "AIr"
+
+[sub_resource type="AnimationNodeAnimation" id=61]
+animation = "Run (Backwards)"
+
+[sub_resource type="AnimationNodeAnimation" id=58]
+animation = "AIr"
+
+[sub_resource type="AnimationNodeAnimation" id=35]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeBlend2" id=59]
+
+[sub_resource type="AnimationNodeBlend2" id=66]
+
+[sub_resource type="AnimationNodeBlend2" id=67]
+
+[sub_resource type="AnimationNodeOneShot" id=65]
+filter_enabled = true
+filters = [ "Armature/Skeleton:Arm.L", "Armature/Skeleton:Arm.R", "Armature/Skeleton:Head", "Armature/Skeleton:LowerArm.L", "Armature/Skeleton:LowerArm.R", "Armature/Skeleton:Pelvis", "Armature/Skeleton:Shoulder.L", "Armature/Skeleton:Shoulder.R", "Armature/Skeleton:Spine1", "Armature/Skeleton:Spine2", "Armature/Skeleton:UpperArm.L", "Armature/Skeleton:UpperArm.R" ]
+
+[sub_resource type="AnimationNodeTransition" id=56]
+input_count = 2
+xfade_time = 0.2
+input_0/name = "Air Start"
+input_0/auto_advance = false
+input_1/name = "Mid_Air"
+input_1/auto_advance = false
+
+[sub_resource type="AnimationNodeTransition" id=60]
+input_count = 2
+xfade_time = 0.4
+input_0/name = "state 0"
+input_0/auto_advance = true
+input_1/name = "state 1"
+input_1/auto_advance = true
+
+[sub_resource type="AnimationNodeTransition" id=51]
+input_count = 3
+xfade_time = 0.2
+input_0/name = "Ground"
+input_0/auto_advance = false
+input_1/name = "Air"
+input_1/auto_advance = false
+input_2/name = "Land"
+input_2/auto_advance = true
+
+[resource]
+graph_offset = Vector2( 109.377, -46.958 )
+nodes/Animation/node = SubResource( 35 )
+nodes/Animation/position = Vector2( 180, 200 )
+"nodes/Animation 2/node" = SubResource( 33 )
+"nodes/Animation 2/position" = Vector2( -120, 180 )
+"nodes/Animation 3/node" = SubResource( 34 )
+"nodes/Animation 3/position" = Vector2( 700, 420 )
+"nodes/Animation 4/node" = SubResource( 41 )
+"nodes/Animation 4/position" = Vector2( -240, 440 )
+"nodes/Animation 5/node" = SubResource( 42 )
+"nodes/Animation 5/position" = Vector2( 100, 620 )
+"nodes/Animation 6/node" = SubResource( 52 )
+"nodes/Animation 6/position" = Vector2( 471.45, 532.04 )
+"nodes/Animation 7/node" = SubResource( 53 )
+"nodes/Animation 7/position" = Vector2( -460, 680 )
+"nodes/Animation 8/node" = SubResource( 61 )
+"nodes/Animation 8/position" = Vector2( -120, 0 )
+"nodes/Animation 9/node" = SubResource( 58 )
+"nodes/Animation 9/position" = Vector2( -460, 840 )
+nodes/Blend2/node = SubResource( 67 )
+nodes/Blend2/position = Vector2( 280, -40 )
+"nodes/Blend2 2/node" = SubResource( 59 )
+"nodes/Blend2 2/position" = Vector2( 340, 320 )
+"nodes/Blend2 3/node" = SubResource( 66 )
+"nodes/Blend2 3/position" = Vector2( 540, 100 )
+nodes/OneShot/node = SubResource( 65 )
+nodes/OneShot/position = Vector2( 1140, 240 )
+nodes/Transition/node = SubResource( 51 )
+nodes/Transition/position = Vector2( 820, 200 )
+"nodes/Transition 2/node" = SubResource( 56 )
+"nodes/Transition 2/position" = Vector2( 60, 400 )
+"nodes/Transition 3/node" = SubResource( 60 )
+"nodes/Transition 3/position" = Vector2( -160, 700 )
+nodes/output/position = Vector2( 1560, 120 )
+node_connections = [ "output", 0, "OneShot", "Blend2", 0, "Animation 8", "Blend2", 1, "Animation 2", "Transition 2", 0, "Animation 4", "Transition 2", 1, "Transition 3", "OneShot", 0, "Transition", "OneShot", 1, "Animation 3", "Blend2 2", 0, "Transition 2", "Blend2 2", 1, "Animation 5", "Transition", 0, "Blend2 3", "Transition", 1, "Blend2 2", "Transition", 2, "Animation 6", "Transition 3", 0, "Animation 7", "Transition 3", 1, "Animation 9", "Blend2 3", 0, "Blend2", "Blend2 3", 1, "Animation" ]
