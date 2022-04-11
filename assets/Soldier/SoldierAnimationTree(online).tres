@@ -70,7 +70,7 @@ filters = [ "Armature/Skeleton:Arm.L", "Armature/Skeleton:Arm.R", "Armature/Skel
 [sub_resource type="AnimationNodeBlend2" id=67]
 
 [resource]
-graph_offset = Vector2( -69.6227, 6.54199 )
+graph_offset = Vector2( -53.1885, 65.5 )
 nodes/Air_Hit/node = SubResource( 59 )
 nodes/Air_Hit/position = Vector2( 340, 320 )
 nodes/Air_State/node = SubResource( 56 )
@@ -104,4 +104,4 @@ nodes/Is_Shooting/position = Vector2( 1140, 240 )
 nodes/Run_Dir/node = SubResource( 67 )
 nodes/Run_Dir/position = Vector2( 280, 140 )
 nodes/output/position = Vector2( 1560, 120 )
-node_connections = [ "output", 0, "Is_Shooting", "Is_Moving", 0, "Animation", "Is_Moving", 1, "Run_Dir", "Char_State", 0, "Is_Moving", "Char_State", 1, "Air_Hit", "Char_State", 2, "Animation 6", "Air_Hit", 0, "Air_State", "Air_Hit", 1, "Animation 5", "Run_Dir", 0, "Animation 8", "Run_Dir", 1, "Animation 2", "Air_State", 0, "Animation 4", "Air_State", 1, "Airborne", "Is_Shooting", 0, "Char_State", "Is_Shooting", 1, "Animation 3", "Airborne", 0, "Animation 7", "Airborne", 1, "Animation 9" ]
+node_connections = [ "output", 0, "Is_Shooting", "Char_State", 0, "Is_Moving", "Char_State", 1, "Air_Hit", "Char_State", 2, "Animation 6", "Run_Dir", 0, "Animation 8", "Run_Dir", 1, "Animation 2", "Air_State", 0, "Animation 4", "Air_State", 1, "Airborne", "Is_Moving", 0, "Animation", "Is_Moving", 1, "Run_Dir", "Airborne", 0, "Animation 7", "Airborne", 1, "Animation 9", "Air_Hit", 0, "Air_State", "Air_Hit", 1, "Animation 5", "Is_Shooting", 0, "Char_State", "Is_Shooting", 1, "Animation 3" ]

@@ -1533,6 +1533,9 @@ shadow_color = Color( 1, 0.698039, 0.458824, 1 )
 shadow_bias = -8.621
 omni_range = 2.0
 
+[node name="Head_Ik_Target" type="Position3D" parent="Pivot/Camera"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.19209e-07, 0 )
+
 [node name="Soldier Hat" parent="." instance=ExtResource( 14 )]
 transform = Transform( -0.3, 0, -2.62268e-08, 0, 0.3, 0, 2.62268e-08, 0, -0.3, 0, 0, 0 )
 visible = false
@@ -1713,7 +1716,7 @@ bones/6/name = "Head"
 bones/6/parent = 5
 bones/6/rest = Transform( 0.943395, -0.0389697, 0.329373, -0.0303351, 0.978773, 0.202689, -0.330281, -0.201208, 0.922188, 0, 2.26562, 0 )
 bones/6/enabled = true
-bones/6/bound_children = [  ]
+bones/6/bound_children = [ NodePath("Hat") ]
 bones/7/name = "Shoulder.L"
 bones/7/parent = 5
 bones/7/rest = Transform( 0.635148, 0.692073, 0.34296, 0.34296, -0.650548, 0.677617, 0.692073, -0.312766, -0.650548, -1.27145e-07, 2.26562, 1.1582e-07 )
@@ -1753,7 +1756,7 @@ bones/14/name = "Arm.R"
 bones/14/parent = 13
 bones/14/rest = Transform( 0.266673, -0.0399825, -0.962957, -0.743706, 0.626963, -0.231987, 0.613014, 0.778022, 0.137459, 1.26959e-07, 2.17997, -3.0583e-07 )
 bones/14/enabled = true
-bones/14/bound_children = [  ]
+bones/14/bound_children = [ NodePath("Rocket Launcher") ]
 bones/15/name = "UpperLeg.L"
 bones/15/parent = 0
 bones/15/rest = Transform( -0.981479, 0.149722, 0.119508, -0.0974942, -0.927391, 0.361166, 0.164905, 0.342825, 0.924812, 0.93457, 0.623047, 5.2108e-15 )
@@ -1777,7 +1780,7 @@ skin = SubResource( 22 )
 material/0 = null
 
 [node name="Rocket Launcher" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.06779, -0.103362, 0.992331, -0.017468, 0.994589, 0.102404, -0.997545, -0.0103912, -0.0692285, -4.9338, 5.96487, 1.24635 )
+transform = Transform( -0.0314171, -0.117029, 0.992463, 0.064413, 0.990652, 0.118854, -0.997261, 0.0676735, -0.0235894, -5.00371, 6.28929, 0.879643 )
 bone_name = "Arm.R"
 
 [node name="Rocket Launcher" type="MeshInstance" parent="Armature/Skeleton/Rocket Launcher"]
@@ -1788,7 +1791,7 @@ skeleton = NodePath("../../../..")
 material/0 = null
 
 [node name="Hat" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 0.997616, 0.00850438, 0.0684991, -0.00672425, 0.999635, -0.0261693, -0.0686969, 0.0256455, 0.997307, 2.0044e-07, 5.41194, 0.835735 )
+transform = Transform( 0.992476, 0.00516197, 0.120966, 0.00776825, 0.994152, -0.106156, -0.120828, 0.106314, 0.986796, -0.05184, 5.82473, 0.612023 )
 bone_name = "Head"
 
 [node name="Soldier Hat2" type="MeshInstance" parent="Armature/Skeleton/Hat"]
@@ -1797,6 +1800,13 @@ layers = 2
 mesh = ExtResource( 16 )
 skeleton = NodePath("../../../..")
 material/0 = null
+
+[node name="Spineik" type="SkeletonIK" parent="Armature/Skeleton"]
+process_priority = 1
+root_bone = "Spine1"
+tip_bone = "Spine2"
+override_tip_basis = false
+target_node = NodePath("../../../Pivot/Camera/Head_Ik_Target")
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
 autoplay = "0TPose"
@@ -1828,10 +1838,10 @@ active = true
 parameters/Air_Hit/blend_amount = 0.0
 parameters/Air_State/current = 1
 parameters/Airborne/current = 0
-parameters/Char_State/current = 0
+parameters/Char_State/current = 1
 parameters/Is_Moving/current = 1
 parameters/Is_Shooting/active = false
-parameters/Run_Dir/blend_amount = 0.0
+parameters/Run_Dir/blend_amount = 1.0
 
 [connection signal="timeout" from="Footstep" to="." method="_on_Footstep_timeout"]
 [connection signal="area_entered" from="Visibility collision" to="Visibility collision" method="_on_Visibility_collision_area_entered"]

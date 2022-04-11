@@ -97,6 +97,7 @@ func _input(event: InputEvent) -> void:
 func _ready():
 	$network_timer.wait_time = tick_rate
 	Globals.player = 1
+	$Armature/Skeleton/Spineik.start()
 	yield(get_tree().create_timer(.2), "timeout")
 	main = get_tree().current_scene
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
