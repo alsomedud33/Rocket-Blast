@@ -92,6 +92,7 @@ func _input(event: InputEvent) -> void:
 			head.rotate_x(deg2rad(event.relative.y * mouse_sensitivity))
 			self.rotate_y(deg2rad((event.relative.x * -mouse_sensitivity)))
 			head.rotation.x = clamp(head.rotation.x, deg2rad(-89), deg2rad(89))
+			#armature.get_node("Skeleton").set_bone_pose(armature.get_node("Skeleton").find_bone("Head"),Transform(camera.global_transform.basis,armature.get_node("Skeleton").get_bone_pose(armature.get_node("Skeleton").find_bone("Head")).origin))
 
 func _ready():
 	$network_timer.wait_time = tick_rate
