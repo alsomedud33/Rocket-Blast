@@ -27,6 +27,7 @@ onready var camera: Camera = $Pivot/Camera
 onready var gun_camera = $CanvasLayer/ViewportContainer/Viewport/Camera
 onready var raycast = $Pivot/Camera/RayCast
 onready var anim = $AnimationPlayer
+onready var anim_tree = $AnimationTree
 onready var timer = $"Rocket_Cooldown"
 onready var ground_check = $GroundCheck
 onready var rocket_launcher = preload("res://assets/Soldier/Rocket.tscn")#: PackedScene 

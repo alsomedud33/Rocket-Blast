@@ -1777,7 +1777,7 @@ skin = SubResource( 22 )
 material/0 = null
 
 [node name="Rocket Launcher" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.06779, -0.103362, 0.992331, -0.0174679, 0.994589, 0.102404, -0.997545, -0.0103913, -0.0692285, -4.9338, 5.82425, 1.24101 )
+transform = Transform( -0.06779, -0.103362, 0.992331, -0.0174678, 0.994589, 0.102404, -0.997545, -0.0103912, -0.0692284, -4.9338, 4.32504, 1.38435 )
 bone_name = "Arm.R"
 
 [node name="Rocket Launcher" type="MeshInstance" parent="Armature/Skeleton/Rocket Launcher"]
@@ -1788,7 +1788,7 @@ skeleton = NodePath("../../../..")
 material/0 = null
 
 [node name="Hat" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 0.997616, 0.0085044, 0.068499, -0.00672425, 0.999635, -0.0261692, -0.0686969, 0.0256454, 0.997307, 1.85333e-07, 5.27133, 0.830392 )
+transform = Transform( 0.997616, 0.00850438, 0.0684991, -0.00672423, 0.999635, -0.0261693, -0.0686969, 0.0256455, 0.997307, 8.71361e-08, 3.77212, 0.973737 )
 bone_name = "Head"
 
 [node name="Soldier Hat2" type="MeshInstance" parent="Armature/Skeleton/Hat"]
@@ -1825,13 +1825,13 @@ valign = 1
 tree_root = ExtResource( 18 )
 anim_player = NodePath("../AnimationPlayer2")
 active = true
-parameters/Blend2/blend_amount = 1.0
-"parameters/Blend2 2/blend_amount" = 0.0
-"parameters/Blend2 3/blend_amount" = 0.0
-parameters/OneShot/active = false
-parameters/Transition/current = 0
-"parameters/Transition 2/current" = 1
-"parameters/Transition 3/current" = 1
+parameters/Air_Hit/blend_amount = 0.0
+parameters/Air_State/current = 1
+parameters/Airborne/current = 0
+parameters/Char_State/current = 0
+parameters/Is_Moving/blend_amount = 1.0
+parameters/Is_Shooting/active = false
+parameters/Run_Dir/blend_amount = 1.0
 
 [connection signal="timeout" from="Footstep" to="." method="_on_Footstep_timeout"]
 [connection signal="area_entered" from="Visibility collision" to="Visibility collision" method="_on_Visibility_collision_area_entered"]

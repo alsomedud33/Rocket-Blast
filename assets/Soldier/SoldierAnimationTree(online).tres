@@ -1,5 +1,23 @@
 [gd_resource type="AnimationNodeBlendTree" load_steps=17 format=2]
 
+[sub_resource type="AnimationNodeBlend2" id=59]
+
+[sub_resource type="AnimationNodeTransition" id=56]
+input_count = 2
+xfade_time = 0.2
+input_0/name = "Air Start"
+input_0/auto_advance = false
+input_1/name = "Mid_Air"
+input_1/auto_advance = false
+
+[sub_resource type="AnimationNodeTransition" id=60]
+input_count = 2
+xfade_time = 0.4
+input_0/name = "state 0"
+input_0/auto_advance = true
+input_1/name = "state 1"
+input_1/auto_advance = true
+
 [sub_resource type="AnimationNodeAnimation" id=33]
 animation = "Run"
 
@@ -27,32 +45,6 @@ animation = "AIr"
 [sub_resource type="AnimationNodeAnimation" id=35]
 animation = "Idle"
 
-[sub_resource type="AnimationNodeBlend2" id=59]
-
-[sub_resource type="AnimationNodeBlend2" id=66]
-
-[sub_resource type="AnimationNodeBlend2" id=67]
-
-[sub_resource type="AnimationNodeOneShot" id=65]
-filter_enabled = true
-filters = [ "Armature/Skeleton:Arm.L", "Armature/Skeleton:Arm.R", "Armature/Skeleton:Head", "Armature/Skeleton:LowerArm.L", "Armature/Skeleton:LowerArm.R", "Armature/Skeleton:Pelvis", "Armature/Skeleton:Shoulder.L", "Armature/Skeleton:Shoulder.R", "Armature/Skeleton:Spine1", "Armature/Skeleton:Spine2", "Armature/Skeleton:UpperArm.L", "Armature/Skeleton:UpperArm.R" ]
-
-[sub_resource type="AnimationNodeTransition" id=56]
-input_count = 2
-xfade_time = 0.2
-input_0/name = "Air Start"
-input_0/auto_advance = false
-input_1/name = "Mid_Air"
-input_1/auto_advance = false
-
-[sub_resource type="AnimationNodeTransition" id=60]
-input_count = 2
-xfade_time = 0.4
-input_0/name = "state 0"
-input_0/auto_advance = true
-input_1/name = "state 1"
-input_1/auto_advance = true
-
 [sub_resource type="AnimationNodeTransition" id=51]
 input_count = 3
 xfade_time = 0.2
@@ -63,8 +55,22 @@ input_1/auto_advance = false
 input_2/name = "Land"
 input_2/auto_advance = true
 
+[sub_resource type="AnimationNodeBlend2" id=66]
+
+[sub_resource type="AnimationNodeOneShot" id=65]
+filter_enabled = true
+filters = [ "Armature/Skeleton:Arm.L", "Armature/Skeleton:Arm.R", "Armature/Skeleton:Head", "Armature/Skeleton:LowerArm.L", "Armature/Skeleton:LowerArm.R", "Armature/Skeleton:Pelvis", "Armature/Skeleton:Shoulder.L", "Armature/Skeleton:Shoulder.R", "Armature/Skeleton:Spine1", "Armature/Skeleton:Spine2", "Armature/Skeleton:UpperArm.L", "Armature/Skeleton:UpperArm.R" ]
+
+[sub_resource type="AnimationNodeBlend2" id=67]
+
 [resource]
-graph_offset = Vector2( 109.377, -46.958 )
+graph_offset = Vector2( -471.623, 183.292 )
+nodes/Air_Hit/node = SubResource( 59 )
+nodes/Air_Hit/position = Vector2( 340, 320 )
+nodes/Air_State/node = SubResource( 56 )
+nodes/Air_State/position = Vector2( 60, 400 )
+nodes/Airborne/node = SubResource( 60 )
+nodes/Airborne/position = Vector2( -160, 700 )
 nodes/Animation/node = SubResource( 35 )
 nodes/Animation/position = Vector2( 180, 200 )
 "nodes/Animation 2/node" = SubResource( 33 )
@@ -83,19 +89,13 @@ nodes/Animation/position = Vector2( 180, 200 )
 "nodes/Animation 8/position" = Vector2( -120, 0 )
 "nodes/Animation 9/node" = SubResource( 58 )
 "nodes/Animation 9/position" = Vector2( -460, 840 )
-nodes/Blend2/node = SubResource( 67 )
-nodes/Blend2/position = Vector2( 280, -40 )
-"nodes/Blend2 2/node" = SubResource( 59 )
-"nodes/Blend2 2/position" = Vector2( 340, 320 )
-"nodes/Blend2 3/node" = SubResource( 66 )
-"nodes/Blend2 3/position" = Vector2( 540, 100 )
-nodes/OneShot/node = SubResource( 65 )
-nodes/OneShot/position = Vector2( 1140, 240 )
-nodes/Transition/node = SubResource( 51 )
-nodes/Transition/position = Vector2( 820, 200 )
-"nodes/Transition 2/node" = SubResource( 56 )
-"nodes/Transition 2/position" = Vector2( 60, 400 )
-"nodes/Transition 3/node" = SubResource( 60 )
-"nodes/Transition 3/position" = Vector2( -160, 700 )
+nodes/Char_State/node = SubResource( 51 )
+nodes/Char_State/position = Vector2( 820, 200 )
+nodes/Is_Moving/node = SubResource( 66 )
+nodes/Is_Moving/position = Vector2( 560, 60 )
+nodes/Is_Shooting/node = SubResource( 65 )
+nodes/Is_Shooting/position = Vector2( 1140, 240 )
+nodes/Run_Dir/node = SubResource( 67 )
+nodes/Run_Dir/position = Vector2( 280, -40 )
 nodes/output/position = Vector2( 1560, 120 )
-node_connections = [ "output", 0, "OneShot", "Blend2", 0, "Animation 8", "Blend2", 1, "Animation 2", "Transition 2", 0, "Animation 4", "Transition 2", 1, "Transition 3", "OneShot", 0, "Transition", "OneShot", 1, "Animation 3", "Blend2 2", 0, "Transition 2", "Blend2 2", 1, "Animation 5", "Transition", 0, "Blend2 3", "Transition", 1, "Blend2 2", "Transition", 2, "Animation 6", "Transition 3", 0, "Animation 7", "Transition 3", 1, "Animation 9", "Blend2 3", 0, "Blend2", "Blend2 3", 1, "Animation" ]
+node_connections = [ "output", 0, "Is_Shooting", "Char_State", 0, "Is_Moving", "Char_State", 1, "Air_Hit", "Char_State", 2, "Animation 6", "Air_Hit", 0, "Air_State", "Air_Hit", 1, "Animation 5", "Run_Dir", 0, "Animation 8", "Run_Dir", 1, "Animation 2", "Air_State", 0, "Animation 4", "Air_State", 1, "Airborne", "Is_Shooting", 0, "Char_State", "Is_Shooting", 1, "Animation 3", "Is_Moving", 0, "Animation", "Is_Moving", 1, "Run_Dir", "Airborne", 0, "Animation 7", "Airborne", 1, "Animation 9" ]
