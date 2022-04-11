@@ -117,8 +117,6 @@ func _process(delta):
 		gun_camera.global_transform = camera.global_transform
 		if Input.is_action_just_pressed("ui_cancel"):
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-#	else:
-#		usr_tag.rect_position = puppet_usertag# get_viewport().get_camera().unproject_position(head.transform.origin)
 func _physics_process(delta: float) -> void:
 	usr_tag.rect_global_position =  get_viewport().get_camera().unproject_position(head.global_transform.origin)
 
@@ -150,6 +148,8 @@ func _physics_process(delta: float) -> void:
 				
 				#yield(get_tree().create_timer(.3), "timeout")
 				wish_jump = false # We have jumped, the player needs to press jump key again
+				anim_tree.set("parameters/Char_State/current", 2)
+				anim_tree.set("parameters/Air_Hit/blend_amount", 0)
 			elif rocket_jump: # If we're on the ground but wish_jump is still true, this means we've just landed
 				#print("rocket jump: "+name)
 				snap = Vector3.ZERO #Set snapping to zero so we can get off the ground
@@ -161,6 +161,7 @@ func _physics_process(delta: float) -> void:
 				rocket_jump = false # We have jumped, the player needs to press jump key again
 				
 			else : # Player is on the ground. Move normally, apply friction
+				#anim_tree.set("parameters/Char_State/current", 0)
 				if ground_check.is_colliding() == true:
 					var normal = ground_check.get_collision_normal()
 					#print(normal.dot(Vector3.UP))
@@ -172,8 +173,11 @@ func _physics_process(delta: float) -> void:
 						vertical_velocity = 2
 				snap = -get_floor_normal() #Turn snapping on, so we stick to slopes
 				move_ground(velocity, delta)
-				print (sqrt(pow(velocity.x,2) + pow(velocity.z,2)))
-				if (sqrt(pow(velocity.x,2) + pow(velocity.z,2)) <3) or forward_input in range(-0.2,0.2):
+				#print (sqrt(pow(velocity.x,2) + pow(velocity.z,2)))
+				anim_tree.set("parameters/Char_State/current", 0)
+				anim_tree.set("parameters/Air_Hit/blend_amount", 0)
+				print (forward_input)
+				if (abs(forward_input) < 0.2  and abs(strafe_input) < 0.2):#(sqrt(pow(velocity.x,2) + pow(velocity.z,2)) <3) or forward_input in range(-0.2,0.2):
 					anim_tree.set("parameters/Is_Moving/current", 0)
 				else:
 					anim_tree.set("parameters/Is_Moving/current", 1)
@@ -181,6 +185,11 @@ func _physics_process(delta: float) -> void:
 					#if velocity.z >
 		
 		else: #We're in the air. Do not apply friction
+			if ground_check.is_colliding():#velocity.y <=0 and ground_check.is_colliding() and !wish_jump== true:
+				anim_tree.set("parameters/Char_State/current", 2)
+				rocket_jump = false
+			else:
+				anim_tree.set("parameters/Char_State/current", 1)
 			snap = Vector3.DOWN
 			vertical_velocity = velocity.y
 			
@@ -193,17 +202,18 @@ func _physics_process(delta: float) -> void:
 		
 		if self.is_on_ceiling(): #We've hit a ceiling, usually after a jump. Vertical velocity is reset to cancel any remaining jump momentum
 			vertical_velocity = 0
-		for i in self.get_slide_count():
-			#print (state.get_contact_collider_object(i).name)
-			#print(get_slide_collision(i).get_collider().name)
-			if get_slide_collision(i).get_collider().name == "Explosion_Hitbox":
-				velocity += get_slide_collision(i).normal *15
+#		for i in self.get_slide_count():
+#			#print (state.get_contact_collider_object(i).name)
+#			#print(get_slide_collision(i).get_collider().name)
+#			if get_slide_collision(i).get_collider().name == "Explosion_Hitbox":
+#				velocity += get_slide_collision(i).normal *15
 		if Input.is_action_pressed("shoot1"):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 		if Input.is_action_pressed("shoot1") and timer.is_stopped():
 			
 		#if event is InputEventMouseButton and event.pressed and event.button_index == 1 and timer.is_stopped():
+			anim_tree.set("parameters/Is_Shooting/active", true)
 			timer.start(cooldown)
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			
@@ -276,6 +286,12 @@ master func move_air(input_velocity: Vector3, delta: float)-> void:
 	
 	# Then get back our vertical component, and move the player
 	nextVelocity.y = vertical_velocity
+	if rocket_jump:
+		anim_tree.set("parameters/Air_Hit/blend_amount", 1)
+	if nextVelocity.y > 0 and !wish_jump:
+		anim_tree.set("parameters/Air_State/current", 0)
+	else:
+		anim_tree.set("parameters/Air_State/current", 1)
 #	print(sqrt(pow(nextVelocity.x,2) + pow(nextVelocity.z,2)))
 	if sqrt(pow(nextVelocity.x,2) + pow(nextVelocity.z,2)) >10:
 		velocity = move_and_slide_with_snap(nextVelocity, snap, Vector3.UP,true,4,deg2rad(20))
