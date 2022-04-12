@@ -63,10 +63,13 @@ var puppet_position = Vector3()
 var puppet_velocity = Vector3()
 var puppet_rotation = Vector3()
 var puppet_rocket_transform:Transform 
-puppet var puppet_anim:String
-puppet var puppet_anim_val:int
+var puppet_floorcheck
+var puppet_rocketjump
+var puppet_wish_jump
+var puppet_anim:String
+var puppet_anim_val
 
-var fake_anim:String
+var fake_anim
 var fake_anim_val
 export var tick_rate:float = 0.007
 var rocket_num = 0
@@ -75,8 +78,11 @@ var rocket_num = 0
 func _on_network_timer_timeout():
 	if is_network_master() and name == str(get_tree().get_network_unique_id()):
 		rpc_unreliable("update_state", global_transform.origin, velocity, Vector2(head.rotation.x, self.rotation.y),camera.global_transform)
-		rset_unreliable("puppet_anim",fake_anim)
-		rset_unreliable("puppet_anim_val",fake_anim_val)
+		rpc("update_anim",is_on_floor(),rocket_jump,wish_jump)
+func anim_timeout():
+	if is_network_master() and name == str(get_tree().get_network_unique_id()):
+		pass#rpc_unreliable("update_anim",fake_anim,fake_anim_val)
+
 	#only executed on puppet soldiers. Their rotation, position and velocity are adjusted to match where they roughly are
 puppet func update_state(p_pos, p_vel, p_rot, rocket_trans):
 	puppet_position = p_pos
@@ -86,16 +92,20 @@ puppet func update_state(p_pos, p_vel, p_rot, rocket_trans):
 	$Tween.interpolate_property(self,"global_transform", global_transform, Transform(global_transform.basis,p_pos),tick_rate)
 	$Tween.interpolate_property(gun_camera,"global_transform", global_transform, rocket_trans,tick_rate)
 	$Tween.start()
+puppet func update_anim(floor_check,r_jump,w_jump):
+	puppet_floorcheck = floor_check
+	puppet_rocketjump = r_jump
+	puppet_wish_jump = w_jump
 #Networking end
+
+
+
 func animtree_change(parameter : String, val:int):
-	if is_network_master():
+	if is_network_master() and name == str(get_tree().get_network_unique_id()):
 		anim_tree.set(parameter, val)
-	#	rset_unreliable("puppet_anim",parameter)
-	#	rset_unreliable("puppet_anim_val",val)
 		fake_anim = parameter
 		fake_anim_val = val
-	#	print (puppet_anim)
-		#fake_anim_val = val
+		#rpc_unreliable("update_anim",parameter,val)
 
 func _input(event: InputEvent) -> void:
 	if is_network_master():
@@ -123,26 +133,59 @@ func _ready():
 	armature.get_node("Skeleton/Soldier").set_layer_mask_bit(0,!is_network_master())#.visible = !is_network_master()
 	armature.get_node("Skeleton/Rocket Launcher/Rocket Launcher").set_layer_mask_bit(0,!is_network_master())
 	armature.get_node("Skeleton/Hat/Soldier Hat2").set_layer_mask_bit(0,!is_network_master())
+	anim.playback_active = true
 func _process(delta):
 	mouse_sensitivity = Globals.mouse_sense * 0.001
 	if is_network_master():
 		gun_camera.global_transform = camera.global_transform
 		if Input.is_action_just_pressed("ui_cancel"):
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-
+	else:
+		anim_tree.set(puppet_anim,puppet_anim_val)
 func _physics_process(delta: float) -> void:
 #	usr_tag.rect_global_position =  get_viewport().get_camera().unproject_position(head.global_transform.origin)
-
 	if !is_network_master():
 		global_transform.origin = puppet_position
 		velocity.x = puppet_velocity.x
 		velocity.y = puppet_velocity.y
+		print (velocity.y)
 		velocity.z = puppet_velocity.z
 		head.rotation.x = puppet_rotation.x
 		rotation.y = puppet_rotation.y
 		gun_camera.global_transform = puppet_rocket_transform
-	#	print(puppet_anim)
-		anim_tree.set(puppet_anim, puppet_anim_val)
+		if puppet_floorcheck:
+			anim_tree.set("parameters/Char_State/current",0)
+			anim_tree.set("parameters/Air_Hit/blend_amount",0)
+			if (abs(velocity.z) <1  and abs(velocity.x) < 1):#(sqrt(pow(velocity.x,2) + pow(velocity.z,2)) <3) or forward_input in range(-0.2,0.2):
+				#anim_tree.set("parameters/Is_Moving/current", 0)
+				anim_tree.set("parameters/Is_Moving/current",0)
+			else:
+				#anim_tree.set("parameters/Is_Moving/current", 1)
+				anim_tree.set("parameters/Is_Moving/current",1)
+				#anim_tree.set("parameters/Run_Dir/blend_amount", int(velocity.z>0))
+				anim_tree.set("parameters/Run_Dir/blend_amount",int(velocity.z<=0))#int(velocity.z<=0))
+		else: #We're in the air. Do not apply friction
+			if ground_check.is_colliding():#velocity.y <=0 and ground_check.is_colliding() and !wish_jump== true:
+				#anim_tree.set("parameters/Char_State/current", 2)
+				anim_tree.set("parameters/Char_State/current",2)
+			else:
+				#anim_tree.set("parameters/Char_State/current", 1)
+				anim_tree.set("parameters/Char_State/current",1)
+				if puppet_rocketjump:
+					#anim_tree.set("parameters/Air_Hit/blend_amount", 1)
+					anim_tree.set("parameters/Air_Hit/blend_amount",1)
+				if velocity.y < 0 and !puppet_wish_jump:
+					#anim_tree.set("parameters/Air_State/current", 0)
+					anim_tree.set("parameters/Air_State/current",1)
+				else:
+					#anim_tree.set("parameters/Air_State/current", 1)
+					anim_tree.set("parameters/Air_State/current",0)
+#		if ground_check.is_colliding() == true:
+#			anim_tree.set("parameters/Char_State/current",0)
+#		else:
+#			anim_tree.set("parameters/Char_State/current",1)
+		#anim_tree.set(puppet_anim,puppet_anim_val)
+		#anim.travel(puppet_anim)
 	if is_network_master():
 		health_label.text = str(health)
 		#print(wish_jump)
@@ -380,3 +423,6 @@ func _hit(dmg,location):
 #func _reset_damage_label_tween():
 #	if is_network_master():
 #		damage_label.rect_position = Vector2.ZERO
+
+
+
