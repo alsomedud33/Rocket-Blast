@@ -98,6 +98,8 @@ puppet func update_anim(floor_check,r_jump,w_jump):
 	puppet_floorcheck = floor_check
 	puppet_rocketjump = r_jump
 	puppet_wish_jump = w_jump
+puppet func shoot_anim():
+	anim_tree.set("parameters/Is_Shooting/active",1)
 #Networking end
 
 
@@ -279,6 +281,7 @@ func _physics_process(delta: float) -> void:
 		#if event is InputEventMouseButton and event.pressed and event.button_index == 1 and timer.is_stopped():
 			#anim_tree.set("parameters/Is_Shooting/active", true)
 			animtree_change("parameters/Is_Shooting/active",1)
+			rpc("shoot_anim")
 			timer.start(cooldown)
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			
