@@ -49,6 +49,7 @@ var vertical_velocity: float = 0 # Vertical component of our velocity.
 # We separate it from 'velocity' to make calculations easier, then join both vectors before moving the player
 
 var rocket_jump: bool = false
+var temp_rocket_jump:bool 
 var wish_jump: bool = false # If true, player has queued a jump : the jump key can be held down before hitting the ground to jump.
 var auto_jump: bool = false # Auto bunnyhopping
 
@@ -78,9 +79,10 @@ var rocket_num = 0
 func _on_network_timer_timeout():
 	if is_network_master() and name == str(get_tree().get_network_unique_id()):
 		rpc_unreliable("update_state", global_transform.origin, velocity, Vector2(head.rotation.x, self.rotation.y),camera.global_transform)
-		rpc("update_anim",is_on_floor(),rocket_jump,wish_jump)
+	#	rpc("update_anim",is_on_floor(),rocket_jump,wish_jump)
 func anim_timeout():
 	if is_network_master() and name == str(get_tree().get_network_unique_id()):
+		rpc("update_anim",is_on_floor(),temp_rocket_jump,wish_jump)
 		pass#rpc_unreliable("update_anim",fake_anim,fake_anim_val)
 
 	#only executed on puppet soldiers. Their rotation, position and velocity are adjusted to match where they roughly are
@@ -148,12 +150,13 @@ func _physics_process(delta: float) -> void:
 		global_transform.origin = puppet_position
 		velocity.x = puppet_velocity.x
 		velocity.y = puppet_velocity.y
-		print (velocity.y)
+		print (puppet_rocketjump)
 		velocity.z = puppet_velocity.z
 		head.rotation.x = puppet_rotation.x
 		rotation.y = puppet_rotation.y
 		gun_camera.global_transform = puppet_rocket_transform
 		if puppet_floorcheck:
+			puppet_rocketjump = false
 			anim_tree.set("parameters/Char_State/current",0)
 			anim_tree.set("parameters/Air_Hit/blend_amount",0)
 			if (abs(velocity.z) <1  and abs(velocity.x) < 1):#(sqrt(pow(velocity.x,2) + pow(velocity.z,2)) <3) or forward_input in range(-0.2,0.2):
@@ -174,18 +177,12 @@ func _physics_process(delta: float) -> void:
 				if puppet_rocketjump:
 					#anim_tree.set("parameters/Air_Hit/blend_amount", 1)
 					anim_tree.set("parameters/Air_Hit/blend_amount",1)
-				if velocity.y < 0 and !puppet_wish_jump:
+				if velocity.y > 0 and !puppet_wish_jump:
 					#anim_tree.set("parameters/Air_State/current", 0)
-					anim_tree.set("parameters/Air_State/current",1)
+					anim_tree.set("parameters/Air_State/current",0)
 				else:
 					#anim_tree.set("parameters/Air_State/current", 1)
-					anim_tree.set("parameters/Air_State/current",0)
-#		if ground_check.is_colliding() == true:
-#			anim_tree.set("parameters/Char_State/current",0)
-#		else:
-#			anim_tree.set("parameters/Char_State/current",1)
-		#anim_tree.set(puppet_anim,puppet_anim_val)
-		#anim.travel(puppet_anim)
+					anim_tree.set("parameters/Air_State/current",1)
 	if is_network_master():
 		health_label.text = str(health)
 		#print(wish_jump)
@@ -197,6 +194,7 @@ func _physics_process(delta: float) -> void:
 		
 		
 		if self.is_on_floor():
+			temp_rocket_jump = false
 			if wish_jump: # If we're on the ground but wish_jump is still true, this means we've just landed
 				snap = Vector3.ZERO #Set snapping to zero so we can get off the ground
 				vertical_velocity = jump_impulse # Jump
@@ -218,7 +216,7 @@ func _physics_process(delta: float) -> void:
 				
 				#yield(get_tree().create_timer(.3), "timeout")
 				rocket_jump = false # We have jumped, the player needs to press jump key again
-				
+				temp_rocket_jump = true
 			else : # Player is on the ground. Move normally, apply friction
 				#anim_tree.set("parameters/Char_State/current", 0)
 				if ground_check.is_colliding() == true:
