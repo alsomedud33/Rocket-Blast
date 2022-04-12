@@ -142,7 +142,7 @@ func _physics_process(delta: float) -> void:
 		rotation.y = puppet_rotation.y
 		gun_camera.global_transform = puppet_rocket_transform
 	#	print(puppet_anim)
-		anim_tree.set(NetNodes.players.get_node(name).puppet_anim, NetNodes.players.get_node(name).puppet_anim_val)
+		anim_tree.set(puppet_anim, puppet_anim_val)
 	if is_network_master():
 		health_label.text = str(health)
 		#print(wish_jump)
