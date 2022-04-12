@@ -57,33 +57,45 @@ var auto_jump: bool = false # Auto bunnyhopping
 var debug_horizontal_velocity: Vector3 = Vector3.ZERO
 var accelerate_return: Vector3 = Vector3.ZERO
 
-
 #Networking variables
 onready var net_tween =$"Tween"
 var puppet_position = Vector3()
 var puppet_velocity = Vector3()
 var puppet_rotation = Vector3()
 var puppet_rocket_transform:Transform 
-var puppet_animation:String
+puppet var puppet_anim:String
+puppet var puppet_anim_val:int
+
+var fake_anim:String
+var fake_anim_val
 export var tick_rate:float = 0.007
 var rocket_num = 0
 
 	#when a packet is sent via the network_timer, puppet versions of soldier are updated 
 func _on_network_timer_timeout():
 	if is_network_master() and name == str(get_tree().get_network_unique_id()):
-		rpc_unreliable("update_state", global_transform.origin, velocity, Vector2(head.rotation.x, self.rotation.y),camera.global_transform,anim.get_current_animation())
+		rpc_unreliable("update_state", global_transform.origin, velocity, Vector2(head.rotation.x, self.rotation.y),camera.global_transform)
+		rset_unreliable("puppet_anim",fake_anim)
+		rset_unreliable("puppet_anim_val",fake_anim_val)
 	#only executed on puppet soldiers. Their rotation, position and velocity are adjusted to match where they roughly are
-puppet func update_state(p_pos, p_vel, p_rot, rocket_trans, anim_name):
+puppet func update_state(p_pos, p_vel, p_rot, rocket_trans):
 	puppet_position = p_pos
 	puppet_velocity = p_vel
 	puppet_rotation = p_rot
 	puppet_rocket_transform = rocket_trans
-	puppet_animation = anim_name
 	$Tween.interpolate_property(self,"global_transform", global_transform, Transform(global_transform.basis,p_pos),tick_rate)
 	$Tween.interpolate_property(gun_camera,"global_transform", global_transform, rocket_trans,tick_rate)
 	$Tween.start()
 #Networking end
-
+func animtree_change(parameter : String, val:int):
+	if is_network_master():
+		anim_tree.set(parameter, val)
+	#	rset_unreliable("puppet_anim",parameter)
+	#	rset_unreliable("puppet_anim_val",val)
+		fake_anim = parameter
+		fake_anim_val = val
+	#	print (puppet_anim)
+		#fake_anim_val = val
 
 func _input(event: InputEvent) -> void:
 	if is_network_master():
@@ -117,8 +129,9 @@ func _process(delta):
 		gun_camera.global_transform = camera.global_transform
 		if Input.is_action_just_pressed("ui_cancel"):
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
 func _physics_process(delta: float) -> void:
-	usr_tag.rect_global_position =  get_viewport().get_camera().unproject_position(head.global_transform.origin)
+#	usr_tag.rect_global_position =  get_viewport().get_camera().unproject_position(head.global_transform.origin)
 
 	if !is_network_master():
 		global_transform.origin = puppet_position
@@ -128,7 +141,8 @@ func _physics_process(delta: float) -> void:
 		head.rotation.x = puppet_rotation.x
 		rotation.y = puppet_rotation.y
 		gun_camera.global_transform = puppet_rocket_transform
-		anim.play(puppet_animation)
+	#	print(puppet_anim)
+		anim_tree.set(NetNodes.players.get_node(name).puppet_anim, NetNodes.players.get_node(name).puppet_anim_val)
 	if is_network_master():
 		health_label.text = str(health)
 		#print(wish_jump)
@@ -148,8 +162,10 @@ func _physics_process(delta: float) -> void:
 				
 				#yield(get_tree().create_timer(.3), "timeout")
 				wish_jump = false # We have jumped, the player needs to press jump key again
-				anim_tree.set("parameters/Char_State/current", 2)
-				anim_tree.set("parameters/Air_Hit/blend_amount", 0)
+			#	anim_tree.set("parameters/Char_State/current", 2)
+				animtree_change("parameters/Char_State/current",2)
+			#	anim_tree.set("parameters/Air_Hit/blend_amount", 0)
+				animtree_change("parameters/Air_Hit/blend_amount",0)
 			elif rocket_jump: # If we're on the ground but wish_jump is still true, this means we've just landed
 				#print("rocket jump: "+name)
 				snap = Vector3.ZERO #Set snapping to zero so we can get off the ground
@@ -173,23 +189,30 @@ func _physics_process(delta: float) -> void:
 						vertical_velocity = 2
 				snap = -get_floor_normal() #Turn snapping on, so we stick to slopes
 				move_ground(velocity, delta)
-				#print (sqrt(pow(velocity.x,2) + pow(velocity.z,2)))
-				anim_tree.set("parameters/Char_State/current", 0)
-				anim_tree.set("parameters/Air_Hit/blend_amount", 0)
-				print (forward_input)
+					#print (sqrt(pow(velocity.x,2) + pow(velocity.z,2)))
+				#anim_tree.set("parameters/Char_State/current", 0)
+				animtree_change("parameters/Char_State/current",0)
+				#anim_tree.set("parameters/Air_Hit/blend_amount", 0)
+				animtree_change("parameters/Air_Hit/blend_amount",0)
+				#print (forward_input)
 				if (abs(forward_input) < 0.2  and abs(strafe_input) < 0.2):#(sqrt(pow(velocity.x,2) + pow(velocity.z,2)) <3) or forward_input in range(-0.2,0.2):
-					anim_tree.set("parameters/Is_Moving/current", 0)
+					#anim_tree.set("parameters/Is_Moving/current", 0)
+					animtree_change("parameters/Is_Moving/current",0)
 				else:
-					anim_tree.set("parameters/Is_Moving/current", 1)
-					anim_tree.set("parameters/Run_Dir/blend_amount", int(velocity.z>0))
+					#anim_tree.set("parameters/Is_Moving/current", 1)
+					animtree_change("parameters/Is_Moving/current",1)
+					#anim_tree.set("parameters/Run_Dir/blend_amount", int(velocity.z>0))
+					animtree_change("parameters/Run_Dir/blend_amount",int(velocity.z>0))
 					#if velocity.z >
 		
 		else: #We're in the air. Do not apply friction
 			if ground_check.is_colliding():#velocity.y <=0 and ground_check.is_colliding() and !wish_jump== true:
-				anim_tree.set("parameters/Char_State/current", 2)
+				#anim_tree.set("parameters/Char_State/current", 2)
+				animtree_change("parameters/Char_State/current",2)
 				rocket_jump = false
 			else:
-				anim_tree.set("parameters/Char_State/current", 1)
+				#anim_tree.set("parameters/Char_State/current", 1)
+				animtree_change("parameters/Char_State/current",1)
 			snap = Vector3.DOWN
 			vertical_velocity = velocity.y
 			
@@ -213,7 +236,8 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_pressed("shoot1") and timer.is_stopped():
 			
 		#if event is InputEventMouseButton and event.pressed and event.button_index == 1 and timer.is_stopped():
-			anim_tree.set("parameters/Is_Shooting/active", true)
+			#anim_tree.set("parameters/Is_Shooting/active", true)
+			animtree_change("parameters/Is_Shooting/active",1)
 			timer.start(cooldown)
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			
@@ -287,11 +311,14 @@ master func move_air(input_velocity: Vector3, delta: float)-> void:
 	# Then get back our vertical component, and move the player
 	nextVelocity.y = vertical_velocity
 	if rocket_jump:
-		anim_tree.set("parameters/Air_Hit/blend_amount", 1)
+		#anim_tree.set("parameters/Air_Hit/blend_amount", 1)
+		animtree_change("parameters/Air_Hit/blend_amount",1)
 	if nextVelocity.y > 0 and !wish_jump:
-		anim_tree.set("parameters/Air_State/current", 0)
+		#anim_tree.set("parameters/Air_State/current", 0)
+		animtree_change("parameters/Air_State/current",0)
 	else:
-		anim_tree.set("parameters/Air_State/current", 1)
+		#anim_tree.set("parameters/Air_State/current", 1)
+		animtree_change("parameters/Air_State/current",1)
 #	print(sqrt(pow(nextVelocity.x,2) + pow(nextVelocity.z,2)))
 	if sqrt(pow(nextVelocity.x,2) + pow(nextVelocity.z,2)) >10:
 		velocity = move_and_slide_with_snap(nextVelocity, snap, Vector3.UP,true,4,deg2rad(20))
@@ -348,6 +375,7 @@ func _hit(dmg,location):
 		damage_label.get_node("Tween").start()
 #		damage_label.get_node("Tween").connect("tween_all_completed",self,"_reset_damage_label_tween")
 	#	damage_label.modulate = lerp(damage_label.modulate, Color.transparent,0.1)
+
 
 #func _reset_damage_label_tween():
 #	if is_network_master():

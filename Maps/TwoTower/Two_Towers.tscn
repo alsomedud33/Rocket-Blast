@@ -39,12 +39,10 @@ script = ExtResource( 6 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
 
 [node name="Orange Wall Tile" parent="." instance=ExtResource( 3 )]
-transform = Transform( 0.207092, 3.18567, 0, -0.455097, 1.44965, 0, 0, 0, 1.53122, 1.46621, -1.90748, -2.80345 )
-visible = false
+transform = Transform( 0.207092, 3.18567, 0, -0.455097, 1.44965, 0, 0, 0, 1.53122, 1.46621, -2.90748, -2.80345 )
 
 [node name="Orange Wall Tile2" parent="." instance=ExtResource( 3 )]
-transform = Transform( -0.207092, -3.18567, -1.5299e-07, -0.455097, 1.44965, 0, 1.59077e-08, 2.44706e-07, -1.53765, 2.48219, -1.90748, 5.45298 )
-visible = false
+transform = Transform( -0.207092, -3.18567, -1.5299e-07, -0.455097, 1.44965, 0, 1.59077e-08, 2.44706e-07, -1.53765, 2.48219, -2.90748, 5.45298 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.965926, 0.183013, 0.183013, 0, -0.707107, 0.707107, 0.258819, -0.683013, -0.683013, 21, 35.5, -17 )
