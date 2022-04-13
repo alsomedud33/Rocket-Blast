@@ -6,6 +6,7 @@ extends KinematicBody
 
 
 var health = 100
+var dealth_location
 var rng = RandomNumberGenerator.new()
 var mouse_sensitivity = Globals.mouse_sense
 export var max_speed: float = 6 # Meters per second
@@ -78,19 +79,21 @@ var rocket_num = 0
 	#when a packet is sent via the network_timer, puppet versions of soldier are updated 
 func _on_network_timer_timeout():
 	if is_network_master() and name == str(get_tree().get_network_unique_id()):
-		rpc_unreliable("update_state", global_transform.origin, velocity, Vector2(head.rotation.x, self.rotation.y),camera.global_transform)
-	#	rpc("update_anim",is_on_floor(),rocket_jump,wish_jump)
+		rpc_unreliable("update_transform", global_transform.origin, velocity, Vector2(head.rotation.x, self.rotation.y),camera.global_transform, state)
+		rpc_unreliable("update_state", state,old_state)
+	rpc("update_anim",is_on_floor(),rocket_jump,wish_jump)
 func anim_timeout():
 	if is_network_master() and name == str(get_tree().get_network_unique_id()):
 		rpc("update_anim",is_on_floor(),temp_rocket_jump,wish_jump)
 		pass#rpc_unreliable("update_anim",fake_anim,fake_anim_val)
 
 	#only executed on puppet soldiers. Their rotation, position and velocity are adjusted to match where they roughly are
-puppet func update_state(p_pos, p_vel, p_rot, rocket_trans):
+puppet func update_transform(p_pos, p_vel, p_rot, rocket_trans):
 	puppet_position = p_pos
 	puppet_velocity = p_vel
 	puppet_rotation = p_rot
 	puppet_rocket_transform = rocket_trans
+	
 	$Tween.interpolate_property(self,"global_transform", global_transform, Transform(global_transform.basis,p_pos),tick_rate)
 	$Tween.interpolate_property(gun_camera,"global_transform", global_transform, rocket_trans,tick_rate)
 	$Tween.start()
@@ -98,6 +101,11 @@ puppet func update_anim(floor_check,r_jump,w_jump):
 	puppet_floorcheck = floor_check
 	puppet_rocketjump = r_jump
 	puppet_wish_jump = w_jump
+
+puppet func update_state(fake_state,fake_old_state):
+	puppet_state = fake_state
+	puppet_old_state = fake_old_state
+
 puppet func shoot_anim():
 	anim_tree.set("parameters/Is_Shooting/active",1)
 #Networking end
@@ -119,7 +127,15 @@ func _input(event: InputEvent) -> void:
 			self.rotate_y(deg2rad((event.relative.x * -mouse_sensitivity)))
 			head.rotation.x = clamp(head.rotation.x, deg2rad(-89), deg2rad(89))
 			#armature.get_node("Skeleton").set_bone_pose(armature.get_node("Skeleton").find_bone("Head"),Transform(camera.global_transform.basis,armature.get_node("Skeleton").get_bone_pose(armature.get_node("Skeleton").find_bone("Head")).origin))
-
+enum {
+	GROUND,
+	AIR,
+	DEAD
+}
+var state = GROUND
+var puppet_state = GROUND
+var old_state = GROUND
+var puppet_old_state = GROUND
 func _ready():
 	$network_timer.wait_time = tick_rate
 	Globals.player = 1
@@ -193,93 +209,110 @@ func _physics_process(delta: float) -> void:
 		var strafe_input: float = Input.get_action_strength("move_left") - Input.get_action_strength("move_right")
 		wishdir = Vector3(strafe_input, 0, forward_input).rotated(Vector3.UP, self.global_transform.basis.get_euler().y).normalized() 
 		# wishdir is our normalized horizontal inpur
-		
-		
-		if self.is_on_floor():
-			temp_rocket_jump = false
-			if wish_jump: # If we're on the ground but wish_jump is still true, this means we've just landed
-				snap = Vector3.ZERO #Set snapping to zero so we can get off the ground
-				vertical_velocity = jump_impulse # Jump
-				$Jump.play()
-				move_air(velocity, delta) # Mimic Quake's way of treating first frame after landing as still in the air
-				
-				#yield(get_tree().create_timer(.3), "timeout")
-				wish_jump = false # We have jumped, the player needs to press jump key again
-			#	anim_tree.set("parameters/Char_State/current", 2)
-				animtree_change("parameters/Char_State/current",2)
-			#	anim_tree.set("parameters/Air_Hit/blend_amount", 0)
-				animtree_change("parameters/Air_Hit/blend_amount",0)
-			elif rocket_jump: # If we're on the ground but wish_jump is still true, this means we've just landed
-				#print("rocket jump: "+name)
-				snap = Vector3.ZERO #Set snapping to zero so we can get off the ground
-				vertical_velocity = rocket_impulse # Jump
-				$Jump.play()
-				move_air(velocity, delta) # Mimic Quake's way of treating first frame after landing as still in the air
-				
-				#yield(get_tree().create_timer(.3), "timeout")
-				rocket_jump = false # We have jumped, the player needs to press jump key again
-				temp_rocket_jump = true
-			else : # Player is on the ground. Move normally, apply friction
-				#anim_tree.set("parameters/Char_State/current", 0)
-				if ground_check.is_colliding() == true:
-					var normal = ground_check.get_collision_normal()
-					#print(normal.dot(Vector3.UP))
-					if normal.dot(Vector3.UP) > .92:
-						#print ("true")
-						vertical_velocity = -1
+		if health <= 0 and state != DEAD:
+			dealth_location = global_transform.origin
+			health = 0 
+			state = DEAD
+		match state:
+				GROUND:
+					if !is_on_floor():
+						change_state(AIR)
+					temp_rocket_jump = false
+					if wish_jump: # If we're on the ground but wish_jump is still true, this means we've just landed
+						snap = Vector3.ZERO #Set snapping to zero so we can get off the ground
+						vertical_velocity = jump_impulse # Jump
+						$Jump.play()
+						change_state(AIR)
+						move_air(velocity, delta) # Mimic Quake's way of treating first frame after landing as still in the air
+						
+						#yield(get_tree().create_timer(.3), "timeout")
+						wish_jump = false # We have jumped, the player needs to press jump key again
+					#	anim_tree.set("parameters/Char_State/current", 2)
+						animtree_change("parameters/Char_State/current",2)
+					#	anim_tree.set("parameters/Air_Hit/blend_amount", 0)
+						animtree_change("parameters/Air_Hit/blend_amount",0)
+					elif rocket_jump: # If we're on the ground but wish_jump is still true, this means we've just landed
+						#print("rocket jump: "+name)
+						snap = Vector3.ZERO #Set snapping to zero so we can get off the ground
+						vertical_velocity = rocket_impulse # Jump
+						$Jump.play()
+						change_state(AIR)
+						move_air(velocity, delta) # Mimic Quake's way of treating first frame after landing as still in the air
+						
+						#yield(get_tree().create_timer(.3), "timeout")
+						rocket_jump = false # We have jumped, the player needs to press jump key again
+						temp_rocket_jump = true
+					else : # Player is on the ground. Move normally, apply friction
+						#anim_tree.set("parameters/Char_State/current", 0)
+						if ground_check.is_colliding() == true:
+							var normal = ground_check.get_collision_normal()
+							#print(normal.dot(Vector3.UP))
+							if normal.dot(Vector3.UP) > .92:
+								#print ("true")
+								vertical_velocity = -1
+							else:
+								#print (false)
+								vertical_velocity = 2
+						snap = -get_floor_normal() #Turn snapping on, so we stick to slopes
+						move_ground(velocity, delta)
+							#print (sqrt(pow(velocity.x,2) + pow(velocity.z,2)))
+						#anim_tree.set("parameters/Char_State/current", 0)
+						animtree_change("parameters/Char_State/current",0)
+						#anim_tree.set("parameters/Air_Hit/blend_amount", 0)
+						animtree_change("parameters/Air_Hit/blend_amount",0)
+						#print (forward_input)
+						if (abs(forward_input) < 0.2  and abs(strafe_input) < 0.2):#(sqrt(pow(velocity.x,2) + pow(velocity.z,2)) <3) or forward_input in range(-0.2,0.2):
+							#anim_tree.set("parameters/Is_Moving/current", 0)
+							animtree_change("parameters/Is_Moving/current",0)
+						else:
+							if (sqrt(pow(velocity.x,2) + pow(velocity.z,2))) <1:
+								animtree_change("parameters/Is_Moving/current",0)
+							else:
+								#anim_tree.set("parameters/Is_Moving/current", 1)
+								animtree_change("parameters/Is_Moving/current",1)
+								#anim_tree.set("parameters/Run_Dir/blend_amount", int(velocity.z>0))
+								animtree_change("parameters/Run_Dir/blend_amount",int(velocity.z>0))
+								#if velocity.z >
+				AIR:
+					if is_on_floor():
+						change_state(GROUND)
+					if ground_check.is_colliding():#velocity.y <=0 and ground_check.is_colliding() and !wish_jump== true:
+						#anim_tree.set("parameters/Char_State/current", 2)
+						animtree_change("parameters/Char_State/current",2)
+						rocket_jump = false
 					else:
-						#print (false)
-						vertical_velocity = 2
-				snap = -get_floor_normal() #Turn snapping on, so we stick to slopes
-				move_ground(velocity, delta)
-					#print (sqrt(pow(velocity.x,2) + pow(velocity.z,2)))
-				#anim_tree.set("parameters/Char_State/current", 0)
-				animtree_change("parameters/Char_State/current",0)
-				#anim_tree.set("parameters/Air_Hit/blend_amount", 0)
-				animtree_change("parameters/Air_Hit/blend_amount",0)
-				#print (forward_input)
-				if (abs(forward_input) < 0.2  and abs(strafe_input) < 0.2):#(sqrt(pow(velocity.x,2) + pow(velocity.z,2)) <3) or forward_input in range(-0.2,0.2):
-					#anim_tree.set("parameters/Is_Moving/current", 0)
-					animtree_change("parameters/Is_Moving/current",0)
-				else:
-					if (sqrt(pow(velocity.x,2) + pow(velocity.z,2))) <1:
-						animtree_change("parameters/Is_Moving/current",0)
+						#anim_tree.set("parameters/Char_State/current", 1)
+						animtree_change("parameters/Char_State/current",1)
+					snap = Vector3.DOWN
+					vertical_velocity = velocity.y
+					
+					if vertical_velocity >= terminal_velocity:
+						vertical_velocity -= gravity * delta #if vertical_velocity >= terminal_velocity else 0 # Stop adding to vertical velocity once terminal velocity is reached
 					else:
-						#anim_tree.set("parameters/Is_Moving/current", 1)
-						animtree_change("parameters/Is_Moving/current",1)
-						#anim_tree.set("parameters/Run_Dir/blend_amount", int(velocity.z>0))
-						animtree_change("parameters/Run_Dir/blend_amount",int(velocity.z>0))
-						#if velocity.z >
-		
-		else: #We're in the air. Do not apply friction
-			if ground_check.is_colliding():#velocity.y <=0 and ground_check.is_colliding() and !wish_jump== true:
-				#anim_tree.set("parameters/Char_State/current", 2)
-				animtree_change("parameters/Char_State/current",2)
-				rocket_jump = false
-			else:
-				#anim_tree.set("parameters/Char_State/current", 1)
-				animtree_change("parameters/Char_State/current",1)
-			snap = Vector3.DOWN
-			vertical_velocity = velocity.y
-			
-			if vertical_velocity >= terminal_velocity:
-				vertical_velocity -= gravity * delta #if vertical_velocity >= terminal_velocity else 0 # Stop adding to vertical velocity once terminal velocity is reached
-			else:
-				vertical_velocity = terminal_velocity	
-			move_air(velocity, delta)
-			#print(vertical_velocity)
-		
-		if self.is_on_ceiling(): #We've hit a ceiling, usually after a jump. Vertical velocity is reset to cancel any remaining jump momentum
-			vertical_velocity = 0
-#		for i in self.get_slide_count():
-#			#print (state.get_contact_collider_object(i).name)
-#			#print(get_slide_collision(i).get_collider().name)
-#			if get_slide_collision(i).get_collider().name == "Explosion_Hitbox":
-#				velocity += get_slide_collision(i).normal *15
+						vertical_velocity = terminal_velocity	
+					move_air(velocity, delta)
+					#print(vertical_velocity)
+					if self.is_on_ceiling(): #We've hit a ceiling, usually after a jump. Vertical velocity is reset to cancel any remaining jump momentum
+						vertical_velocity = 0
+			#		for i in self.get_slide_count():
+			#			#print (state.get_contact_collider_object(i).name)
+			#			#print(get_slide_collision(i).get_collider().name)
+			#			if get_slide_collision(i).get_collider().name == "Explosion_Hitbox":
+			#				velocity += get_slide_collision(i).normal *15
+				DEAD:
+					get_rocket_launcher.hide()
+					armature.set_as_toplevel(true)
+					animtree_change("parameters/Ragdoll/current",1)
+					velocity = Vector3.ZERO
+					self.global_transform.origin = dealth_location
+					armature.get_node("Skeleton/Soldier").set_layer_mask_bit(0,true)#.visible = !is_network_master()
+					armature.get_node("Skeleton/Rocket Launcher/Rocket Launcher").set_layer_mask_bit(0,true)
+					armature.get_node("Skeleton/Hat/Soldier Hat2").set_layer_mask_bit(0,true)
+					get_node("CollisionShape").disabled = true
 		if Input.is_action_pressed("shoot1"):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
-		if Input.is_action_pressed("shoot1") and timer.is_stopped():
+		if Input.is_action_pressed("shoot1") and timer.is_stopped() and state != DEAD:
 			
 		#if event is InputEventMouseButton and event.pressed and event.button_index == 1 and timer.is_stopped():
 			#anim_tree.set("parameters/Is_Shooting/active", true)
@@ -290,19 +323,27 @@ func _physics_process(delta: float) -> void:
 			
 			Network.emit_signal("player_shot",name,guns.global_transform.origin)
 			
-#			var rocket_instance = rocket_launcher.instance()
-#			#main.add_child(rocket_instance)
+	#			var rocket_instance = rocket_launcher.instance()
+	#			#main.add_child(rocket_instance)
 			anim.play("Shoot_Rocket")
 			$Rocket_Launch.play()
 			$Rocket_Trail.play()
-#			#rocket_instance.global_transform.origin = guns.global_transform.origin
-#			if raycast.is_colliding():
-#				rocket_instance.look_at_from_position(guns.global_transform.origin,raycast.get_collision_point(), Vector3.UP)
-#			else:
-#				rocket_instance.global_transform.origin = guns.global_transform.origin
-#				rocket_instance.rotation_degrees = Vector3(-$Pivot.rotation_degrees.x+1, self.rotation_degrees.y+182,0)
-#			rocket_instance.velocity = rocket_instance.transform.basis.z * -rocket_instance.speed
-#			main.call_deferred("add_child",rocket_instance)
+	#			#rocket_instance.global_transform.origin = guns.global_transform.origin
+	#			if raycast.is_colliding():
+	#				rocket_instance.look_at_from_position(guns.global_transform.origin,raycast.get_collision_point(), Vector3.UP)
+	#			else:
+	#				rocket_instance.global_transform.origin = guns.global_transform.origin
+	#				rocket_instance.rotation_degrees = Vector3(-$Pivot.rotation_degrees.x+1, self.rotation_degrees.y+182,0)
+	#			rocket_instance.velocity = rocket_instance.transform.basis.z * -rocket_instance.speed
+	#			main.call_deferred("add_child",rocket_instance)
+		if Input.is_action_just_pressed("ragdoll"):
+			armature.set_as_toplevel(true)
+			animtree_change("parameters/Ragdoll/current",1)
+			#armature.get_node("Skeleton").physical_bones_start_simulation()
+
+func change_state(new_state):
+	old_state = state
+	state = new_state
 
 # This is were we calculate the speed to add to current velocity
 master func accelerate(wish_dir: Vector3, input_velocity: Vector3, accels: float, maxspeed: float, delta: float)-> Vector3:
