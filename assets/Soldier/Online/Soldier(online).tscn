@@ -18,6 +18,7 @@
 [ext_resource path="res://assets/Soldier/Solly/SoldierHat.tres" type="ArrayMesh" id=16]
 [ext_resource path="res://assets/Soldier/Solly/SoldierSkin.tres" type="ArrayMesh" id=17]
 [ext_resource path="res://assets/Soldier/SoldierAnimationTree(online).tres" type="AnimationNodeBlendTree" id=18]
+[ext_resource path="res://assets/Soldier/Online/SoldierSkin.tres" type="Skin" id=19]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -161,64 +162,6 @@ size = 30
 outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
 use_filter = true
 font_data = SubResource( 17 )
-
-[sub_resource type="Skin" id=22]
-resource_name = "Skin"
-bind_count = 18
-bind/0/name = "Pelvis"
-bind/0/bone = -1
-bind/0/pose = Transform( 6.96229, 0, 0, 0, 6.96229, 0, 0, 0, 6.96229, 0, -5.29589, 0 )
-bind/1/name = "UpperLeg.R"
-bind/1/bone = -1
-bind/1/pose = Transform( -6.96229, 0, 6.08662e-07, 0, -6.96229, 0, 6.08662e-07, 0, 6.96229, -0.93457, 5.91894, 8.17027e-08 )
-bind/2/name = "LowerLeg.R"
-bind/2/bone = -1
-bind/2/pose = Transform( 6.95624, 0.159335, 0.242251, 0.201485, -6.83928, -1.28726, 0.208511, 1.29316, -6.83796, 0.85404, 3.4489, -0.619007 )
-bind/3/name = "Foot.R"
-bind/3/bone = -1
-bind/3/pose = Transform( 6.85578, -1.21041, 0.0810506, -0.424101, -1.95558, 6.66853, -1.13658, -6.57145, -1.99939, 0.947147, 0.636523, 0.271217 )
-bind/4/name = "Spine1"
-bind/4/bone = -1
-bind/4/pose = Transform( 6.96229, 0, 0, 0, 6.96229, 0, 0, 0, 6.96229, 0, -6.4847, 0 )
-bind/5/name = "Spine2"
-bind/5/bone = -1
-bind/5/pose = Transform( 6.96229, 0, 0, 0, 6.96229, 0, 0, 0, 6.96229, 0, -8.79752, 0 )
-bind/6/name = "Head"
-bind/6/bone = -1
-bind/6/pose = Transform( 6.96229, 0, 0, 0, 6.96229, 0, 0, 0, 6.96229, 0, -11.0631, 0 )
-bind/7/name = "Shoulder.L"
-bind/7/bone = -1
-bind/7/pose = Transform( 4.42208, 2.38779, 4.81841, 4.81841, -4.5293, -2.17756, 2.38779, 4.71776, -4.5293, -3.79422, 7.19711, -7.49658 )
-bind/8/name = "UpperArm.L"
-bind/8/bone = -1
-bind/8/pose = Transform( -3.72262e-07, -6.96229, -1.63091e-06, 6.92747, 2.69035e-07, -0.695449, 0.695449, -1.64127e-06, 6.92747, 9.73209, -1.47286, 0.495293 )
-bind/9/name = "LowerArm.L"
-bind/9/bone = -1
-bind/9/pose = Transform( -1.10481, 1.73104e-07, 6.87407, 6.87407, 4.31627e-07, 1.10481, 1.58839e-07, 6.96229, -3.1012e-07, 1.57933, -4.02005, -9.73209 )
-bind/10/name = "Arm.L"
-bind/10/bone = -1
-bind/10/pose = Transform( -2.62821e-08, -6.96229, -1.64375e-06, 6.95715, 5.78153e-07, -0.267369, 0.267368, -1.72749e-06, 6.95715, 9.73209, -6.38947, 0.330347 )
-bind/11/name = "Shoulder.R"
-bind/11/bone = -1
-bind/11/pose = Transform( 4.42208, -2.38779, -4.81841, -4.81841, -4.5293, -2.17756, -2.38779, 4.71776, -4.5293, 3.79422, 7.19711, -7.49658 )
-bind/12/name = "UpperArm.R"
-bind/12/bone = -1
-bind/12/pose = Transform( -3.72262e-07, 6.96229, 1.63091e-06, -6.92747, 2.69035e-07, -0.695449, -0.695449, -1.64127e-06, 6.92747, -9.73209, -1.47286, 0.495293 )
-bind/13/name = "LowerArm.R"
-bind/13/bone = -1
-bind/13/pose = Transform( -1.10481, -1.73104e-07, -6.87407, -6.87407, 4.31627e-07, 1.10481, -1.58839e-07, 6.96229, -3.1012e-07, -1.57933, -4.02005, -9.73209 )
-bind/14/name = "Arm.R"
-bind/14/bone = -1
-bind/14/pose = Transform( -2.62821e-08, 6.96229, 1.64375e-06, -6.95715, 5.78153e-07, -0.267369, -0.267368, -1.72749e-06, 6.95715, -9.73209, -6.38947, 0.330347 )
-bind/15/name = "UpperLeg.L"
-bind/15/bone = -1
-bind/15/pose = Transform( -6.96229, 0, -6.08662e-07, 0, -6.96229, 0, -6.08662e-07, 0, 6.96229, 0.93457, 5.91894, 8.17027e-08 )
-bind/16/name = "LowerLeg.L"
-bind/16/bone = -1
-bind/16/pose = Transform( 6.95624, -0.159335, -0.242251, -0.201485, -6.83928, -1.28726, -0.208511, 1.29316, -6.83796, -0.85404, 3.4489, -0.619007 )
-bind/17/name = "Foot.L"
-bind/17/bone = -1
-bind/17/pose = Transform( 6.85578, 1.21041, -0.0810506, 0.424101, -1.95558, 6.66853, 1.13658, -6.57145, -1.99939, -0.947147, 0.636523, 0.271217 )
 
 [sub_resource type="ArrayMesh" id=20]
 resource_name = "Soldier2_Rocket Launcher"
@@ -1720,7 +1663,7 @@ bones/6/name = "Head"
 bones/6/parent = 5
 bones/6/rest = Transform( 0.943395, -0.0389697, 0.329373, -0.0303351, 0.978773, 0.202689, -0.330281, -0.201208, 0.922188, 0, 2.26562, 0 )
 bones/6/enabled = true
-bones/6/bound_children = [  ]
+bones/6/bound_children = [ NodePath("Hat") ]
 bones/7/name = "Shoulder.L"
 bones/7/parent = 5
 bones/7/rest = Transform( 0.635148, 0.692073, 0.34296, 0.34296, -0.650548, 0.677617, 0.692073, -0.312766, -0.650548, -1.27145e-07, 2.26562, 1.1582e-07 )
@@ -1760,7 +1703,7 @@ bones/14/name = "Arm.R"
 bones/14/parent = 13
 bones/14/rest = Transform( 0.266673, -0.0399825, -0.962957, -0.743706, 0.626963, -0.231987, 0.613014, 0.778022, 0.137459, 1.26959e-07, 2.17997, -3.0583e-07 )
 bones/14/enabled = true
-bones/14/bound_children = [  ]
+bones/14/bound_children = [ NodePath("Rocket Launcher") ]
 bones/15/name = "UpperLeg.L"
 bones/15/parent = 0
 bones/15/rest = Transform( -0.981479, 0.149722, 0.119508, -0.0974942, -0.927391, 0.361166, 0.164905, 0.342825, 0.924812, 0.93457, 0.623047, 5.2108e-15 )
@@ -1781,11 +1724,11 @@ bones/17/bound_children = [  ]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 layers = 2
 mesh = ExtResource( 17 )
-skin = SubResource( 22 )
+skin = ExtResource( 19 )
 material/0 = null
 
 [node name="Rocket Launcher" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.144658, -0.0948081, 0.984929, -0.0228391, 0.995453, 0.0924671, -0.989216, -0.0091182, -0.146166, -4.83619, 4.27313, 1.91065 )
+transform = Transform( -0.0915829, -0.100243, 0.990739, -0.0155221, 0.994943, 0.099234, -0.995674, -0.0062896, -0.0926755, -4.91291, 4.86689, 1.54499 )
 bone_name = "Arm.R"
 
 [node name="Rocket Launcher" type="MeshInstance" parent="Armature/Skeleton/Rocket Launcher"]
@@ -1796,7 +1739,7 @@ skeleton = NodePath("../../../..")
 material/0 = null
 
 [node name="Hat" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 0.997616, 0.0085044, 0.068499, -0.00672426, 0.999635, -0.0261692, -0.0686969, 0.0256454, 0.997307, 1.86664e-07, 3.79196, 0.976202 )
+transform = Transform( 0.997616, 0.00850438, 0.0684991, -0.00672423, 0.999635, -0.0261693, -0.0686969, 0.0256455, 0.997307, 1.21819e-07, 4.33282, 0.976202 )
 bone_name = "Head"
 
 [node name="Soldier Hat2" type="MeshInstance" parent="Armature/Skeleton/Hat"]
