@@ -79,9 +79,9 @@ var rocket_num = 0
 	#when a packet is sent via the network_timer, puppet versions of soldier are updated 
 func _on_network_timer_timeout():
 	if is_network_master() and name == str(get_tree().get_network_unique_id()):
-		rpc_unreliable("update_transform", global_transform.origin, velocity, Vector2(head.rotation.x, self.rotation.y),camera.global_transform, state)
+		rpc_unreliable("update_transform", global_transform.origin, velocity, Vector2(head.rotation.x, self.rotation.y),camera.global_transform)
 		rpc_unreliable("update_state", state,old_state)
-	rpc("update_anim",is_on_floor(),rocket_jump,wish_jump)
+#	rpc("update_anim",is_on_floor(),rocket_jump,wish_jump)
 func anim_timeout():
 	if is_network_master() and name == str(get_tree().get_network_unique_id()):
 		rpc("update_anim",is_on_floor(),temp_rocket_jump,wish_jump)
@@ -125,7 +125,7 @@ func _input(event: InputEvent) -> void:
 		if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			head.rotate_x(deg2rad(event.relative.y * mouse_sensitivity))
 			self.rotate_y(deg2rad((event.relative.x * -mouse_sensitivity)))
-			head.rotation.x = clamp(head.rotation.x, deg2rad(-89), deg2rad(89))
+			head.rotation.x = clamp(head.rotation.x, deg2rad(-90), deg2rad(90))
 			#armature.get_node("Skeleton").set_bone_pose(armature.get_node("Skeleton").find_bone("Head"),Transform(camera.global_transform.basis,armature.get_node("Skeleton").get_bone_pose(armature.get_node("Skeleton").find_bone("Head")).origin))
 enum {
 	GROUND,
@@ -168,39 +168,42 @@ func _physics_process(delta: float) -> void:
 		global_transform.origin = puppet_position
 		velocity.x = puppet_velocity.x
 		velocity.y = puppet_velocity.y
-		print (puppet_rocketjump)
+		#print (puppet_rocketjump)
 		velocity.z = puppet_velocity.z
 		head.rotation.x = puppet_rotation.x
 		rotation.y = puppet_rotation.y
 		gun_camera.global_transform = puppet_rocket_transform
-		if puppet_floorcheck:
-			puppet_rocketjump = false
-			anim_tree.set("parameters/Char_State/current",0)
-			anim_tree.set("parameters/Air_Hit/blend_amount",0)
-			if (abs(velocity.z) <1  and abs(velocity.x) < 1):#(sqrt(pow(velocity.x,2) + pow(velocity.z,2)) <3) or forward_input in range(-0.2,0.2):
-				#anim_tree.set("parameters/Is_Moving/current", 0)
-				anim_tree.set("parameters/Is_Moving/current",0)
-			else:
-				#anim_tree.set("parameters/Is_Moving/current", 1)
-				anim_tree.set("parameters/Is_Moving/current",1)
-				#anim_tree.set("parameters/Run_Dir/blend_amount", int(velocity.z>0))
-				anim_tree.set("parameters/Run_Dir/blend_amount",int(velocity.z<=0))#int(velocity.z<=0))
-		else: #We're in the air. Do not apply friction
-			if ground_check.is_colliding():#velocity.y <=0 and ground_check.is_colliding() and !wish_jump== true:
-				#anim_tree.set("parameters/Char_State/current", 2)
-				anim_tree.set("parameters/Char_State/current",2)
-			else:
-				#anim_tree.set("parameters/Char_State/current", 1)
-				anim_tree.set("parameters/Char_State/current",1)
-				if puppet_rocketjump:
-					#anim_tree.set("parameters/Air_Hit/blend_amount", 1)
-					anim_tree.set("parameters/Air_Hit/blend_amount",1)
-				if velocity.y > 0 and !puppet_wish_jump:
-					#anim_tree.set("parameters/Air_State/current", 0)
-					anim_tree.set("parameters/Air_State/current",0)
-				else:
-					#anim_tree.set("parameters/Air_State/current", 1)
-					anim_tree.set("parameters/Air_State/current",1)
+		match puppet_state:
+			GROUND:
+			#	if puppet_floorcheck:
+					puppet_rocketjump = false
+					anim_tree.set("parameters/Char_State/current",0)
+					anim_tree.set("parameters/Air_Hit/blend_amount",0)
+					if (abs(velocity.z) <1  and abs(velocity.x) < 1):#(sqrt(pow(velocity.x,2) + pow(velocity.z,2)) <3) or forward_input in range(-0.2,0.2):
+						#anim_tree.set("parameters/Is_Moving/current", 0)
+						anim_tree.set("parameters/Is_Moving/current",0)
+					else:
+						#anim_tree.set("parameters/Is_Moving/current", 1)
+						anim_tree.set("parameters/Is_Moving/current",1)
+						#anim_tree.set("parameters/Run_Dir/blend_amount", int(velocity.z>0))
+						anim_tree.set("parameters/Run_Dir/blend_amount",int(velocity.z<=0))#int(velocity.z<=0))
+			AIR:
+			#	else: #We're in the air. Do not apply friction
+					if ground_check.is_colliding():#velocity.y <=0 and ground_check.is_colliding() and !wish_jump== true:
+						#anim_tree.set("parameters/Char_State/current", 2)
+						anim_tree.set("parameters/Char_State/current",2)
+					else:
+						#anim_tree.set("parameters/Char_State/current", 1)
+						anim_tree.set("parameters/Char_State/current",1)
+						if puppet_rocketjump:
+							#anim_tree.set("parameters/Air_Hit/blend_amount", 1)
+							anim_tree.set("parameters/Air_Hit/blend_amount",1)
+						if velocity.y > 0 and !puppet_wish_jump:
+							#anim_tree.set("parameters/Air_State/current", 0)
+							anim_tree.set("parameters/Air_State/current",0)
+						else:
+							#anim_tree.set("parameters/Air_State/current", 1)
+							anim_tree.set("parameters/Air_State/current",1)
 	if is_network_master():
 		health_label.text = str(health)
 		#print(wish_jump)
