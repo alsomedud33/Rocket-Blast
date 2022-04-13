@@ -242,11 +242,14 @@ func _physics_process(delta: float) -> void:
 					#anim_tree.set("parameters/Is_Moving/current", 0)
 					animtree_change("parameters/Is_Moving/current",0)
 				else:
-					#anim_tree.set("parameters/Is_Moving/current", 1)
-					animtree_change("parameters/Is_Moving/current",1)
-					#anim_tree.set("parameters/Run_Dir/blend_amount", int(velocity.z>0))
-					animtree_change("parameters/Run_Dir/blend_amount",int(velocity.z>0))
-					#if velocity.z >
+					if (sqrt(pow(velocity.x,2) + pow(velocity.z,2))) <1:
+						animtree_change("parameters/Is_Moving/current",0)
+					else:
+						#anim_tree.set("parameters/Is_Moving/current", 1)
+						animtree_change("parameters/Is_Moving/current",1)
+						#anim_tree.set("parameters/Run_Dir/blend_amount", int(velocity.z>0))
+						animtree_change("parameters/Run_Dir/blend_amount",int(velocity.z>0))
+						#if velocity.z >
 		
 		else: #We're in the air. Do not apply friction
 			if ground_check.is_colliding():#velocity.y <=0 and ground_check.is_colliding() and !wish_jump== true:

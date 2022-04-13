@@ -102,7 +102,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 16, 6 )
 
 [node name="Mirror" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1, 0.760476 )
-visible = false
 
 [node name="Viewport" type="Viewport" parent="Mirror"]
 size = Vector2( 1280, 720 )
@@ -121,6 +120,10 @@ far = 50.0
 texture = SubResource( 4 )
 
 [node name="SpotLight" type="SpotLight" parent="Mirror"]
+spot_range = 198.856
+
+[node name="SpotLight2" type="SpotLight" parent="Mirror"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -12 )
 spot_range = 198.856
 
 [connection signal="body_exited" from="Skybox_Area" to="." method="_on_Skybox_Area_body_exited"]

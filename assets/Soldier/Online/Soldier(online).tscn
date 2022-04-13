@@ -1720,7 +1720,7 @@ bones/6/name = "Head"
 bones/6/parent = 5
 bones/6/rest = Transform( 0.943395, -0.0389697, 0.329373, -0.0303351, 0.978773, 0.202689, -0.330281, -0.201208, 0.922188, 0, 2.26562, 0 )
 bones/6/enabled = true
-bones/6/bound_children = [ NodePath("Hat") ]
+bones/6/bound_children = [  ]
 bones/7/name = "Shoulder.L"
 bones/7/parent = 5
 bones/7/rest = Transform( 0.635148, 0.692073, 0.34296, 0.34296, -0.650548, 0.677617, 0.692073, -0.312766, -0.650548, -1.27145e-07, 2.26562, 1.1582e-07 )
@@ -1760,7 +1760,7 @@ bones/14/name = "Arm.R"
 bones/14/parent = 13
 bones/14/rest = Transform( 0.266673, -0.0399825, -0.962957, -0.743706, 0.626963, -0.231987, 0.613014, 0.778022, 0.137459, 1.26959e-07, 2.17997, -3.0583e-07 )
 bones/14/enabled = true
-bones/14/bound_children = [ NodePath("Rocket Launcher") ]
+bones/14/bound_children = [  ]
 bones/15/name = "UpperLeg.L"
 bones/15/parent = 0
 bones/15/rest = Transform( -0.981479, 0.149722, 0.119508, -0.0974942, -0.927391, 0.361166, 0.164905, 0.342825, 0.924812, 0.93457, 0.623047, 5.2108e-15 )
@@ -1778,13 +1778,14 @@ bones/17/enabled = true
 bones/17/bound_children = [  ]
 
 [node name="Soldier" type="MeshInstance" parent="Armature/Skeleton"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 layers = 2
 mesh = ExtResource( 17 )
 skin = SubResource( 22 )
 material/0 = null
 
 [node name="Rocket Launcher" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.105365, -0.0986433, 0.989529, -0.0177031, 0.995096, 0.0973137, -0.994274, -0.00726354, -0.106594, -4.89714, 4.71607, 1.63831 )
+transform = Transform( -0.144658, -0.0948081, 0.984929, -0.0228391, 0.995453, 0.0924671, -0.989216, -0.0091182, -0.146166, -4.83619, 4.27313, 1.91065 )
 bone_name = "Arm.R"
 
 [node name="Rocket Launcher" type="MeshInstance" parent="Armature/Skeleton/Rocket Launcher"]
@@ -1795,7 +1796,7 @@ skeleton = NodePath("../../../..")
 material/0 = null
 
 [node name="Hat" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 0.997616, 0.00850438, 0.0684991, -0.00672425, 0.999635, -0.0261693, -0.0686969, 0.0256455, 0.997307, 1.19842e-07, 4.19426, 0.976202 )
+transform = Transform( 0.997616, 0.0085044, 0.068499, -0.00672426, 0.999635, -0.0261692, -0.0686969, 0.0256454, 0.997307, 1.86664e-07, 3.79196, 0.976202 )
 bone_name = "Head"
 
 [node name="Soldier Hat2" type="MeshInstance" parent="Armature/Skeleton/Hat"]

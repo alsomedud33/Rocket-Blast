@@ -15,7 +15,10 @@ size = Vector2( 8, 8 )
 
 [resource]
 resource_name = "Material"
+flags_vertex_lighting = true
+flags_albedo_tex_force_srgb = true
+flags_ensure_correct_normals = true
 vertex_color_use_as_albedo = true
 params_cull_mode = 2
 albedo_texture = SubResource( 2 )
-roughness = 0.4
+metallic_specular = 0.0
