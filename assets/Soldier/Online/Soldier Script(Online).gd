@@ -204,7 +204,14 @@ func _physics_process(delta: float) -> void:
 						else:
 							#anim_tree.set("parameters/Air_State/current", 1)
 							anim_tree.set("parameters/Air_State/current",1)
+			DEAD:
+				armature.set_as_toplevel(true)
+				anim_tree.set("parameters/Ragdoll/current",1)
+				get_node("CollisionShape").disabled = true
+				#$Armature/Skeleton/Spineik.stop()
 	if is_network_master():
+		if Input.is_action_just_pressed("ragdoll"):
+			health -= 10
 		health_label.text = str(health)
 		#print(wish_jump)
 		queue_jump()
@@ -312,6 +319,7 @@ func _physics_process(delta: float) -> void:
 					armature.get_node("Skeleton/Rocket Launcher/Rocket Launcher").set_layer_mask_bit(0,true)
 					armature.get_node("Skeleton/Hat/Soldier Hat2").set_layer_mask_bit(0,true)
 					get_node("CollisionShape").disabled = true
+					#$Armature/Skeleton/Spineik.stop()
 		if Input.is_action_pressed("shoot1"):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
@@ -339,10 +347,7 @@ func _physics_process(delta: float) -> void:
 	#				rocket_instance.rotation_degrees = Vector3(-$Pivot.rotation_degrees.x+1, self.rotation_degrees.y+182,0)
 	#			rocket_instance.velocity = rocket_instance.transform.basis.z * -rocket_instance.speed
 	#			main.call_deferred("add_child",rocket_instance)
-		if Input.is_action_just_pressed("ragdoll"):
-			armature.set_as_toplevel(true)
-			animtree_change("parameters/Ragdoll/current",1)
-			#armature.get_node("Skeleton").physical_bones_start_simulation()
+
 
 func change_state(new_state):
 	old_state = state

@@ -18,7 +18,7 @@ input_0/auto_advance = true
 input_1/name = "state 1"
 input_1/auto_advance = true
 
-[sub_resource type="AnimationNodeAnimation" id=70]
+[sub_resource type="AnimationNodeAnimation" id=72]
 animation = "Ragdoll"
 
 [sub_resource type="AnimationNodeAnimation" id=33]
@@ -72,10 +72,9 @@ filters = [ "Armature/Skeleton:Arm.L", "Armature/Skeleton:Arm.R", "Armature/Skel
 
 [sub_resource type="AnimationNodeTransition" id=71]
 input_count = 2
-xfade_time = 0.2
-input_0/name = "Regular"
+input_0/name = "normal"
 input_0/auto_advance = false
-input_1/name = "Ragdoll"
+input_1/name = "ragdoll"
 input_1/auto_advance = false
 
 [sub_resource type="AnimationNodeBlend2" id=67]
@@ -83,7 +82,7 @@ input_1/auto_advance = false
 [sub_resource type="AnimationNodeTimeScale" id=69]
 
 [resource]
-graph_offset = Vector2( 81.478, 144.69 )
+graph_offset = Vector2( 497.525, 141.919 )
 nodes/Air_Hit/node = SubResource( 59 )
 nodes/Air_Hit/position = Vector2( 340, 320 )
 nodes/Air_State/node = SubResource( 56 )
@@ -92,8 +91,8 @@ nodes/Airborne/node = SubResource( 60 )
 nodes/Airborne/position = Vector2( -160, 700 )
 nodes/Animation/node = SubResource( 35 )
 nodes/Animation/position = Vector2( 320, -40 )
-"nodes/Animation 10/node" = SubResource( 70 )
-"nodes/Animation 10/position" = Vector2( 1160, 440 )
+"nodes/Animation 11/node" = SubResource( 72 )
+"nodes/Animation 11/position" = Vector2( 1120, 460 )
 "nodes/Animation 2/node" = SubResource( 33 )
 "nodes/Animation 2/position" = Vector2( -120, 180 )
 "nodes/Animation 3/node" = SubResource( 34 )
@@ -117,10 +116,10 @@ nodes/Is_Moving/position = Vector2( 600, 160 )
 nodes/Is_Shooting/node = SubResource( 65 )
 nodes/Is_Shooting/position = Vector2( 1140, 240 )
 nodes/Ragdoll/node = SubResource( 71 )
-nodes/Ragdoll/position = Vector2( 1420, 260 )
+nodes/Ragdoll/position = Vector2( 1413.4, 306.604 )
 nodes/Run_Dir/node = SubResource( 67 )
 nodes/Run_Dir/position = Vector2( 280, 140 )
 nodes/TimeScale/node = SubResource( 69 )
 nodes/TimeScale/position = Vector2( 540, 0 )
-nodes/output/position = Vector2( 1560, 120 )
-node_connections = [ "output", 0, "Ragdoll", "Is_Shooting", 0, "Char_State", "Is_Shooting", 1, "Animation 3", "Air_Hit", 0, "Air_State", "Air_Hit", 1, "Animation 5", "Char_State", 0, "Is_Moving", "Char_State", 1, "Air_Hit", "Char_State", 2, "Animation 6", "Is_Moving", 0, "TimeScale", "Is_Moving", 1, "Run_Dir", "Airborne", 0, "Animation 7", "Airborne", 1, "Animation 9", "TimeScale", 0, "Animation", "Air_State", 0, "Animation 4", "Air_State", 1, "Airborne", "Run_Dir", 0, "Animation 8", "Run_Dir", 1, "Animation 2", "Ragdoll", 0, "Is_Shooting", "Ragdoll", 1, "Animation 10" ]
+nodes/output/position = Vector2( 1700, 200 )
+node_connections = [ "output", 0, "Ragdoll", "Is_Shooting", 0, "Char_State", "Is_Shooting", 1, "Animation 3", "Air_Hit", 0, "Air_State", "Air_Hit", 1, "Animation 5", "Char_State", 0, "Is_Moving", "Char_State", 1, "Air_Hit", "Char_State", 2, "Animation 6", "Is_Moving", 0, "TimeScale", "Is_Moving", 1, "Run_Dir", "Airborne", 0, "Animation 7", "Airborne", 1, "Animation 9", "TimeScale", 0, "Animation", "Air_State", 0, "Animation 4", "Air_State", 1, "Airborne", "Run_Dir", 0, "Animation 8", "Run_Dir", 1, "Animation 2", "Ragdoll", 0, "Is_Shooting", "Ragdoll", 1, "Animation 11" ]
