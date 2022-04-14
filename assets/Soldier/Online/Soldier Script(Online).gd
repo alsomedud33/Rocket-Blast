@@ -7,6 +7,7 @@ extends KinematicBody
 
 var health = 100
 var dealth_location
+var team
 var rng = RandomNumberGenerator.new()
 var mouse_sensitivity = Globals.mouse_sense
 export var max_speed: float = 6 # Meters per second
@@ -38,6 +39,7 @@ onready var guns = $"Pivot/Camera/Rocket Launcher/Gun0"
 onready var hat = $"Soldier Hat"
 onready var health_label = $Health
 onready var damage_label = $damage
+onready var team_label = $Team
 onready var usr_tag = $Username
 
 onready var armature = $"Armature"
@@ -145,6 +147,7 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	camera.current = is_network_master() 
 	health_label.visible = is_network_master()
+	team_label.visible = is_network_master()
 	get_rocket_launcher.visible = is_network_master()
 	#get_rocket_launcher.get_node("MeshInstance").set_layer_mask_bit(2,is_network_master())
 #	hat.get_node("MeshInstance").set_layer_mask_bit(0,!is_network_master())#visible = !is_network_master() 
@@ -213,6 +216,7 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("ragdoll"):
 			health -= 10
 		health_label.text = str(health)
+		team_label.text = ("Team: "+str(team))
 		#print(wish_jump)
 		queue_jump()
 		var forward_input: float = Input.get_action_strength("move_forward") - Input.get_action_strength("move_back")

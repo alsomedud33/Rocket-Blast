@@ -17,9 +17,10 @@ func _ready():
 	Network.connect("explosion_hitbox",self,"_explosion_hitbox")
 
 func _player_joined(id):
+	rpc_id(1,"team_info_request")
 	print(str(id) + " connected")
 	print (str(get_tree().get_network_connected_peers()) + " are in the game")
-	_instance_player(id)
+	_instance_player(id,Network.team_index % 2+1)
 	pass
 
 func _player_disconnected(id):
@@ -27,12 +28,14 @@ func _player_disconnected(id):
 		get_node(str(id)).queue_free()
 	pass
 
-func _instance_player(id):
+func _instance_player(id,_team):
 	print("creating player " +str(id))
 	var p = soldier.instance()
 	p.set_network_master(id)
 	p.name = str(id)
+	p.team = _team
 	NetNodes.players.add_child(p)
+	p.global_transform.origin = get_node("Spawn Points/" +str(p.team)+"/"+"Spawn Point"+str(p.team)).global_transform.origin
 
 func _player_shot(id,position):
 	rpc("_player_shot_remote", id,position)

@@ -8,7 +8,9 @@ var client = null
 
 var ip_address = "127.0.0.1"
 
-signal instance_player(id)
+var team_index=0
+
+signal instance_player(id,team)
 signal player_shot(id,location)
 signal destroy_rocket(rocket)
 signal rocket_hit(rocket, damage)
