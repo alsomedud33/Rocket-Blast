@@ -23,6 +23,7 @@ var soldier = preload("res://assets/Soldier/Online/Soldier(online).tscn")
 var rocket = preload ("res://assets/Soldier/Online/Rocket(online).tscn")
 var explosion = preload("res://Online/Explosion_Hitbox(online).tscn")
 var decal = preload('res://assets/Textures/Bullet Decal.tscn')
+var health_pack = preload('res://Online/Health Pack/Health Pack Box.tscn')
 
 func _ready():
 	

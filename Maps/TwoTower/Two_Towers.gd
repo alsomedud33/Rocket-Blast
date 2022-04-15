@@ -171,11 +171,14 @@ func _explosion_hitbox(hitbox,players,damage):
 	print ("damage is:" + str(round(damage * clamp(1/NetNodes.hitboxes.get_node(hitbox).get_global_transform().origin.distance_to(NetNodes.players.get_node(players).get_global_transform().origin),0.5,1))))
 	NetNodes.players.get_node(players).take_damage(round(damage *clamp(1/NetNodes.hitboxes.get_node(hitbox).get_global_transform().origin.distance_to(NetNodes.players.get_node(players).get_global_transform().origin),0.5,1)),NetNodes.hitboxes.get_node(hitbox).explosion_owner)
 	NetNodes.players.get_node(players).snap = Vector3.ZERO
-	if NetNodes.players.get_node(players).is_on_floor():
+	if NetNodes.players.get_node(players).is_on_floor() and NetNodes.hitboxes.get_node(hitbox).explosion_owner != players:
 		NetNodes.players.get_node(players).rocket_impulse = 1.5*NetNodes.hitboxes.get_node(hitbox).explode_force*NetNodes.hitboxes.get_node(hitbox).y_explode_ratio*2*NetNodes.hitboxes.get_node(hitbox).get_global_transform().origin.direction_to(NetNodes.players.get_node(players).get_global_transform().origin).y
 		NetNodes.players.get_node(players).rocket_jump = true
 	#print("distance from center is: " + str(clamp(NetNodes.hitboxes.get_node(hitbox).translation.distance_to(NetNodes.players.get_node(players).translation),0,2)))
-	NetNodes.players.get_node(players).velocity += NetNodes.hitboxes.get_node(hitbox).explode_force*NetNodes.hitboxes.get_node(hitbox).get_global_transform().origin.direction_to(NetNodes.players.get_node(players).get_global_transform().origin) * NetNodes.hitboxes.get_node(hitbox).distance_ratio/clamp(NetNodes.hitboxes.get_node(hitbox).translation.distance_to(NetNodes.players.get_node(players).translation),0,2)
+	if NetNodes.hitboxes.get_node(hitbox).explosion_owner != players:
+		NetNodes.players.get_node(players).velocity += NetNodes.hitboxes.get_node(hitbox).explode_force*NetNodes.hitboxes.get_node(hitbox).get_global_transform().origin.direction_to(NetNodes.players.get_node(players).get_global_transform().origin) * NetNodes.hitboxes.get_node(hitbox).distance_ratio/clamp(NetNodes.hitboxes.get_node(hitbox).translation.distance_to(NetNodes.players.get_node(players).translation),0,2)
+	else:
+		NetNodes.players.get_node(players).velocity += NetNodes.hitboxes.get_node(hitbox).explode_force*NetNodes.hitboxes.get_node(hitbox).get_global_transform().origin.direction_to(NetNodes.players.get_node(players).get_global_transform().origin) * NetNodes.hitboxes.get_node(hitbox).distance_ratio/clamp(NetNodes.hitboxes.get_node(hitbox).translation.distance_to(NetNodes.players.get_node(players).translation),1.5,3)
 	NetNodes.players.get_node(players).velocity.y += NetNodes.hitboxes.get_node(hitbox).explode_force*NetNodes.hitboxes.get_node(hitbox).y_explode_ratio*NetNodes.hitboxes.get_node(hitbox).get_global_transform().origin.direction_to(NetNodes.players.get_node(players).get_global_transform().origin).y
 	print("real")
 
@@ -185,10 +188,13 @@ remote func _explosion_hitbox_remote(hitbox,players,explosion_owner,damage,origi
 			Network.emit_signal("hit",damage,NetNodes.players.get_node(players).head.global_transform.origin)
 	#NetNodes.players.get_node(players).take_damage(damage)
 	NetNodes.players.get_node(players).snap = Vector3.ZERO
-	if NetNodes.players.get_node(players).is_on_floor():
+	if NetNodes.players.get_node(players).is_on_floor() and explosion_owner != players:
 		NetNodes.players.get_node(players).rocket_impulse = 1.5*explode_force*y_explode_ratio*2*origin.direction_to(NetNodes.players.get_node(players).get_global_transform().origin).y
 		NetNodes.players.get_node(players).rocket_jump = true
-	NetNodes.players.get_node(players).velocity += explode_force*origin.direction_to(NetNodes.players.get_node(players).get_global_transform().origin) * distance_ratio/clamp(translation.distance_to(NetNodes.players.get_node(players).translation),0,2)
+	if explosion_owner != players:
+		NetNodes.players.get_node(players).velocity += explode_force*origin.direction_to(NetNodes.players.get_node(players).get_global_transform().origin) * distance_ratio/clamp(translation.distance_to(NetNodes.players.get_node(players).translation),0,2)
+	else:
+		NetNodes.players.get_node(players).velocity += explode_force*origin.direction_to(NetNodes.players.get_node(players).get_global_transform().origin) * distance_ratio/clamp(translation.distance_to(NetNodes.players.get_node(players).translation),1.5,3)
 	NetNodes.players.get_node(players).velocity.y += explode_force*y_explode_ratio*origin.direction_to(NetNodes.players.get_node(players).get_global_transform().origin).y
 	print("fake")
 

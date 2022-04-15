@@ -4,7 +4,7 @@
 
 extends KinematicBody
 
-
+var max_health = 200
 var health = 200
 var dealth_location
 onready var killer = name
@@ -184,7 +184,6 @@ func _physics_process(delta: float) -> void:
 		gun_camera.global_transform = puppet_rocket_transform
 		rocket_num = puppet_rocket_num
 		forward_input = puppet_forward_input
-		print (wishdir)
 		match puppet_state:
 			GROUND:
 			#	if puppet_floorcheck:
@@ -426,7 +425,7 @@ master func move_air(input_velocity: Vector3, delta: float)-> void:
 	var nextVelocity: Vector3 = Vector3.ZERO
 	nextVelocity.x = input_velocity.x
 	nextVelocity.z = input_velocity.z
-	nextVelocity = accelerate(wishdir, nextVelocity, accel*10, max_air_speed, delta)
+	nextVelocity = accelerate(wishdir, nextVelocity, accel*5, max_air_speed, delta)
 	
 	# Then get back our vertical component, and move the player
 	nextVelocity.y = vertical_velocity
@@ -499,9 +498,22 @@ func _hit(dmg,location):
 	#	damage_label.modulate = lerp(damage_label.modulate, Color.transparent,0.1)
 
 
-#func _reset_damage_label_tween():
-#	if is_network_master():
-#		damage_label.rect_position = Vector2.ZERO
+func get_health(amount,overheal,is_multiplier):
+	rpc("get_health_remote",amount,overheal,is_multiplier)
+	if is_multiplier:
+		health += round(amount * max_health)
+	else:
+		health += amount
+	if (overheal != true) and (health >max_health):
+		health = max_health
+
+#remote func get_health_remote(amount,overheal,is_multiplier):
+#	if is_multiplier:
+#		health += round(amount * max_health)
+#	else:
+#		health += amount
+#	if (overheal != true) and (health >max_health):
+#		health = max_health
 
 
 func _on_Death_Cam_timeout():

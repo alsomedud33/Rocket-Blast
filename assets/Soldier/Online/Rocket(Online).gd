@@ -147,7 +147,7 @@ func _on_Hitbox_body_entered(body):
 			explosion_instance.explosion_owner = self.rocket_owner
 			explosion_instance.distance_ratio = 3
 			explosion_instance.y_explode_ratio = 1
-			explosion_instance.radius_val = 3
+			explosion_instance.radius_val = 2
 			explosion_instance.explode_force = 5
 			explosion_instance.damage_scaler = 1.25
 			explosion_instance.global_transform.origin = self.global_transform.origin
