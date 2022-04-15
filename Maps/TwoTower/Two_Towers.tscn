@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
+[ext_resource path="res://assets/Platform Objects/Orange Wall Tile.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Networking/Network_ui.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Maps/Big Bass/Big_Bass.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Maps/TwoTower/Two_Towers.lmbake" type="BakedLightmapData" id=4]
@@ -122,3 +123,60 @@ spot_range = 198.856
 
 [node name="Big_Bass" parent="." instance=ExtResource( 3 )]
 transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 8, 0, 0 )
+
+[node name="Orange Wall Tile" parent="." instance=ExtResource( 1 )]
+transform = Transform( 2.17637e-08, 1.96767e-07, 1.53122, 0.433013, 1.3013, -1.15604e-07, -0.25, 2.25392, -6.69317e-08, -20.5338, 5.02838, 7.80665 )
+skeleton = NodePath("../..")
+
+[node name="Orange Wall Tile9" parent="." instance=ExtResource( 1 )]
+transform = Transform( 4.21469e-08, -4.67977e-08, 1.53122, 0.353554, -1.47225, -1.15604e-07, 0.353554, 1.47225, -6.69317e-08, -19.5338, 7.38374, 7.41099 )
+skeleton = NodePath("../..")
+
+[node name="Orange Wall Tile6" parent="." instance=ExtResource( 1 )]
+transform = Transform( 4.21469e-08, 2.97282, 2.49029, 0.5, -1.83771e-07, -2.65889e-07, -1.12382e-08, 2.97282, -2.49029, -30.5338, 10.0925, 14.7696 )
+skeleton = NodePath("../..")
+
+[node name="Orange Wall Tile7" parent="." instance=ExtResource( 1 )]
+transform = Transform( 2.18557e-08, 12.1081, 8.50845e-07, 0.5, -5.29261e-07, -1.26652e-07, -1.12382e-08, 1.82827e-06, -5.63489, 4.46621, 10.0925, 19.7696 )
+skeleton = NodePath("../..")
+
+[node name="Orange Wall Tile13" parent="." instance=ExtResource( 1 )]
+transform = Transform( -0.5, -7.32039e-07, -7.43832e-15, 0, -2.11916e-07, 1.12698, -7.5498e-08, 4.84808, 4.92618e-08, -31.2331, 11.0925, 4.76961 )
+skeleton = NodePath("../..")
+
+[node name="Orange Wall Tile11" parent="." instance=ExtResource( 1 )]
+transform = Transform( -8.14604e-08, 19.9783, 4.92618e-08, 0, -8.73281e-07, 1.12698, 0.5, 3.25488e-06, 8.02576e-15, -7.53379, 10.0925, 14.7696 )
+skeleton = NodePath("../..")
+
+[node name="Orange Wall Tile12" parent="." instance=ExtResource( 1 )]
+transform = Transform( -8.14604e-08, 19.9783, 4.92618e-08, 0, -8.73281e-07, 1.12698, 0.5, 3.25488e-06, 8.02576e-15, 7.46621, 10.0925, -15.2304 )
+skeleton = NodePath("../..")
+
+[node name="Orange Wall Tile8" parent="." instance=ExtResource( 1 )]
+transform = Transform( 2.18557e-08, 12.1081, 8.50845e-07, 0.5, -5.29261e-07, -1.26652e-07, -1.12382e-08, 1.82827e-06, -5.63489, -5.53379, 10.0925, -20.2304 )
+skeleton = NodePath("../..")
+
+[node name="Orange Wall Tile10" parent="." instance=ExtResource( 1 )]
+transform = Transform( -8.14604e-08, 2.42162, 2.46309e-07, 0, -1.05852e-07, 5.63489, 0.5, 3.94531e-07, 4.01288e-14, -31.5338, 10.0925, -11.2304 )
+skeleton = NodePath("../..")
+
+[node name="Orange Wall Tile2" parent="." instance=ExtResource( 1 )]
+transform = Transform( 3.3929e-08, 3.58964e-07, 1.53122, 0.433013, 2.002, -1.58623e-07, -0.25, 3.46756, -6.69317e-08, -28.5338, 0.0925199, 6.03757 )
+skeleton = NodePath("../..")
+
+[node name="Orange Wall Tile14" parent="." instance=ExtResource( 1 )]
+transform = Transform( 3.3929e-08, 3.58964e-07, 1.53122, 0.433013, 2.002, -1.58623e-07, -0.25, 3.46756, -6.69317e-08, -30.5338, 7.09252, 6.03757 )
+skeleton = NodePath("../..")
+
+[node name="Orange Wall Tile4" parent="." instance=ExtResource( 1 )]
+transform = Transform( 3.3929e-08, 3.58964e-07, 1.53122, 0.433013, 2.002, -1.58623e-07, -0.25, 3.46756, -6.69317e-08, -30.5338, 6.42265, 7.00167 )
+visible = false
+skeleton = NodePath("../..")
+
+[node name="Orange Wall Tile3" parent="." instance=ExtResource( 1 )]
+transform = Transform( 5.24968e-08, 4.59482e-07, 1.53122, 0.433013, -1.8018, -4.16091e-08, 0.25, 3.12081, -2.49467e-07, -29.5338, 4.09252, 6.03757 )
+skeleton = NodePath("../..")
+
+[node name="Orange Wall Tile5" parent="." instance=ExtResource( 1 )]
+transform = Transform( 5.24968e-08, 4.59482e-07, 1.53122, 0.433013, -1.8018, -4.16091e-08, 0.25, 3.12081, -2.49467e-07, -31.0342, 10.1338, 6.59238 )
+skeleton = NodePath("../..")

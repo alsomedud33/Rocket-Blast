@@ -302,6 +302,8 @@ func _physics_process(delta: float) -> void:
 								#if velocity.z >
 				AIR:
 					if is_on_floor():
+						if wish_jump:
+							self.take_damage(5,name)
 						change_state(GROUND)
 					if ground_check.is_colliding():#velocity.y <=0 and ground_check.is_colliding() and !wish_jump== true:
 						#anim_tree.set("parameters/Char_State/current", 2)
