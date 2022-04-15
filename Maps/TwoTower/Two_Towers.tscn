@@ -71,6 +71,14 @@ script = ExtResource( 5 )
 transform = Transform( 1, 2.22799e-08, -2.47756e-08, 1.99633e-09, 0.702166, 0.712014, 3.32602e-08, -0.712014, 0.702166, 2.21349, 11.4574, 12.4384 )
 cull_mask = 1048573
 environment = SubResource( 3 )
+current = true
+
+[node name="RayCast" type="RayCast" parent="CameraHub/Camera"]
+transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+enabled = true
+cast_to = Vector3( 0, 0, -1000 )
+collision_mask = 0
+collide_with_areas = true
 
 [node name="Skybox_Area" type="Area" parent="."]
 transform = Transform( 40, 0, 0, 0, 40, 0, 0, 0, 40, 0, 0, 0 )

@@ -5,8 +5,10 @@
 extends KinematicBody
 
 
-var health = 100
+var health = 200
 var dealth_location
+onready var killer = name
+var merc = "Soldier"
 var team
 var rng = RandomNumberGenerator.new()
 var mouse_sensitivity = Globals.mouse_sense
@@ -60,7 +62,8 @@ var auto_jump: bool = false # Auto bunnyhopping
 # This is probably not the best solution and will be removed in the future.
 var debug_horizontal_velocity: Vector3 = Vector3.ZERO
 var accelerate_return: Vector3 = Vector3.ZERO
-
+var forward_input: float 
+var strafe_input: float
 #Networking variables
 onready var net_tween =$"Tween"
 var puppet_position = Vector3()
@@ -72,6 +75,8 @@ var puppet_rocketjump
 var puppet_wish_jump
 var puppet_anim:String
 var puppet_anim_val
+var puppet_rocket_num
+var puppet_forward_input:float
 
 var fake_anim
 var fake_anim_val
@@ -82,7 +87,7 @@ var rocket_num = 0
 func _on_network_timer_timeout():
 	if is_network_master() and name == str(get_tree().get_network_unique_id()):
 		rpc_unreliable("update_transform", global_transform.origin, velocity, Vector2(head.rotation.x, self.rotation.y),camera.global_transform)
-		rpc_unreliable("update_state", state,old_state)
+		rpc_unreliable("update_state", state,old_state,rocket_num,forward_input)
 #	rpc("update_anim",is_on_floor(),rocket_jump,wish_jump)
 func anim_timeout():
 	if is_network_master() and name == str(get_tree().get_network_unique_id()):
@@ -104,10 +109,11 @@ puppet func update_anim(floor_check,r_jump,w_jump):
 	puppet_rocketjump = r_jump
 	puppet_wish_jump = w_jump
 
-puppet func update_state(fake_state,fake_old_state):
+puppet func update_state(fake_state,fake_old_state,fake_rocket_num,forward_inp):
 	puppet_state = fake_state
 	puppet_old_state = fake_old_state
-
+	puppet_rocket_num = fake_rocket_num
+	puppet_forward_input = forward_inp
 puppet func shoot_anim():
 	anim_tree.set("parameters/Is_Shooting/active",1)
 #Networking end
@@ -124,10 +130,10 @@ func animtree_change(parameter : String, val:int):
 func _input(event: InputEvent) -> void:
 	if is_network_master():
 		# Camera rotation
-		if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+		if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED and state !=DEAD:
 			head.rotate_x(deg2rad(event.relative.y * mouse_sensitivity))
 			self.rotate_y(deg2rad((event.relative.x * -mouse_sensitivity)))
-			head.rotation.x = clamp(head.rotation.x, deg2rad(-90), deg2rad(90))
+			head.rotation.x = clamp(head.rotation.x, deg2rad(-89), deg2rad(89))
 			#armature.get_node("Skeleton").set_bone_pose(armature.get_node("Skeleton").find_bone("Head"),Transform(camera.global_transform.basis,armature.get_node("Skeleton").get_bone_pose(armature.get_node("Skeleton").find_bone("Head")).origin))
 enum {
 	GROUND,
@@ -176,6 +182,9 @@ func _physics_process(delta: float) -> void:
 		head.rotation.x = puppet_rotation.x
 		rotation.y = puppet_rotation.y
 		gun_camera.global_transform = puppet_rocket_transform
+		rocket_num = puppet_rocket_num
+		forward_input = puppet_forward_input
+		print (wishdir)
 		match puppet_state:
 			GROUND:
 			#	if puppet_floorcheck:
@@ -189,7 +198,7 @@ func _physics_process(delta: float) -> void:
 						#anim_tree.set("parameters/Is_Moving/current", 1)
 						anim_tree.set("parameters/Is_Moving/current",1)
 						#anim_tree.set("parameters/Run_Dir/blend_amount", int(velocity.z>0))
-						anim_tree.set("parameters/Run_Dir/blend_amount",int(velocity.z<=0))#int(velocity.z<=0))
+						anim_tree.set("parameters/Run_Dir/blend_amount",forward_input >0) #int(velocity.z<=0))#int(velocity.z<=0))
 			AIR:
 			#	else: #We're in the air. Do not apply friction
 					if ground_check.is_colliding():#velocity.y <=0 and ground_check.is_colliding() and !wish_jump== true:
@@ -208,9 +217,12 @@ func _physics_process(delta: float) -> void:
 							#anim_tree.set("parameters/Air_State/current", 1)
 							anim_tree.set("parameters/Air_State/current",1)
 			DEAD:
+				$Armature/Skeleton/Spineik.interpolation = 0
 				armature.set_as_toplevel(true)
 				anim_tree.set("parameters/Ragdoll/current",1)
 				get_node("CollisionShape").disabled = true
+				get_node("Projectile Hurtbox").monitoring = false
+				get_node("Projectile Hurtbox").monitorable = false
 				#$Armature/Skeleton/Spineik.stop()
 	if is_network_master():
 		if Input.is_action_just_pressed("ragdoll"):
@@ -219,13 +231,14 @@ func _physics_process(delta: float) -> void:
 		team_label.text = ("Team: "+str(team))
 		#print(wish_jump)
 		queue_jump()
-		var forward_input: float = Input.get_action_strength("move_forward") - Input.get_action_strength("move_back")
-		var strafe_input: float = Input.get_action_strength("move_left") - Input.get_action_strength("move_right")
+		forward_input = Input.get_action_strength("move_forward") - Input.get_action_strength("move_back")
+		strafe_input= Input.get_action_strength("move_left") - Input.get_action_strength("move_right")
 		wishdir = Vector3(strafe_input, 0, forward_input).rotated(Vector3.UP, self.global_transform.basis.get_euler().y).normalized() 
 		# wishdir is our normalized horizontal inpur
 		if health <= 0 and state != DEAD:
 			dealth_location = global_transform.origin
-			health = 0 
+			health = 0
+			$Death_Cam.start()
 			state = DEAD
 		match state:
 				GROUND:
@@ -314,6 +327,7 @@ func _physics_process(delta: float) -> void:
 			#			if get_slide_collision(i).get_collider().name == "Explosion_Hitbox":
 			#				velocity += get_slide_collision(i).normal *15
 				DEAD:
+					$Armature/Skeleton/Spineik.interpolation = 0
 					get_rocket_launcher.hide()
 					armature.set_as_toplevel(true)
 					animtree_change("parameters/Ragdoll/current",1)
@@ -323,7 +337,11 @@ func _physics_process(delta: float) -> void:
 					armature.get_node("Skeleton/Rocket Launcher/Rocket Launcher").set_layer_mask_bit(0,true)
 					armature.get_node("Skeleton/Hat/Soldier Hat2").set_layer_mask_bit(0,true)
 					get_node("CollisionShape").disabled = true
-					#$Armature/Skeleton/Spineik.stop()
+					get_node("Projectile Hurtbox").monitoring = false
+					get_node("Projectile Hurtbox").monitorable = false
+					var T = camera.global_transform.looking_at(NetNodes.players.get_node(killer).global_transform.origin,Vector3.UP)
+					$Tween.interpolate_property(camera,"global_transform",Transform(camera.global_transform.basis,dealth_location),Transform(T.basis,camera.global_transform.origin),0.1)
+					$Tween.start()
 		if Input.is_action_pressed("shoot1"):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
@@ -454,13 +472,15 @@ master func _on_Footstep_timeout():
 			3:
 				$Footstep3.play()
 
-func take_damage(dmg):
-	rpc("take_damage_remote",dmg)
+func take_damage(dmg,enemy):
+	rpc("take_damage_remote",dmg,enemy)
 	health -= dmg
+	killer = enemy
 #	print (name + "" + str(health))
 
-remote func take_damage_remote(dmg):
+remote func take_damage_remote(dmg,enemy):
 	health -= dmg
+	killer = enemy
 #	print (name + "" + str(health))
 
 func _hit(dmg,location):
@@ -482,4 +502,6 @@ func _hit(dmg,location):
 #		damage_label.rect_position = Vector2.ZERO
 
 
-
+func _on_Death_Cam_timeout():
+	if is_network_master():
+		Network.emit_signal("respawn",get_tree().get_network_unique_id(),merc,team)

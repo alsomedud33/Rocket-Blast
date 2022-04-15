@@ -7,13 +7,14 @@ export var distance_ratio: float = 3
 export var y_explode_ratio: float =3
 onready var radius = $CollisionShape.shape.radius
 export var radius_val= 1
-export var damage = 10
+export var damage = 90
 
 var newbox = SphereShape.new()
 var real = false
 var explosion_owner = ""
 
-
+export var damage_ramp:Curve
+onready var damage_scaler:float
 
 #var partical = preload("res://assets/Sfx/Explosion.tscn")
 #export (PackedScene) onready var partical
@@ -26,6 +27,7 @@ export var explode_force = 5
 var collision_point
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	damage_ramp.set_point_value(0,damage_scaler)
 	newbox.radius = radius_val
 	$CollisionShape.shape = newbox
 	$Timer.start(duration)
@@ -57,11 +59,15 @@ func _on_Timer_timeout():
 
 
 func _on_Explosion_Hitbox_body_entered(body):
-	for i in get_overlapping_bodies():
-		print ("HITBOX hit " + i.name)
-	if real == true:
-		for p in get_overlapping_bodies():
-			Network.emit_signal("explosion_hitbox",name,p.name,damage)
+	pass
+#	for i in get_overlapping_bodies():
+#		print ("HITBOX hit " + i.name)
+#	if real == true:
+#		for p in get_overlapping_bodies():
+#			Network.emit_signal("explosion_hitbox",name,p.name,damage)
+
+
+
 #	print('hit')
 #	body.snap = Vector3.ZERO
 #	if body.is_on_floor():
@@ -70,3 +76,17 @@ func _on_Explosion_Hitbox_body_entered(body):
 #	body.velocity += explode_force*get_global_transform().origin.direction_to(body.get_global_transform().origin) * distance_ratio/self.translation.distance_to(body.translation)
 #	body.velocity.y += explode_force*y_explode_ratio*get_global_transform().origin.direction_to(body.get_global_transform().origin).y
 
+
+
+func _on_Explosion_Hitbox_area_entered(area):
+	if area.get_parent().name == explosion_owner:
+		damage *= 0.4
+	else:
+		var distance_travelled = clamp(NetNodes.players.get_node(explosion_owner).global_transform.origin.distance_to(area.get_parent().global_transform.origin),0,19.5)
+		damage = damage * damage_ramp.interpolate(distance_travelled/19.5)
+		print("ramp up is: " + str(damage_ramp.interpolate(distance_travelled/19.5)))
+	for i in get_overlapping_areas():
+		print ("HITBOX hit " + i.name)
+	if real == true:
+		for p in get_overlapping_areas():
+			Network.emit_signal("explosion_hitbox",name,p.get_parent().name,damage)
