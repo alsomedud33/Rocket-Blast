@@ -70,7 +70,7 @@ func _player_shot(id,position):
 	rpc("_player_shot_remote", id,position)
 	var r = Network.rocket.instance()
 	r.real = true
-	if NetNodes.players.get_node(str(id)).raycast.is_colliding() and NetNodes.players.get_node(str(id)).global_transform.origin.distance_to(NetNodes.players.get_node(str(id)).raycast.get_collision_point()) >3.81:
+	if NetNodes.players.get_node(str(id)).raycast.is_colliding():
 		r.look_at_from_position(NetNodes.players.get_node(str(id)).guns.global_transform.origin,NetNodes.players.get_node(str(id)).raycast.get_collision_point(), Vector3.UP)
 	else:
 		r.global_transform.origin = NetNodes.players.get_node(str(id)).guns.global_transform.origin
@@ -85,7 +85,7 @@ func _player_shot(id,position):
 remote func _player_shot_remote(id, position):
 	var r = Network.rocket.instance()
 	r.real = false
-	if NetNodes.players.get_node(str(id)).raycast.is_colliding() and NetNodes.players.get_node(str(id)).global_transform.origin.distance_to(NetNodes.players.get_node(str(id)).raycast.get_collision_point()) >3.81:
+	if NetNodes.players.get_node(str(id)).raycast.is_colliding():# and NetNodes.players.get_node(str(id)).global_transform.origin.distance_to(NetNodes.players.get_node(str(id)).raycast.get_collision_point()) >3.81:
 		r.look_at_from_position(NetNodes.players.get_node(str(id)).guns.global_transform.origin,NetNodes.players.get_node(str(id)).raycast.get_collision_point(), Vector3.UP)
 	else:
 		r.global_transform.origin = NetNodes.players.get_node(str(id)).guns.global_transform.origin

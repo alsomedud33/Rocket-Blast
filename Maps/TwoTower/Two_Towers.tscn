@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Maps/TwoTower/Two_Towers V3.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Networking/Network_ui.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/Platform Objects/Orange Wall Tile.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Maps/Big Bass/Big_Bass.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Maps/TwoTower/Two_Towers.lmbake" type="BakedLightmapData" id=4]
 [ext_resource path="res://CameraHub.gd" type="Script" id=5]
 [ext_resource path="res://Maps/TwoTower/Two_Towers.gd" type="Script" id=6]
@@ -28,8 +27,6 @@ dof_blur_far_quality = 2
 dof_blur_near_distance = 0.21
 glow_enabled = true
 
-[sub_resource type="BoxShape" id=2]
-
 [sub_resource type="ViewportTexture" id=4]
 viewport_path = NodePath("Mirror/Viewport")
 
@@ -37,15 +34,6 @@ viewport_path = NodePath("Mirror/Viewport")
 script = ExtResource( 6 )
 
 [node name="Network_ui" parent="." instance=ExtResource( 2 )]
-
-[node name="Two_Towers V3" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
-
-[node name="Orange Wall Tile" parent="." instance=ExtResource( 3 )]
-transform = Transform( 0.207092, 3.18567, 0, -0.455097, 1.44965, 0, 0, 0, 1.53122, 1.46621, -2.90748, -2.80345 )
-
-[node name="Orange Wall Tile2" parent="." instance=ExtResource( 3 )]
-transform = Transform( -0.207092, -3.18567, -1.5299e-07, -0.455097, 1.44965, 0, 1.59077e-08, 2.44706e-07, -1.53765, 2.48219, -2.90748, 5.45298 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.965926, 0.183013, 0.183013, 0, -0.707107, 0.707107, 0.258819, -0.683013, -0.683013, 21, 35.5, -17 )
@@ -64,7 +52,7 @@ light_data = ExtResource( 4 )
 environment = SubResource( 1 )
 
 [node name="CameraHub" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 7.5, 1 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.5, 1 )
 script = ExtResource( 5 )
 
 [node name="Camera" type="Camera" parent="CameraHub"]
@@ -80,18 +68,8 @@ cast_to = Vector3( 0, 0, -1000 )
 collision_mask = 0
 collide_with_areas = true
 
-[node name="Skybox_Area" type="Area" parent="."]
-transform = Transform( 40, 0, 0, 0, 40, 0, 0, 0, 40, 0, 0, 0 )
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape" type="CollisionShape" parent="Skybox_Area"]
-shape = SubResource( 2 )
-
-[node name="Respawn" type="Position3D" parent="Skybox_Area"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.025, 0, -0.075 )
-
 [node name="Spawn Points" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21, 0 )
 
 [node name="1" type="Spatial" parent="Spawn Points"]
 
@@ -142,4 +120,5 @@ spot_range = 198.856
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -12 )
 spot_range = 198.856
 
-[connection signal="body_exited" from="Skybox_Area" to="." method="_on_Skybox_Area_body_exited"]
+[node name="Big_Bass" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 8, 0, 0 )

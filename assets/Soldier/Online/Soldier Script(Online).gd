@@ -12,9 +12,9 @@ var merc = "Soldier"
 var team
 var rng = RandomNumberGenerator.new()
 var mouse_sensitivity = Globals.mouse_sense
-export var max_speed: float = 6 # Meters per second
-export var max_air_speed: float = 0.6
-export var accel: float = 60 # or max_speed * 10 : Reach max speed in 1 / 10th of a second
+export var max_speed: float = 5 # Meters per second
+export var max_air_speed: float = 0.2
+export var accel: float = max_speed * 10 # or max_speed * 10 : Reach max speed in 1 / 10th of a second
 
 # For now, the friction variable is not used, as the calculations are  not the same as quake's
 # export var friction: float = 2 # Higher friction = less slippery. In quake-based games, usually between 1 and 5

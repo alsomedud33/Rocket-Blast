@@ -1,9 +1,10 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Maps/TwoTower/Material_001.material" type="Material" id=1]
 [ext_resource path="res://Maps/TwoTower/Material_003.material" type="Material" id=2]
 [ext_resource path="res://Maps/TwoTower/Material_006.material" type="Material" id=3]
 [ext_resource path="res://Maps/TwoTower/Map Surface.material" type="Material" id=4]
+[ext_resource path="res://assets/Platform Objects/Orange Wall Tile.tscn" type="PackedScene" id=5]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Map_Cube009"
@@ -211,6 +212,8 @@ surfaces/0 = {
 [sub_resource type="ConcavePolygonShape" id=21]
 data = PoolVector3Array( -1, -1, 1, 0, 1, -1, 0, 1, 1, -1, -1, 1, -1, -1, -1, 0, 1, -1, 1, -1, -1, 0, 1, 1, 0, 1, -1, 1, -1, -1, 1, -1, 1, 0, 1, 1 )
 
+[sub_resource type="BoxShape" id=22]
+
 [node name="Two_Towers V3" type="Spatial"]
 
 [node name="Skybox001" type="MeshInstance" parent="."]
@@ -361,3 +364,24 @@ material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="surf ramp003/StaticBody"]
 shape = SubResource( 21 )
+
+[node name="Orange Wall Tile" parent="." instance=ExtResource( 5 )]
+transform = Transform( 0.207092, 3.18567, 0, -0.455097, 1.44965, 0, 0, 0, 1.53122, 1.46621, -1.90748, -2.80345 )
+visible = false
+skeleton = NodePath("../..")
+
+[node name="Orange Wall Tile2" parent="." instance=ExtResource( 5 )]
+transform = Transform( -0.207092, -3.18567, -1.5299e-07, -0.455097, 1.44965, 0, 1.59077e-08, 2.44706e-07, -1.53765, 2.48219, -1.90748, 5.45298 )
+visible = false
+skeleton = NodePath("../..")
+
+[node name="Skybox_Area" type="Area" parent="."]
+transform = Transform( 40, 0, 0, 0, 40, 0, 0, 0, 40, 0, 0, 0 )
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape" type="CollisionShape" parent="Skybox_Area"]
+shape = SubResource( 22 )
+
+[node name="Respawn" type="Position3D" parent="Skybox_Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.025, 0, -0.075 )
