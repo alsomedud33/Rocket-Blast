@@ -10,5 +10,7 @@ data = {
 }
 
 [resource]
+flags = 0
+flags = 0
 image = SubResource( 1 )
 size = Vector2( 8, 8 )

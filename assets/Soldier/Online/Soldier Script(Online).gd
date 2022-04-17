@@ -9,7 +9,7 @@ var health = 200
 var dealth_location
 onready var killer = name
 var merc = "Soldier"
-var team
+var team:int
 var rng = RandomNumberGenerator.new()
 var mouse_sensitivity = Globals.mouse_sense
 export var max_speed: float = 5 # Meters per second
@@ -75,13 +75,14 @@ var puppet_rocketjump
 var puppet_wish_jump
 var puppet_anim:String
 var puppet_anim_val
-var puppet_rocket_num
+var puppet_rocket_num:int
 var puppet_forward_input:float
+var puppet_team
 
 var fake_anim
 var fake_anim_val
 export var tick_rate:float = 0.007
-var rocket_num = 0
+var rocket_num:int = 0
 
 	#when a packet is sent via the network_timer, puppet versions of soldier are updated 
 func _on_network_timer_timeout():

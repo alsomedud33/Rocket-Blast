@@ -1,0 +1,77 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Online/KOTH Point.gd" type="Script" id=1]
+
+[sub_resource type="CylinderShape" id=1]
+
+[sub_resource type="CylinderMesh" id=2]
+
+[sub_resource type="ViewportTexture" id=6]
+viewport_path = NodePath("Sprite3D/Viewport")
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0, 0.65098, 1, 1 )
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 1, 0, 0, 1 )
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color( 0.8, 0.8, 0.8, 0 )
+
+[sub_resource type="Theme" id=5]
+ProgressBar/styles/bg = SubResource( 7 )
+ProgressBar/styles/fg = SubResource( 8 )
+
+[node name="Area" type="Area"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="CollisionShape"]
+visible = false
+mesh = SubResource( 2 )
+skeleton = NodePath("../..")
+material/0 = null
+
+[node name="MeshInstance2" type="MeshInstance" parent="CollisionShape"]
+transform = Transform( 1, 0, 0, 0, 0.133641, 0, 0, 0, 1, 0, -0.5, 0 )
+mesh = SubResource( 2 )
+skeleton = NodePath("../..")
+material/0 = null
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+visible = false
+billboard = 2
+double_sided = false
+texture = SubResource( 6 )
+
+[node name="Viewport" type="Viewport" parent="Sprite3D"]
+size = Vector2( 492, 92 )
+usage = 0
+
+[node name="ProgressBar" type="ProgressBar" parent="Sprite3D/Viewport"]
+margin_right = 492.0
+margin_bottom = 92.0
+theme = SubResource( 5 )
+min_value = -100.0
+step = 1.0
+rounded = true
+percent_visible = false
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_Area_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_Area_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

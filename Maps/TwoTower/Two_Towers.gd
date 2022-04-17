@@ -16,6 +16,9 @@ func _ready():
 	Network.connect("rocket_hit",self,"_rocket_hit")
 	Network.connect("explosion_hitbox",self,"_explosion_hitbox")
 	Network.connect("respawn",self,"_respawn")
+	Network.connect("koth_point_entered",self,"_koth_point_entered")
+	Network.connect("koth_point_exited",self,"_koth_point_exited")
+	Network.connect("koth_points_change",self,"_koth_points_change")
 	
 func _player_joined(id):
 	rpc_id(1,"team_info_request")
@@ -65,6 +68,57 @@ remotesync func _respawn_remote(id,merc,team):
 	p.team = team
 	p.global_transform.origin = get_node("Spawn Points/" +str(p.team)+"/"+"Spawn Point"+str(p.team)).global_transform.origin
 	NetNodes.players.add_child(p)
+
+func _koth_point_entered(body_name,cap_amount,cap_rate,max_cap):
+	rpc("_koth_point_entered_remote",body_name,cap_amount,cap_rate,max_cap)
+	if NetNodes.players.get_node(body_name).team == 1:
+		Network.cap_rate += 1
+	else:# NetNodes.players.get_node(body_name).team == 2:
+		Network.cap_rate -= 1
+
+remote func _koth_point_entered_remote(body_name,cap_amount,cap_rate,max_cap):
+	print ("Player has entered the point")
+	if NetNodes.players.get_node(body_name).team == 1:
+		Network.cap_rate += 1
+	else:#NetNodes.players.get_node(body_name).team == 2:
+		Network.cap_rate -= 1
+
+func _koth_point_exited(body_name,cap_amount,cap_rate,max_cap):
+	rpc("_koth_point_exited_remote",body_name,cap_amount,cap_rate,max_cap)
+	if NetNodes.players.get_node(body_name).team == 1:
+		Network.cap_rate -= 1
+	else:# NetNodes.players.get_node(body_name).team == 2:
+		Network.cap_rate += 1
+
+remote func _koth_point_exited_remote(body_name,cap_amount,cap_rate,max_cap):
+	print ("Player has exited the point")
+	if NetNodes.players.get_node(body_name).team == 1:
+		Network.cap_rate -= 1
+	else:# NetNodes.players.get_node(body_name).team == 2:
+		Network.cap_rate += 1
+
+func _koth_points_change(cap_rate):
+	rpc("_koth_points_change_remote",cap_rate)
+	Network.cap_amount += Network.cap_rate
+	Network.cap_amount = clamp(Network.cap_amount,-Network.max_cap,Network.max_cap)
+	if Network.cap_amount == Network.max_cap:
+		Network.red_captured = true
+		Network.blue_captured = false
+	elif Network.cap_amount == -Network.max_cap:
+		Network.blue_captured = true
+		Network.red_captured = false
+	print ("Cap amount is: "+ str(Network.cap_amount))
+
+remote func _koth_points_change_remote(cap_rate):
+	Network.cap_amount += Network.cap_rate
+	Network.cap_amount = clamp(Network.cap_amount,-Network.max_cap,Network.max_cap)
+	if Network.cap_amount == Network.max_cap:
+		Network.red_captured = true
+		Network.blue_captured = false
+	elif Network.cap_amount == -Network.max_cap:
+		Network.blue_captured = true
+		Network.red_captured = false
+
 
 func _player_shot(id,position):
 	rpc("_player_shot_remote", id,position)
@@ -178,7 +232,7 @@ func _explosion_hitbox(hitbox,players,damage):
 	if NetNodes.hitboxes.get_node(hitbox).explosion_owner != players:
 		NetNodes.players.get_node(players).velocity += NetNodes.hitboxes.get_node(hitbox).explode_force*NetNodes.hitboxes.get_node(hitbox).get_global_transform().origin.direction_to(NetNodes.players.get_node(players).get_global_transform().origin) * NetNodes.hitboxes.get_node(hitbox).distance_ratio/clamp(NetNodes.hitboxes.get_node(hitbox).translation.distance_to(NetNodes.players.get_node(players).translation),0,2)
 	else:
-		NetNodes.players.get_node(players).velocity += NetNodes.hitboxes.get_node(hitbox).explode_force*NetNodes.hitboxes.get_node(hitbox).get_global_transform().origin.direction_to(NetNodes.players.get_node(players).get_global_transform().origin) * NetNodes.hitboxes.get_node(hitbox).distance_ratio/clamp(NetNodes.hitboxes.get_node(hitbox).translation.distance_to(NetNodes.players.get_node(players).translation),1.5,3)
+		NetNodes.players.get_node(players).velocity += NetNodes.hitboxes.get_node(hitbox).explode_force*NetNodes.hitboxes.get_node(hitbox).get_global_transform().origin.direction_to(NetNodes.players.get_node(players).get_global_transform().origin) * NetNodes.hitboxes.get_node(hitbox).distance_ratio/clamp(NetNodes.hitboxes.get_node(hitbox).translation.distance_to(NetNodes.players.get_node(players).translation),1.3,3)
 	NetNodes.players.get_node(players).velocity.y += NetNodes.hitboxes.get_node(hitbox).explode_force*NetNodes.hitboxes.get_node(hitbox).y_explode_ratio*NetNodes.hitboxes.get_node(hitbox).get_global_transform().origin.direction_to(NetNodes.players.get_node(players).get_global_transform().origin).y
 	print("real")
 
@@ -194,7 +248,7 @@ remote func _explosion_hitbox_remote(hitbox,players,explosion_owner,damage,origi
 	if explosion_owner != players:
 		NetNodes.players.get_node(players).velocity += explode_force*origin.direction_to(NetNodes.players.get_node(players).get_global_transform().origin) * distance_ratio/clamp(translation.distance_to(NetNodes.players.get_node(players).translation),0,2)
 	else:
-		NetNodes.players.get_node(players).velocity += explode_force*origin.direction_to(NetNodes.players.get_node(players).get_global_transform().origin) * distance_ratio/clamp(translation.distance_to(NetNodes.players.get_node(players).translation),1.5,3)
+		NetNodes.players.get_node(players).velocity += explode_force*origin.direction_to(NetNodes.players.get_node(players).get_global_transform().origin) * distance_ratio/clamp(translation.distance_to(NetNodes.players.get_node(players).translation),1.3,3)
 	NetNodes.players.get_node(players).velocity.y += explode_force*y_explode_ratio*origin.direction_to(NetNodes.players.get_node(players).get_global_transform().origin).y
 	print("fake")
 
