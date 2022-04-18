@@ -7,9 +7,14 @@ func _on_Skybox_Area_body_exited(body):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Transitions.fade_out()
+	Players.set_ids()
+	_instance_players()
+	
 	print("signals connected")
-	get_tree().connect("network_peer_disconnected",self,"_player_disconnected")
-	get_tree().connect("network_peer_connected",self,"_player_joined")
+#	get_tree().connect("network_peer_disconnected",self,"_player_disconnected")
+#	get_tree().connect("network_peer_connected",self,"_player_joined")
+	Network.connect("winner",self,"restart")
 	Network.connect("instance_player",self,"_instance_player")
 	Network.connect("player_shot",self,"_player_shot")
 	Network.connect("destroy_rocket",self,"_destroy_rocket")
@@ -20,17 +25,30 @@ func _ready():
 	Network.connect("koth_point_exited",self,"_koth_point_exited")
 	Network.connect("koth_points_change",self,"_koth_points_change")
 	
-func _player_joined(id):
-	rpc_id(1,"team_info_request")
-	print(str(id) + " connected")
-	print (str(get_tree().get_network_connected_peers()) + " are in the game")
-	_instance_player(id,Network.team_index % 2+1)
-	pass
+#func _player_joined(id):
+#	rpc_id(1,"team_info_request")
+#	print(str(id) + " connected")
+#	print (str(get_tree().get_network_connected_peers()) + " are in the game")
+#	_instance_player(id,Network.team_index % 2+1)
+#	pass
+#
+#func _player_disconnected(id):
+#	if NetNodes.players.has_node(str(id)):
+#		NetNodes.players.get_node(str(id)).queue_free()
+#	pass
+func restart(num):
+	rpc("start_game")
+	start_game()
+remote func start_game():
+	MusicController.fade_out()
+	Transitions.fade_in()
+	yield(Transitions.anim,"animation_finished")
+	SceneChanger.goto_scene("res://Maps/TwoTower/Two_Towers.tscn",get_parent())
 
-func _player_disconnected(id):
-	if NetNodes.players.has_node(str(id)):
-		NetNodes.players.get_node(str(id)).queue_free()
-	pass
+func _instance_players():
+	for id in Players.id_list:
+		_instance_player(id,Players.player_list[id]["team"])
+	_instance_player(Players.net_id,Players.player_info["team"])
 
 func _instance_player(id,_team):
 	print("creating player " +str(id))
@@ -40,7 +58,6 @@ func _instance_player(id,_team):
 	p.team = _team
 	p.global_transform.origin = get_node("Spawn Points/" +str(p.team)+"/"+"Spawn Point"+str(p.team)).global_transform.origin
 	NetNodes.players.add_child(p)
-	#p.global_transform.origin = get_node("Spawn Points/" +str(p.team)+"/"+"Spawn Point"+str(p.team)).global_transform.origin
 
 func _respawn(id,merc,team):
 	rpc("_respawn_remote",id,merc,team)

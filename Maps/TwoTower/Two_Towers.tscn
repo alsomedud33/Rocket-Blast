@@ -1,7 +1,6 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Online/Health Pack/Health Pack.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Networking/Network_ui.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Maps/Big Bass/Big_Bass.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Online/KOTH Point.tscn" type="PackedScene" id=4]
 [ext_resource path="res://CameraHub.gd" type="Script" id=5]
@@ -49,8 +48,6 @@ viewport_path = NodePath("Mirror/Viewport")
 [node name="Two_Towers" type="Node"]
 script = ExtResource( 6 )
 
-[node name="Network_ui" parent="." instance=ExtResource( 2 )]
-
 [node name="Big_Bass" parent="." instance=ExtResource( 3 )]
 transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0 )
 
@@ -76,7 +73,6 @@ script = ExtResource( 5 )
 transform = Transform( 1, 2.22799e-08, -2.47756e-08, 1.99633e-09, 0.702166, 0.712014, 3.32602e-08, -0.712014, 0.702166, 2.21349, 11.4574, 12.4384 )
 cull_mask = 1048573
 environment = SubResource( 3 )
-current = true
 
 [node name="RayCast" type="RayCast" parent="CameraHub/Camera"]
 transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
@@ -88,23 +84,23 @@ collide_with_areas = true
 [node name="Spawn Points" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 34, 0 )
 
-[node name="1" type="Spatial" parent="Spawn Points"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 54, -21, 0 )
-
-[node name="Spawn Point1" type="Position3D" parent="Spawn Points/1"]
-
-[node name="Spawn Point2" type="Position3D" parent="Spawn Points/1"]
-
-[node name="Spawn Point3" type="Position3D" parent="Spawn Points/1"]
-
 [node name="2" type="Spatial" parent="Spawn Points"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -55, -20, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 54, -21, 0 )
 
 [node name="Spawn Point1" type="Position3D" parent="Spawn Points/2"]
 
 [node name="Spawn Point2" type="Position3D" parent="Spawn Points/2"]
 
 [node name="Spawn Point3" type="Position3D" parent="Spawn Points/2"]
+
+[node name="1" type="Spatial" parent="Spawn Points"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -55, -20, 0 )
+
+[node name="Spawn Point1" type="Position3D" parent="Spawn Points/1"]
+
+[node name="Spawn Point2" type="Position3D" parent="Spawn Points/1"]
+
+[node name="Spawn Point3" type="Position3D" parent="Spawn Points/1"]
 
 [node name="Mirror" type="Spatial" parent="."]
 transform = Transform( 4.37114e-08, 8.74228e-08, 1, 3.82137e-15, -1, 8.74228e-08, 1, 0, -4.37114e-08, -10, 9, 0.760476 )
@@ -134,7 +130,7 @@ transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -
 spot_range = 198.856
 
 [node name="Skybox_Area" type="Area" parent="."]
-transform = Transform( 154.88, 0, 0, 0, 76.8, 0, 0, 0, 112, 0, 0, 0 )
+transform = Transform( 418.176, 0, 0, 0, 99.84, 0, 0, 0, 302.4, 0, 0, 0 )
 collision_layer = 0
 collision_mask = 2
 
@@ -142,7 +138,7 @@ collision_mask = 2
 shape = SubResource( 6 )
 
 [node name="Respawn" type="Position3D" parent="Skybox_Area"]
-transform = Transform( 0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, -0.025, 0.390625, -0.173214 )
+transform = Transform( 0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, 0.140224, 0 )
 
 [node name="Health Pack3" parent="." instance=ExtResource( 1 )]
 transform = Transform( -0.5, 0, -7.54979e-08, 0, 0.5, 0, 7.54979e-08, 0, -0.5, 40, 7, 11.5365 )

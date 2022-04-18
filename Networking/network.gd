@@ -29,6 +29,8 @@ var blue_time_limit_sec = time_limit_sec
 var red_captured:bool = false
 var blue_captured:bool = false
 
+
+signal winner(team)
 signal instance_player(id,team)
 signal player_shot(id,location)
 signal destroy_rocket(rocket)
@@ -56,10 +58,14 @@ func _ready():
 	connect("koth_points_change",self,"_update_timer")
 
 func _update_timer(cap_rate):
+	rpc("_update_timer_remote",cap_rate)
+
+remotesync func _update_timer_remote(cap_rate):
 	if red_captured == true:
 		if red_time_limit_sec == 0 and red_time_limit_mins == 0:
 			red_time_limit_sec =0
 			red_time_limit_mins =0
+			emit_signal("winner",1)
 		elif red_time_limit_sec <= 0:
 			red_time_limit_mins -= 1
 			red_time_limit_sec = 59
@@ -69,6 +75,7 @@ func _update_timer(cap_rate):
 		if blue_time_limit_sec == 0 and blue_time_limit_mins == 0:
 			blue_time_limit_sec =0
 			blue_time_limit_mins =0
+			emit_signal("winner",2)
 		elif blue_time_limit_sec <= 0:
 			blue_time_limit_mins -= 1
 			blue_time_limit_sec = 59

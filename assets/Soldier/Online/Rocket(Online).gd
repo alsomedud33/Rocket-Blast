@@ -55,7 +55,7 @@ remote func update_position(fake_position,fake_transform):#pos,rot):
 #	velocity = move_and_slide(velocity, Vector3.UP,false, 4, PI/4, false)
 	puppet_position = fake_position
 	puppet_transform = fake_transform
-	$Tween.interpolate_property(self,"global_transform",global_transform,Transform(fake_transform,fake_position),0.1)
+	$Tween.interpolate_property(self,"global_transform",global_transform,Transform(fake_transform,fake_position),0.05)
 	$Tween.start()
 func _physics_process(delta):
 	if is_network_master():

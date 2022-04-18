@@ -39,6 +39,7 @@ SceneChanger="*res://SceneChanger.gd"
 Transitions="*res://Transitions.tscn"
 Network="*res://Networking/network.gd"
 NetNodes="*res://Networking/Net_Nodes.tscn"
+Players="*res://Online/Players.gd"
 
 [debug]
 

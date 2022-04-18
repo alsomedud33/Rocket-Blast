@@ -1,26 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Online/HUD/Hud (Online).gd" type="Script" id=1]
-
-[sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0, 0.65098, 1, 1 )
-border_width_left = 10
-border_width_top = 10
-border_width_right = 10
-border_width_bottom = 10
-border_color = Color( 1, 1, 1, 0.5 )
-
-[sub_resource type="StyleBoxFlat" id=4]
-bg_color = Color( 1, 0, 0, 1 )
-border_width_left = 10
-border_width_top = 10
-border_width_right = 10
-border_width_bottom = 10
-border_color = Color( 0.8, 0.8, 0.8, 0 )
-
-[sub_resource type="Theme" id=5]
-ProgressBar/styles/bg = SubResource( 3 )
-ProgressBar/styles/fg = SubResource( 4 )
+[ext_resource path="res://Online/Theme (Online).tres" type="Theme" id=2]
+[ext_resource path="res://Online/HUD/MatchEnd.tscn" type="PackedScene" id=3]
 
 [sub_resource type="DynamicFontData" id=17]
 font_path = "res://assets/Fonts/TF2.ttf"
@@ -50,7 +32,7 @@ anchor_right = 0.5
 margin_left = -246.0
 margin_right = 246.0
 margin_bottom = 35.0
-theme = SubResource( 5 )
+theme = ExtResource( 2 )
 min_value = -100.0
 step = 1.0
 rounded = true
@@ -89,3 +71,5 @@ custom_fonts/font = SubResource( 19 )
 text = "3:00"
 align = 1
 valign = 1
+
+[node name="MatchEnd" parent="." instance=ExtResource( 3 )]

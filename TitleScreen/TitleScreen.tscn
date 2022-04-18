@@ -63,7 +63,7 @@ func _on_Online_pressed():
 	disable_buttons()
 	Transitions.fade_in()
 	yield(Transitions.anim,\"animation_finished\")
-	SceneChanger.goto_scene(\"res://Maps/TwoTower/Two_Towers.tscn\",self)
+	SceneChanger.goto_scene('res://Online/Lobby/Lobby.tscn',self)
 "
 
 [sub_resource type="DynamicFontData" id=16]
@@ -114,7 +114,7 @@ outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
 use_filter = true
 font_data = SubResource( 17 )
 
-[sub_resource type="DynamicFontData" id=8]
+[sub_resource type="DynamicFontData" id=18]
 font_path = "res://assets/Fonts/TF2.ttf"
 
 [sub_resource type="DynamicFont" id=9]
@@ -122,7 +122,7 @@ size = 100
 outline_size = 13
 outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
 use_filter = true
-font_data = SubResource( 8 )
+font_data = SubResource( 18 )
 
 [sub_resource type="DynamicFontData" id=10]
 font_path = "res://assets/Fonts/TF2.ttf"
