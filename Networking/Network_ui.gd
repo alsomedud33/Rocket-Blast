@@ -2,6 +2,8 @@ extends Control
 
 signal team_info_sent()
 
+onready var display_txt = $Info_Text
+onready var anim = $AnimationPlayer
 func _ready():
 	$Game_panel/LineEdit.text = "127.0.0.1"
 	Transitions.fade_out()
@@ -36,6 +38,9 @@ func _on_Create_button_pressed():
 		$Players_panel.show()
 #		Network.emit_signal("instance_player",get_tree().get_network_unique_id(), Network.team_index % 2+1)
 		print(str(get_tree().get_network_unique_id()) + " started server")
+		anim.play("RESET")
+	else:
+		anim.play("Enter a username")
 
 func _on_Join_button_pressed():
 	if $Settings_panel/Username.text != "":
@@ -45,6 +50,16 @@ func _on_Join_button_pressed():
 		
 		Players.set_info()
 		Network.join_server()
+		anim.play("RESET")
+		if Network.connection != OK:
+			$Settings_panel.show()
+			$"Game_panel/Create_button".disabled = false
+			$"Game_panel/Join_button".disabled = false
+			anim.play("connection_failed")
+		#	display_txt.text = "Couldn't Connect to server"
+	else:
+		anim.play("Enter a username")
+		#display_txt.text = "Enter a username"
 		#rpc_id(1,"team_info_request")
 #		yield(get_tree().create_timer(1),"timeout")
 #		rpc_id(1,"team_info_request")

@@ -5,6 +5,7 @@ const MAX_CLIENTS = 18
 
 var server = null
 var client = null
+var connection = null
 
 var ip_address = "127.0.0.1"
 
@@ -57,6 +58,8 @@ func _ready():
 	get_tree().connect("connection_failed",self,"_connection_failed")
 	connect("koth_points_change",self,"_update_timer")
 
+
+
 func _update_timer(cap_rate):
 	rpc("_update_timer_remote",cap_rate)
 
@@ -90,8 +93,11 @@ func create_server():
 
 func join_server():
 	client = NetworkedMultiplayerENet.new()
-	client.create_client(ip_address,DEFAULT_PORT)
-	get_tree().set_network_peer(client)
+	connection = client.create_client(ip_address,DEFAULT_PORT)
+	if connection != OK:
+		client.close_connection()
+	else:
+		get_tree().set_network_peer(client)
 
 func _connected_to_server():
 	print("connected to server!")

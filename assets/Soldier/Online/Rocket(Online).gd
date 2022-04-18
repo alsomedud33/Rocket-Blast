@@ -32,9 +32,9 @@ onready var main = get_tree().current_scene
 #	$Tween.interpolate_property(self,"global_transform",Transform(global_transform.basis,p_pos),tick_rate)
 #	$Tween.start()
 ##Networking end
-puppet var puppet_position
+puppet var puppet_position:Vector3
 puppet var puppet_velocity
-puppet var puppet_transform 
+puppet var puppet_transform :Basis
 
 func _ready():
 	Globals.proj_counter += 1
@@ -53,17 +53,22 @@ func _on_network_timer_timeout():
 
 remote func update_position(fake_position,fake_transform):#pos,rot):
 #	velocity = move_and_slide(velocity, Vector3.UP,false, 4, PI/4, false)
-	puppet_position = fake_position
-	puppet_transform = fake_transform
-	$Tween.interpolate_property(self,"global_transform",global_transform,Transform(fake_transform,fake_position),0.05)
-	$Tween.start()
+#	puppet_position = fake_position
+#	puppet_transform = fake_transform
+#	$Tween.interpolate_property(self,"global_transform",global_transform,Transform(fake_transform,fake_position),0.05)
+#	$Tween.start()
+	pass
 func _physics_process(delta):
 	if is_network_master():
 		velocity = move_and_slide(velocity, Vector3.UP,false, 4, PI/4, false)
 		bounce = move_and_collide(velocity * delta)
-		#rset("puppet_position",global_transform.origin)
-		#rset("puppet_transform",global_transform.basis)
-#	else:
+		rset("puppet_position",global_transform.origin)
+		rset("puppet_transform",global_transform.basis)
+		rset("puppet_velocity",velocity)
+	else:
+		velocity = puppet_velocity
+		global_transform.basis = puppet_transform
+		global_transform.origin = puppet_position
 #		global_transform.basis =  puppet_transform
 	#if real:
 #	Network.emit_signal("rocket_hit",name,0)
