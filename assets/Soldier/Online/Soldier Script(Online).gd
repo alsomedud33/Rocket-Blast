@@ -4,6 +4,10 @@
 
 extends KinematicBody
 
+
+var blue_pallete = preload("res://Online/Characters/Char_Blue.png")
+var red_pallete = preload("res://Online/Characters/Char_Red.png")
+
 var max_health = 200
 var health = 200
 var dealth_location
@@ -520,3 +524,9 @@ func get_health(amount,overheal,is_multiplier):
 func _on_Death_Cam_timeout():
 	if is_network_master():
 		Network.emit_signal("respawn",get_tree().get_network_unique_id(),merc,team)
+
+
+func pallete_swap(colour):
+	match colour:
+		"blue":
+			pass
