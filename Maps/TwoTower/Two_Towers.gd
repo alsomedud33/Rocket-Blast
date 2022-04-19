@@ -15,6 +15,7 @@ func _ready():
 #	get_tree().connect("network_peer_disconnected",self,"_player_disconnected")
 #	get_tree().connect("network_peer_connected",self,"_player_joined")
 	get_tree().connect("server_disconnected",self,"_server_disconnected")
+	get_tree().connect("network_peer_disconnected",self,"_player_disconnected")
 	Network.connect("winner",self,"restart")
 	Network.connect("instance_player",self,"_instance_player")
 	Network.connect("player_shot",self,"_player_shot")
@@ -37,6 +38,13 @@ func _ready():
 #	if NetNodes.players.has_node(str(id)):
 #		NetNodes.players.get_node(str(id)).queue_free()
 #	pass
+func _player_disconnected(id):
+	NetNodes.players.remove_child(NetNodes.players.get_node(str(id)))
+	print ("player with id: " +str(id) +" has disconnected")
+	for p in NetNodes.players.get_children():
+			p.visible = true
+			print (p.name + "'s visibiliy is " + String(p.visible))
+
 func _server_disconnected():
 	MusicController.fade_out()
 	Transitions.fade_in()
@@ -44,6 +52,7 @@ func _server_disconnected():
 	for p in NetNodes.players.get_children():
 		p.queue_free()
 	SceneChanger.goto_scene("res://Online/Lobby/Lobby.tscn",self)
+	
 func restart(num):
 	rpc("start_game")
 	start_game()

@@ -80,7 +80,7 @@ func _on_Explosion_Hitbox_body_entered(body):
 
 func _on_Explosion_Hitbox_area_entered(area):
 	if area.get_parent().name == explosion_owner:
-		damage *= 0.4
+		damage *= 0.6
 	else:
 		var distance_travelled = clamp(NetNodes.players.get_node(explosion_owner).global_transform.origin.distance_to(area.get_parent().global_transform.origin),0,19.5)
 		damage = damage * damage_ramp.interpolate(distance_travelled/19.5)

@@ -8,11 +8,32 @@ func _ready():
 	if Network.server_disconnect == true:
 		anim.play("Server Disconnected")
 	anim.connect("animation_finished",self,"_server_disconnect_false")
+	get_tree().connect("network_peer_disconnected",self,"_remove_client")
 	$Game_panel/LineEdit.text = "127.0.0.1"
 	Transitions.fade_out()
 
 func _server_disconnect_false(anim_name):
 	Network.server_disconnect = false
+
+func _remove_client(client_id):
+	var panel_id 
+	var temp = 0
+	for k in Players.player_list.keys():
+		temp += 1
+		print ("Scrolling through to player: "+ str(k))
+		if str(k) == str(get_tree().get_network_unique_id()):
+			print (" we have got player position: " + str(k))
+			panel_id  = temp
+	rpc("_remove_client_remote",panel_id ,client_id)
+	Players.player_list.erase(client_id)
+	$Players_panel/ItemList.remove_item(panel_id )
+	print(Players.player_list)
+
+remote func _remove_client_remote(panel_id ,client_id):
+	Players.player_list.erase(client_id)
+	$Players_panel/ItemList.remove_item(panel_id )
+	print(Players.player_list)
+
 
 func join_lobby():
 	rpc_id(1,"team_info_request")
@@ -21,7 +42,7 @@ func join_lobby():
 	rpc_id(1,"send_player_info",Players.player_info)
 	yield(get_tree().create_timer(.1),"timeout")
 	for p in Players.player_list:
-		$Players_panel/ItemList.add_item(Players.player_list[p]["username"])
+		$Players_panel/ItemList.add_item(Players.player_list[p]["username"] + "    team: " + str(Players.player_list[p]["team"]))
 	$Players_panel.show()
 
 func player_connected(id):
@@ -38,7 +59,7 @@ func _on_Create_button_pressed():
 		Players.set_info()
 		Network.create_server()
 		for p in Players.player_list:
-			$Players_panel/ItemList.add_item(Players.player_list[p]["username"])
+			$Players_panel/ItemList.add_item(Players.player_list[p]["username"] + "    team: " + str(Players.player_list[p]["team"]))
 		$Players_panel.show()
 #		Network.emit_signal("instance_player",get_tree().get_network_unique_id(), Network.team_index % 2+1)
 		print(str(get_tree().get_network_unique_id()) + " started server")
@@ -78,10 +99,13 @@ func _on_Exit_button_pressed():
 	get_tree().quit()
 
 
-
-
-
 func _on_Back_pressed():
+	if Network.server != null:
+		Network.server.close_connection()
+	if Network.client != null:
+		Network.client.close_connection()
+	get_tree().set_network_peer(null)
+	Players.player_list.clear()
 	MusicController.fade_out()
 	Transitions.fade_in()
 	yield(Transitions.anim,"animation_finished")
@@ -106,7 +130,7 @@ remote func send_player_info(info):
 	Players.player_count += 1
 	#info["team"] = Players.player_count
 	Players.player_list[get_tree().get_rpc_sender_id()] = info
-	$Players_panel/ItemList.add_item(Players.player_list[get_tree().get_rpc_sender_id()]["username"])
+	$Players_panel/ItemList.add_item(Players.player_list[get_tree().get_rpc_sender_id()]["username"] + "    team: " + str(Players.player_list[get_tree().get_rpc_sender_id()]["team"]))
 	for p in Players.player_list:
 		if p != 1:
 			rpc_id(p,"recieve_player_info", Players.player_list)

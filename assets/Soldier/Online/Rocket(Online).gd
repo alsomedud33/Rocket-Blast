@@ -32,9 +32,9 @@ onready var main = get_tree().current_scene
 #	$Tween.interpolate_property(self,"global_transform",Transform(global_transform.basis,p_pos),tick_rate)
 #	$Tween.start()
 ##Networking end
-puppet var puppet_position:Vector3
-puppet var puppet_velocity:Vector3
-puppet var puppet_transform :Basis
+remote var puppet_position:Vector3
+remote var puppet_velocity:Vector3
+remote var puppet_transform :Basis
 
 func _ready():
 	Globals.proj_counter += 1

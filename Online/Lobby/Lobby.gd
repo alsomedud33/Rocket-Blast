@@ -17,6 +17,8 @@ func _player_disconnected(id):
 	pass
 
 func _server_disconnected():
+	Players.player_list.clear()
+	print ("cleared the player list")
 	Transitions.fade_in()
 	yield(Transitions.anim,"animation_finished")
 	SceneChanger.goto_scene('res://Online/Lobby/Lobby.tscn',self)
