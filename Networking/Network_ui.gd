@@ -5,10 +5,14 @@ signal team_info_sent()
 onready var display_txt = $Info_Text
 onready var anim = $AnimationPlayer
 func _ready():
+	if Network.server_disconnect == true:
+		anim.play("Server Disconnected")
+	anim.connect("animation_finished",self,"_server_disconnect_false")
 	$Game_panel/LineEdit.text = "127.0.0.1"
 	Transitions.fade_out()
 
-
+func _server_disconnect_false(anim_name):
+	Network.server_disconnect = false
 
 func join_lobby():
 	rpc_id(1,"team_info_request")

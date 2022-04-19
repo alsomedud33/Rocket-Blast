@@ -14,6 +14,7 @@ func _ready():
 	print("signals connected")
 #	get_tree().connect("network_peer_disconnected",self,"_player_disconnected")
 #	get_tree().connect("network_peer_connected",self,"_player_joined")
+	get_tree().connect("server_disconnected",self,"_server_disconnected")
 	Network.connect("winner",self,"restart")
 	Network.connect("instance_player",self,"_instance_player")
 	Network.connect("player_shot",self,"_player_shot")
@@ -36,6 +37,13 @@ func _ready():
 #	if NetNodes.players.has_node(str(id)):
 #		NetNodes.players.get_node(str(id)).queue_free()
 #	pass
+func _server_disconnected():
+	MusicController.fade_out()
+	Transitions.fade_in()
+	yield(Transitions.anim,"animation_finished")
+	for p in NetNodes.players.get_children():
+		p.queue_free()
+	SceneChanger.goto_scene("res://Online/Lobby/Lobby.tscn",self)
 func restart(num):
 	rpc("start_game")
 	start_game()

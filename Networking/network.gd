@@ -102,8 +102,11 @@ func join_server():
 func _connected_to_server():
 	print("connected to server!")
 
+var server_disconnect = false
 func _server_disconnected():
 	print("disconnected from server!")
+	client.close_connection()
+	server_disconnect = true
 
 func _player_joined(id):
 	print("player " +str(id) + " connected")

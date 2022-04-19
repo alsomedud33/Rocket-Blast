@@ -69,7 +69,7 @@ debug_shape_custom_color = Color( 1, 0, 0, 1 )
 transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.362993, 0, 0, 0.1 )
 
 [node name="network_timer" type="Timer" parent="."]
-wait_time = 0.05
+wait_time = 0.015
 autostart = true
 
 [node name="Tween" type="Tween" parent="."]

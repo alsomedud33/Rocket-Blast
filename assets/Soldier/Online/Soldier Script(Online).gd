@@ -81,7 +81,7 @@ var puppet_team
 
 var fake_anim
 var fake_anim_val
-export var tick_rate:float = 0.007
+export var tick_rate:float = 0.015
 var rocket_num:int = 0
 
 	#when a packet is sent via the network_timer, puppet versions of soldier are updated 
