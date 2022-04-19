@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://TitleScreen/Shifting Shader.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/Fonts/tf2.tres" type="DynamicFont" id=2]
@@ -134,6 +134,13 @@ outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
 use_filter = true
 font_data = SubResource( 10 )
 
+[sub_resource type="DynamicFont" id=19]
+size = 30
+outline_size = 13
+outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+use_filter = true
+font_data = SubResource( 10 )
+
 [node name="TitleScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -251,6 +258,20 @@ anchor_bottom = 0.315278
 custom_colors/font_color = Color( 0.164706, 0.658824, 0.92549, 1 )
 custom_fonts/font = SubResource( 11 )
 text = "Blast"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true,
+"_editor_description_": ""
+}
+
+[node name="Rocket Man4" type="Label" parent="."]
+anchor_left = 0.573438
+anchor_top = 0.0236111
+anchor_right = 0.826563
+anchor_bottom = 0.340278
+custom_colors/font_color = Color( 0.458824, 0.505882, 1, 1 )
+custom_fonts/font = SubResource( 19 )
+text = "arena"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": true,
