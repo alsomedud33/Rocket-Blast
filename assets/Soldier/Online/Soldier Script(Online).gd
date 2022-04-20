@@ -8,6 +8,7 @@ extends KinematicBody
 var blue_pallete = preload("res://Online/Characters/Char_Blue.png")
 var red_pallete = preload("res://Online/Characters/Char_Red.png")
 
+remote var username = ''
 var max_health = 200
 var health = 200
 var dealth_location
@@ -90,7 +91,7 @@ var rocket_num:int = 0
 
 	#when a packet is sent via the network_timer, puppet versions of soldier are updated 
 func _on_network_timer_timeout():
-	if is_network_master() and name == str(get_tree().get_network_unique_id()):
+	if self.is_network_master():# and name == str(get_tree().get_network_unique_id()):
 		rpc_unreliable("update_transform", global_transform.origin, velocity, Vector2(head.rotation.x, self.rotation.y),camera.global_transform)
 		rpc_unreliable("update_state", state,old_state,rocket_num,forward_input)
 #	rpc("update_anim",is_on_floor(),rocket_jump,wish_jump)
@@ -149,7 +150,24 @@ var state = GROUND
 var puppet_state = GROUND
 var old_state = GROUND
 var puppet_old_state = GROUND
+func set_team():
+	match team:
+		1:
+			set_collision_layer_bit(1,true)
+			set_collision_mask_bit(5, true)
+		2:
+			set_collision_layer_bit(5,true)
+			set_collision_mask_bit(1, true)
+
+func set_username():
+	if is_network_master():
+		var temp = int(self.name)
+		username = Players.player_list[temp]["username"]
+		rset("username",Players.player_list[temp]["username"])
+
 func _ready():
+	set_team()
+	set_username()
 	$"Username Sprite".get_node("Viewport").emit_signal("set_the_name",self.is_network_master())
 	Network.get_node("Net_Time").connect("timeout",self,'_on_network_timer_timeout')
 	$network_timer.wait_time = tick_rate
@@ -350,6 +368,15 @@ func _physics_process(delta: float) -> void:
 					var T = camera.global_transform.looking_at(NetNodes.players.get_node(killer).global_transform.origin,Vector3.UP)
 					$Tween.interpolate_property(camera,"global_transform",Transform(camera.global_transform.basis,dealth_location),Transform(T.basis,camera.global_transform.origin),0.1)
 					$Tween.start()
+		if raycast.is_colliding() and raycast.get_collider().is_in_group("Player") :
+			$"Username".show()
+			$"Username".text = raycast.get_collider().username
+			if raycast.get_collider().team == 1:
+				raycast.get_collider().get_node("Username/Usr_name_panel").set_self_modulate(Color(8000c3ff))
+			elif raycast.get_collider().team == 2:
+				raycast.get_collider().get_node("Username/Usr_name_panel").set_self_modulate(Color(8000c3ff))
+		else:
+			$"Username".hide()
 		if Input.is_action_pressed("shoot1"):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
