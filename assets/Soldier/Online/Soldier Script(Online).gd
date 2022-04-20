@@ -46,7 +46,7 @@ onready var hat = $"Soldier Hat"
 onready var health_label = $Health
 onready var damage_label = $damage
 onready var team_label = $Team
-onready var usr_tag = $Username
+#onready var usr_tag = $Username
 
 onready var armature = $"Armature"
 
@@ -150,6 +150,8 @@ var puppet_state = GROUND
 var old_state = GROUND
 var puppet_old_state = GROUND
 func _ready():
+	$"Username Sprite".get_node("Viewport").emit_signal("set_the_name",self.is_network_master())
+	Network.get_node("Net_Time").connect("timeout",self,'_on_network_timer_timeout')
 	$network_timer.wait_time = tick_rate
 	Globals.player = 1
 	$Armature/Skeleton/Spineik.start()

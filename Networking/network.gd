@@ -3,6 +3,9 @@ extends Node
 const DEFAULT_PORT = 28700
 const MAX_CLIENTS = 18
 
+var network_timer
+var tick_rate = 0.015
+
 var server = null
 var client = null
 var connection = null
@@ -86,12 +89,22 @@ remotesync func _update_timer_remote(cap_rate):
 			blue_time_limit_sec -= 1
 
 func create_server():
+	network_timer = Timer.new()
+	network_timer.name = "Net_Time"
+	network_timer.wait_time = tick_rate
+	add_child(network_timer)
+	network_timer.start()
 	print("starting server")
 	server = NetworkedMultiplayerENet.new()
 	server.create_server(DEFAULT_PORT,MAX_CLIENTS)
 	get_tree().set_network_peer(server)
 
 func join_server():
+	network_timer = Timer.new()
+	network_timer.name = "Net_Time"
+	network_timer.wait_time = tick_rate
+	add_child(network_timer)
+	network_timer.start()
 	client = NetworkedMultiplayerENet.new()
 	connection = client.create_client(ip_address,DEFAULT_PORT)
 	if connection != OK:

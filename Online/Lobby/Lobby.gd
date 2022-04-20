@@ -8,6 +8,7 @@ extends Spatial
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	get_tree().connect("network_peer_disconnected",self,"_player_disconnected")
 	get_tree().connect("network_peer_connected",$Network_ui,"player_connected")
 	get_tree().connect("connected_to_server",$Network_ui,"join_lobby")
