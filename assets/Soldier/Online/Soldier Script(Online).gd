@@ -372,9 +372,9 @@ func _physics_process(delta: float) -> void:
 			$"Username".show()
 			$"Username".text = raycast.get_collider().username
 			if raycast.get_collider().team == 1:
-				raycast.get_collider().get_node("Username/Usr_name_panel").set_self_modulate(Color(8000c3ff))
+				get_node("Username/Usr_name_panel").set_self_modulate(Color(1, 0, 0, 0.5))
 			elif raycast.get_collider().team == 2:
-				raycast.get_collider().get_node("Username/Usr_name_panel").set_self_modulate(Color(8000c3ff))
+				get_node("Username/Usr_name_panel").set_self_modulate(Color(0, 0.764706, 1, 0.5))
 		else:
 			$"Username".hide()
 		if Input.is_action_pressed("shoot1"):
@@ -552,7 +552,7 @@ func get_health(amount,overheal,is_multiplier):
 
 func _on_Death_Cam_timeout():
 	if is_network_master():
-		Network.emit_signal("respawn",get_tree().get_network_unique_id(),merc,team)
+		Network.emit_signal("respawn",int(name),merc,team)
 
 
 func pallete_swap(colour):
