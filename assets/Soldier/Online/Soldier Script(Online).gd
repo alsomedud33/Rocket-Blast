@@ -166,6 +166,7 @@ func set_username():
 		rset("username",Players.player_list[temp]["username"])
 
 func _ready():
+	$"CanvasLayer/ViewportContainer/HUD (Online)".visible = self.is_network_master()
 	set_team()
 	set_username()
 	$"Username Sprite".get_node("Viewport").emit_signal("set_the_name",self.is_network_master())

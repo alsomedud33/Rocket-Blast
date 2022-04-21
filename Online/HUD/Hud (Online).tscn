@@ -22,6 +22,7 @@ use_filter = true
 font_data = SubResource( 17 )
 
 [node name="HUD (Online)" type="Control"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
