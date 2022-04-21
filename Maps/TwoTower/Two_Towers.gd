@@ -89,13 +89,12 @@ func _respawn(id,merc,team):
 #	p.global_transform.origin = get_node("Spawn Points/" +str(p.team)+"/"+"Spawn Point"+str(p.team)).global_transform.origin
 #	NetNodes.players.add_child(p)
 #	#p.global_transform.origin = get_node("Spawn Points/" +str(p.team)+"/"+"Spawn Point"+str(p.team)).global_transform.origin
-func destroy_target(id):
-	NetNodes.players.get_node(str(id)).queue_free()
-	yield(get_tree(),"idle_frame")
+
 remotesync func _respawn_remote(id,merc,team):
-#	destroy_target(id)
-	yield(self.destroy_target(id),"completed")
-	#NetNodes.players.remove_child(NetNodes.players.get_node(str(id)))#get_node(str(id)).queue_free()
+	NetNodes.players.get_node(str(id)).queue_free()
+	var child = NetNodes.players.get_node(str(id))
+	NetNodes.players.remove_child(NetNodes.players.get_node(str(id)))#get_node(str(id)).queue_free()
+	child.queue_free()
 	for p in NetNodes.players.get_children():
 		p.visible = true
 #	yield(get_tree().create_timer(2),"timeout")
