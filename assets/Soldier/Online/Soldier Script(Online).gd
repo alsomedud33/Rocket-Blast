@@ -150,14 +150,28 @@ var state = GROUND
 var puppet_state = GROUND
 var old_state = GROUND
 var puppet_old_state = GROUND
-func set_team():
+
+var current_weapon = 1
+
+func weapon_switch():
+	if Input.is_action_just_pressed("wep_slot_1"):
+		current_weapon = 1
+	elif Input.is_action_just_pressed("wep_slot_2"):
+		current_weapon = 2
+	elif Input.is_action_just_pressed("wep_slot_3"):
+		current_weapon = 3
+
+		
+remote func set_team():
 	match team:
 		1:
 			set_collision_layer_bit(1,true)
 			set_collision_mask_bit(5, true)
+			self.armature.get_node("Skeleton/Soldier").get_active_material(0).set_texture(0,blue_pallete)
 		2:
 			set_collision_layer_bit(5,true)
 			set_collision_mask_bit(1, true)
+			self.armature.get_node("Skeleton/Soldier").get_active_material(0).set_texture(0,red_pallete)
 
 func set_username():
 	if is_network_master():
@@ -167,7 +181,7 @@ func set_username():
 
 func _ready():
 	$"CanvasLayer/ViewportContainer/HUD (Online)".visible = self.is_network_master()
-	set_team()
+#	set_team()
 	set_username()
 	$"Username Sprite".get_node("Viewport").emit_signal("set_the_name",self.is_network_master())
 	Network.get_node("Net_Time").connect("timeout",self,'_on_network_timer_timeout')
@@ -190,6 +204,9 @@ func _ready():
 	armature.get_node("Skeleton/Rocket Launcher/Rocket Launcher").set_layer_mask_bit(0,!is_network_master())
 	armature.get_node("Skeleton/Hat/Soldier Hat2").set_layer_mask_bit(0,!is_network_master())
 	anim.playback_active = true
+	if self.is_network_master():
+		rpc("set_team()")
+		set_team()
 func _process(delta):
 	mouse_sensitivity = Globals.mouse_sense * 0.001
 	if is_network_master():
