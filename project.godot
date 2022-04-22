@@ -115,6 +115,47 @@ ragdoll={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":89,"unicode":0,"echo":false,"script":null)
  ]
 }
+scoreboard={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":16777218,"unicode":0,"echo":false,"script":null)
+ ]
+}
+wep_slot_1={
+"deadzone": 0.5,
+"events": [  ]
+}
+wep_slot_2={
+"deadzone": 0.5,
+"events": [  ]
+}
+wep_slot_3={
+"deadzone": 0.5,
+"events": [  ]
+}
+wep_slot_4={
+"deadzone": 0.5,
+"events": [  ]
+}
+wep_slot_5={
+"deadzone": 0.5,
+"events": [  ]
+}
+wep_slot_6={
+"deadzone": 0.5,
+"events": [  ]
+}
+wep_slot_7={
+"deadzone": 0.5,
+"events": [  ]
+}
+wep_slot_8={
+"deadzone": 0.5,
+"events": [  ]
+}
+wep_slot_9={
+"deadzone": 0.5,
+"events": [  ]
+}
 
 [layer_names]
 

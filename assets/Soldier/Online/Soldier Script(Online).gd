@@ -185,6 +185,7 @@ func _ready():
 #	hat.get_node("MeshInstance").set_layer_mask_bit(0,!is_network_master())#visible = !is_network_master() 
 	$"CanvasLayer/ViewportContainer".visible = is_network_master() 
 	Network.connect("hit",self,"_hit")
+	armature.visible = !is_network_master()
 	armature.get_node("Skeleton/Soldier").set_layer_mask_bit(0,!is_network_master())#.visible = !is_network_master()
 	armature.get_node("Skeleton/Rocket Launcher/Rocket Launcher").set_layer_mask_bit(0,!is_network_master())
 	armature.get_node("Skeleton/Hat/Soldier Hat2").set_layer_mask_bit(0,!is_network_master())
@@ -369,13 +370,21 @@ func _physics_process(delta: float) -> void:
 					var T = camera.global_transform.looking_at(NetNodes.players.get_node(killer).global_transform.origin,Vector3.UP)
 					$Tween.interpolate_property(camera,"global_transform",Transform(camera.global_transform.basis,dealth_location),Transform(T.basis,camera.global_transform.origin),0.1)
 					$Tween.start()
-		if raycast.is_colliding() and raycast.get_collider().is_in_group("Player") :
+		if raycast.is_colliding() and raycast.get_collider().is_in_group("Player") and state != DEAD:
 			$"Username".show()
 			$"Username".text = raycast.get_collider().username
 			if raycast.get_collider().team == 1:
 				get_node("Username/Usr_name_panel").set_self_modulate(Color(1, 0, 0, 0.5))
 			elif raycast.get_collider().team == 2:
 				get_node("Username/Usr_name_panel").set_self_modulate(Color(0, 0.764706, 1, 0.5))
+		elif state == DEAD:
+			$"Username".show()
+			$"Username".text = NetNodes.players.get_node(killer).username
+			if NetNodes.players.has_node(killer):
+				if NetNodes.players.get_node(killer).team == 1:
+					get_node("Username/Usr_name_panel").set_self_modulate(Color(1, 0, 0, 0.5))
+				elif NetNodes.players.get_node(killer).team == 2:
+					get_node("Username/Usr_name_panel").set_self_modulate(Color(0, 0.764706, 1, 0.5))
 		else:
 			$"Username".hide()
 		if Input.is_action_pressed("shoot1"):

@@ -14,3 +14,8 @@ func Progress_Amount(cap_rate):
 	progress.value = Network.cap_amount
 	red_text.text = "%02d : %02d" % [Network.red_time_limit_mins,Network.red_time_limit_sec]
 	blue_text.text = "%02d : %02d" % [Network.blue_time_limit_mins,Network.blue_time_limit_sec]
+
+func _input(event: InputEvent) -> void:
+	if get_parent().is_network_master():
+		if event.is_action_pressed("scoreboard"):
+			pass

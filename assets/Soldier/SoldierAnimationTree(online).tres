@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=20 format=2]
+[gd_resource type="AnimationNodeBlendTree" load_steps=24 format=2]
 
 [sub_resource type="AnimationNodeBlend2" id=59]
 
@@ -18,8 +18,14 @@ input_0/auto_advance = true
 input_1/name = "state 1"
 input_1/auto_advance = true
 
+[sub_resource type="AnimationNodeAnimation" id=73]
+animation = "Idle_Shotgun001"
+
 [sub_resource type="AnimationNodeAnimation" id=72]
 animation = "Ragdoll"
+
+[sub_resource type="AnimationNodeAnimation" id=74]
+animation = "Idle"
 
 [sub_resource type="AnimationNodeAnimation" id=33]
 animation = "Run"
@@ -47,6 +53,10 @@ animation = "AIr"
 
 [sub_resource type="AnimationNodeAnimation" id=35]
 animation = "Idle"
+
+[sub_resource type="AnimationNodeBlend2" id=75]
+filter_enabled = true
+filters = [ "Armature/Skeleton:Foot.L", "Armature/Skeleton:Foot.R", "Armature/Skeleton:Head", "Armature/Skeleton:LowerLeg.L", "Armature/Skeleton:LowerLeg.R", "Armature/Skeleton:Pelvis", "Armature/Skeleton:Spine1", "Armature/Skeleton:Spine2", "Armature/Skeleton:UpperLeg.L", "Armature/Skeleton:UpperLeg.R" ]
 
 [sub_resource type="AnimationNodeTransition" id=51]
 input_count = 3
@@ -81,8 +91,15 @@ input_1/auto_advance = false
 
 [sub_resource type="AnimationNodeTimeScale" id=69]
 
+[sub_resource type="AnimationNodeTransition" id=76]
+input_count = 2
+input_0/name = "Rocket_Launcher"
+input_0/auto_advance = false
+input_1/name = "Shotty"
+input_1/auto_advance = false
+
 [resource]
-graph_offset = Vector2( 497.525, 141.919 )
+graph_offset = Vector2( -127.461, -168.621 )
 nodes/Air_Hit/node = SubResource( 59 )
 nodes/Air_Hit/position = Vector2( 340, 320 )
 nodes/Air_State/node = SubResource( 56 )
@@ -90,9 +107,13 @@ nodes/Air_State/position = Vector2( 60, 400 )
 nodes/Airborne/node = SubResource( 60 )
 nodes/Airborne/position = Vector2( -160, 700 )
 nodes/Animation/node = SubResource( 35 )
-nodes/Animation/position = Vector2( 320, -40 )
+nodes/Animation/position = Vector2( -100, -200 )
+"nodes/Animation 10/node" = SubResource( 73 )
+"nodes/Animation 10/position" = Vector2( -40, -300 )
 "nodes/Animation 11/node" = SubResource( 72 )
 "nodes/Animation 11/position" = Vector2( 1120, 460 )
+"nodes/Animation 12/node" = SubResource( 74 )
+"nodes/Animation 12/position" = Vector2( 160.616, -29.6937 )
 "nodes/Animation 2/node" = SubResource( 33 )
 "nodes/Animation 2/position" = Vector2( -120, 180 )
 "nodes/Animation 3/node" = SubResource( 34 )
@@ -109,6 +130,8 @@ nodes/Animation/position = Vector2( 320, -40 )
 "nodes/Animation 8/position" = Vector2( -120, 0 )
 "nodes/Animation 9/node" = SubResource( 58 )
 "nodes/Animation 9/position" = Vector2( -460, 840 )
+nodes/Blend2/node = SubResource( 75 )
+nodes/Blend2/position = Vector2( 220, -260 )
 nodes/Char_State/node = SubResource( 51 )
 nodes/Char_State/position = Vector2( 820, 200 )
 nodes/Is_Moving/node = SubResource( 68 )
@@ -121,5 +144,7 @@ nodes/Run_Dir/node = SubResource( 67 )
 nodes/Run_Dir/position = Vector2( 280, 140 )
 nodes/TimeScale/node = SubResource( 69 )
 nodes/TimeScale/position = Vector2( 540, 0 )
+nodes/Transition/node = SubResource( 76 )
+nodes/Transition/position = Vector2( 500, -200 )
 nodes/output/position = Vector2( 1700, 200 )
-node_connections = [ "output", 0, "Ragdoll", "Air_Hit", 0, "Air_State", "Air_Hit", 1, "Animation 5", "Air_State", 0, "Animation 4", "Air_State", 1, "Airborne", "Ragdoll", 0, "Is_Shooting", "Ragdoll", 1, "Animation 11", "Is_Moving", 0, "TimeScale", "Is_Moving", 1, "Run_Dir", "Is_Shooting", 0, "Char_State", "Is_Shooting", 1, "Animation 3", "Airborne", 0, "Animation 7", "Airborne", 1, "Animation 9", "Run_Dir", 0, "Animation 8", "Run_Dir", 1, "Animation 2", "Char_State", 0, "Is_Moving", "Char_State", 1, "Air_Hit", "Char_State", 2, "Animation 6", "TimeScale", 0, "Animation" ]
+node_connections = [ "output", 0, "Ragdoll", "Ragdoll", 0, "Is_Shooting", "Ragdoll", 1, "Animation 11", "Air_Hit", 0, "Air_State", "Air_Hit", 1, "Animation 5", "Airborne", 0, "Animation 7", "Airborne", 1, "Animation 9", "Air_State", 0, "Animation 4", "Air_State", 1, "Airborne", "Is_Shooting", 0, "Char_State", "Is_Shooting", 1, "Animation 3", "Char_State", 0, "Is_Moving", "Char_State", 1, "Air_Hit", "Char_State", 2, "Animation 6", "TimeScale", 0, "Transition", "Run_Dir", 0, "Animation 8", "Run_Dir", 1, "Animation 2", "Is_Moving", 0, "TimeScale", "Is_Moving", 1, "Run_Dir", "Blend2", 0, "Animation 10", "Blend2", 1, "Animation", "Transition", 0, "Animation 12", "Transition", 1, "Blend2" ]
