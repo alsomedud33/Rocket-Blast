@@ -36,7 +36,7 @@ var blue_captured:bool = false
 
 signal winner(team)
 signal instance_player(id,team)
-signal player_shot(id,location)
+signal player_shot(id,location,type)
 signal destroy_rocket(rocket)
 signal rocket_hit(rocket, damage)
 signal explosion_hitbox(hitbox,players,damage)

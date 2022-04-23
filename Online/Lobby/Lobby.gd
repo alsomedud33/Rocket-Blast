@@ -13,6 +13,7 @@ func _ready():
 	get_tree().connect("network_peer_connected",$Network_ui,"player_connected")
 	get_tree().connect("connected_to_server",$Network_ui,"join_lobby")
 	get_tree().connect("server_disconnected",self,"_server_disconnected")
+	$Network_ui/Settings_panel/Username.connect("text_changed",self,"_change_text")
 
 func _player_disconnected(id):
 	pass
@@ -23,3 +24,6 @@ func _server_disconnected():
 	Transitions.fade_in()
 	yield(Transitions.anim,"animation_finished")
 	SceneChanger.goto_scene('res://Online/Lobby/Lobby.tscn',self)
+
+func _change_text(text):
+	$"Armature/Skeleton/Hat/Username Sprite/Viewport/Username".text = text

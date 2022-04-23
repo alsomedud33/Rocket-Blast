@@ -5,18 +5,24 @@
 extends KinematicBody
 
 
-var blue_pallete = preload("res://Online/Characters/Char_Blue.png")
-var red_pallete = preload("res://Online/Characters/Char_Red.png")
+var blue_pallete = load("res://Online/Characters/Char_Blue.png")
+var red_pallete = load("res://Online/Characters/Char_Red.png")
+
 
 remote var username = ''
 var max_health = 200
 var health = 200
+var wep_spread = 1
 var dealth_location
 onready var killer = name
 var merc = "Soldier"
 var team:int
+
+
 var rng = RandomNumberGenerator.new()
 var mouse_sensitivity = Globals.mouse_sense
+
+
 export var max_speed: float = 5 # Meters per second
 export var max_air_speed: float = 0.2
 export var accel: float = max_speed * 10 # or max_speed * 10 : Reach max speed in 1 / 10th of a second
@@ -160,18 +166,26 @@ func weapon_switch():
 		current_weapon = 2
 	elif Input.is_action_just_pressed("wep_slot_3"):
 		current_weapon = 3
-
+	
+	if current_weapon == 1:
+		head.get_node("Camera/Rocket Launcher").visible = true
+	else:
+		head.get_node("Camera/Rocket Launcher").visible = false
+	if current_weapon == 2:
+		head.get_node("Camera/Shotgun").visible = true
+	else:
+		head.get_node("Camera/Shotgun").visible = false
 		
-remote func set_team():
+func set_team():
 	match team:
 		1:
 			set_collision_layer_bit(1,true)
 			set_collision_mask_bit(5, true)
-			self.armature.get_node("Skeleton/Soldier").get_active_material(0).set_texture(0,blue_pallete)
+			self.armature.get_node("Skeleton/Soldier").get_active_material(0).set_texture(0,red_pallete)
 		2:
 			set_collision_layer_bit(5,true)
 			set_collision_mask_bit(1, true)
-			self.armature.get_node("Skeleton/Soldier").get_active_material(0).set_texture(0,red_pallete)
+			self.armature.get_node("Skeleton/Soldier").get_active_material(0).set_texture(0,blue_pallete)
 
 func set_username():
 	if is_network_master():
@@ -194,7 +208,8 @@ func _ready():
 	camera.current = is_network_master() 
 	health_label.visible = is_network_master()
 	team_label.visible = is_network_master()
-	get_rocket_launcher.visible = is_network_master()
+	head.visible = is_network_master()
+	#get_rocket_launcher.visible = is_network_master()
 	#get_rocket_launcher.get_node("MeshInstance").set_layer_mask_bit(2,is_network_master())
 #	hat.get_node("MeshInstance").set_layer_mask_bit(0,!is_network_master())#visible = !is_network_master() 
 	$"CanvasLayer/ViewportContainer".visible = is_network_master() 
@@ -204,9 +219,7 @@ func _ready():
 	armature.get_node("Skeleton/Rocket Launcher/Rocket Launcher").set_layer_mask_bit(0,!is_network_master())
 	armature.get_node("Skeleton/Hat/Soldier Hat2").set_layer_mask_bit(0,!is_network_master())
 	anim.playback_active = true
-	if self.is_network_master():
-		rpc("set_team()")
-		set_team()
+	set_team()
 func _process(delta):
 	mouse_sensitivity = Globals.mouse_sense * 0.001
 	if is_network_master():
@@ -228,6 +241,9 @@ func _physics_process(delta: float) -> void:
 		gun_camera.global_transform = puppet_rocket_transform
 		rocket_num = puppet_rocket_num
 		forward_input = puppet_forward_input
+		if puppet_wish_jump and ground_check.is_colliding():
+			if !$Jump.is_playing():
+				$Jump.play()
 		match puppet_state:
 			GROUND:
 			#	if puppet_floorcheck:
@@ -268,6 +284,7 @@ func _physics_process(delta: float) -> void:
 				get_node("Projectile Hurtbox").monitorable = false
 				#$Armature/Skeleton/Spineik.stop()
 	if is_network_master():
+		weapon_switch()
 		if Input.is_action_just_pressed("ragdoll"):
 			health -= 10
 		health_label.text = str(health)
@@ -378,6 +395,7 @@ func _physics_process(delta: float) -> void:
 					animtree_change("parameters/Ragdoll/current",1)
 					velocity = Vector3.ZERO
 					self.global_transform.origin = dealth_location
+					armature.visible = true
 					armature.get_node("Skeleton/Soldier").set_layer_mask_bit(0,true)#.visible = !is_network_master()
 					armature.get_node("Skeleton/Rocket Launcher/Rocket Launcher").set_layer_mask_bit(0,true)
 					armature.get_node("Skeleton/Hat/Soldier Hat2").set_layer_mask_bit(0,true)
@@ -407,31 +425,27 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_pressed("shoot1"):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
-		if Input.is_action_pressed("shoot1") and timer.is_stopped() and state != DEAD:
+		if Input.is_action_pressed("shoot1") and timer.is_stopped() and state != DEAD and current_weapon == 1:
 			
-		#if event is InputEventMouseButton and event.pressed and event.button_index == 1 and timer.is_stopped():
-			#anim_tree.set("parameters/Is_Shooting/active", true)
 			animtree_change("parameters/Is_Shooting/active",1)
 			rpc("shoot_anim")
 			timer.start(cooldown)
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			
-			Network.emit_signal("player_shot",name,guns.global_transform.origin)
-			
-	#			var rocket_instance = rocket_launcher.instance()
-	#			#main.add_child(rocket_instance)
+			Network.emit_signal("player_shot",name,guns.global_transform.origin,"Rocket")
 			anim.play("Shoot_Rocket")
 			$Rocket_Launch.play()
 			$Rocket_Trail.play()
-	#			#rocket_instance.global_transform.origin = guns.global_transform.origin
-	#			if raycast.is_colliding():
-	#				rocket_instance.look_at_from_position(guns.global_transform.origin,raycast.get_collision_point(), Vector3.UP)
-	#			else:
-	#				rocket_instance.global_transform.origin = guns.global_transform.origin
-	#				rocket_instance.rotation_degrees = Vector3(-$Pivot.rotation_degrees.x+1, self.rotation_degrees.y+182,0)
-	#			rocket_instance.velocity = rocket_instance.transform.basis.z * -rocket_instance.speed
-	#			main.call_deferred("add_child",rocket_instance)
 
+		elif Input.is_action_pressed("shoot1") and timer.is_stopped() and state != DEAD and current_weapon == 2:
+			timer.start(cooldown)
+			anim.play("Shoot_Shotty")
+#			randomize()
+#			for r in camera.get_node("RayContainer").get_children():
+#				r.cast_to.x = rand_range(wep_spread, -wep_spread)
+#				r.cast_to.y = rand_range(wep_spread, -wep_spread)
+			Network.emit_signal("player_shot",name,guns.global_transform.origin,"Hitscan")
+			pass
 
 func change_state(new_state):
 	old_state = state
@@ -546,7 +560,8 @@ remote func take_damage_remote(dmg,enemy):
 #	print (name + "" + str(health))
 
 func _hit(dmg,location):
-	if is_network_master():
+	if self.is_network_master():
+		print ("I AM DONG: " +str(dmg) +" DAMAGE")
 		damage_label.show()
 		damage_label.rect_position =  get_viewport().get_camera().unproject_position(location)#camera.unproject_position(location)
 		damage_label.get_node("Tween").interpolate_property(damage_label,'rect_position',Vector2(damage_label.rect_position.x,damage_label.rect_position.y),Vector2(damage_label.rect_position.x,damage_label.rect_position.y-500),2)

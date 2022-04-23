@@ -157,36 +157,59 @@ remote func _koth_points_change_remote(cap_rate):
 		Network.red_captured = false
 
 
-func _player_shot(id,position):
-	rpc("_player_shot_remote", id,position)
-	var r = Network.rocket.instance()
-	r.real = true
-	if NetNodes.players.get_node(str(id)).raycast.is_colliding():
-		r.look_at_from_position(NetNodes.players.get_node(str(id)).guns.global_transform.origin,NetNodes.players.get_node(str(id)).raycast.get_collision_point(), Vector3.UP)
-	else:
-		r.global_transform.origin = NetNodes.players.get_node(str(id)).guns.global_transform.origin
-		r.rotation_degrees = Vector3(-NetNodes.players.get_node(str(id)).head.rotation_degrees.x+0.5, NetNodes.players.get_node(str(id)).rotation_degrees.y+181,0)
-	r.velocity = r.transform.basis.z * -r.speed
-	
-	r.rocket_owner = NetNodes.players.get_node(str(id)).name
-	r.name = NetNodes.players.get_node(str(id)).name + str(NetNodes.players.get_node(str(id)).rocket_num)
-	NetNodes.players.get_node(str(id)).rocket_num += 1
-	NetNodes.rockets.add_child(r)
-
-remote func _player_shot_remote(id, position):
-	var r = Network.rocket.instance()
-	r.real = false
-	if NetNodes.players.get_node(str(id)).raycast.is_colliding():# and NetNodes.players.get_node(str(id)).global_transform.origin.distance_to(NetNodes.players.get_node(str(id)).raycast.get_collision_point()) >3.81:
-		r.look_at_from_position(NetNodes.players.get_node(str(id)).guns.global_transform.origin,NetNodes.players.get_node(str(id)).raycast.get_collision_point(), Vector3.UP)
-	else:
-		r.global_transform.origin = NetNodes.players.get_node(str(id)).guns.global_transform.origin
-		r.rotation_degrees = Vector3(-NetNodes.players.get_node(str(id)).head.rotation_degrees.x+0.5, NetNodes.players.get_node(str(id)).rotation_degrees.y+181,0)
-	r.velocity = r.transform.basis.z * -r.speed
-	r.rocket_owner = NetNodes.players.get_node(str(id)).name
-	r.name = NetNodes.players.get_node(str(id)).name + str(NetNodes.players.get_node(str(id)).rocket_num)
-	NetNodes.players.get_node(str(id)).rocket_num += 1
-	NetNodes.rockets.add_child(r)
-
+func _player_shot(id,position,wep_type):
+	randomize()
+	rpc("_player_shot_remote", id,position,wep_type)
+	match wep_type:
+		"Rocket":
+			var r = Network.rocket.instance()
+			r.real = true
+			if NetNodes.players.get_node(str(id)).raycast.is_colliding():
+				r.look_at_from_position(NetNodes.players.get_node(str(id)).guns.global_transform.origin,NetNodes.players.get_node(str(id)).raycast.get_collision_point(), Vector3.UP)
+			else:
+				r.global_transform.origin = NetNodes.players.get_node(str(id)).guns.global_transform.origin
+				r.rotation_degrees = Vector3(-NetNodes.players.get_node(str(id)).head.rotation_degrees.x+0.5, NetNodes.players.get_node(str(id)).rotation_degrees.y+181,0)
+			r.velocity = r.transform.basis.z * -r.speed
+			
+			r.rocket_owner = NetNodes.players.get_node(str(id)).name
+			r.name = NetNodes.players.get_node(str(id)).name + str(NetNodes.players.get_node(str(id)).rocket_num)
+			NetNodes.players.get_node(str(id)).rocket_num += 1
+			NetNodes.rockets.add_child(r)
+		"Hitscan":
+			for r in NetNodes.players.get_node(id).camera.get_node("RayContainer").get_children():
+				r.cast_to.x = rand_range(NetNodes.players.get_node(str(id)).wep_spread, -NetNodes.players.get_node(str(id)).wep_spread)
+				r.cast_to.y = rand_range(NetNodes.players.get_node(str(id)).wep_spread, -NetNodes.players.get_node(str(id)).wep_spread)
+				if r.is_colliding() and r.get_collider().is_in_group("Player"):
+					print (r.get_collider().name)
+					r.get_collider().take_damage(5,id)
+					if id  == str(get_tree().get_network_unique_id()):
+						Network.emit_signal("hit",5,NetNodes.players.get_node(r.get_collider().name).global_transform.origin)
+remote func _player_shot_remote(id, position,wep_type):
+	match wep_type:
+		"Rocket":
+			var r = Network.rocket.instance()
+			r.real = false
+			if NetNodes.players.get_node(str(id)).raycast.is_colliding():# and NetNodes.players.get_node(str(id)).global_transform.origin.distance_to(NetNodes.players.get_node(str(id)).raycast.get_collision_point()) >3.81:
+				r.look_at_from_position(NetNodes.players.get_node(str(id)).guns.global_transform.origin,NetNodes.players.get_node(str(id)).raycast.get_collision_point(), Vector3.UP)
+			else:
+				r.global_transform.origin = NetNodes.players.get_node(str(id)).guns.global_transform.origin
+				r.rotation_degrees = Vector3(-NetNodes.players.get_node(str(id)).head.rotation_degrees.x+0.5, NetNodes.players.get_node(str(id)).rotation_degrees.y+181,0)
+			r.velocity = r.transform.basis.z * -r.speed
+			r.rocket_owner = NetNodes.players.get_node(str(id)).name
+			r.name = NetNodes.players.get_node(str(id)).name + str(NetNodes.players.get_node(str(id)).rocket_num)
+			NetNodes.players.get_node(str(id)).rocket_num += 1
+			NetNodes.players.get_node(str(id)).get_node("Rocket_Launch").play()
+			NetNodes.players.get_node(str(id)).get_node("Rocket_Trail").play()
+			NetNodes.rockets.add_child(r)
+		"Hitscan":
+			for r in NetNodes.players.get_node(str(id)).camera.get_node("RayContainer").get_children():
+				r.cast_to.x = rand_range(NetNodes.players.get_node(str(id)).wep_spread, -NetNodes.players.get_node(str(id)).wep_spread)
+				r.cast_to.y = rand_range(NetNodes.players.get_node(str(id)).wep_spread, -NetNodes.players.get_node(str(id)).wep_spread)
+				if r.is_colliding() and r.get_collider().is_in_group("Player"):
+					#print (r.get_collider().name)
+					#r.get_collider().take_damage(5,id)
+					if id  == str(get_tree().get_network_unique_id()):
+						Network.emit_signal("hit",5,NetNodes.players.get_node(r.collider().name).global_transform.origin)
 func _rocket_hit(rocket, damage):
 	rpc ("_rocket_hit_remote",rocket, damage,NetNodes.rockets.get_node(rocket).global_transform.origin)
 	if NetNodes.rockets.has_node(rocket):
