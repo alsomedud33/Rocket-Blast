@@ -129,6 +129,8 @@ puppet func update_state(fake_state,fake_old_state,fake_rocket_num,forward_inp,c
 	puppet_current_weapon = cur_wep
 puppet func shoot_anim():
 	anim_tree.set("parameters/Is_Shooting/active",1)
+	if current_weapon == 2:
+		anim.play("Shoot_Shotty")
 #Networking end
 
 
@@ -455,6 +457,7 @@ func _physics_process(delta: float) -> void:
 			timer.start(cooldown)
 			anim.play("Shoot_Shotty")
 			animtree_change("parameters/Is_Shooting/active",1)
+			rpc("shoot_anim")
 #			randomize()
 #			for r in camera.get_node("RayContainer").get_children():
 #				r.cast_to.x = rand_range(wep_spread, -wep_spread)
