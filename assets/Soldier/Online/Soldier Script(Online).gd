@@ -89,9 +89,9 @@ var puppet_anim_val
 var puppet_rocket_num:int
 var puppet_forward_input:float
 var puppet_team
+var puppet_current_weapon:int = 0 
 
-var fake_anim
-var fake_anim_val
+
 export var tick_rate:float = 0.015
 var rocket_num:int = 0
 
@@ -99,12 +99,12 @@ var rocket_num:int = 0
 func _on_network_timer_timeout():
 	if self.is_network_master():# and name == str(get_tree().get_network_unique_id()):
 		rpc_unreliable("update_transform", global_transform.origin, velocity, Vector2(head.rotation.x, self.rotation.y),camera.global_transform)
-		rpc_unreliable("update_state", state,old_state,rocket_num,forward_input)
+		rpc_unreliable("update_state", state,old_state,rocket_num,forward_input,current_weapon)
 #	rpc("update_anim",is_on_floor(),rocket_jump,wish_jump)
 func anim_timeout():
 	if is_network_master() and name == str(get_tree().get_network_unique_id()):
 		rpc("update_anim",is_on_floor(),temp_rocket_jump,wish_jump)
-		pass#rpc_unreliable("update_anim",fake_anim,fake_anim_val)
+		pass
 
 	#only executed on puppet soldiers. Their rotation, position and velocity are adjusted to match where they roughly are
 puppet func update_transform(p_pos, p_vel, p_rot, rocket_trans):
@@ -121,22 +121,20 @@ puppet func update_anim(floor_check,r_jump,w_jump):
 	puppet_rocketjump = r_jump
 	puppet_wish_jump = w_jump
 
-puppet func update_state(fake_state,fake_old_state,fake_rocket_num,forward_inp):
+puppet func update_state(fake_state,fake_old_state,fake_rocket_num,forward_inp,cur_wep):
 	puppet_state = fake_state
 	puppet_old_state = fake_old_state
 	puppet_rocket_num = fake_rocket_num
 	puppet_forward_input = forward_inp
+	puppet_current_weapon = cur_wep
 puppet func shoot_anim():
 	anim_tree.set("parameters/Is_Shooting/active",1)
 #Networking end
 
 
 
-func animtree_change(parameter : String, val:int):
-	if is_network_master() and name == str(get_tree().get_network_unique_id()):
-		anim_tree.set(parameter, val)
-		fake_anim = parameter
-		fake_anim_val = val
+func animtree_change(parameter : String, val):
+	anim_tree.set(parameter, val)
 		#rpc_unreliable("update_anim",parameter,val)
 
 func _input(event: InputEvent) -> void:
@@ -158,25 +156,38 @@ var old_state = GROUND
 var puppet_old_state = GROUND
 
 var current_weapon = 1
+var weapon_switch_tween = 0
 
 func weapon_switch():
-	if Input.is_action_just_pressed("wep_slot_1"):
-		current_weapon = 1
-	elif Input.is_action_just_pressed("wep_slot_2"):
-		current_weapon = 2
-	elif Input.is_action_just_pressed("wep_slot_3"):
-		current_weapon = 3
-	
+	if is_network_master():
+		if Input.is_action_just_pressed("wep_slot_1"):
+			current_weapon = 1
+		elif Input.is_action_just_pressed("wep_slot_2"):
+			current_weapon = 2
+		elif Input.is_action_just_pressed("wep_slot_3"):
+			current_weapon = 3
+	else:
+		current_weapon = puppet_current_weapon
 	if current_weapon == 1:
 		head.get_node("Camera/Rocket Launcher").visible = true
+		armature.get_node("Skeleton/Rocket Launcher/Rocket Launcher").visible = true
+		weapon_switch_tween -= 0.1
+		weapon_switch_tween = lerp(0,1,weapon_switch_tween)
+		animtree_change("parameters/Current_Wep/blend_amount",weapon_switch_tween)
 	else:
 		head.get_node("Camera/Rocket Launcher").visible = false
+		armature.get_node("Skeleton/Rocket Launcher/Rocket Launcher").visible = false
 	if current_weapon == 2:
 		head.get_node("Camera/Shotgun").visible = true
+		armature.get_node("Skeleton/Rocket Launcher/Shotgun").visible = true
+		weapon_switch_tween += 0.1
+		weapon_switch_tween = lerp(0,1,weapon_switch_tween)
+		animtree_change("parameters/Current_Wep/blend_amount",weapon_switch_tween)
 	else:
 		head.get_node("Camera/Shotgun").visible = false
-		
-func set_team():
+		armature.get_node("Skeleton/Rocket Launcher/Shotgun").visible = false
+	weapon_switch_tween = clamp(weapon_switch_tween,0,1)
+remote func set_team():
 	match team:
 		1:
 			set_collision_layer_bit(1,true)
@@ -214,12 +225,14 @@ func _ready():
 #	hat.get_node("MeshInstance").set_layer_mask_bit(0,!is_network_master())#visible = !is_network_master() 
 	$"CanvasLayer/ViewportContainer".visible = is_network_master() 
 	Network.connect("hit",self,"_hit")
-	armature.visible = !is_network_master()
 	armature.get_node("Skeleton/Soldier").set_layer_mask_bit(0,!is_network_master())#.visible = !is_network_master()
 	armature.get_node("Skeleton/Rocket Launcher/Rocket Launcher").set_layer_mask_bit(0,!is_network_master())
+	armature.get_node("Skeleton/Rocket Launcher/Shotgun").set_layer_mask_bit(0,!is_network_master())
 	armature.get_node("Skeleton/Hat/Soldier Hat2").set_layer_mask_bit(0,!is_network_master())
 	anim.playback_active = true
-	set_team()
+	if self.is_network_master():
+		rpc("set_team")
+		set_team()
 func _process(delta):
 	mouse_sensitivity = Globals.mouse_sense * 0.001
 	if is_network_master():
@@ -231,6 +244,7 @@ func _process(delta):
 func _physics_process(delta: float) -> void:
 #	usr_tag.rect_global_position =  get_viewport().get_camera().unproject_position(head.global_transform.origin)
 	if !is_network_master():
+		weapon_switch()
 		global_transform.origin = puppet_position
 		velocity.x = puppet_velocity.x
 		velocity.y = puppet_velocity.y
@@ -440,6 +454,7 @@ func _physics_process(delta: float) -> void:
 		elif Input.is_action_pressed("shoot1") and timer.is_stopped() and state != DEAD and current_weapon == 2:
 			timer.start(cooldown)
 			anim.play("Shoot_Shotty")
+			animtree_change("parameters/Is_Shooting/active",1)
 #			randomize()
 #			for r in camera.get_node("RayContainer").get_children():
 #				r.cast_to.x = rand_range(wep_spread, -wep_spread)
@@ -540,6 +555,14 @@ master func shoot_event():
 master func _on_Footstep_timeout():
 	var my_random_number = rng.randi_range(1,3)
 	if self.is_on_floor() and velocity.length() > 3:
+		match my_random_number:
+			1:
+				$Footstep1.play()
+			2:
+				$Footstep2.play()
+			3:
+				$Footstep3.play()
+	elif !self.is_network_master() and puppet_state == GROUND and velocity.length() > 3:
 		match my_random_number:
 			1:
 				$Footstep1.play()

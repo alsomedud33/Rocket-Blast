@@ -183,7 +183,8 @@ func _player_shot(id,position,wep_type):
 					print (r.get_collider().name)
 					r.get_collider().take_damage(5,id)
 					if id  == str(get_tree().get_network_unique_id()):
-						Network.emit_signal("hit",5,NetNodes.players.get_node(r.get_collider().name).global_transform.origin)
+						Network.emit_signal("hit",5,r.get_collision_point())
+						
 remote func _player_shot_remote(id, position,wep_type):
 	match wep_type:
 		"Rocket":
@@ -202,14 +203,15 @@ remote func _player_shot_remote(id, position,wep_type):
 			NetNodes.players.get_node(str(id)).get_node("Rocket_Trail").play()
 			NetNodes.rockets.add_child(r)
 		"Hitscan":
-			for r in NetNodes.players.get_node(str(id)).camera.get_node("RayContainer").get_children():
-				r.cast_to.x = rand_range(NetNodes.players.get_node(str(id)).wep_spread, -NetNodes.players.get_node(str(id)).wep_spread)
-				r.cast_to.y = rand_range(NetNodes.players.get_node(str(id)).wep_spread, -NetNodes.players.get_node(str(id)).wep_spread)
-				if r.is_colliding() and r.get_collider().is_in_group("Player"):
-					#print (r.get_collider().name)
-					#r.get_collider().take_damage(5,id)
-					if id  == str(get_tree().get_network_unique_id()):
-						Network.emit_signal("hit",5,NetNodes.players.get_node(r.collider().name).global_transform.origin)
+			pass
+#			for r in NetNodes.players.get_node(str(id)).camera.get_node("RayContainer").get_children():
+#				r.cast_to.x = rand_range(NetNodes.players.get_node(str(id)).wep_spread, -NetNodes.players.get_node(str(id)).wep_spread)
+#				r.cast_to.y = rand_range(NetNodes.players.get_node(str(id)).wep_spread, -NetNodes.players.get_node(str(id)).wep_spread)
+##				if r.is_colliding() and r.get_collider().is_in_group("Player"):
+##					#print (r.get_collider().name)
+##					#r.get_collider().take_damage(5,id)
+##					if id  == str(get_tree().get_network_unique_id()):
+##						Network.emit_signal("hit",5,NetNodes.players.get_node(r.collider().name).global_transform.origin)
 func _rocket_hit(rocket, damage):
 	rpc ("_rocket_hit_remote",rocket, damage,NetNodes.rockets.get_node(rocket).global_transform.origin)
 	if NetNodes.rockets.has_node(rocket):
