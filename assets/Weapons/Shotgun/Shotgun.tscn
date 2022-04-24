@@ -1,6 +1,6 @@
 [gd_scene load_steps=25 format=2]
 
-[ext_resource path="res://assets/Weapons/Material_001.material" type="Material" id=1]
+[ext_resource path="res://assets/Weapons/Shotgun/Material_001.material" type="Material" id=1]
 [ext_resource path="res://assets/Soldier/Online/Material_006.material" type="Material" id=2]
 [ext_resource path="res://assets/Sfx/Trail.tscn" type="PackedScene" id=3]
 

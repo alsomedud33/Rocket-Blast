@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/Shotgun.glb-8c033595203b979669c7e280780fc7ee.scn"
+path="res://.import/Shovel anim2.glb-d8fbb9ec864ef7bec4f1ac196634c9c8.scn"
 
 [deps]
 
-source_file="res://assets/Weapons/Shotgun.glb"
-dest_files=[ "res://.import/Shotgun.glb-8c033595203b979669c7e280780fc7ee.scn" ]
+source_file="res://assets/Soldier/Online/Shovel anim2.glb"
+dest_files=[ "res://.import/Shovel anim2.glb-d8fbb9ec864ef7bec4f1ac196634c9c8.scn" ]
 
 [params]
 

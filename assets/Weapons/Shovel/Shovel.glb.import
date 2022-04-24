@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/Shooty6.glb-4ff02d9c2f35716a7e1e9364a6261da3.scn"
+path="res://.import/Shovel.glb-e8bee1cad644d4f41e20cf5f168841d5.scn"
 
 [deps]
 
-source_file="res://assets/Soldier/Online/Shooty6.glb"
-dest_files=[ "res://.import/Shooty6.glb-4ff02d9c2f35716a7e1e9364a6261da3.scn" ]
+source_file="res://assets/Weapons/Shovel/Shovel.glb"
+dest_files=[ "res://.import/Shovel.glb-e8bee1cad644d4f41e20cf5f168841d5.scn" ]
 
 [params]
 
