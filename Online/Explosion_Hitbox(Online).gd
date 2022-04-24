@@ -14,7 +14,7 @@ var real = false
 var explosion_owner = ""
 
 export var damage_ramp:Curve
-onready var damage_scaler:float
+onready var damage_scaler:float = 1.2
 
 #var partical = preload("res://assets/Sfx/Explosion.tscn")
 #export (PackedScene) onready var partical
@@ -80,11 +80,11 @@ func _on_Explosion_Hitbox_body_entered(body):
 
 func _on_Explosion_Hitbox_area_entered(area):
 	if area.get_parent().name == explosion_owner:
-		damage *= 0.6
+		damage *= 0.4#0.35
 	else:
-		var distance_travelled = clamp(NetNodes.players.get_node(explosion_owner).global_transform.origin.distance_to(area.get_parent().global_transform.origin),0,19.5)
-		damage = damage * damage_ramp.interpolate(distance_travelled/19.5)
-		print("ramp up is: " + str(damage_ramp.interpolate(distance_travelled/19.5)))
+		var distance_travelled = clamp(NetNodes.players.get_node(explosion_owner).global_transform.origin.distance_to(area.get_parent().global_transform.origin),0,33)
+		damage = damage * damage_ramp.interpolate(distance_travelled/33)
+		print("ramp up is: " + str(damage_ramp.interpolate(distance_travelled/33)))
 	for i in get_overlapping_areas():
 		print ("HITBOX hit " + i.name)
 	if real == true:

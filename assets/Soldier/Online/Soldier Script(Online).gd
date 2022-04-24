@@ -12,7 +12,7 @@ var red_pallete = load("res://Online/Characters/Char_Red.png")
 remote var username = ''
 var max_health = 200
 var health = 200
-var wep_spread = 1
+var wep_spread = 6
 var dealth_location
 onready var killer = name
 var merc = "Soldier"
@@ -131,6 +131,9 @@ puppet func shoot_anim():
 	anim_tree.set("parameters/Is_Shooting/active",1)
 	if current_weapon == 2:
 		anim.play("Shoot_Shotty")
+		armature.get_node("Skeleton/Rocket Launcher/Shotgun/Spatial").visible = true
+		yield(anim,"animation_finished")
+		armature.get_node("Skeleton/Rocket Launcher/Shotgun/Spatial").visible = false
 #Networking end
 
 
@@ -172,6 +175,7 @@ func weapon_switch():
 		current_weapon = puppet_current_weapon
 	if current_weapon == 1:
 		head.get_node("Camera/Rocket Launcher").visible = true
+		anim.play("Sway")
 		armature.get_node("Skeleton/Rocket Launcher/Rocket Launcher").visible = true
 		weapon_switch_tween -= 0.1
 		weapon_switch_tween = lerp(0,1,weapon_switch_tween)
@@ -207,6 +211,7 @@ func set_username():
 		rset("username",Players.player_list[temp]["username"])
 
 func _ready():
+	$"Health_Bar".max_value = max_health
 	$"CanvasLayer/ViewportContainer/HUD (Online)".visible = self.is_network_master()
 #	set_team()
 	set_username()
@@ -219,6 +224,7 @@ func _ready():
 	main = get_tree().current_scene
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	camera.current = is_network_master() 
+	$Health_Bar.visible = is_network_master()
 	health_label.visible = is_network_master()
 	team_label.visible = is_network_master()
 	head.visible = is_network_master()
@@ -235,12 +241,15 @@ func _ready():
 	if self.is_network_master():
 		rpc("set_team")
 		set_team()
+	else:
+		$"CanvasLayer/ViewportContainer/HUD (Online)".queue_free()
+	visible = true
 func _process(delta):
 	mouse_sensitivity = Globals.mouse_sense * 0.001
 	if is_network_master():
 		gun_camera.global_transform = camera.global_transform
-		if Input.is_action_just_pressed("ui_cancel"):
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+#		if Input.is_action_just_pressed("ui_cancel"):
+#			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	else:
 		anim_tree.set(puppet_anim,puppet_anim_val)
 func _physics_process(delta: float) -> void:
@@ -304,6 +313,7 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("ragdoll"):
 			health -= 10
 		health_label.text = str(health)
+		$"Health_Bar".value = health
 		team_label.text = ("Team: "+str(team))
 		#print(wish_jump)
 		queue_jump()
@@ -413,6 +423,7 @@ func _physics_process(delta: float) -> void:
 					self.global_transform.origin = dealth_location
 					armature.visible = true
 					armature.get_node("Skeleton/Soldier").set_layer_mask_bit(0,true)#.visible = !is_network_master()
+					armature.get_node("Skeleton/Rocket Launcher/Shotgun").set_layer_mask_bit(0,true)
 					armature.get_node("Skeleton/Rocket Launcher/Rocket Launcher").set_layer_mask_bit(0,true)
 					armature.get_node("Skeleton/Hat/Soldier Hat2").set_layer_mask_bit(0,true)
 					get_node("CollisionShape").disabled = true
@@ -438,27 +449,27 @@ func _physics_process(delta: float) -> void:
 					get_node("Username/Usr_name_panel").set_self_modulate(Color(0, 0.764706, 1, 0.5))
 		else:
 			$"Username".hide()
-		if Input.is_action_pressed("shoot1"):
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+#		if Input.is_action_pressed("shoot1"):
+#			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
-		if Input.is_action_pressed("shoot1") and timer.is_stopped() and state != DEAD and current_weapon == 1:
+		if Input.is_action_pressed("shoot1") and timer.is_stopped() and state != DEAD and current_weapon == 1 and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			
 			animtree_change("parameters/Is_Shooting/active",1)
 			rpc("shoot_anim")
 			timer.start(cooldown)
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			
 			Network.emit_signal("player_shot",name,guns.global_transform.origin,"Rocket")
 			anim.play("Shoot_Rocket")
 			$Rocket_Launch.play()
 			$Rocket_Trail.play()
 
-		elif Input.is_action_pressed("shoot1") and timer.is_stopped() and state != DEAD and current_weapon == 2:
+		elif Input.is_action_pressed("shoot1") and timer.is_stopped() and state != DEAD and current_weapon == 2 and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			timer.start(cooldown)
 			anim.play("Shoot_Shotty")
 			animtree_change("parameters/Is_Shooting/active",1)
 			rpc("shoot_anim")
-#			randomize()
+			randomize()
 #			for r in camera.get_node("RayContainer").get_children():
 #				r.cast_to.x = rand_range(wep_spread, -wep_spread)
 #				r.cast_to.y = rand_range(wep_spread, -wep_spread)
@@ -592,12 +603,10 @@ func _hit(dmg,location):
 		damage_label.rect_position =  get_viewport().get_camera().unproject_position(location)#camera.unproject_position(location)
 		damage_label.get_node("Tween").interpolate_property(damage_label,'rect_position',Vector2(damage_label.rect_position.x,damage_label.rect_position.y),Vector2(damage_label.rect_position.x,damage_label.rect_position.y-500),2)
 		damage_label.get_node("Tween").start()
-		#damage_label.modulate = Color(1, 0.913725, 0)  #Yellow colour
 		damage_label.text = "-"+str(dmg)
 		damage_label.get_node("Tween").interpolate_property(damage_label,'modulate',Color(1, 0.913725, 0),Color.transparent,2)
 		damage_label.get_node("Tween").start()
-#		damage_label.get_node("Tween").connect("tween_all_completed",self,"_reset_damage_label_tween")
-	#	damage_label.modulate = lerp(damage_label.modulate, Color.transparent,0.1)
+
 
 
 func get_health(amount,overheal,is_multiplier):

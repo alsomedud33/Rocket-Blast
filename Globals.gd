@@ -46,4 +46,3 @@ func _process(delta):
 		yield(get_tree().create_timer(.001), "timeout")
 		proj_counter = 0
 		complete = false
-

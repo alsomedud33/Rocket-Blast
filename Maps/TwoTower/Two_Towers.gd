@@ -5,6 +5,7 @@ var soldier = preload("res://assets/Soldier/Online/Soldier(online).tscn")
 func _on_Skybox_Area_body_exited(body):
 	body.global_transform.origin = $"Skybox_Area/Respawn".global_transform.origin
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Transitions.fade_out()
@@ -91,7 +92,7 @@ func _respawn(id,merc,team):
 #	#p.global_transform.origin = get_node("Spawn Points/" +str(p.team)+"/"+"Spawn Point"+str(p.team)).global_transform.origin
 
 remotesync func _respawn_remote(id,merc,team):
-	NetNodes.players.get_node(str(id)).queue_free()
+	#NetNodes.players.get_node(str(id)).queue_free()
 	var child = NetNodes.players.get_node(str(id))
 	NetNodes.players.remove_child(NetNodes.players.get_node(str(id)))#get_node(str(id)).queue_free()
 	child.queue_free()
@@ -176,14 +177,23 @@ func _player_shot(id,position,wep_type):
 			NetNodes.players.get_node(str(id)).rocket_num += 1
 			NetNodes.rockets.add_child(r)
 		"Hitscan":
+			var collision_point:Vector3
+			var total_damage = 0
+			var dmg = 6
+			var hit = false
 			for r in NetNodes.players.get_node(id).camera.get_node("RayContainer").get_children():
-				r.cast_to.x = rand_range(NetNodes.players.get_node(str(id)).wep_spread, -NetNodes.players.get_node(str(id)).wep_spread)
-				r.cast_to.y = rand_range(NetNodes.players.get_node(str(id)).wep_spread, -NetNodes.players.get_node(str(id)).wep_spread)
+				r.cast_to.x = rand_range(-NetNodes.players.get_node(str(id)).wep_spread, NetNodes.players.get_node(str(id)).wep_spread)
+				r.cast_to.y = rand_range(-NetNodes.players.get_node(str(id)).wep_spread, NetNodes.players.get_node(str(id)).wep_spread)
 				if r.is_colliding() and r.get_collider().is_in_group("Player"):
+					hit = true
 					print (r.get_collider().name)
-					r.get_collider().take_damage(5,id)
-					if id  == str(get_tree().get_network_unique_id()):
-						Network.emit_signal("hit",5,r.get_collision_point())
+					print(NetNodes.players.get_node(id).head.get_global_transform().origin.distance_to(r.get_collision_point()))
+					dmg = round(75 * 1/clamp(NetNodes.players.get_node(id).head.get_global_transform().origin.distance_to(r.get_collision_point()),7.5,25))
+					r.get_collider().take_damage(dmg,id)
+					total_damage+=dmg
+					collision_point = r.get_collision_point()
+			if id  == str(get_tree().get_network_unique_id()) and hit == true:
+				Network.emit_signal("hit",total_damage,collision_point)
 						
 remote func _player_shot_remote(id, position,wep_type):
 	match wep_type:
@@ -281,11 +291,11 @@ remotesync  func _destroy_rocket_remote(rocket):
 
 
 func _explosion_hitbox(hitbox,players,damage):
-	rpc_unreliable("_explosion_hitbox_remote",hitbox,players,NetNodes.hitboxes.get_node(hitbox).explosion_owner,round(damage * clamp(1/NetNodes.hitboxes.get_node(hitbox).get_global_transform().origin.distance_to(NetNodes.players.get_node(players).get_global_transform().origin),0.5,1)),NetNodes.hitboxes.get_node(hitbox).get_global_transform().origin,NetNodes.hitboxes.get_node(hitbox).explode_force,NetNodes.hitboxes.get_node(hitbox).y_explode_ratio,NetNodes.hitboxes.get_node(hitbox).distance_ratio,NetNodes.hitboxes.get_node(hitbox).translation)
+	rpc_unreliable("_explosion_hitbox_remote",hitbox,players,NetNodes.hitboxes.get_node(hitbox).explosion_owner,round(damage * clamp(1/NetNodes.hitboxes.get_node(hitbox).get_global_transform().origin.distance_to(NetNodes.players.get_node(players).get_global_transform().origin),0.8,1)),NetNodes.hitboxes.get_node(hitbox).get_global_transform().origin,NetNodes.hitboxes.get_node(hitbox).explode_force,NetNodes.hitboxes.get_node(hitbox).y_explode_ratio,NetNodes.hitboxes.get_node(hitbox).distance_ratio,NetNodes.hitboxes.get_node(hitbox).translation)
 	if (NetNodes.hitboxes.get_node(hitbox).explosion_owner == str(get_tree().get_network_unique_id())) and NetNodes.hitboxes.get_node(hitbox).explosion_owner != players:
-		Network.emit_signal("hit",round(damage * clamp(1/NetNodes.hitboxes.get_node(hitbox).get_global_transform().origin.distance_to(NetNodes.players.get_node(players).get_global_transform().origin),0.5,1)),NetNodes.players.get_node(players).head.global_transform.origin)
-	print ("damage is:" + str(round(damage * clamp(1/NetNodes.hitboxes.get_node(hitbox).get_global_transform().origin.distance_to(NetNodes.players.get_node(players).get_global_transform().origin),0.5,1))))
-	NetNodes.players.get_node(players).take_damage(round(damage *clamp(1/NetNodes.hitboxes.get_node(hitbox).get_global_transform().origin.distance_to(NetNodes.players.get_node(players).get_global_transform().origin),0.5,1)),NetNodes.hitboxes.get_node(hitbox).explosion_owner)
+		Network.emit_signal("hit",round(damage * 1/clamp(NetNodes.hitboxes.get_node(hitbox).get_global_transform().origin.distance_to(NetNodes.players.get_node(players).get_global_transform().origin),0.8,1)),NetNodes.players.get_node(players).head.global_transform.origin)
+	print ("damage is:" + str(round(damage * 1/clamp(NetNodes.hitboxes.get_node(hitbox).get_global_transform().origin.distance_to(NetNodes.players.get_node(players).get_global_transform().origin),0.8,1))))
+	NetNodes.players.get_node(players).take_damage(round(damage *1/clamp(NetNodes.hitboxes.get_node(hitbox).get_global_transform().origin.distance_to(NetNodes.players.get_node(players).get_global_transform().origin),0.8,1)),NetNodes.hitboxes.get_node(hitbox).explosion_owner)
 	NetNodes.players.get_node(players).snap = Vector3.ZERO
 	if NetNodes.players.get_node(players).is_on_floor() and NetNodes.hitboxes.get_node(hitbox).explosion_owner != players:
 		NetNodes.players.get_node(players).rocket_impulse = 1.5*NetNodes.hitboxes.get_node(hitbox).explode_force*NetNodes.hitboxes.get_node(hitbox).y_explode_ratio*2*NetNodes.hitboxes.get_node(hitbox).get_global_transform().origin.direction_to(NetNodes.players.get_node(players).get_global_transform().origin).y

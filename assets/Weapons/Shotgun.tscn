@@ -1,7 +1,8 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://assets/Weapons/Material_001.material" type="Material" id=1]
 [ext_resource path="res://assets/Soldier/Online/Material_006.material" type="Material" id=2]
+[ext_resource path="res://assets/Sfx/Trail.tscn" type="PackedScene" id=3]
 
 [sub_resource type="ArrayMesh" id=22]
 resource_name = "Soldier with Anims_Cylinder039"
@@ -406,3 +407,7 @@ transform = Transform( -0.135282, 0, 0.0573944, 0, -0.108224, 0, -0.0573944, 0, 
 layers = 5
 mesh = SubResource( 17 )
 material/0 = null
+
+[node name="Spatial" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.1, 0, 0, 0, -1.16112e-08, -0.040301, 0, 0.265633, -1.76161e-09, -1.56462e-07, -0.678072, -0.108013 )
+visible = false
