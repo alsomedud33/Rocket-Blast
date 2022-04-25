@@ -65,7 +65,7 @@ input_2/auto_advance = false
 
 [sub_resource type="AnimationNodeBlend2" id=75]
 filter_enabled = true
-filters = [ "Armature/Skeleton:Arm.L", "Armature/Skeleton:Arm.R", "Armature/Skeleton:LowerArm.L", "Armature/Skeleton:LowerArm.R", "Armature/Skeleton:Shoulder.L", "Armature/Skeleton:Shoulder.R", "Armature/Skeleton:UpperArm.L", "Armature/Skeleton:UpperArm.R" ]
+filters = [ "Armature/Skeleton4:Arm.L", "Armature/Skeleton4:Arm.R", "Armature/Skeleton4:LowerArm.L", "Armature/Skeleton4:LowerArm.R", "Armature/Skeleton4:Shoulder.L", "Armature/Skeleton4:Shoulder.R", "Armature/Skeleton4:Spine2", "Armature/Skeleton4:UpperArm.L", "Armature/Skeleton4:UpperArm.R", "Armature/Skeleton:Arm.L", "Armature/Skeleton:Arm.R", "Armature/Skeleton:LowerArm.L", "Armature/Skeleton:LowerArm.R", "Armature/Skeleton:Shoulder.L", "Armature/Skeleton:Shoulder.R", "Armature/Skeleton:UpperArm.L", "Armature/Skeleton:UpperArm.R" ]
 
 [sub_resource type="AnimationNodeTransition" id=68]
 input_count = 2
@@ -91,7 +91,7 @@ input_1/auto_advance = false
 [sub_resource type="AnimationNodeTimeScale" id=69]
 
 [resource]
-graph_offset = Vector2( 370.526, 121.482 )
+graph_offset = Vector2( 179, 88 )
 nodes/Air_Hit/node = SubResource( 59 )
 nodes/Air_Hit/position = Vector2( 340, 320 )
 nodes/Air_State/node = SubResource( 56 )
@@ -137,4 +137,4 @@ nodes/Run_Dir/position = Vector2( 280, 140 )
 nodes/TimeScale/node = SubResource( 69 )
 nodes/TimeScale/position = Vector2( 580, 20 )
 nodes/output/position = Vector2( 1700, 200 )
-node_connections = [ "output", 0, "Ragdoll", "Ragdoll", 0, "Current_Wep", "Ragdoll", 1, "Animation 11", "Airborne", 0, "Animation 7", "Airborne", 1, "Animation 9", "Char_State", 0, "Is_Moving", "Char_State", 1, "Air_Hit", "Char_State", 2, "Animation 6", "TimeScale", 0, "Animation 12", "Run_Dir", 0, "Animation 8", "Run_Dir", 1, "Animation 2", "Is_Moving", 0, "TimeScale", "Is_Moving", 1, "Run_Dir", "Air_Hit", 0, "Air_State", "Air_Hit", 1, "Animation 5", "Air_State", 0, "Animation 4", "Air_State", 1, "Airborne", "Is_Shooting", 0, "Char_State", "Is_Shooting", 1, "Animation 3", "Current_Wep", 0, "Is_Shooting", "Current_Wep", 1, "Animation 10" ]
+node_connections = [ "output", 0, "Ragdoll", "Ragdoll", 0, "Current_Wep", "Ragdoll", 1, "Animation 11", "Is_Moving", 0, "TimeScale", "Is_Moving", 1, "Run_Dir", "Air_State", 0, "Animation 4", "Air_State", 1, "Airborne", "Current_Wep", 0, "Is_Shooting", "Current_Wep", 1, "Animation 10", "Airborne", 0, "Animation 7", "Airborne", 1, "Animation 9", "Air_Hit", 0, "Air_State", "Air_Hit", 1, "Animation 5", "TimeScale", 0, "Animation 12", "Is_Shooting", 0, "Char_State", "Is_Shooting", 1, "Animation 3", "Run_Dir", 0, "Animation 8", "Run_Dir", 1, "Animation 2", "Char_State", 0, "Is_Moving", "Char_State", 1, "Air_Hit", "Char_State", 2, "Animation 6" ]
