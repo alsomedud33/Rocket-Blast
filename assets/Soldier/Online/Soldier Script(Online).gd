@@ -134,6 +134,11 @@ puppet func shoot_anim():
 		armature.get_node("Skeleton/Rocket Launcher/Shotgun/Spatial").visible = true
 		yield(anim,"animation_finished")
 		armature.get_node("Skeleton/Rocket Launcher/Shotgun/Spatial").visible = false
+	if current_weapon == 1:
+		anim.play("Shoot_Rocket")
+		armature.get_node("Skeleton/Rocket Launcher/Rocket Launcher").visible = true
+		yield(anim,"animation_finished")
+		armature.get_node("Skeleton/Rocket Launcher/Rocket Launcher").visible = false
 #Networking end
 
 
@@ -175,7 +180,7 @@ func weapon_switch():
 		current_weapon = puppet_current_weapon
 	if current_weapon == 1:
 		head.get_node("Camera/Rocket Launcher").visible = true
-		anim.play("Sway")
+		#anim.play("Sway")
 		armature.get_node("Skeleton/Rocket Launcher/Rocket Launcher").visible = true
 		weapon_switch_tween -= 0.1
 		weapon_switch_tween = lerp(0,1,weapon_switch_tween)
@@ -453,14 +458,14 @@ func _physics_process(delta: float) -> void:
 #			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 		if Input.is_action_pressed("shoot1") and timer.is_stopped() and state != DEAD and current_weapon == 1 and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-			
+			anim.play("Shoot_Rocket")
 			animtree_change("parameters/Is_Shooting/active",1)
 			rpc("shoot_anim")
 			timer.start(cooldown)
 			#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			
 			Network.emit_signal("player_shot",name,guns.global_transform.origin,"Rocket")
-			anim.play("Shoot_Rocket")
+			#anim.play("Shoot_Rocket")
 			$Rocket_Launch.play()
 			$Rocket_Trail.play()
 
