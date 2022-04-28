@@ -177,6 +177,7 @@ func weapon_switch():
 			anim.play("Sway_Shotty")
 		elif Input.is_action_just_pressed("wep_slot_3"):
 			current_weapon = 3
+			anim.play("Sway_Shovel")
 	else:
 		current_weapon = puppet_current_weapon
 	if current_weapon == 1:
@@ -192,15 +193,15 @@ func weapon_switch():
 		armature.get_node("Skeleton/Rocket Launcher/Shotgun").visible = true
 		animtree_change("parameters/Current_Wep/current",current_weapon - 1)
 	else:
-		head.get_node("Camera/Shovel").visible = false
-		armature.get_node("Skeleton/Rocket Launcher/Shovel").visible = false
+		head.get_node("Camera/Shotgun").visible = false
+		armature.get_node("Skeleton/Rocket Launcher/Shotgun").visible = false
 	if current_weapon == 3:
 		head.get_node("Camera/Shovel").visible = true
 		armature.get_node("Skeleton/Rocket Launcher/Shovel").visible = true
 		animtree_change("parameters/Current_Wep/current",current_weapon - 1)
 	else:
-		head.get_node("Camera/Shotgun").visible = false
-		armature.get_node("Skeleton/Rocket Launcher/Shotgun").visible = false
+		head.get_node("Camera/Shovel").visible = false
+		armature.get_node("Skeleton/Rocket Launcher/Shovel").visible = false
 remote func set_team():
 	match team:
 		1:
@@ -484,6 +485,14 @@ func _physics_process(delta: float) -> void:
 			Network.emit_signal("player_shot",name,guns.global_transform.origin,"Hitscan")
 			pass
 
+		elif Input.is_action_pressed("shoot1") and timer.is_stopped() and state != DEAD and current_weapon == 3 and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+			timer.start(cooldown)
+			anim.play("Shoot_Shovel")
+			animtree_change("parameters/Is_Shooting/active",1)
+			rpc("shoot_anim")
+			#melee_attack() is called via animation player 
+			pass
+
 func change_state(new_state):
 	old_state = state
 	state = new_state
@@ -644,3 +653,6 @@ func pallete_swap(colour):
 	match colour:
 		"blue":
 			pass
+
+func melee_attack():
+	Network.emit_signal("player_shot",name,guns.global_transform.origin,"Melee")
