@@ -188,7 +188,7 @@ func _player_shot(id,position,wep_type):
 					hit = true
 					print (r.get_collider().name)
 					print(NetNodes.players.get_node(id).head.get_global_transform().origin.distance_to(r.get_collision_point()))
-					dmg = round(75 * 1/clamp(NetNodes.players.get_node(id).head.get_global_transform().origin.distance_to(r.get_collision_point()),7.5,25))
+					dmg = round(75 * 1/clamp(NetNodes.players.get_node(id).head.get_global_transform().origin.distance_to(r.get_collision_point()),15,25))
 					r.get_collider().take_damage(dmg,id)
 					total_damage+=dmg
 					collision_point = r.get_collision_point()

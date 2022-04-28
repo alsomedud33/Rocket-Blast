@@ -91,7 +91,7 @@ input_1/auto_advance = false
 [sub_resource type="AnimationNodeTimeScale" id=121]
 
 [resource]
-graph_offset = Vector2( 675.749, 176.98 )
+graph_offset = Vector2( 244.43, 39.6616 )
 nodes/Air_Hit/node = SubResource( 110 )
 nodes/Air_Hit/position = Vector2( 340, 320 )
 nodes/Air_State/node = SubResource( 56 )

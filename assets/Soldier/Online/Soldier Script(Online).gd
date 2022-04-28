@@ -166,14 +166,15 @@ var old_state = GROUND
 var puppet_old_state = GROUND
 
 var current_weapon = 1
-var weapon_switch_tween = 0
 
 func weapon_switch():
 	if is_network_master():
 		if Input.is_action_just_pressed("wep_slot_1"):
 			current_weapon = 1
+			anim.play("Sway")
 		elif Input.is_action_just_pressed("wep_slot_2"):
 			current_weapon = 2
+			anim.play("Sway_Shotty")
 		elif Input.is_action_just_pressed("wep_slot_3"):
 			current_weapon = 3
 	else:
@@ -182,22 +183,24 @@ func weapon_switch():
 		head.get_node("Camera/Rocket Launcher").visible = true
 		#anim.play("Sway")
 		armature.get_node("Skeleton/Rocket Launcher/Rocket Launcher").visible = true
-		weapon_switch_tween -= 0.1
-		weapon_switch_tween = lerp(0,1,weapon_switch_tween)
-		animtree_change("parameters/Current_Wep/blend_amount",weapon_switch_tween)
+		animtree_change("parameters/Current_Wep/current",current_weapon - 1)
 	else:
 		head.get_node("Camera/Rocket Launcher").visible = false
 		armature.get_node("Skeleton/Rocket Launcher/Rocket Launcher").visible = false
 	if current_weapon == 2:
 		head.get_node("Camera/Shotgun").visible = true
 		armature.get_node("Skeleton/Rocket Launcher/Shotgun").visible = true
-		weapon_switch_tween += 0.1
-		weapon_switch_tween = lerp(0,1,weapon_switch_tween)
-		animtree_change("parameters/Current_Wep/blend_amount",weapon_switch_tween)
+		animtree_change("parameters/Current_Wep/current",current_weapon - 1)
+	else:
+		head.get_node("Camera/Shovel").visible = false
+		armature.get_node("Skeleton/Rocket Launcher/Shovel").visible = false
+	if current_weapon == 3:
+		head.get_node("Camera/Shovel").visible = true
+		armature.get_node("Skeleton/Rocket Launcher/Shovel").visible = true
+		animtree_change("parameters/Current_Wep/current",current_weapon - 1)
 	else:
 		head.get_node("Camera/Shotgun").visible = false
 		armature.get_node("Skeleton/Rocket Launcher/Shotgun").visible = false
-	weapon_switch_tween = clamp(weapon_switch_tween,0,1)
 remote func set_team():
 	match team:
 		1:

@@ -11,8 +11,8 @@ data = {
 
 [sub_resource type="ImageTexture" id=127]
 resource_local_to_scene = true
-flags = 3
-flags = 3
+flags = 1
+flags = 1
 image = SubResource( 128 )
 size = Vector2( 8, 8 )
 
