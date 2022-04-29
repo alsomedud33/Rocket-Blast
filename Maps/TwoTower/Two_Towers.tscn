@@ -169,6 +169,5 @@ amount = 100.0
 
 [node name="Area" parent="." instance=ExtResource( 4 )]
 transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 8, 0 )
-visible = false
 
 [editable path="Big_Bass"]

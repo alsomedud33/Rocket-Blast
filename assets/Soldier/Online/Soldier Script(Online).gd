@@ -7,7 +7,7 @@ extends KinematicBody
 
 var blue_pallete = load("res://Online/Characters/Char_Blue.png")
 var red_pallete = load("res://Online/Characters/Char_Red.png")
-
+var hud = load("res://Online/HUD/Hud (Online).tscn")
 
 remote var username = ''
 var max_health = 200
@@ -235,8 +235,9 @@ func set_username():
 		rset("username",Players.player_list[temp]["username"])
 
 func _ready():
+	camera.current = is_network_master() 
 	$"Health_Bar".max_value = max_health
-	$"CanvasLayer/ViewportContainer/HUD (Online)".visible = self.is_network_master()
+#	$"CanvasLayer/ViewportContainer/HUD (Online)".visible = self.is_network_master()
 #	set_team()
 	set_username()
 	$"Username Sprite".get_node("Viewport").emit_signal("set_the_name",self.is_network_master())
@@ -244,10 +245,7 @@ func _ready():
 	$network_timer.wait_time = tick_rate
 	Globals.player = 1
 	$Armature/Skeleton/Spineik.start()
-	yield(get_tree().create_timer(.2), "timeout")
-	main = get_tree().current_scene
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	camera.current = is_network_master() 
 	$Health_Bar.visible = is_network_master()
 	health_label.visible = is_network_master()
 	team_label.visible = is_network_master()
@@ -267,9 +265,12 @@ func _ready():
 	if self.is_network_master():
 		rpc("set_team")
 		set_team()
-	else:
-		$"CanvasLayer/ViewportContainer/HUD (Online)".queue_free()
-	visible = true
+		$"CanvasLayer/ViewportContainer".add_child(hud.instance())
+		main = get_tree().current_scene
+#	else:
+#		$"CanvasLayer/ViewportContainer/HUD (Online)".queue_free()
+	#yield(get_tree().create_timer(.2), "timeout")
+	main = get_tree().current_scene
 func _process(delta):
 	mouse_sensitivity = Globals.mouse_sense * 0.001
 	if is_network_master():

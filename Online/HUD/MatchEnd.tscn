@@ -252,6 +252,7 @@ font_data = SubResource( 17 )
 
 [node name="Countdown Timer" type="AnimationPlayer" parent="."]
 pause_mode = 2
+autoplay = "Nothing"
 anims/1 = SubResource( 1 )
 anims/2 = SubResource( 2 )
 anims/3 = SubResource( 3 )
@@ -284,7 +285,6 @@ __meta__ = {
 
 [node name="5" type="Label" parent="Countdown Timer"]
 visible = false
-modulate = Color( 1, 1, 1, 0.6 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -295,7 +295,6 @@ margin_right = 53.5
 margin_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
-rect_scale = Vector2( 1.4, 1.4 )
 rect_pivot_offset = Vector2( 53, 100 )
 custom_fonts/font = SubResource( 18 )
 text = "5"
@@ -304,7 +303,6 @@ valign = 1
 
 [node name="4" type="Label" parent="Countdown Timer"]
 visible = false
-modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -315,7 +313,6 @@ margin_right = 64.5
 margin_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
-rect_scale = Vector2( 2, 2 )
 rect_pivot_offset = Vector2( 64, 100 )
 custom_fonts/font = SubResource( 18 )
 text = "4"
@@ -327,7 +324,6 @@ __meta__ = {
 
 [node name="3" type="Label" parent="Countdown Timer"]
 visible = false
-modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -338,7 +334,6 @@ margin_right = 58.0
 margin_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
-rect_scale = Vector2( 2, 2 )
 rect_pivot_offset = Vector2( 58, 100 )
 custom_fonts/font = SubResource( 18 )
 text = "3"
@@ -350,7 +345,6 @@ __meta__ = {
 
 [node name="2" type="Label" parent="Countdown Timer"]
 visible = false
-modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -359,7 +353,6 @@ margin_left = -58.0
 margin_top = -100.0
 margin_right = 58.0
 margin_bottom = 100.0
-rect_scale = Vector2( 2, 2 )
 rect_pivot_offset = Vector2( 58, 100 )
 custom_fonts/font = SubResource( 18 )
 text = "2"

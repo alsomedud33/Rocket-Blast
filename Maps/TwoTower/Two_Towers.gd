@@ -27,6 +27,7 @@ func _ready():
 	Network.connect("koth_point_entered",self,"_koth_point_entered")
 	Network.connect("koth_point_exited",self,"_koth_point_exited")
 	Network.connect("koth_points_change",self,"_koth_points_change")
+
 	
 #func _player_joined(id):
 #	rpc_id(1,"team_info_request")
@@ -55,13 +56,24 @@ func _server_disconnected():
 	SceneChanger.goto_scene("res://Online/Lobby/Lobby.tscn",self)
 	
 func restart(num):
-	rpc("start_game")
-	start_game()
-remote func start_game():
+	rpc("restart_game")
+#	restart_game()
+
+remotesync func restart_game():
+	for p in NetNodes.players.get_children():
+		NetNodes.players.remove_child(p)
+		p.queue_free()
+	if Network.server != null:
+		Network.server.close_connection()
+	if Network.client != null:
+		Network.client.close_connection()
+	get_tree().set_network_peer(null)
+	Players.player_list.clear()
 	MusicController.fade_out()
 	Transitions.fade_in()
 	yield(Transitions.anim,"animation_finished")
-	SceneChanger.goto_scene("res://Maps/TwoTower/Two_Towers.tscn",get_parent())
+	SceneChanger.goto_scene("res://Online/Lobby/Lobby.tscn",self)
+	
 
 func _instance_players():
 	for id in Players.id_list:
@@ -80,6 +92,20 @@ func _instance_player(id,_team):
 func _respawn(id,merc,team):
 	rpc("_respawn_remote",id,merc,team)
 	get_node("CameraHub/Camera").current = true
+	var child = NetNodes.players.get_node(str(id))
+	NetNodes.players.remove_child(NetNodes.players.get_node(str(id)))#get_node(str(id)).queue_free()
+	child.queue_free()
+	for p in NetNodes.players.get_children():
+		p.visible = true
+#	yield(get_tree().create_timer(2),"timeout")
+	print("respawning player: " +str(id))
+	var p = soldier.instance()
+	p.set_network_master(id)
+	p.name = str(id)
+	p.team = team
+	p.global_transform.origin = get_node("Spawn Points/" +str(p.team)+"/"+"Spawn Point"+str(p.team)).global_transform.origin
+	get_node("CameraHub/Camera").current = false
+	NetNodes.players.add_child(p)
 #	NetNodes.players.get_node(str(id)).queue_free()
 ##	yield(get_tree().create_timer(2),"timeout")
 #	print("respawning player: " +str(id))
@@ -91,7 +117,7 @@ func _respawn(id,merc,team):
 #	NetNodes.players.add_child(p)
 #	#p.global_transform.origin = get_node("Spawn Points/" +str(p.team)+"/"+"Spawn Point"+str(p.team)).global_transform.origin
 
-remotesync func _respawn_remote(id,merc,team):
+remote func _respawn_remote(id,merc,team):
 	#NetNodes.players.get_node(str(id)).queue_free()
 	var child = NetNodes.players.get_node(str(id))
 	NetNodes.players.remove_child(NetNodes.players.get_node(str(id)))#get_node(str(id)).queue_free()

@@ -16,7 +16,7 @@ var team_index=0
 
 var cap_rate:int = 0
 var cap_amount = 0
-var max_cap = 50
+var max_cap = 100
 
 
 var time_limit_mins = 3
@@ -65,8 +65,28 @@ func _ready():
 
 func _update_timer(cap_rate):
 	rpc("_update_timer_remote",cap_rate)
+	if red_captured == true:
+		if red_time_limit_sec == 0 and red_time_limit_mins == 0:
+			red_time_limit_sec =0
+			red_time_limit_mins =0
+			emit_signal("winner",1)
+		elif red_time_limit_sec <= 0:
+			red_time_limit_mins -= 1
+			red_time_limit_sec = 59
+		else:
+			red_time_limit_sec -= 1
+	elif blue_captured == true:
+		if blue_time_limit_sec == 0 and blue_time_limit_mins == 0:
+			blue_time_limit_sec =0
+			blue_time_limit_mins =0
+			emit_signal("winner",2)
+		elif blue_time_limit_sec <= 0:
+			blue_time_limit_mins -= 1
+			blue_time_limit_sec = 59
+		else:
+			blue_time_limit_sec -= 1
 
-remotesync func _update_timer_remote(cap_rate):
+remote func _update_timer_remote(cap_rate):
 	if red_captured == true:
 		if red_time_limit_sec == 0 and red_time_limit_mins == 0:
 			red_time_limit_sec =0

@@ -12,6 +12,7 @@ script/source = "extends Control
 var rng = RandomNumberGenerator.new()
 
 func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	yield(get_tree().create_timer(.3), \"timeout\")
 	Transitions.fade_out()
 	MusicController.random_song()
