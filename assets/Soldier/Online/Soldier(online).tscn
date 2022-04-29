@@ -2894,7 +2894,7 @@ skin = SubResource( 131 )
 material/0 = ExtResource( 17 )
 
 [node name="Rocket Launcher" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.370629, -0.697957, 0.612772, 0.900343, -0.107973, 0.421578, -0.228079, 0.70795, 0.668418, -4.64384, 2.75371, -0.667728 )
+transform = Transform( -0.375937, -0.69979, 0.607424, 0.896898, -0.110024, 0.428338, -0.232914, 0.705822, 0.669002, -4.62777, 3.07366, -0.753047 )
 bone_name = "Arm.R"
 
 [node name="Rocket Launcher" type="MeshInstance" parent="Armature/Skeleton/Rocket Launcher"]
@@ -2923,7 +2923,7 @@ layers = 2
 layers = 2
 
 [node name="Hat" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 0.997614, 0.00850394, 0.068499, -0.00672433, 0.999636, -0.0261693, -0.0686971, 0.0256463, 0.997308, -1.41786e-07, 5.32362, 0.886386 )
+transform = Transform( 0.997614, 0.00850394, 0.068499, -0.00672433, 0.999636, -0.0261693, -0.0686971, 0.0256463, 0.997308, -1.31835e-07, 5.66591, 0.803906 )
 bone_name = "Head"
 
 [node name="Soldier Hat2" type="MeshInstance" parent="Armature/Skeleton/Hat"]
