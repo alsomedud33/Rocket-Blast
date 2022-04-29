@@ -129,12 +129,20 @@ puppet func update_state(fake_state,fake_old_state,fake_rocket_num,forward_inp,c
 	puppet_current_weapon = cur_wep
 puppet func shoot_anim():
 	anim_tree.set("parameters/Is_Shooting/active",1)
+	if current_weapon == 3:
+		animtree_change("parameters/Attack_Anim/current",1)
+#		anim.play("Shoot_Shovel")
+#		armature.get_node("Skeleton/Rocket Launcher/Shovel").visible = true
+#		yield(anim,"animation_finished")
+#		armature.get_node("Skeleton/Rocket Launcher/Shovel").visible = false
 	if current_weapon == 2:
+		animtree_change("parameters/Attack_Anim/current",0)
 		anim.play("Shoot_Shotty")
 		armature.get_node("Skeleton/Rocket Launcher/Shotgun/Spatial").visible = true
 		yield(anim,"animation_finished")
 		armature.get_node("Skeleton/Rocket Launcher/Shotgun/Spatial").visible = false
 	if current_weapon == 1:
+		animtree_change("parameters/Attack_Anim/current",0)
 		anim.play("Shoot_Rocket")
 		armature.get_node("Skeleton/Rocket Launcher/Rocket Launcher").visible = true
 		yield(anim,"animation_finished")
@@ -172,12 +180,17 @@ func weapon_switch():
 		if Input.is_action_just_pressed("wep_slot_1"):
 			current_weapon = 1
 			anim.play("Sway")
+			animtree_change("parameters/Attack_Anim/current",0)
+		
 		elif Input.is_action_just_pressed("wep_slot_2"):
 			current_weapon = 2
 			anim.play("Sway_Shotty")
+			animtree_change("parameters/Attack_Anim/current",0)
+		
 		elif Input.is_action_just_pressed("wep_slot_3"):
 			current_weapon = 3
 			anim.play("Sway_Shovel")
+			animtree_change("parameters/Attack_Anim/current",1)
 	else:
 		current_weapon = puppet_current_weapon
 	if current_weapon == 1:
@@ -188,6 +201,7 @@ func weapon_switch():
 	else:
 		head.get_node("Camera/Rocket Launcher").visible = false
 		armature.get_node("Skeleton/Rocket Launcher/Rocket Launcher").visible = false
+
 	if current_weapon == 2:
 		head.get_node("Camera/Shotgun").visible = true
 		armature.get_node("Skeleton/Rocket Launcher/Shotgun").visible = true
@@ -195,6 +209,7 @@ func weapon_switch():
 	else:
 		head.get_node("Camera/Shotgun").visible = false
 		armature.get_node("Skeleton/Rocket Launcher/Shotgun").visible = false
+
 	if current_weapon == 3:
 		head.get_node("Camera/Shovel").visible = true
 		armature.get_node("Skeleton/Rocket Launcher/Shovel").visible = true
@@ -245,6 +260,8 @@ func _ready():
 	armature.get_node("Skeleton/Soldier").set_layer_mask_bit(0,!is_network_master())#.visible = !is_network_master()
 	armature.get_node("Skeleton/Rocket Launcher/Rocket Launcher").set_layer_mask_bit(0,!is_network_master())
 	armature.get_node("Skeleton/Rocket Launcher/Shotgun").set_layer_mask_bit(0,!is_network_master())
+	for i in armature.get_node("Skeleton/Rocket Launcher/Shovel").get_children():
+		i.set_layer_mask_bit(0,!is_network_master())
 	armature.get_node("Skeleton/Hat/Soldier Hat2").set_layer_mask_bit(0,!is_network_master())
 	anim.playback_active = true
 	if self.is_network_master():
@@ -426,6 +443,8 @@ func _physics_process(delta: float) -> void:
 				DEAD:
 					$Armature/Skeleton/Spineik.interpolation = 0
 					get_rocket_launcher.hide()
+					camera.get_node("Shotgun").hide()
+					camera.get_node("Shovel").hide()
 					armature.set_as_toplevel(true)
 					animtree_change("parameters/Ragdoll/current",1)
 					velocity = Vector3.ZERO

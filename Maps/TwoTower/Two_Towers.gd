@@ -194,7 +194,16 @@ func _player_shot(id,position,wep_type):
 					collision_point = r.get_collision_point()
 			if id  == str(get_tree().get_network_unique_id()) and hit == true:
 				Network.emit_signal("hit",total_damage,collision_point)
-						
+		"Melee":
+			var hit = false
+			var collision_point:Vector3
+			for hb in NetNodes.players.get_node(str(id)).camera.get_node("Melee Hitbox").get_overlapping_areas():
+				if hb.get_parent().is_in_group("Player") and hb.get_parent().name != id and hit == false:
+					hb.get_parent().take_damage(65,id)
+					collision_point = hb.get_parent().head.get_global_transform().origin
+					hit = true
+			if id  == str(get_tree().get_network_unique_id()) and hit == true:
+				Network.emit_signal("hit",65,collision_point)
 remote func _player_shot_remote(id, position,wep_type):
 	match wep_type:
 		"Rocket":

@@ -151,6 +151,7 @@ func _on_Username_text_changed(new_text):
 
 
 func _on_Start_button_pressed():
+	$"Start_button".disabled = true
 	rpc("start_game")
 	start_game()
 
