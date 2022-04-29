@@ -516,7 +516,7 @@ func change_state(new_state):
 	old_state = state
 	state = new_state
 
-# This is were we calculate the speed to add to current velocity
+#Calculate the speed to add to velocity
 master func accelerate(wish_dir: Vector3, input_velocity: Vector3, accels: float, maxspeed: float, delta: float)-> Vector3:
 	# Current speed is calculated by projecting our velocity onto wishdir.
 	# We can thus manipulate our wishdir to trick the engine into thinking we're going slower than we actually are, allowing us to accelerate further.
@@ -625,12 +625,21 @@ func take_damage(dmg,enemy):
 	rpc("take_damage_remote",dmg,enemy)
 	health -= dmg
 	killer = enemy
+	take_knockback(dmg,enemy)
 #	print (name + "" + str(health))
 
 remote func take_damage_remote(dmg,enemy):
 	health -= dmg
 	killer = enemy
+	take_knockback(dmg,enemy)
 #	print (name + "" + str(health))
+
+func take_knockback(dmg,enemy,scaler:float = 6):
+	var knockback = min(20,dmg *(scaler*0.01905*2))
+	velocity.x += (NetNodes.players.get_node(enemy).global_transform.origin.direction_to(self.camera.global_transform.origin)*knockback).x
+	velocity.z += (NetNodes.players.get_node(enemy).global_transform.origin.direction_to(self.camera.global_transform.origin)*knockback).z
+	velocity.y += (NetNodes.players.get_node(enemy).global_transform.origin.direction_to(self.camera.global_transform.origin)*knockback).y
+	print("knockback is "+ str((NetNodes.players.get_node(enemy).global_transform.origin.direction_to(self.camera.global_transform.origin)*knockback).y))
 
 func _hit(dmg,location):
 	if self.is_network_master():
