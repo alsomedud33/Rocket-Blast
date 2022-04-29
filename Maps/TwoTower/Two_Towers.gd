@@ -189,7 +189,7 @@ func _player_shot(id,position,wep_type):
 					print (r.get_collider().name)
 					print(NetNodes.players.get_node(id).head.get_global_transform().origin.distance_to(r.get_collision_point()))
 					dmg = round(75 * 1/clamp(NetNodes.players.get_node(id).head.get_global_transform().origin.distance_to(r.get_collision_point()),15,25))
-					r.get_collider().take_damage(dmg,id)
+					r.get_collider().take_damage(dmg,id,true)
 					total_damage+=dmg
 					collision_point = r.get_collision_point()
 			if id  == str(get_tree().get_network_unique_id()) and hit == true:
@@ -199,7 +199,7 @@ func _player_shot(id,position,wep_type):
 			var collision_point:Vector3
 			for hb in NetNodes.players.get_node(str(id)).camera.get_node("Melee Hitbox").get_overlapping_areas():
 				if hb.get_parent().is_in_group("Player") and hb.get_parent().name != id and hit == false:
-					hb.get_parent().take_damage(65,id)
+					hb.get_parent().take_damage(65,id,true)
 					collision_point = hb.get_parent().head.get_global_transform().origin
 					hit = true
 			if id  == str(get_tree().get_network_unique_id()) and hit == true:

@@ -380,6 +380,7 @@ func _physics_process(delta: float) -> void:
 						
 						#yield(get_tree().create_timer(.3), "timeout")
 						rocket_jump = false # We have jumped, the player needs to press jump key again
+						rocket_impulse = 0
 						temp_rocket_jump = true
 					else : # Player is on the ground. Move normally, apply friction
 						#anim_tree.set("parameters/Char_State/current", 0)
@@ -415,7 +416,7 @@ func _physics_process(delta: float) -> void:
 				AIR:
 					if is_on_floor():
 						if wish_jump:
-							self.take_damage(5,name)
+							self.take_damage(5,name,true)
 						change_state(GROUND)
 					if ground_check.is_colliding():#velocity.y <=0 and ground_check.is_colliding() and !wish_jump== true:
 						#anim_tree.set("parameters/Char_State/current", 2)
@@ -621,17 +622,19 @@ master func _on_Footstep_timeout():
 			3:
 				$Footstep3.play()
 
-func take_damage(dmg,enemy):
-	rpc("take_damage_remote",dmg,enemy)
+func take_damage(dmg,enemy,app_kb:bool = false):
+	rpc("take_damage_remote",dmg,enemy,app_kb)
 	health -= dmg
 	killer = enemy
-	take_knockback(dmg,enemy)
+	if app_kb == true:
+		take_knockback(dmg,enemy)
 #	print (name + "" + str(health))
 
-remote func take_damage_remote(dmg,enemy):
+remote func take_damage_remote(dmg,enemy,app_kb:bool = false):
 	health -= dmg
 	killer = enemy
-	take_knockback(dmg,enemy)
+	if app_kb == true:
+		take_knockback(dmg,enemy)
 #	print (name + "" + str(health))
 
 func take_knockback(dmg,enemy,scaler:float = 6):
@@ -639,7 +642,10 @@ func take_knockback(dmg,enemy,scaler:float = 6):
 	velocity.x += (NetNodes.players.get_node(enemy).global_transform.origin.direction_to(self.camera.global_transform.origin)*knockback).x
 	velocity.z += (NetNodes.players.get_node(enemy).global_transform.origin.direction_to(self.camera.global_transform.origin)*knockback).z
 	velocity.y += (NetNodes.players.get_node(enemy).global_transform.origin.direction_to(self.camera.global_transform.origin)*knockback).y
-	print("knockback is "+ str((NetNodes.players.get_node(enemy).global_transform.origin.direction_to(self.camera.global_transform.origin)*knockback).y))
+	if (self.camera.global_transform.origin.direction_to(NetNodes.players.get_node(enemy).global_transform.origin).y+0.7 <0):
+		rocket_jump = true 
+		rocket_impulse += (NetNodes.players.get_node(enemy).global_transform.origin.direction_to(self.camera.global_transform.origin)*knockback).y
+	print("knockback is "+ str(self.camera.global_transform.origin.direction_to(NetNodes.players.get_node(enemy).global_transform.origin).y+0.7))
 
 func _hit(dmg,location):
 	if self.is_network_master():
