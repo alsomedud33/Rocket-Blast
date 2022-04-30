@@ -14,6 +14,7 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_pressed("Change_Team"):
 		if self.visible == true:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			self.visible = false
 		else:
 			self.visible = true

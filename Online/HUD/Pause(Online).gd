@@ -8,6 +8,7 @@ var Paused = false
 onready var masterVol_scroll = $"Panel/Master Volume"
 onready var effecctsVol_scroll = $"Panel/Effects Volume"
 onready var musicVol_scroll = $"Panel/Music2"
+
 func _ready():
 	Transitions.fade_out()
 	visible = false
@@ -17,6 +18,9 @@ func _ready():
 	effecctsVol_scroll.value = db2linear(AudioServer.get_bus_volume_db(1))
 	musicVol_scroll.value = db2linear(AudioServer.get_bus_volume_db(2))
 
+func _process(delta):
+	if self.visible == true:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 func _input(event):
 	if event.is_action_pressed("ui_focus_next"):
 		match fullscreen:
