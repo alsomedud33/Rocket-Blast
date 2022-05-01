@@ -53,6 +53,8 @@ onready var hat = $"Soldier Hat"
 onready var health_label = $Health
 onready var damage_label = $damage
 onready var team_label = $Team
+onready var arm_ik_left =$"Pivot/Camera/Arms/SkeletonIK2"
+onready var arm_ik_right =$"Pivot/Camera/Arms/SkeletonIK"
 #onready var usr_tag = $Username
 
 onready var armature = $"Armature"
@@ -245,6 +247,8 @@ func _ready():
 	$network_timer.wait_time = tick_rate
 	Globals.player = 1
 	$Armature/Skeleton/Spineik.start()
+	arm_ik_left.start()
+	arm_ik_right.start()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	$Health_Bar.visible = is_network_master()
 	health_label.visible = is_network_master()
