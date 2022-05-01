@@ -5,9 +5,17 @@ extends Control
 var fullscreen = false
 var Paused = false
 
-onready var masterVol_scroll = $"Panel/Master Volume"
-onready var effecctsVol_scroll = $"Panel/Effects Volume"
-onready var musicVol_scroll = $"Panel/Music2"
+onready var masterVol_scroll = $"Popup/TabContainer/Audio/Panel/Master Volume"
+onready var effecctsVol_scroll = $"Popup/TabContainer/Audio/Panel/Effects Volume"
+onready var musicVol_scroll = $"Popup/TabContainer/Audio/Panel/Music2"
+
+onready var master_vol_text = $"Popup/TabContainer/Audio/Panel/Volume Percent"
+onready var music_vol_text = $"Popup/TabContainer/Audio/Panel/Volume Percent2"
+onready var effects_vol_text = $"Popup/TabContainer/Audio/Panel/Volume Percent3"
+
+onready var mouse_sens_text = $"Popup/TabContainer/Game/Panel2/Sense Value"
+onready var viewmodel_fov_text = $"Popup/TabContainer/Game/Panel2/Viewmodel FOV Value"
+onready var fov_text = $"Popup/TabContainer/Game/Panel2/FOV Value"
 
 func _ready():
 	Transitions.fade_out()
@@ -51,23 +59,27 @@ func _input(event):
 
 func _on_HScrollBar_value_changed(value):
 	AudioServer.set_bus_volume_db(0, linear2db(value))
-	$"Panel/Volume Percent".text = "%d%%" % (value * 100)
+	master_vol_text.text = "%d%%" % (value * 100)
 
 func _on_Volume_Scroll2_value_changed(value):
 	AudioServer.set_bus_volume_db(1, linear2db(value))
-	$"Panel/Volume Percent2".text = "%d%%" % (value * 100)
+	music_vol_text.text = "%d%%" % (value * 100)
 
 func _on_Music2_value_changed(value):
 	AudioServer.set_bus_volume_db(2, linear2db(value))
-	$"Panel/Volume Percent3".text = "%d%%" % (value * 100)
+	effects_vol_text.text = "%d%%" % (value * 100)
 
 func _on_Mouse_Sense_value_changed(value):
 	Globals.mouse_sense = value*20
-	$"Panel/Sense Value".text = "%3.2f" % value
+	mouse_sens_text.text = "%3.2f" % value
 
+func _on_Viewmodel_FOV_Slider_value_changed(value):
+	Globals.viewmodel_fov = value
+	viewmodel_fov_text.text = str(value)
 
-
-
+func _on_FOV_Slider_value_changed(value):
+	Globals.fov = value
+	fov_text.text = str(value)
 
 func _on_Rocket_Man_pressed():
 	Transitions.fade_in()
@@ -123,3 +135,11 @@ func _on_Quit2_pressed():
 ##		3:
 ##			MusicController.play_music(MusicController.airport_track)
 #			MusicController.fade_in()
+
+
+func _on_Settings_pressed():
+	$Popup.popup()
+
+
+
+

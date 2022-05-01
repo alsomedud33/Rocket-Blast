@@ -2,6 +2,9 @@ extends Node
 
 
 var mouse_sense = 50
+var viewmodel_fov = 90
+var fov = 75
+
 var complete = false
 
 var sticky_deployed:int = 0

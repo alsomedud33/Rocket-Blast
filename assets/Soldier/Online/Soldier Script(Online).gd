@@ -179,27 +179,34 @@ var current_weapon = 1
 
 func weapon_switch():
 	if is_network_master():
-		if Input.is_action_just_pressed("wep_slot_1"):
+		animtree_change("parameters/Current_Wep/current",current_weapon - 1)
+		if Input.is_action_just_pressed("wep_slot_1") and current_weapon != 1:
+			$Weapon_Cooldown.start()
+			timer.stop()
 			current_weapon = 1
 			anim.play("Sway")
 			animtree_change("parameters/Attack_Anim/current",0)
 		
-		elif Input.is_action_just_pressed("wep_slot_2"):
+		elif Input.is_action_just_pressed("wep_slot_2") and current_weapon != 2:
+			$Weapon_Cooldown.start()
+			timer.stop()
 			current_weapon = 2
 			anim.play("Sway_Shotty")
 			animtree_change("parameters/Attack_Anim/current",0)
 		
-		elif Input.is_action_just_pressed("wep_slot_3"):
+		elif Input.is_action_just_pressed("wep_slot_3") and current_weapon != 3:
+			$Weapon_Cooldown.start()
+			timer.stop()
 			current_weapon = 3
 			anim.play("Sway_Shovel")
 			animtree_change("parameters/Attack_Anim/current",1)
 	else:
 		current_weapon = puppet_current_weapon
 	if current_weapon == 1:
+		timer
 		head.get_node("Camera/Rocket Launcher").visible = true
 		#anim.play("Sway")
 		armature.get_node("Skeleton/Rocket Launcher/Rocket Launcher").visible = true
-		animtree_change("parameters/Current_Wep/current",current_weapon - 1)
 	else:
 		head.get_node("Camera/Rocket Launcher").visible = false
 		armature.get_node("Skeleton/Rocket Launcher/Rocket Launcher").visible = false
@@ -207,7 +214,6 @@ func weapon_switch():
 	if current_weapon == 2:
 		head.get_node("Camera/Shotgun").visible = true
 		armature.get_node("Skeleton/Rocket Launcher/Shotgun").visible = true
-		animtree_change("parameters/Current_Wep/current",current_weapon - 1)
 	else:
 		head.get_node("Camera/Shotgun").visible = false
 		armature.get_node("Skeleton/Rocket Launcher/Shotgun").visible = false
@@ -215,7 +221,6 @@ func weapon_switch():
 	if current_weapon == 3:
 		head.get_node("Camera/Shovel").visible = true
 		armature.get_node("Skeleton/Rocket Launcher/Shovel").visible = true
-		animtree_change("parameters/Current_Wep/current",current_weapon - 1)
 	else:
 		head.get_node("Camera/Shovel").visible = false
 		armature.get_node("Skeleton/Rocket Launcher/Shovel").visible = false
@@ -276,6 +281,8 @@ func _ready():
 	#yield(get_tree().create_timer(.2), "timeout")
 	main = get_tree().current_scene
 func _process(delta):
+	camera.fov = Globals.fov
+	gun_camera.fov = Globals.viewmodel_fov
 	mouse_sensitivity = Globals.mouse_sense * 0.001
 	if is_network_master():
 		gun_camera.global_transform = camera.global_transform
@@ -485,38 +492,65 @@ func _physics_process(delta: float) -> void:
 			$"Username".hide()
 #		if Input.is_action_pressed("shoot1"):
 #			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		if Input.is_action_pressed("shoot1") and timer.is_stopped() and $"Weapon_Cooldown".is_stopped() and state != DEAD and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+			match current_weapon:
+				1:
+					anim.play("Shoot_Rocket")
+					animtree_change("parameters/Is_Shooting/active",1)
+					rpc("shoot_anim")
+					timer.start(cooldown)
+					#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+					
+					Network.emit_signal("player_shot",name,guns.global_transform.origin,"Rocket")
+					#anim.play("Shoot_Rocket")
+					$Rocket_Launch.play()
+					$Rocket_Trail.play()
+				2:
+					timer.start(0.625)
+					anim.play("Shoot_Shotty")
+					animtree_change("parameters/Is_Shooting/active",1)
+					rpc("shoot_anim")
+					randomize()
+		#			for r in camera.get_node("RayContainer").get_children():
+		#				r.cast_to.x = rand_range(wep_spread, -wep_spread)
+		#				r.cast_to.y = rand_range(wep_spread, -wep_spread)
+					Network.emit_signal("player_shot",name,guns.global_transform.origin,"Hitscan")
+				3:
+					timer.start(cooldown)
+					anim.play("Shoot_Shovel")
+					animtree_change("parameters/Is_Shooting/active",1)
+					rpc("shoot_anim")
 
-		if Input.is_action_pressed("shoot1") and timer.is_stopped() and state != DEAD and current_weapon == 1 and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-			anim.play("Shoot_Rocket")
-			animtree_change("parameters/Is_Shooting/active",1)
-			rpc("shoot_anim")
-			timer.start(cooldown)
-			#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-			
-			Network.emit_signal("player_shot",name,guns.global_transform.origin,"Rocket")
-			#anim.play("Shoot_Rocket")
-			$Rocket_Launch.play()
-			$Rocket_Trail.play()
-
-		elif Input.is_action_pressed("shoot1") and timer.is_stopped() and state != DEAD and current_weapon == 2 and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-			timer.start(cooldown)
-			anim.play("Shoot_Shotty")
-			animtree_change("parameters/Is_Shooting/active",1)
-			rpc("shoot_anim")
-			randomize()
-#			for r in camera.get_node("RayContainer").get_children():
-#				r.cast_to.x = rand_range(wep_spread, -wep_spread)
-#				r.cast_to.y = rand_range(wep_spread, -wep_spread)
-			Network.emit_signal("player_shot",name,guns.global_transform.origin,"Hitscan")
-			pass
-
-		elif Input.is_action_pressed("shoot1") and timer.is_stopped() and state != DEAD and current_weapon == 3 and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-			timer.start(cooldown)
-			anim.play("Shoot_Shovel")
-			animtree_change("parameters/Is_Shooting/active",1)
-			rpc("shoot_anim")
-			#melee_attack() is called via animation player 
-			pass
+#		if Input.is_action_pressed("shoot1") and timer.is_stopped() and state != DEAD and current_weapon == 1 and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+#			anim.play("Shoot_Rocket")
+#			animtree_change("parameters/Is_Shooting/active",1)
+#			rpc("shoot_anim")
+#			timer.start(cooldown)
+#			#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+#
+#			Network.emit_signal("player_shot",name,guns.global_transform.origin,"Rocket")
+#			#anim.play("Shoot_Rocket")
+#			$Rocket_Launch.play()
+#			$Rocket_Trail.play()
+#
+#		elif Input.is_action_pressed("shoot1") and timer.is_stopped() and state != DEAD and current_weapon == 2 and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+#			timer.start(cooldown)
+#			anim.play("Shoot_Shotty")
+#			animtree_change("parameters/Is_Shooting/active",1)
+#			rpc("shoot_anim")
+#			randomize()
+##			for r in camera.get_node("RayContainer").get_children():
+##				r.cast_to.x = rand_range(wep_spread, -wep_spread)
+##				r.cast_to.y = rand_range(wep_spread, -wep_spread)
+#			Network.emit_signal("player_shot",name,guns.global_transform.origin,"Hitscan")
+#			pass
+#
+#		elif Input.is_action_pressed("shoot1") and timer.is_stopped() and state != DEAD and current_weapon == 3 and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+#			timer.start(cooldown)
+#			anim.play("Shoot_Shovel")
+#			animtree_change("parameters/Is_Shooting/active",1)
+#			rpc("shoot_anim")
+#			pass
 
 func change_state(new_state):
 	old_state = state
