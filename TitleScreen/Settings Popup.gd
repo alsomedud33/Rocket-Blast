@@ -26,7 +26,13 @@ func _ready():
 	viewmodel_fov_scroll.value = Globals.load_data().viewmodel_fov
 	fov_scroll.value = Globals.load_data().fov
 	
+	masterVol_scroll.value = db2linear(Globals.load_data().master_vol)
+	effecctsVol_scroll.value = db2linear(Globals.load_data().effects_vol)
+	musicVol_scroll.value = db2linear(Globals.load_data().music_vol)
 	
+#	AudioServer.set_bus_volume_db(0, Globals.load_data().master_vol)
+#	AudioServer.set_bus_volume_db(1, Globals.load_data().effects_vol)
+#	AudioServer.set_bus_volume_db(2, Globals.load_data().music_vol)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

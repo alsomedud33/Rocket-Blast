@@ -11,7 +11,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _unhandled_input(event):#_process(delta):
 	if Input.is_action_just_pressed("Change_Team"):
 		if self.visible == true:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

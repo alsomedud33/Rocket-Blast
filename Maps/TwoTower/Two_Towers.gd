@@ -27,6 +27,7 @@ func _ready():
 	Network.connect("koth_point_entered",self,"_koth_point_entered")
 	Network.connect("koth_point_exited",self,"_koth_point_exited")
 	Network.connect("koth_points_change",self,"_koth_points_change")
+	#restart(1)
 
 	
 #func _player_joined(id):
@@ -41,7 +42,9 @@ func _ready():
 #		NetNodes.players.get_node(str(id)).queue_free()
 #	pass
 func _player_disconnected(id):
-	NetNodes.players.remove_child(NetNodes.players.get_node(str(id)))
+	var player = NetNodes.players.get_node(str(id))
+	NetNodes.players.remove_child(player)
+	player.queue_free()
 	print ("player with id: " +str(id) +" has disconnected")
 	for p in NetNodes.players.get_children():
 			p.visible = true

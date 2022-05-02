@@ -258,4 +258,5 @@ __meta__ = {
 [node name="Settings Popup" parent="Pause" instance=ExtResource( 5 )]
 
 [connection signal="pressed" from="Pause/Panel/Quit" to="Pause" method="_on_Quit_pressed"]
+[connection signal="pressed" from="Pause/Panel/Disconnect" to="Pause" method="_on_Disconnect_pressed"]
 [connection signal="pressed" from="Pause/Panel/Settings" to="Pause" method="_on_Settings_pressed"]

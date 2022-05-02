@@ -141,5 +141,22 @@ func _on_Settings_pressed():
 	$"Settings Popup".popup()
 
 
-
-
+func _on_Disconnect_pressed():
+#	if get_tree().is_network_master():
+#		get_tree().set_network_peer(null)
+	if Network.server != null:
+		Network.server.close_connection()
+	if Network.client != null:
+		Network.client.close_connection()
+#	for p in NetNodes.players.get_children():
+#		NetNodes.players.remove_child(p)
+#		p.queue_free()
+	Players.player_list.clear()
+	MusicController.fade_out()
+	Transitions.fade_in()
+	yield(Transitions.anim,"animation_finished")
+	print (get_tree().current_scene.name)
+	SceneChanger.goto_scene("res://TitleScreen/TitleScreen.tscn",get_tree().root.get_node("Two_Towers"))
+	for p in NetNodes.players.get_children():
+		NetNodes.players.remove_child(p)
+		p.queue_free()

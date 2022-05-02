@@ -4,6 +4,8 @@ signal team_info_sent()
 
 onready var display_txt = $Info_Text
 onready var anim = $AnimationPlayer
+onready var username_input = $"Settings_panel/Username"
+
 func _ready():
 	if Network.server_disconnect == true:
 		anim.play("Server Disconnected")
@@ -11,6 +13,7 @@ func _ready():
 	get_tree().connect("network_peer_disconnected",self,"_remove_client")
 	$Game_panel/LineEdit.text = "127.0.0.1"
 	Transitions.fade_out()
+	username_input.text = Globals.load_data().username#Players.username#Globals.load_data().username
 
 func _server_disconnect_false(anim_name):
 	Network.server_disconnect = false
@@ -148,6 +151,7 @@ func _on_LineEdit_text_changed(new_text):
 
 func _on_Username_text_changed(new_text):
 	Players.username = new_text
+	Globals.save_data()
 
 
 func _on_Start_button_pressed():

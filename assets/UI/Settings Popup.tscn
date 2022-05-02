@@ -127,7 +127,6 @@ corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
 
 [node name="Settings Popup" type="WindowDialog"]
-visible = true
 anchor_left = 0.40625
 anchor_top = 0.259722
 anchor_right = 0.983593
