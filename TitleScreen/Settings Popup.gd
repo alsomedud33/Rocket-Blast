@@ -102,3 +102,23 @@ func _on_Quit2_pressed():
 
 func _on_Settings_Popup_popup_hide():
 	Globals.save_data()
+
+
+func _on_DisplayBtn_item_selected(index):
+	match index:
+		0:
+			OS.set_window_fullscreen(false)
+		1:
+			OS.set_window_fullscreen(true)
+
+
+func _on_ResolutionBtn_item_selected(index):
+	match index:
+		0:
+			OS.set_window_size(Vector2(1024,256))
+		1:
+			OS.set_window_size(Vector2(1280,720))
+		2:
+			OS.set_window_size(Vector2(1600,900))
+		3:
+			OS.set_window_size(Vector2(1920,1080))

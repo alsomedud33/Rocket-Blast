@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://assets/UI/Font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://TitleScreen/Settings Popup.gd" type="Script" id=2]
@@ -126,7 +126,53 @@ corner_radius_top_right = 30
 corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
 
+[sub_resource type="DynamicFontData" id=17]
+font_path = "res://assets/Fonts/TF2.ttf"
+
+[sub_resource type="DynamicFont" id=68]
+size = 35
+outline_size = 3
+outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+use_filter = true
+font_data = SubResource( 17 )
+
+[sub_resource type="StyleBoxFlat" id=69]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="DynamicFont" id=62]
+size = 35
+outline_size = 3
+outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+use_filter = true
+font_data = SubResource( 17 )
+
+[sub_resource type="StyleBoxFlat" id=63]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="StyleBoxLine" id=64]
+color = Color( 0.462745, 0.462745, 0.501961, 1 )
+thickness = 10
+vertical = true
+
+[sub_resource type="StyleBoxLine" id=65]
+color = Color( 0.333333, 0.333333, 0.372549, 1 )
+thickness = 10
+vertical = true
+
+[sub_resource type="StyleBoxFlat" id=66]
+bg_color = Color( 0.133333, 0.133333, 0.152941, 1 )
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxLine" id=67]
+color = Color( 0.164706, 0.658824, 0.92549, 1 )
+thickness = 10
+vertical = true
+
 [node name="Settings Popup" type="WindowDialog"]
+visible = true
 anchor_left = 0.40625
 anchor_top = 0.259722
 anchor_right = 0.983593
@@ -145,6 +191,8 @@ __meta__ = {
 [node name="TabContainer" type="TabContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_top = 0.000167847
+margin_bottom = 0.000183105
 custom_styles/tab_fg = SubResource( 56 )
 custom_styles/tab_bg = SubResource( 57 )
 custom_styles/panel = SubResource( 58 )
@@ -184,9 +232,9 @@ step = 0.01
 value = 2.5
 
 [node name="Mouse Sense2" type="SpinBox" parent="TabContainer/Game/Panel2"]
-margin_left = 628.0
+margin_left = 626.0
 margin_top = 72.0
-margin_right = 729.0
+margin_right = 727.0
 margin_bottom = 96.0
 max_value = 10.0
 step = 0.01
@@ -343,6 +391,7 @@ align = 1
 valign = 2
 
 [node name="Audio" type="Tabs" parent="TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 24.0
@@ -362,8 +411,8 @@ anchor_right = 0.892969
 anchor_bottom = 0.20853
 margin_left = -37.9666
 margin_top = 63.1332
-margin_right = -37.9666
-margin_bottom = 63.1332
+margin_right = -38.5916
+margin_bottom = 63.0501
 rect_min_size = Vector2( 100, 0 )
 rect_pivot_offset = Vector2( 96, -75.4585 )
 custom_styles/grabber_highlight = SubResource( 43 )
@@ -544,6 +593,181 @@ __meta__ = {
 "_editor_description_": ""
 }
 
+[node name="Video" type="Tabs" parent="TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 24.0
+mouse_filter = 1
+tab_close_display_policy = 2
+
+[node name="Panel" type="Panel" parent="TabContainer/Video"]
+self_modulate = Color( 1, 1, 1, 0.5 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 42 )
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Video/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Video/Panel/MarginContainer"]
+margin_right = 718.0
+margin_bottom = 360.0
+rect_min_size = Vector2( 718, 360 )
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="TabContainer/Video/Panel/MarginContainer/VBoxContainer"]
+margin_right = 718.0
+margin_bottom = 62.0
+
+[node name="ResolutionLabel" type="Label" parent="TabContainer/Video/Panel/MarginContainer/VBoxContainer/HBoxContainer5"]
+margin_top = 15.0
+margin_right = 181.0
+margin_bottom = 46.0
+rect_pivot_offset = Vector2( 66.3635, -35 )
+custom_fonts/font = SubResource( 50 )
+text = "Resolution"
+align = 1
+valign = 1
+
+[node name="ResolutionBtn" type="OptionButton" parent="TabContainer/Video/Panel/MarginContainer/VBoxContainer/HBoxContainer5"]
+margin_left = 490.0
+margin_right = 718.0
+margin_bottom = 62.0
+rect_min_size = Vector2( 228, 62 )
+size_flags_horizontal = 10
+custom_fonts/font = SubResource( 68 )
+custom_styles/normal = SubResource( 69 )
+text = "1024x456"
+align = 1
+items = [ "1024x456", null, false, 0, null, "1280x720", null, false, 1, null, "1600x900", null, false, 2, null, "1920x1080", null, false, 3, null ]
+selected = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Video/Panel/MarginContainer/VBoxContainer"]
+margin_top = 66.0
+margin_right = 718.0
+margin_bottom = 128.0
+
+[node name="DisplayLabel" type="Label" parent="TabContainer/Video/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_top = 15.0
+margin_right = 213.0
+margin_bottom = 46.0
+rect_pivot_offset = Vector2( 66.3635, -35 )
+custom_fonts/font = SubResource( 50 )
+text = "Display Mode"
+align = 1
+valign = 1
+
+[node name="DisplayBtn" type="OptionButton" parent="TabContainer/Video/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 490.0
+margin_right = 718.0
+margin_bottom = 62.0
+rect_min_size = Vector2( 228, 62 )
+size_flags_horizontal = 10
+custom_fonts/font = SubResource( 62 )
+custom_styles/normal = SubResource( 63 )
+text = "Windowed"
+align = 1
+items = [ "Windowed", null, false, 0, null, "Fullscreen", null, false, 1, null ]
+selected = 0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/Video/Panel/MarginContainer/VBoxContainer"]
+margin_top = 132.0
+margin_right = 718.0
+margin_bottom = 194.0
+
+[node name="VsyncLabel" type="Label" parent="TabContainer/Video/Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
+margin_top = 15.0
+margin_right = 102.0
+margin_bottom = 46.0
+rect_pivot_offset = Vector2( 66.3635, -35 )
+custom_fonts/font = SubResource( 50 )
+text = "Vsync"
+align = 1
+valign = 1
+
+[node name="VsyncBtn" type="CheckButton" parent="TabContainer/Video/Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 490.0
+margin_right = 718.0
+margin_bottom = 62.0
+rect_min_size = Vector2( 228, 62 )
+size_flags_horizontal = 10
+custom_fonts/font = SubResource( 62 )
+custom_styles/normal = SubResource( 63 )
+align = 1
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="TabContainer/Video/Panel/MarginContainer/VBoxContainer"]
+margin_top = 198.0
+margin_right = 718.0
+margin_bottom = 260.0
+
+[node name="DisplayFpsLabel" type="Label" parent="TabContainer/Video/Panel/MarginContainer/VBoxContainer/HBoxContainer4"]
+margin_top = 15.0
+margin_right = 179.0
+margin_bottom = 46.0
+rect_pivot_offset = Vector2( 66.3635, -35 )
+custom_fonts/font = SubResource( 50 )
+text = "display fps"
+align = 1
+valign = 1
+
+[node name="DisplayFpsBtn" type="CheckButton" parent="TabContainer/Video/Panel/MarginContainer/VBoxContainer/HBoxContainer4"]
+margin_left = 490.0
+margin_right = 718.0
+margin_bottom = 62.0
+rect_min_size = Vector2( 228, 62 )
+size_flags_horizontal = 10
+custom_fonts/font = SubResource( 62 )
+custom_styles/normal = SubResource( 63 )
+align = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="TabContainer/Video/Panel/MarginContainer/VBoxContainer"]
+margin_top = 264.0
+margin_right = 718.0
+margin_bottom = 326.0
+rect_min_size = Vector2( 0, 62 )
+
+[node name="MaxFpsLabel" type="Label" parent="TabContainer/Video/Panel/MarginContainer/VBoxContainer/HBoxContainer3"]
+margin_top = 15.0
+margin_right = 129.0
+margin_bottom = 46.0
+rect_pivot_offset = Vector2( 66.3635, -35 )
+custom_fonts/font = SubResource( 50 )
+text = "max fps"
+align = 1
+valign = 1
+
+[node name="MaxFpsVal" type="Label" parent="TabContainer/Video/Panel/MarginContainer/VBoxContainer/HBoxContainer3"]
+margin_left = 409.0
+margin_top = 13.0
+margin_right = 484.0
+margin_bottom = 49.0
+size_flags_horizontal = 10
+custom_fonts/font = SubResource( 62 )
+custom_styles/normal = SubResource( 63 )
+text = "max"
+align = 1
+
+[node name="MaxFpsSlide" type="HScrollBar" parent="TabContainer/Video/Panel/MarginContainer/VBoxContainer/HBoxContainer3"]
+margin_left = 488.0
+margin_top = 25.0
+margin_right = 718.0
+margin_bottom = 36.0
+rect_min_size = Vector2( 230, 11 )
+rect_pivot_offset = Vector2( 96, -75.4585 )
+size_flags_horizontal = 8
+size_flags_vertical = 6
+custom_styles/grabber_highlight = SubResource( 64 )
+custom_styles/grabber = SubResource( 65 )
+custom_styles/scroll = SubResource( 66 )
+custom_styles/grabber_pressed = SubResource( 67 )
+max_value = 1.0
+step = 0.01
+value = 0.5
+
 [connection signal="popup_hide" from="." to="." method="_on_Settings_Popup_popup_hide"]
 [connection signal="value_changed" from="TabContainer/Game/Panel2/Mouse Sense" to="." method="_on_Mouse_Sense_value_changed"]
 [connection signal="value_changed" from="TabContainer/Game/Panel2/Mouse Sense2" to="." method="_on_Mouse_Sense2_value_changed"]
@@ -555,3 +779,5 @@ __meta__ = {
 [connection signal="value_changed" from="TabContainer/Audio/Panel/Effects Volume" to="." method="_on_Effects_Volume_value_changed"]
 [connection signal="value_changed" from="TabContainer/Audio/Panel/Music2" to="." method="_on_Music2_value_changed"]
 [connection signal="pressed" from="TabContainer/Audio/Panel/Quit2" to="." method="_on_Quit2_pressed"]
+[connection signal="item_selected" from="TabContainer/Video/Panel/MarginContainer/VBoxContainer/HBoxContainer5/ResolutionBtn" to="." method="_on_ResolutionBtn_item_selected"]
+[connection signal="item_selected" from="TabContainer/Video/Panel/MarginContainer/VBoxContainer/HBoxContainer/DisplayBtn" to="." method="_on_DisplayBtn_item_selected"]
