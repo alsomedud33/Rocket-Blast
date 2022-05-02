@@ -55,7 +55,7 @@ func _input(event: InputEvent) -> void:
 func _ready():
 	Globals.player = 2
 	yield(get_tree().create_timer(.2), "timeout")
-	main = get_tree().current_scene
+	main = get_tree().current_scene.get_node("ViewportContainer/Viewport")
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 func _process(delta):

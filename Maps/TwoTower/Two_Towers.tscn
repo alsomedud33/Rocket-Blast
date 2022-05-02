@@ -253,37 +253,32 @@ amount = 100.0
 [node name="Area" parent="." instance=ExtResource( 4 )]
 transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 8, 0 )
 
-[node name="Viewport" type="Viewport" parent="."]
-size = Vector2( 1280, 720 )
-render_target_update_mode = 3
-
-[node name="CanvasLayer" type="CanvasLayer" parent="Viewport"]
-layer = 2
-
-[node name="Change_Team" type="Control" parent="Viewport/CanvasLayer"]
+[node name="Change_Team" type="Control" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 1
 script = ExtResource( 9 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Shifting Shader" parent="Viewport/CanvasLayer/Change_Team" instance=ExtResource( 8 )]
+[node name="Shifting Shader" parent="Change_Team" instance=ExtResource( 8 )]
 
-[node name="ColorRect" parent="Viewport/CanvasLayer/Change_Team/Shifting Shader" index="0"]
+[node name="ColorRect" parent="Change_Team/Shifting Shader" index="0"]
 self_modulate = Color( 0, 0.105882, 0.0666667, 1 )
 
-[node name="WobbleOne" parent="Viewport/CanvasLayer/Change_Team/Shifting Shader" index="1"]
+[node name="WobbleOne" parent="Change_Team/Shifting Shader" index="1"]
 self_modulate = Color( 0, 1, 0.623529, 1 )
 
-[node name="WobbleTwo" parent="Viewport/CanvasLayer/Change_Team/Shifting Shader" index="2"]
+[node name="WobbleTwo" parent="Change_Team/Shifting Shader" index="2"]
 self_modulate = Color( 0, 1, 0.623529, 1 )
 texture = ExtResource( 7 )
 
-[node name="AnimationPlayer" parent="Viewport/CanvasLayer/Change_Team/Shifting Shader" index="3"]
+[node name="AnimationPlayer" parent="Change_Team/Shifting Shader" index="3"]
 "anims/Hue Shifting" = SubResource( 8 )
 
-[node name="TextureRect" type="TextureRect" parent="Viewport/CanvasLayer/Change_Team/Shifting Shader"]
+[node name="TextureRect" type="TextureRect" parent="Change_Team/Shifting Shader"]
 self_modulate = Color( 0, 1, 0.623529, 1 )
 material = SubResource( 10 )
 anchor_right = 1.0
@@ -291,15 +286,16 @@ anchor_bottom = 1.0
 texture = ExtResource( 2 )
 expand = true
 
-[node name="Blue" type="Panel" parent="Viewport/CanvasLayer/Change_Team"]
+[node name="Blue" type="Panel" parent="Change_Team"]
 self_modulate = Color( 0, 0, 1, 0.501961 )
 margin_left = 812.0
 margin_top = 168.0
 margin_right = 1197.0
 margin_bottom = 656.0
+mouse_filter = 1
 custom_styles/panel = SubResource( 14 )
 
-[node name="Blue" type="Label" parent="Viewport/CanvasLayer/Change_Team/Blue"]
+[node name="Blue" type="Label" parent="Change_Team/Blue"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -120.0
@@ -312,7 +308,7 @@ text = "Blue"
 align = 1
 valign = 1
 
-[node name="Number" type="Label" parent="Viewport/CanvasLayer/Change_Team/Blue"]
+[node name="Number" type="Label" parent="Change_Team/Blue"]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -326,20 +322,21 @@ text = "temp"
 align = 1
 valign = 1
 
-[node name="Button" type="Button" parent="Viewport/CanvasLayer/Change_Team/Blue"]
+[node name="Button" type="Button" parent="Change_Team/Blue"]
 self_modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="Red" type="Panel" parent="Viewport/CanvasLayer/Change_Team"]
+[node name="Red" type="Panel" parent="Change_Team"]
 self_modulate = Color( 1, 0, 0, 0.35 )
 margin_left = 177.0
 margin_top = 168.0
 margin_right = 562.0
 margin_bottom = 656.0
+mouse_filter = 1
 custom_styles/panel = SubResource( 14 )
 
-[node name="Red2" type="Label" parent="Viewport/CanvasLayer/Change_Team/Red"]
+[node name="Red2" type="Label" parent="Change_Team/Red"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -96.5
@@ -352,7 +349,7 @@ text = "red"
 align = 1
 valign = 1
 
-[node name="Number" type="Label" parent="Viewport/CanvasLayer/Change_Team/Red"]
+[node name="Number" type="Label" parent="Change_Team/Red"]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -366,12 +363,12 @@ text = "temp"
 align = 1
 valign = 1
 
-[node name="Button" type="Button" parent="Viewport/CanvasLayer/Change_Team/Red"]
+[node name="Button" type="Button" parent="Change_Team/Red"]
 self_modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="Label" type="Label" parent="Viewport/CanvasLayer/Change_Team"]
+[node name="Label" type="Label" parent="Change_Team"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -356.0
@@ -380,7 +377,8 @@ margin_bottom = 100.0
 custom_fonts/font = SubResource( 12 )
 text = "Choose team"
 
-[connection signal="visibility_changed" from="Viewport/CanvasLayer/Change_Team" to="Viewport/CanvasLayer/Change_Team" method="_on_Change_Team_visibility_changed"]
+[connection signal="visibility_changed" from="Change_Team" to="Change_Team" method="_on_Change_Team_visibility_changed"]
+[connection signal="pressed" from="Change_Team/Red/Button" to="Change_Team" method="_on_Button_pressed"]
 
 [editable path="Big_Bass"]
-[editable path="Viewport/CanvasLayer/Change_Team/Shifting Shader"]
+[editable path="Change_Team/Shifting Shader"]

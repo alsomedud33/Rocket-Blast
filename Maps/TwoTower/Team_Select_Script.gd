@@ -11,7 +11,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _unhandled_input(event):#_process(delta):
+func _input(event):#_process(delta):
 	if Input.is_action_just_pressed("Change_Team"):
 		if self.visible == true:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -34,3 +34,7 @@ func set_player_no():
 
 func _on_Change_Team_visibility_changed():
 	set_player_no()
+
+
+func _on_Button_pressed():
+	print ("yo")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://assets/Sfx/SpeedRays.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/Demoman/Sticky Jumper.tscn" type="PackedScene" id=2]
@@ -8,7 +8,6 @@
 [ext_resource path="res://assets/Demoman/Sticky Bomb.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/Demoman/DemomanShoot.tres" type="Animation" id=7]
 [ext_resource path="res://assets/Sounds/Step_1.wav" type="AudioStream" id=8]
-[ext_resource path="res://assets/UI/HUD.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/Soldier/Crosshair.gd" type="Script" id=10]
 
 [sub_resource type="CapsuleShape" id=1]
@@ -240,21 +239,24 @@ transform = Transform( -0.3, 0, -4.52987e-08, 0, 0.3, 0, 4.52987e-08, 0, -0.3, 0
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
 
-[node name="ViewportContainer" type="ViewportContainer" parent="CanvasLayer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-stretch = true
-
-[node name="Crosshair" type="TextureRect" parent="CanvasLayer/ViewportContainer"]
-margin_left = 625.0
-margin_top = 351.0
-margin_right = 655.0
-margin_bottom = 369.0
+[node name="Crosshair" type="TextureRect" parent="CanvasLayer"]
+anchor_left = 0.488281
+anchor_top = 0.4875
+anchor_right = 0.511719
+anchor_bottom = 0.5125
 rect_pivot_offset = Vector2( 15, 9 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = SubResource( 3 )
 script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="ViewportContainer" type="ViewportContainer" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+stretch = true
 
 [node name="Viewport" type="Viewport" parent="CanvasLayer/ViewportContainer"]
 size = Vector2( 1280, 720 )
@@ -309,8 +311,6 @@ bus = "Effects"
 [node name="land" type="AudioStreamPlayer" parent="."]
 stream = SubResource( 11 )
 bus = "Effects"
-
-[node name="HUD" parent="." instance=ExtResource( 9 )]
 
 [node name="Visibility collision" type="Area" parent="."]
 collision_layer = 16

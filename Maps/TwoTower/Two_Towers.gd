@@ -89,11 +89,13 @@ func _instance_player(id,_team):
 	p.name = str(id)
 	p.team = _team
 	p.global_transform.origin = get_node("Spawn Points/" +str(p.team)+"/"+"Spawn Point"+str(p.team)).global_transform.origin
-	NetNodes.players.add_child(p)
+	NetNodes.players.add_child(p)#self.add_child(p) #NetNodes.players.add_child(p)
 
 func _respawn(id,merc,team):
 	rpc("_respawn_remote",id,merc,team)
 	get_node("CameraHub/Camera").current = true
+	if NetNodes.has_node("HUD (Online)"):
+		NetNodes.get_node("HUD (Online)").queue_free()
 	var child = NetNodes.players.get_node(str(id))
 	NetNodes.players.remove_child(NetNodes.players.get_node(str(id)))#get_node(str(id)).queue_free()
 	child.queue_free()

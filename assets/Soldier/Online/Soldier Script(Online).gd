@@ -276,7 +276,7 @@ func _ready():
 	if self.is_network_master():
 		rpc("set_team")
 		set_team()
-		$"CanvasLayer/ViewportContainer".add_child(hud.instance())
+		NetNodes.add_child(hud.instance())#$"CanvasLayer/ViewportContainer".add_child(hud.instance())
 		main = get_tree().current_scene
 #	else:
 #		$"CanvasLayer/ViewportContainer/HUD (Online)".queue_free()

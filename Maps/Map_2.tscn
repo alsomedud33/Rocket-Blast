@@ -1,9 +1,11 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Maps/Map 2/Second Area.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Maps/Stage Select_Map_2.gd" type="Script" id=2]
 [ext_resource path="res://Maps/Map 2/First Area.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/UI/HUD.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/Skybox/BoundingBox.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Online/Lobby/Viewport.gd" type="Script" id=6]
 [ext_resource path="res://assets/Platform Objects/Wall1.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Maps/Map 2/Third Area.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Maps/Map 2/Fourth Area.tscn" type="PackedScene" id=11]
@@ -85,18 +87,34 @@ outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
 use_filter = true
 font_data = SubResource( 96 )
 
-[node name="Room" type="Node"]
+[node name="Room" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 
-[node name="Respawn" type="Position3D" parent="."]
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+stretch = true
+
+[node name="Viewport" type="Viewport" parent="ViewportContainer"]
+size = Vector2( 1280, 720 )
+render_target_update_mode = 3
+audio_listener_enable_2d = true
+audio_listener_enable_3d = true
+script = ExtResource( 6 )
+
+[node name="Room" type="Node" parent="ViewportContainer/Viewport"]
+
+[node name="Respawn" type="Position3D" parent="ViewportContainer/Viewport/Room"]
 transform = Transform( 0.99914, 0, -0.0414571, 0, 1, 0, 0.0414571, 0, 0.99914, 51.7849, 1.9231, -14.0988 )
 
-[node name="Demolition Man" parent="." instance=ExtResource( 12 )]
+[node name="Demolition Man" parent="ViewportContainer/Viewport/Room" instance=ExtResource( 12 )]
 transform = Transform( 0.99914, 0, -0.0414571, 0, 1, 0, 0.0414571, 0, 0.99914, 51.7849, 2.9231, -14.0988 )
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="ViewportContainer/Viewport/Room"]
 environment = SubResource( 2 )
 
-[node name="DirectionalLight" type="DirectionalLight" parent="."]
+[node name="DirectionalLight" type="DirectionalLight" parent="ViewportContainer/Viewport/Room"]
 transform = Transform( 0.999332, 0.0182782, -0.0316587, 0.0307173, 0.0496713, 0.998293, 0.0198195, -0.998598, 0.0490766, 46.5, 7.5, -10 )
 layers = 13
 light_color = Color( 0.67451, 0.67451, 0.996078, 1 )
@@ -106,123 +124,123 @@ shadow_bias = 1.509
 directional_shadow_mode = 1
 directional_shadow_depth_range = 1
 
-[node name="First Area" parent="." instance=ExtResource( 3 )]
+[node name="First Area" parent="ViewportContainer/Viewport/Room" instance=ExtResource( 3 )]
 
-[node name="Position3D" type="Position3D" parent="First Area"]
+[node name="Position3D" type="Position3D" parent="ViewportContainer/Viewport/Room/First Area"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -14.5 )
 
-[node name="Second Area" parent="." instance=ExtResource( 1 )]
+[node name="Second Area" parent="ViewportContainer/Viewport/Room" instance=ExtResource( 1 )]
 
-[node name="Position3D" type="Position3D" parent="Second Area"]
+[node name="Position3D" type="Position3D" parent="ViewportContainer/Viewport/Room/Second Area"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -14.5 )
 
-[node name="Third Area" parent="." instance=ExtResource( 10 )]
+[node name="Third Area" parent="ViewportContainer/Viewport/Room" instance=ExtResource( 10 )]
 
-[node name="Position3D" type="Position3D" parent="Third Area"]
+[node name="Position3D" type="Position3D" parent="ViewportContainer/Viewport/Room/Third Area"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2, 1 )
 
-[node name="Fourth Area" parent="." instance=ExtResource( 11 )]
+[node name="Fourth Area" parent="ViewportContainer/Viewport/Room" instance=ExtResource( 11 )]
 
-[node name="Position3D" type="Position3D" parent="Fourth Area"]
+[node name="Position3D" type="Position3D" parent="ViewportContainer/Viewport/Room/Fourth Area"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, -7 )
 
-[node name="Fifth Area" parent="." instance=ExtResource( 15 )]
+[node name="Fifth Area" parent="ViewportContainer/Viewport/Room" instance=ExtResource( 15 )]
 
-[node name="Position3D" type="Position3D" parent="Fifth Area"]
+[node name="Position3D" type="Position3D" parent="ViewportContainer/Viewport/Room/Fifth Area"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2.5, -9.5 )
 
-[node name="Position3D2" type="Position3D" parent="Fifth Area"]
+[node name="Position3D2" type="Position3D" parent="ViewportContainer/Viewport/Room/Fifth Area"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, 45.5 )
 
-[node name="Spatial46" parent="." instance=ExtResource( 9 )]
+[node name="Spatial46" parent="ViewportContainer/Viewport/Room" instance=ExtResource( 9 )]
 transform = Transform( -1.79147e-07, 1.07284e-05, -1, 100, -4.37114e-06, -1.79148e-09, -4.37114e-06, -100, -1.07284e-07, 140.5, 16.4874, 226.17 )
 collision_layer = 8
 
-[node name="Spatial49" parent="." instance=ExtResource( 9 )]
+[node name="Spatial49" parent="ViewportContainer/Viewport/Room" instance=ExtResource( 9 )]
 transform = Transform( -1.79147e-07, 1.07284e-05, -1, 100, -4.37114e-06, -1.79148e-09, -4.37114e-06, -100, -1.07284e-07, 140.5, -181.013, 226.17 )
 collision_layer = 8
 
-[node name="Spatial60" parent="." instance=ExtResource( 9 )]
+[node name="Spatial60" parent="ViewportContainer/Viewport/Room" instance=ExtResource( 9 )]
 transform = Transform( 100, -4.37114e-06, 4.19199e-08, -4.19199e-06, -1.07284e-05, 1, -4.37114e-06, -100, -1.07284e-07, 45.5, -274.513, 226.17 )
 collision_layer = 8
 
-[node name="Spatial61" parent="." instance=ExtResource( 9 )]
+[node name="Spatial61" parent="ViewportContainer/Viewport/Room" instance=ExtResource( 9 )]
 transform = Transform( -100, 1.31134e-05, -4.19199e-08, -1.31134e-05, -100, -1.49012e-07, -4.19199e-06, -1.90735e-05, 1, 45.5, -112.013, 129.67 )
 collision_layer = 8
 
-[node name="Spatial66" parent="." instance=ExtResource( 9 )]
+[node name="Spatial66" parent="ViewportContainer/Viewport/Room" instance=ExtResource( 9 )]
 transform = Transform( -100, 1.31134e-05, -4.19199e-08, -1.31134e-05, -100, -1.49012e-07, -4.19199e-06, -1.90735e-05, 1, 45.5, -295.013, 129.67 )
 collision_layer = 8
 
-[node name="Spatial63" parent="." instance=ExtResource( 9 )]
+[node name="Spatial63" parent="ViewportContainer/Viewport/Room" instance=ExtResource( 9 )]
 transform = Transform( -100, 1.31134e-05, -4.19199e-08, -1.31134e-05, -100, -1.49012e-07, -4.19199e-06, -1.90735e-05, 1, 168, -20.5126, 129.67 )
 collision_layer = 8
 
-[node name="Spatial65" parent="." instance=ExtResource( 9 )]
+[node name="Spatial65" parent="ViewportContainer/Viewport/Room" instance=ExtResource( 9 )]
 transform = Transform( -100, 1.31134e-05, -4.19199e-08, -1.31134e-05, -100, -1.49012e-07, -4.19199e-06, -1.90735e-05, 1, 47, 168.487, 129.67 )
 collision_layer = 8
 
-[node name="Spatial64" parent="." instance=ExtResource( 9 )]
+[node name="Spatial64" parent="ViewportContainer/Viewport/Room" instance=ExtResource( 9 )]
 transform = Transform( -100, 1.31134e-05, -4.19199e-08, -1.31134e-05, -100, -1.49012e-07, -4.19199e-06, -1.90735e-05, 1, -79, -20.5126, 129.67 )
 collision_layer = 8
 
-[node name="Spatial50" parent="." instance=ExtResource( 9 )]
+[node name="Spatial50" parent="ViewportContainer/Viewport/Room" instance=ExtResource( 9 )]
 transform = Transform( 1.79148e-07, -1.98616e-06, 1, 100, -4.37114e-06, -1.79148e-09, 4.37114e-06, 100, 1.98616e-08, -44, -181.013, 226.17 )
 collision_layer = 8
 
-[node name="Spatial51" parent="." instance=ExtResource( 9 )]
+[node name="Spatial51" parent="ViewportContainer/Viewport/Room" instance=ExtResource( 9 )]
 transform = Transform( 2.18557e-06, 50, 3.17865e-08, 50, -2.18557e-06, -1.79148e-09, -8.95738e-08, 1.58933e-06, -1, -54.5, -126.013, 319.67 )
 collision_layer = 8
 
-[node name="Spatial52" parent="." instance=ExtResource( 9 )]
+[node name="Spatial52" parent="ViewportContainer/Viewport/Room" instance=ExtResource( 9 )]
 transform = Transform( 2.18557e-06, 50, 3.17865e-08, 50, -2.18557e-06, -1.79148e-09, -8.95738e-08, 1.58933e-06, -1, 142.5, -126.013, 319.67 )
 collision_layer = 8
 
-[node name="Spatial53" parent="." instance=ExtResource( 9 )]
+[node name="Spatial53" parent="ViewportContainer/Viewport/Room" instance=ExtResource( 9 )]
 transform = Transform( 2.18557e-06, 50, 3.17865e-08, 50, -2.18557e-06, -1.79148e-09, -8.95738e-08, 1.58933e-06, -1, 142.5, -223.013, 319.67 )
 collision_layer = 8
 
-[node name="Spatial54" parent="." instance=ExtResource( 9 )]
+[node name="Spatial54" parent="ViewportContainer/Viewport/Room" instance=ExtResource( 9 )]
 transform = Transform( 2.18557e-06, 50, 3.17865e-08, 50, -2.18557e-06, -1.79148e-09, -8.95738e-08, 1.58933e-06, -1, 48.5, -223.013, 319.67 )
 collision_layer = 8
 
-[node name="Spatial55" parent="." instance=ExtResource( 9 )]
+[node name="Spatial55" parent="ViewportContainer/Viewport/Room" instance=ExtResource( 9 )]
 transform = Transform( 2.18557e-06, 50, 3.17865e-08, 50, -2.18557e-06, -1.79148e-09, -8.95738e-08, 1.58933e-06, -1, -46, -223.013, 319.67 )
 collision_layer = 8
 
-[node name="Spatial56" parent="." instance=ExtResource( 9 )]
+[node name="Spatial56" parent="ViewportContainer/Viewport/Room" instance=ExtResource( 9 )]
 transform = Transform( 8.74228e-07, 20, 1.50996e-07, 20, -8.74228e-07, -1.79148e-09, -3.58294e-08, 3.01992e-06, -1, 12, -157.013, 319.67 )
 collision_layer = 8
 
-[node name="Spatial57" parent="." instance=ExtResource( 9 )]
+[node name="Spatial57" parent="ViewportContainer/Viewport/Room" instance=ExtResource( 9 )]
 transform = Transform( 8.74228e-07, 20, 1.50996e-07, 20, -8.74228e-07, -1.79148e-09, -3.58294e-08, 3.01992e-06, -1, 49.5, -157.013, 319.67 )
 collision_layer = 8
 
-[node name="Spatial58" parent="." instance=ExtResource( 9 )]
+[node name="Spatial58" parent="ViewportContainer/Viewport/Room" instance=ExtResource( 9 )]
 transform = Transform( 8.74228e-07, 20, 1.50996e-07, 20, -8.74228e-07, -1.79148e-09, -3.58294e-08, 3.01992e-06, -1, 87, -157.013, 319.67 )
 collision_layer = 8
 
-[node name="Spatial59" parent="." instance=ExtResource( 9 )]
+[node name="Spatial59" parent="ViewportContainer/Viewport/Room" instance=ExtResource( 9 )]
 transform = Transform( 8.74228e-07, 20, 1.50996e-07, 20, -8.74228e-07, -1.79148e-09, -3.58294e-08, 3.01992e-06, -1, 87, -157.013, 319.67 )
 collision_layer = 8
 
-[node name="Spatial48" parent="." instance=ExtResource( 9 )]
+[node name="Spatial48" parent="ViewportContainer/Viewport/Room" instance=ExtResource( 9 )]
 transform = Transform( 1.79148e-07, -1.98616e-06, 1, 100, -4.37114e-06, -1.79148e-09, 4.37114e-06, 100, 1.98616e-08, -44, 16.4874, 226.17 )
 collision_layer = 8
 
-[node name="Spatial47" parent="." instance=ExtResource( 9 )]
+[node name="Spatial47" parent="ViewportContainer/Viewport/Room" instance=ExtResource( 9 )]
 transform = Transform( 4.37114e-06, 100, 1.50996e-07, 100, -4.37114e-06, -1.79148e-09, -1.79147e-07, 1.50996e-05, -1, 48.5, 16.4874, 319.17 )
 collision_layer = 8
 
-[node name="Spatial62" parent="." instance=ExtResource( 9 )]
+[node name="Spatial62" parent="ViewportContainer/Viewport/Room" instance=ExtResource( 9 )]
 transform = Transform( 4.37114e-06, 100, 1.50996e-07, -4.55029e-06, 1.50996e-05, -1, -100, 4.37114e-06, 4.55029e-08, 48.5, 100.987, 225.67 )
 collision_layer = 8
 
-[node name="End Box2" parent="." instance=ExtResource( 5 )]
+[node name="End Box2" parent="ViewportContainer/Viewport/Room" instance=ExtResource( 5 )]
 transform = Transform( 0.11492, 0, 1.34917e-13, 0, 1.326, 0, -2.25154e-14, 0, 0.688624, 65.438, -145.728, 496.151 )
 script = ExtResource( 24 )
 
-[node name="Respawn" type="Position3D" parent="End Box2"]
+[node name="Respawn" type="Position3D" parent="ViewportContainer/Viewport/Room/End Box2"]
 transform = Transform( 1, 0, 7.58942e-19, 0, 0.999998, 0, -4.40457e-20, 0, 1, -130.526, 111.614, -743.512 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -313,7 +331,9 @@ custom_colors/font_color = Color( 0.164706, 0.658824, 0.92549, 1 )
 custom_fonts/font = SubResource( 102 )
 text = "Stage 6"
 
-[connection signal="body_entered" from="End Box2" to="End Box2" method="_on_End_Box_body_entered"]
+[node name="HUD" parent="." instance=ExtResource( 4 )]
+
+[connection signal="body_entered" from="ViewportContainer/Viewport/Room/End Box2" to="ViewportContainer/Viewport/Room/End Box2" method="_on_End_Box_body_entered"]
 [connection signal="pressed" from="CanvasLayer/Stage Select/Panel/VBoxContainer/HBoxContainer/Stage" to="CanvasLayer/Stage Select" method="_on_Stage_pressed"]
 [connection signal="pressed" from="CanvasLayer/Stage Select/Panel/VBoxContainer/HBoxContainer/Stage2" to="CanvasLayer/Stage Select" method="_on_Stage2_pressed"]
 [connection signal="pressed" from="CanvasLayer/Stage Select/Panel/VBoxContainer/HBoxContainer/Stage3" to="CanvasLayer/Stage Select" method="_on_Stage3_pressed"]

@@ -1,7 +1,6 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://assets/Soldier/Soldier Script.gd" type="Script" id=1]
-[ext_resource path="res://assets/UI/HUD.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/Soldier/Soldier Hat.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/Soldier/Rocket Launcher.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/UI/Crosshair_reticle.png" type="Texture" id=5]
@@ -204,12 +203,7 @@ transform = Transform( -0.3, 0, -2.62268e-08, 0, 0.3, 0, 2.62268e-08, 0, -0.3, 0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="ViewportContainer" type="ViewportContainer" parent="CanvasLayer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-stretch = true
-
-[node name="Crosshair" type="TextureRect" parent="CanvasLayer/ViewportContainer"]
+[node name="Crosshair" type="TextureRect" parent="CanvasLayer"]
 margin_left = 625.0
 margin_top = 351.0
 margin_right = 655.0
@@ -219,6 +213,11 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource( 5 )
 script = ExtResource( 15 )
+
+[node name="ViewportContainer" type="ViewportContainer" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+stretch = true
 
 [node name="Viewport" type="Viewport" parent="CanvasLayer/ViewportContainer"]
 size = Vector2( 1280, 720 )
@@ -288,8 +287,6 @@ bus = "Effects"
 __meta__ = {
 "_editor_description_": ""
 }
-
-[node name="HUD" parent="." instance=ExtResource( 2 )]
 
 [node name="Visibility collision" type="Area" parent="."]
 collision_layer = 16

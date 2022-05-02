@@ -4,10 +4,9 @@ extends Control
 onready var current = get_tree().get_current_scene()
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
-		match Globals.Paused:
-			true:
+			if get_tree().is_paused():
 				visible = false
-			false:
+			else:
 				visible = true
 
 func getallnodes(point):

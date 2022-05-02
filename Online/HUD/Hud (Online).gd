@@ -19,3 +19,4 @@ func _input(event: InputEvent) -> void:
 	if get_parent().is_network_master():
 		if event.is_action_pressed("scoreboard"):
 			pass
+

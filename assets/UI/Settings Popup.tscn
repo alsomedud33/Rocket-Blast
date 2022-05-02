@@ -150,7 +150,7 @@ font_data = SubResource( 17 )
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
 
 [node name="Settings Popup" type="WindowDialog"]
-visible = true
+pause_mode = 2
 anchor_left = 0.40625
 anchor_top = 0.259722
 anchor_right = 0.982813
@@ -181,7 +181,6 @@ __meta__ = {
 }
 
 [node name="Game" type="Tabs" parent="TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 24.0
@@ -582,6 +581,7 @@ __meta__ = {
 }
 
 [node name="Video" type="Tabs" parent="TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 24.0

@@ -13,9 +13,9 @@ func _ready():
 	visible = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	#AudioServer.set_bus_volume_db(0, linear2db(0.5))
-	masterVol_scroll.value = db2linear(AudioServer.get_bus_volume_db(0))
-	effecctsVol_scroll.value = db2linear(AudioServer.get_bus_volume_db(1))
-	musicVol_scroll.value = db2linear(AudioServer.get_bus_volume_db(2))
+#	masterVol_scroll.value = db2linear(AudioServer.get_bus_volume_db(0))
+#	effecctsVol_scroll.value = db2linear(AudioServer.get_bus_volume_db(1))
+#	musicVol_scroll.value = db2linear(AudioServer.get_bus_volume_db(2))
 
 func _input(event):
 	if event.is_action_pressed("ui_focus_next"):
@@ -97,7 +97,7 @@ func _on_Quit_pressed():
 	if get_tree().current_scene.name == "Two_Towers":
 		SceneChanger.goto_scene("res://TitleScreen/TitleScreen.tscn",[get_tree().current_scene, get_node("/root/NetNodes/"+ str(get_tree().get_network_unique_id()))], true)
 	else:
-		SceneChanger.goto_scene("res://TitleScreen/TitleScreen.tscn",get_parent().get_parent().get_parent())
+		SceneChanger.goto_scene("res://TitleScreen/TitleScreen.tscn",get_parent().get_parent())
 	get_tree().paused = false
 	visible = false
 	Globals.Paused = false
@@ -120,3 +120,7 @@ func _on_Quit2_pressed():
 ##		3:
 ##			MusicController.play_music(MusicController.airport_track)
 #			MusicController.fade_in()
+
+
+func _on_Quit3_pressed():
+	$"Settings Popup".popup()
