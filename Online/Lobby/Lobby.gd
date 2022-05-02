@@ -27,3 +27,4 @@ func _server_disconnected():
 
 func _change_text(text):
 	$"Armature/Skeleton/Hat/Username Sprite/Viewport/Username".text = text
+	Globals.save_data()

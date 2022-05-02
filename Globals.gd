@@ -11,6 +11,68 @@ var sticky_deployed:int = 0
 var player: int
 var Paused = false
 
+var save_path = SAVE_DIR +"save.dat"
+
+const SAVE_DIR = "user://saves/"
+
+onready var data = {
+	"username" : str(Players.username),
+	"mouse_sense" : mouse_sense,
+	"viewmodel_fov" : viewmodel_fov,
+	"fov" : fov,
+	
+	"master_vol" : AudioServer.get_bus_volume_db(0),
+	"effects_vol" : AudioServer.get_bus_volume_db(1),
+	"music_vol" : AudioServer.get_bus_volume_db(2),
+}
+
+func save_data():
+	data = {
+	"username" : str(Players.username),
+	"mouse_sense" : mouse_sense,
+	"viewmodel_fov" : viewmodel_fov,
+	"fov" : fov,
+	
+	"master_vol" : AudioServer.get_bus_volume_db(0),
+	"effects_vol" : AudioServer.get_bus_volume_db(1),
+	"music_vol" : AudioServer.get_bus_volume_db(2),
+	}
+	
+	var dir = Directory.new()
+	
+	if !dir.dir_exists(SAVE_DIR):
+		dir.make_dir_recursive(SAVE_DIR)
+	
+	var file = File.new()
+	var error = file.open(save_path,File.WRITE)
+	if error == OK:
+		file.store_var(data)
+		file.close()
+
+func load_data():
+	var file = File.new()
+	if file.file_exists(save_path):
+		var error = file.open(save_path, File.READ)
+		if error == OK:
+			var player_data = file.get_var()
+			return player_data
+			file.close()
+	else:
+		data = {
+			"username" : str(Players.username),
+			"mouse_sense" : mouse_sense,
+			"viewmodel_fov" : viewmodel_fov,
+			"fov" : fov,
+			
+			"master_vol" : AudioServer.get_bus_volume_db(0),
+			"effects_vol" : AudioServer.get_bus_volume_db(1),
+			"music_vol" : AudioServer.get_bus_volume_db(2),
+		}
+		save_data()
+		load_data()
+		
+		
+
 #var map_1 = preload("res://Maps/Map_1.tscn")
 #var map_2 = preload("res://Maps/Map_2.tscn")
 
@@ -38,9 +100,11 @@ var proj_counter = 0
 signal instance_player(id)
 
 
+onready var game_data = data
 
 func _ready():
-	AudioServer.set_bus_volume_db(0, linear2db(0.5))
+	load_data()
+	#AudioServer.set_bus_volume_db(0, linear2db(0.5))
 
 func _process(delta):
 	if sticky_deployed < 0:

@@ -28,6 +28,7 @@ _global_script_class_icons={
 
 config/name="Rocket Blast"
 run/main_scene="res://TitleScreen/TitleScreen.tscn"
+config/use_custom_user_dir=true
 config/icon="res://icon.png"
 
 [autoload]

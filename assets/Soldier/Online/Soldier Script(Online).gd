@@ -55,6 +55,7 @@ onready var damage_label = $damage
 onready var team_label = $Team
 onready var arm_ik_left =$"Pivot/Camera/Arms/SkeletonIK2"
 onready var arm_ik_right =$"Pivot/Camera/Arms/SkeletonIK"
+onready var fp_arms = $"Pivot/Camera/Arms/Arms"
 #onready var usr_tag = $Username
 
 onready var armature = $"Armature"
@@ -178,8 +179,8 @@ var puppet_old_state = GROUND
 var current_weapon = 1
 
 func weapon_switch():
+	animtree_change("parameters/Current_Wep/current",current_weapon - 1)
 	if is_network_master():
-		animtree_change("parameters/Current_Wep/current",current_weapon - 1)
 		if Input.is_action_just_pressed("wep_slot_1") and current_weapon != 1:
 			$Weapon_Cooldown.start()
 			timer.stop()
@@ -263,6 +264,7 @@ func _ready():
 	#get_rocket_launcher.get_node("MeshInstance").set_layer_mask_bit(2,is_network_master())
 #	hat.get_node("MeshInstance").set_layer_mask_bit(0,!is_network_master())#visible = !is_network_master() 
 	$"CanvasLayer/ViewportContainer".visible = is_network_master() 
+	fp_arms.visible = is_network_master() 
 	Network.connect("hit",self,"_hit")
 	armature.get_node("Skeleton/Soldier").set_layer_mask_bit(0,!is_network_master())#.visible = !is_network_master()
 	armature.get_node("Skeleton/Rocket Launcher/Rocket Launcher").set_layer_mask_bit(0,!is_network_master())
@@ -456,6 +458,7 @@ func _physics_process(delta: float) -> void:
 				DEAD:
 					$Armature/Skeleton/Spineik.interpolation = 0
 					get_rocket_launcher.hide()
+					fp_arms.hide()
 					camera.get_node("Shotgun").hide()
 					camera.get_node("Shovel").hide()
 					armature.set_as_toplevel(true)

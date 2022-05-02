@@ -22,9 +22,9 @@ func _ready():
 	visible = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	#AudioServer.set_bus_volume_db(0, linear2db(0.5))
-	masterVol_scroll.value = db2linear(AudioServer.get_bus_volume_db(0))
-	effecctsVol_scroll.value = db2linear(AudioServer.get_bus_volume_db(1))
-	musicVol_scroll.value = db2linear(AudioServer.get_bus_volume_db(2))
+#	masterVol_scroll.value = db2linear(AudioServer.get_bus_volume_db(0))
+#	effecctsVol_scroll.value = db2linear(AudioServer.get_bus_volume_db(1))
+#	musicVol_scroll.value = db2linear(AudioServer.get_bus_volume_db(2))
 
 func _process(delta):
 	if self.visible == true:
@@ -138,7 +138,7 @@ func _on_Quit2_pressed():
 
 
 func _on_Settings_pressed():
-	$Popup.popup()
+	$"Settings Popup".popup()
 
 
 
