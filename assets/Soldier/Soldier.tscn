@@ -16,7 +16,6 @@
 [ext_resource path="res://assets/Weapons/Shotgun/Shotgun.tscn" type="PackedScene" id=14]
 [ext_resource path="res://assets/Soldier/Crosshair.gd" type="Script" id=15]
 
-
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
 
@@ -242,6 +241,7 @@ anims/Shoot_Rocket = SubResource( 4 )
 anims/Sway = ExtResource( 6 )
 next/RESET = "Sway"
 next/Shoot_Rocket = "Sway"
+next/Sway = "Sway"
 blend_times = [ "Shoot_Rocket", "Sway", 0.5, "Sway", "Sway", 0.5 ]
 
 [node name="Rocket_Cooldown" type="Timer" parent="."]

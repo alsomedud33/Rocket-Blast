@@ -328,15 +328,19 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( -537, 165 )
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Settings_panel" type="Panel" parent="."]
 self_modulate = Color( 1, 1, 1, 0.5 )
-anchor_top = 0.5
-anchor_bottom = 0.5
-margin_top = -261.0
-margin_right = 418.0
-margin_bottom = 261.0
+anchor_top = 0.1375
+anchor_right = 0.326562
+anchor_bottom = 0.8625
 rect_pivot_offset = Vector2( 91, 168 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Rocket Man2" type="Label" parent="Settings_panel"]
 anchor_left = 0.0287081
@@ -354,14 +358,12 @@ __meta__ = {
 }
 
 [node name="Username" type="LineEdit" parent="Settings_panel"]
-anchor_left = 0.104679
-anchor_top = 0.196393
-anchor_right = 1.02573
-anchor_bottom = 0.274937
-margin_left = -28.756
-margin_top = 19.4828
-margin_right = -28.756
-margin_bottom = 19.4828
+anchor_left = 0.0358847
+anchor_top = 0.233716
+anchor_right = 0.956936
+anchor_bottom = 0.31226
+margin_left = -9.53674e-07
+margin_bottom = -1.52588e-05
 custom_colors/font_color = Color( 0.568627, 0, 1, 1 )
 custom_fonts/font = SubResource( 24 )
 align = 1
@@ -371,22 +373,22 @@ __meta__ = {
 }
 
 [node name="SpinBox" type="SpinBox" parent="Settings_panel"]
-margin_left = 297.0
-margin_top = 180.0
-margin_right = 399.0
-margin_bottom = 219.0
+anchor_left = 0.710526
+anchor_top = 0.344828
+anchor_right = 0.954545
+anchor_bottom = 0.41954
 max_value = 60.0
 suffix = "Minutes"
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Rocket Man3" type="Label" parent="Settings_panel"]
-anchor_left = 0.0308483
-anchor_top = 1.53682
-anchor_right = 0.643288
-anchor_bottom = 1.61345
-margin_left = 11.1054
-margin_top = -620.22
-margin_right = 11.1054
-margin_bottom = -620.22
+anchor_left = 0.0574162
+anchor_top = 0.348659
+anchor_right = 0.669856
+anchor_bottom = 0.425289
+margin_right = -0.000213623
 custom_colors/font_color = Color( 0.92549, 0.478431, 0.164706, 1 )
 custom_fonts/font = SubResource( 25 )
 text = "Round time:"
@@ -399,12 +401,13 @@ __meta__ = {
 [node name="Players_panel" type="Panel" parent="."]
 visible = false
 self_modulate = Color( 1, 1, 1, 0.5 )
-anchor_top = 0.5
-anchor_bottom = 0.5
-margin_top = -261.0
-margin_right = 418.0
-margin_bottom = 261.0
+anchor_top = 0.1375
+anchor_right = 0.326562
+anchor_bottom = 0.8625
 rect_pivot_offset = Vector2( 91, 168 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Rocket Man2" type="Label" parent="Players_panel"]
 anchor_left = 0.0287081
@@ -422,23 +425,26 @@ __meta__ = {
 }
 
 [node name="ItemList" type="ItemList" parent="Players_panel"]
-margin_left = 24.0
-margin_top = 115.0
-margin_right = 393.0
-margin_bottom = 489.0
+anchor_left = 0.0574163
+anchor_top = 0.220307
+anchor_right = 0.940191
+anchor_bottom = 0.936782
 focus_mode = 0
 custom_fonts/font = SubResource( 27 )
 same_column_width = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Game_panel" type="Panel" parent="."]
 self_modulate = Color( 1, 1, 1, 0.5 )
-anchor_left = 1.0
-anchor_top = 0.5
+anchor_left = 0.673437
+anchor_top = 0.1375
 anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = -418.0
-margin_top = -261.0
-margin_bottom = 261.0
+anchor_bottom = 0.8625
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Create_button" type="Button" parent="Game_panel"]
 anchor_left = 0.143541
@@ -465,11 +471,9 @@ __meta__ = {
 [node name="Join_button" type="Button" parent="Game_panel"]
 anchor_left = 0.15311
 anchor_top = 0.321839
-anchor_right = 0.88756
-anchor_bottom = 0.501916
+anchor_right = 0.897129
+anchor_bottom = 0.507663
 margin_left = 3.8147e-06
-margin_right = 4.0
-margin_bottom = 3.0
 focus_mode = 0
 custom_colors/font_color = Color( 0.568627, 0, 1, 1 )
 custom_fonts/font = SubResource( 15 )
@@ -489,6 +493,7 @@ anchor_left = 0.0478469
 anchor_top = 0.547893
 anchor_right = 0.9689
 anchor_bottom = 0.626437
+margin_bottom = -3.05176e-05
 custom_colors/font_color = Color( 0.568627, 0, 1, 1 )
 custom_fonts/font = ExtResource( 1 )
 align = 1
@@ -499,14 +504,10 @@ __meta__ = {
 }
 
 [node name="Exit_button" type="Button" parent="Game_panel"]
-anchor_left = 0.699219
-anchor_top = 0.705555
-anchor_right = 0.94375
-anchor_bottom = 0.81389
-margin_left = -220.273
-margin_top = 50.7
-margin_right = -30.4874
-margin_bottom = 51.1497
+anchor_left = 0.17225
+anchor_top = 0.802681
+anchor_right = 0.870814
+anchor_bottom = 0.911878
 focus_mode = 0
 custom_colors/font_color = Color( 0.568627, 0, 1, 1 )
 custom_fonts/font = SubResource( 10 )
@@ -516,12 +517,15 @@ custom_styles/disabled = SubResource( 13 )
 custom_styles/normal = SubResource( 14 )
 enabled_focus_mode = 0
 text = "exit"
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
-[node name="CheckBox" type="CheckBox" parent="Game_panel"]
-margin_left = 19.0
-margin_top = 338.0
-margin_right = 164.0
-margin_bottom = 414.0
+[node name="CheckBox" type="CheckButton" parent="Game_panel"]
+anchor_left = 0.0454545
+anchor_top = 0.64751
+anchor_right = 0.392345
+anchor_bottom = 0.793103
 focus_mode = 0
 custom_colors/font_color = Color( 0.568627, 0, 1, 1 )
 custom_fonts/font = SubResource( 39 )
@@ -530,15 +534,13 @@ action_mode = 0
 enabled_focus_mode = 0
 shortcut = SubResource( 41 )
 text = "Hide IP"
-align = 2
+align = 1
 
 [node name="Back" type="Button" parent="."]
 anchor_left = 0.003125
 anchor_top = 0.00833333
 anchor_right = 0.140625
 anchor_bottom = 0.0694444
-margin_top = -4.76837e-07
-margin_bottom = -3.8147e-06
 focus_mode = 0
 custom_colors/font_color = Color( 0.568627, 0, 1, 1 )
 custom_fonts/font = SubResource( 5 )
@@ -585,6 +587,7 @@ custom_fonts/font = SubResource( 33 )
 align = 1
 valign = 1
 __meta__ = {
+"_edit_use_anchors_": true,
 "_editor_description_": ""
 }
 

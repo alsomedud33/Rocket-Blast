@@ -59,7 +59,7 @@ func _physics_process(delta):
 func _process(delta):
 	if Input.is_action_just_pressed("shoot2") and $Timer.is_stopped():
 		var tick_sound = AudioStreamPlayer.new()
-		tick_sound.set_stream("Effects") 
+		tick_sound.set_bus("Effects") 
 		tick_sound.stream = tick
 		tick_sound.set_volume_db(-12)
 		main.add_child(tick_sound)

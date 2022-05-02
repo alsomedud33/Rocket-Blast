@@ -66,42 +66,58 @@ pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": true
+}
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -246.0
-margin_right = 246.0
-margin_bottom = 35.0
+anchor_left = 0.307813
+anchor_right = 0.692187
+anchor_bottom = 0.0486111
 theme = ExtResource( 2 )
 min_value = -100.0
 step = 1.0
 rounded = true
 percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Red" type="Panel" parent="."]
 self_modulate = Color( 1, 0, 0, 1 )
-margin_left = 406.0
-margin_top = 41.0
-margin_right = 638.0
-margin_bottom = 100.0
+anchor_left = 0.317187
+anchor_top = 0.0569444
+anchor_right = 0.498437
+anchor_bottom = 0.138889
+margin_bottom = -7.62939e-06
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Red_Timer" type="Label" parent="Red"]
-margin_left = 11.0
-margin_top = 8.0
-margin_right = 219.0
-margin_bottom = 53.0
+anchor_left = 0.0474138
+anchor_top = 0.135593
+anchor_right = 0.943965
+anchor_bottom = 0.898305
 custom_fonts/font = SubResource( 18 )
 text = "3:00"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Blue" type="Panel" parent="."]
 self_modulate = Color( 0, 0.226563, 1, 1 )
-margin_left = 645.0
-margin_top = 41.0
-margin_right = 874.0
-margin_bottom = 100.0
+anchor_left = 0.503906
+anchor_top = 0.0569444
+anchor_right = 0.682813
+anchor_bottom = 0.138889
+margin_bottom = -7.62939e-06
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Blue_Timer" type="Label" parent="Blue"]
 margin_left = 11.0
@@ -112,6 +128,9 @@ custom_fonts/font = SubResource( 19 )
 text = "3:00"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="MatchEnd" parent="." instance=ExtResource( 3 )]
 
@@ -121,19 +140,25 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 1
 script = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": true
+}
 
 [node name="Panel" type="Panel" parent="Pause"]
 self_modulate = Color( 1, 1, 1, 0.501961 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": true
+}
 
 [node name="Quit" type="Button" parent="Pause/Panel"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -843.0
-margin_top = 641.0
-margin_right = -558.0
-margin_bottom = 698.0
+anchor_left = 0.341406
+anchor_top = 0.890278
+anchor_right = 0.564062
+anchor_bottom = 0.969444
 rect_pivot_offset = Vector2( 107, 0 )
 focus_mode = 0
 custom_colors/font_color = Color( 0, 0.556863, 0.0823529, 1 )
@@ -145,16 +170,15 @@ custom_styles/normal = SubResource( 31 )
 enabled_focus_mode = 0
 text = "exit"
 __meta__ = {
+"_edit_use_anchors_": true,
 "_editor_description_": ""
 }
 
 [node name="Disconnect" type="Button" parent="Pause/Panel"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -1163.0
-margin_top = 641.0
-margin_right = -878.0
-margin_bottom = 698.0
+anchor_left = 0.0914062
+anchor_top = 0.890278
+anchor_right = 0.314063
+anchor_bottom = 0.969444
 rect_pivot_offset = Vector2( 107, 0 )
 focus_mode = 0
 custom_colors/font_color = Color( 0, 0.556863, 0.0823529, 1 )
@@ -166,16 +190,15 @@ custom_styles/normal = SubResource( 31 )
 enabled_focus_mode = 0
 text = "Disconnect"
 __meta__ = {
+"_edit_use_anchors_": true,
 "_editor_description_": ""
 }
 
 [node name="Settings" type="Button" parent="Pause/Panel"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -1163.0
-margin_top = 511.0
-margin_right = -878.0
-margin_bottom = 568.0
+anchor_left = 0.0914062
+anchor_top = 0.709722
+anchor_right = 0.314063
+anchor_bottom = 0.788889
 rect_pivot_offset = Vector2( 107, 0 )
 focus_mode = 0
 custom_colors/font_color = Color( 0, 0.556863, 0.0823529, 1 )
@@ -187,16 +210,15 @@ custom_styles/normal = SubResource( 31 )
 enabled_focus_mode = 0
 text = "Settings"
 __meta__ = {
+"_edit_use_anchors_": true,
 "_editor_description_": ""
 }
 
 [node name="Items" type="Button" parent="Pause/Panel"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -1163.0
-margin_top = 441.0
-margin_right = -878.0
-margin_bottom = 498.0
+anchor_left = 0.0914062
+anchor_top = 0.6125
+anchor_right = 0.314063
+anchor_bottom = 0.691667
 rect_pivot_offset = Vector2( 107, 0 )
 focus_mode = 0
 custom_colors/font_color = Color( 0, 0.556863, 0.0823529, 1 )
@@ -209,16 +231,16 @@ disabled = true
 enabled_focus_mode = 0
 text = "Items"
 __meta__ = {
+"_edit_use_anchors_": true,
 "_editor_description_": ""
 }
 
 [node name="Loadouts" type="Button" parent="Pause/Panel"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -1163.0
-margin_top = 369.0
-margin_right = -878.0
-margin_bottom = 426.0
+anchor_left = 0.0914062
+anchor_top = 0.5125
+anchor_right = 0.314063
+anchor_bottom = 0.591667
+margin_bottom = 3.05176e-05
 rect_pivot_offset = Vector2( 107, 0 )
 focus_mode = 0
 custom_colors/font_color = Color( 0, 0.556863, 0.0823529, 1 )
@@ -231,16 +253,15 @@ disabled = true
 enabled_focus_mode = 0
 text = "Loadouts"
 __meta__ = {
+"_edit_use_anchors_": true,
 "_editor_description_": ""
 }
 
 [node name="Resume" type="Button" parent="Pause/Panel"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -1163.0
-margin_top = 255.0
-margin_right = -878.0
-margin_bottom = 312.0
+anchor_left = 0.0914062
+anchor_top = 0.354167
+anchor_right = 0.314063
+anchor_bottom = 0.433333
 rect_pivot_offset = Vector2( 107, 0 )
 focus_mode = 0
 custom_colors/font_color = Color( 0, 0.556863, 0.0823529, 1 )
@@ -252,6 +273,7 @@ custom_styles/normal = SubResource( 31 )
 enabled_focus_mode = 0
 text = "resume"
 __meta__ = {
+"_edit_use_anchors_": true,
 "_editor_description_": ""
 }
 

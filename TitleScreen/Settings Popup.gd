@@ -115,10 +115,18 @@ func _on_DisplayBtn_item_selected(index):
 func _on_ResolutionBtn_item_selected(index):
 	match index:
 		0:
-			OS.set_window_size(Vector2(1024,256))
+			OS.set_window_size(Vector2(1024,546))
+			ProjectSettings.set_setting('display/window/size/width',1024)
+			ProjectSettings.set_setting('display/window/size/height',546)
 		1:
 			OS.set_window_size(Vector2(1280,720))
+			ProjectSettings.set_setting('display/window/size/width',1280)
+			ProjectSettings.set_setting('display/window/size/height',720)
 		2:
 			OS.set_window_size(Vector2(1600,900))
+			ProjectSettings.set_setting('display/window/size/width',1600)
+			ProjectSettings.set_setting('display/window/size/height',900)
 		3:
 			OS.set_window_size(Vector2(1920,1080))
+			ProjectSettings.set_setting('display/window/size/width',1920)
+			ProjectSettings.set_setting('display/window/size/height',1080)

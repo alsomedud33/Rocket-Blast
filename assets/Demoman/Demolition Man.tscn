@@ -18,6 +18,7 @@ radius = 0.5
 radius = 0.5
 
 [sub_resource type="StreamTexture" id=3]
+flags = 4
 load_path = "res://.import/Crosshair_reticle.png-389d57aa74358af0aac68d0023361799.stex"
 
 [sub_resource type="Animation" id=4]
@@ -256,7 +257,7 @@ texture = SubResource( 3 )
 script = ExtResource( 10 )
 
 [node name="Viewport" type="Viewport" parent="CanvasLayer/ViewportContainer"]
-size = Vector2( 1920, 1080 )
+size = Vector2( 1280, 720 )
 transparent_bg = true
 handle_input_locally = false
 hdr = false

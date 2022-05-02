@@ -172,19 +172,17 @@ thickness = 10
 vertical = true
 
 [node name="Settings Popup" type="WindowDialog"]
-visible = true
 anchor_left = 0.40625
 anchor_top = 0.259722
-anchor_right = 0.983593
+anchor_right = 0.982813
 anchor_bottom = 0.820833
-margin_right = -0.999023
-margin_bottom = 6.10352e-05
 rect_min_size = Vector2( 738, 404 )
 mouse_filter = 1
 custom_styles/panel = SubResource( 40 )
 window_title = "Settings"
 script = ExtResource( 2 )
 __meta__ = {
+"_edit_use_anchors_": true,
 "_editor_description_": ""
 }
 
@@ -198,6 +196,7 @@ custom_styles/tab_bg = SubResource( 57 )
 custom_styles/panel = SubResource( 58 )
 drag_to_rearrange_enabled = true
 __meta__ = {
+"_edit_use_anchors_": true,
 "_editor_description_": ""
 }
 
@@ -214,14 +213,15 @@ self_modulate = Color( 1, 1, 1, 0.5 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_styles/panel = SubResource( 42 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Mouse Sense" type="HScrollBar" parent="TabContainer/Game/Panel2"]
-anchor_left = 0.668039
+anchor_left = 0.52895
 anchor_top = 0.187359
-anchor_right = 0.980539
+anchor_right = 0.84145
 anchor_bottom = 0.256804
-margin_left = -102.648
-margin_right = -102.648
 rect_min_size = Vector2( 100, 0 )
 custom_styles/grabber_highlight = SubResource( 43 )
 custom_styles/grabber = SubResource( 44 )
@@ -230,55 +230,57 @@ custom_styles/grabber_pressed = SubResource( 46 )
 max_value = 10.0
 step = 0.01
 value = 2.5
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Mouse Sense2" type="SpinBox" parent="TabContainer/Game/Panel2"]
-margin_left = 626.0
-margin_top = 72.0
-margin_right = 727.0
-margin_bottom = 96.0
+anchor_left = 0.848238
+anchor_top = 0.189474
+anchor_right = 0.985095
+anchor_bottom = 0.252632
 max_value = 10.0
 step = 0.01
 value = 2.5
 align = 1
 suffix = "sens"
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Sense Value" type="Label" parent="TabContainer/Game/Panel2"]
-anchor_left = 0.783266
-anchor_top = 0.0162163
-anchor_right = 0.910838
+anchor_left = 0.644177
+anchor_top = 0.0162164
+anchor_right = 0.771749
 anchor_bottom = 0.208108
-margin_left = -102.648
-margin_top = 3.05176e-05
-margin_right = -102.648
 grow_horizontal = 2
 custom_fonts/font = SubResource( 47 )
 text = "2.5"
 align = 1
 valign = 2
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Label4" type="Label" parent="TabContainer/Game/Panel2"]
-anchor_left = 0.294187
+anchor_left = 0.0813008
 anchor_top = 0.189616
-anchor_right = 0.671412
-anchor_bottom = 0.259594
-margin_left = -157.11
-margin_top = 3.05176e-05
-margin_right = -114.107
-margin_bottom = 5.10816
+anchor_right = 0.516795
+anchor_bottom = 0.273037
+margin_right = 6.10352e-05
 custom_fonts/font = ExtResource( 1 )
 text = "Mouse sensitivity: "
 align = 1
 valign = 2
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Viewmodel FOV Slider" type="HScrollBar" parent="TabContainer/Game/Panel2"]
-anchor_left = 0.668039
-anchor_top = 0.467269
-anchor_right = 0.980539
-anchor_bottom = 0.536714
-margin_left = -102.648
-margin_top = -0.562225
-margin_right = -102.648
-margin_bottom = -0.562225
+anchor_left = 0.52895
+anchor_top = 0.465789
+anchor_right = 0.84145
+anchor_bottom = 0.535234
 rect_min_size = Vector2( 100, 0 )
 custom_styles/grabber_highlight = SubResource( 43 )
 custom_styles/grabber = SubResource( 44 )
@@ -288,54 +290,57 @@ min_value = 60.0
 max_value = 120.0
 step = 1.0
 value = 90.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Viewmodel FOV Slider2" type="SpinBox" parent="TabContainer/Game/Panel2"]
-margin_left = 629.0
-margin_top = 177.0
-margin_right = 727.0
-margin_bottom = 201.0
+anchor_left = 0.852304
+anchor_top = 0.465789
+anchor_right = 0.985095
+anchor_bottom = 0.528947
 min_value = 60.0
 max_value = 120.0
 value = 90.0
 align = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Viewmodel FOV Value" type="Label" parent="TabContainer/Game/Panel2"]
-anchor_left = 0.783153
+anchor_left = 0.644064
 anchor_top = 0.278378
-anchor_right = 0.895636
+anchor_right = 0.756547
 anchor_bottom = 0.47027
-margin_left = -102.648
-margin_top = 3.05176e-05
-margin_right = -102.648
+margin_left = 3.05176e-05
 grow_horizontal = 2
 custom_fonts/font = SubResource( 47 )
 text = "90"
 align = 1
 valign = 2
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Viewmodel FOV" type="Label" parent="TabContainer/Game/Panel2"]
-anchor_left = 0.294187
+anchor_left = 0.0813008
 anchor_top = 0.469526
-anchor_right = 0.671412
-anchor_bottom = 0.539503
-margin_left = -157.11
-margin_top = 3.05176e-05
-margin_right = -157.107
-margin_bottom = 5.10854
+anchor_right = 0.45853
+anchor_bottom = 0.552947
+margin_right = 3.05176e-05
 custom_fonts/font = ExtResource( 1 )
 text = "Viewmodel FOV: "
 align = 1
 valign = 2
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="FOV Slider" type="HScrollBar" parent="TabContainer/Game/Panel2"]
-anchor_left = 0.668039
-anchor_top = 0.738149
-anchor_right = 0.980539
-anchor_bottom = 0.807594
-margin_left = -102.648
-margin_top = -0.496613
-margin_right = -102.648
-margin_bottom = -0.496613
+anchor_left = 0.52895
+anchor_top = 0.736842
+anchor_right = 0.84145
+anchor_bottom = 0.806287
 rect_min_size = Vector2( 100, 0 )
 custom_styles/grabber_highlight = SubResource( 43 )
 custom_styles/grabber = SubResource( 44 )
@@ -350,23 +355,24 @@ __meta__ = {
 }
 
 [node name="FOV Slider2" type="SpinBox" parent="TabContainer/Game/Panel2"]
-margin_left = 628.0
-margin_top = 280.0
-margin_right = 727.0
-margin_bottom = 304.0
+anchor_left = 0.850949
+anchor_top = 0.736842
+anchor_right = 0.985095
+anchor_bottom = 0.8
 min_value = 70.0
 max_value = 90.0
 value = 75.0
 align = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="FOV Value" type="Label" parent="TabContainer/Game/Panel2"]
-anchor_left = 0.783153
+anchor_left = 0.644064
 anchor_top = 0.564865
-anchor_right = 0.893473
+anchor_right = 0.754384
 anchor_bottom = 0.756757
-margin_left = -102.648
-margin_top = 3.05176e-05
-margin_right = -102.648
+margin_left = 3.05176e-05
 grow_horizontal = 2
 custom_fonts/font = SubResource( 47 )
 text = "75"
@@ -377,18 +383,17 @@ __meta__ = {
 }
 
 [node name="FOV" type="Label" parent="TabContainer/Game/Panel2"]
-anchor_left = 0.294187
+anchor_left = 0.0813008
 anchor_top = 0.740406
-anchor_right = 0.671412
-anchor_bottom = 0.810384
-margin_left = -157.11
-margin_top = 3.05176e-05
-margin_right = -157.11
-margin_bottom = 5.10815
+anchor_right = 0.458526
+anchor_bottom = 0.823826
 custom_fonts/font = ExtResource( 1 )
 text = "Camera FOV: "
 align = 1
 valign = 2
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Audio" type="Tabs" parent="TabContainer"]
 visible = false
@@ -403,16 +408,16 @@ self_modulate = Color( 1, 1, 1, 0.5 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_styles/panel = SubResource( 42 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Master Volume" type="HScrollBar" parent="TabContainer/Audio/Panel"]
-anchor_left = 0.580469
-anchor_top = 0.179364
-anchor_right = 0.892969
-anchor_bottom = 0.20853
-margin_left = -37.9666
-margin_top = 63.1332
-margin_right = -38.5916
-margin_bottom = 63.0501
+anchor_left = 0.529024
+anchor_top = 0.345504
+anchor_right = 0.840677
+anchor_bottom = 0.374451
+margin_left = 3.05176e-05
 rect_min_size = Vector2( 100, 0 )
 rect_pivot_offset = Vector2( 96, -75.4585 )
 custom_styles/grabber_highlight = SubResource( 43 )
@@ -422,16 +427,17 @@ custom_styles/grabber_pressed = SubResource( 46 )
 max_value = 1.0
 step = 0.01
 value = 0.5
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Effects Volume" type="HScrollBar" parent="TabContainer/Audio/Panel"]
-anchor_left = 0.580469
-anchor_top = 0.25853
-anchor_right = 0.892969
-anchor_bottom = 0.287697
-margin_left = -37.9666
-margin_top = 86.6014
-margin_right = -37.9666
-margin_bottom = 86.6014
+anchor_left = 0.529024
+anchor_top = 0.486428
+anchor_right = 0.841524
+anchor_bottom = 0.515595
+margin_left = 3.05176e-05
+margin_bottom = 1.52588e-05
 rect_min_size = Vector2( 100, 0 )
 rect_pivot_offset = Vector2( 96, -133.997 )
 custom_styles/grabber_highlight = SubResource( 43 )
@@ -441,16 +447,17 @@ custom_styles/grabber_pressed = SubResource( 46 )
 max_value = 1.0
 step = 0.01
 value = 0.5
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Music2" type="HScrollBar" parent="TabContainer/Audio/Panel"]
-anchor_left = 0.580469
-anchor_top = 0.330753
-anchor_right = 0.892969
-anchor_bottom = 0.359919
-margin_left = -37.9666
-margin_top = 122.761
-margin_right = -37.9666
-margin_bottom = 122.761
+anchor_left = 0.529024
+anchor_top = 0.653808
+anchor_right = 0.841524
+anchor_bottom = 0.682974
+margin_left = 3.05176e-05
+margin_top = -1.52588e-05
 rect_min_size = Vector2( 100, 0 )
 rect_pivot_offset = Vector2( 96, -202.152 )
 custom_styles/grabber_highlight = SubResource( 43 )
@@ -460,54 +467,56 @@ custom_styles/grabber_pressed = SubResource( 46 )
 max_value = 1.0
 step = 0.01
 value = 0.5
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Volume Percent" type="Label" parent="TabContainer/Audio/Panel"]
-anchor_left = 0.890625
-anchor_top = 0.137697
-anchor_right = 0.9875
-anchor_bottom = 0.236308
-margin_left = -10.2813
-margin_top = 63.1332
-margin_right = -10.2813
-margin_bottom = 65.661
+anchor_left = 0.876694
+anchor_top = 0.303837
+anchor_right = 0.973569
+anchor_bottom = 0.4091
+margin_bottom = -3.05176e-05
 grow_horizontal = 2
 rect_pivot_offset = Vector2( -165.461, -57 )
 custom_fonts/font = SubResource( 48 )
 text = "50%"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Volume Percent2" type="Label" parent="TabContainer/Audio/Panel"]
-anchor_left = 0.890625
-anchor_top = 0.222419
-anchor_right = 0.9875
-anchor_bottom = 0.32103
-margin_left = -10.2813
-margin_top = 86.6014
-margin_right = -10.2813
-margin_bottom = 89.1292
+anchor_left = 0.876694
+anchor_top = 0.450317
+anchor_right = 0.973569
+anchor_bottom = 0.555581
 grow_horizontal = 2
 rect_pivot_offset = Vector2( -165.462, -118 )
 custom_fonts/font = SubResource( 48 )
 text = "50%"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Volume Percent3" type="Label" parent="TabContainer/Audio/Panel"]
-anchor_left = 0.890625
-anchor_top = 0.298808
-anchor_right = 0.9875
-anchor_bottom = 0.397419
-margin_left = -10.2813
-margin_top = 122.761
-margin_right = -10.2813
-margin_bottom = 125.289
+anchor_left = 0.876694
+anchor_top = 0.621863
+anchor_right = 0.973569
+anchor_bottom = 0.727127
+margin_top = 1.52588e-05
 grow_horizontal = 2
 rect_pivot_offset = Vector2( -165.462, -188 )
 custom_fonts/font = SubResource( 48 )
 text = "50%"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Volume" type="Label" parent="TabContainer/Audio/Panel"]
 anchor_left = 0.615658
@@ -523,61 +532,59 @@ custom_fonts/font = SubResource( 49 )
 text = "volume:"
 align = 1
 valign = 2
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Master" type="Label" parent="TabContainer/Audio/Panel"]
-anchor_left = 0.615625
-anchor_top = 0.140475
-anchor_right = 0.855469
-anchor_bottom = 0.210453
-margin_left = -37.9666
-margin_top = 39.9026
-margin_right = -37.9666
-margin_bottom = 44.3111
+anchor_left = 0.56418
+anchor_top = 0.245482
+anchor_right = 0.804024
+anchor_bottom = 0.327061
 rect_pivot_offset = Vector2( 66.3635, -35 )
 custom_fonts/font = SubResource( 50 )
 text = "Master"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Effects" type="Label" parent="TabContainer/Audio/Panel"]
-anchor_left = 0.615625
-anchor_top = 0.215475
-anchor_right = 0.855469
-anchor_bottom = 0.285453
-margin_left = -37.9666
-margin_top = 68.6776
-margin_right = -37.9666
-margin_bottom = 73.0862
+anchor_left = 0.56418
+anchor_top = 0.396206
+anchor_right = 0.804024
+anchor_bottom = 0.477785
 rect_pivot_offset = Vector2( 66.3635, -97 )
 custom_fonts/font = SubResource( 50 )
 text = "Effects"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Music" type="Label" parent="TabContainer/Audio/Panel"]
-anchor_left = 0.615625
-anchor_top = 0.293253
-anchor_right = 0.855469
-anchor_bottom = 0.363231
-margin_left = -37.9666
-margin_top = 104.222
-margin_right = -37.9666
-margin_bottom = 108.63
+anchor_left = 0.56418
+anchor_top = 0.567521
+anchor_right = 0.804024
+anchor_bottom = 0.6491
+margin_top = -1.52588e-05
+margin_bottom = -0.000366211
 rect_pivot_offset = Vector2( 66.3635, -167 )
 custom_fonts/font = SubResource( 50 )
 text = "Music"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Quit2" type="Button" parent="TabContainer/Audio/Panel"]
-anchor_left = 0.618031
-anchor_top = 0.656885
-anchor_right = 0.869514
-anchor_bottom = 0.736052
-margin_left = -61.1069
-margin_top = 68.3837
-margin_right = -8.70129
-margin_bottom = 91.3003
+anchor_left = 0.53523
+anchor_top = 0.836842
+anchor_right = 0.857724
+anchor_bottom = 0.976316
 rect_pivot_offset = Vector2( 64.3354, -257 )
 focus_mode = 0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
@@ -590,6 +597,7 @@ enabled_focus_mode = 0
 text = "Change song"
 expand_icon = true
 __meta__ = {
+"_edit_use_anchors_": true,
 "_editor_description_": ""
 }
 
