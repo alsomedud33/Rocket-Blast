@@ -6,7 +6,7 @@
 [sub_resource type="StyleBoxFlat" id=40]
 bg_color = Color( 0.45098, 0.129412, 0.101961, 1 )
 border_width_top = 20
-border_color = Color( 1, 1, 1, 1 )
+border_color = Color( 0.490196, 0.490196, 0.490196, 1 )
 corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
 expand_margin_top = 20.0
@@ -154,6 +154,7 @@ __meta__ = {
 }
 
 [node name="Game" type="Tabs" parent="TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 24.0
@@ -342,7 +343,6 @@ align = 1
 valign = 2
 
 [node name="Audio" type="Tabs" parent="TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 24.0
@@ -465,10 +465,10 @@ anchor_left = 0.615658
 anchor_top = 0.03386
 anchor_right = 0.864769
 anchor_bottom = 0.148984
-margin_left = -37.6313
-margin_top = 33.1332
-margin_right = -11.7238
-margin_bottom = 40.386
+margin_left = -46.3556
+margin_top = 8.13338
+margin_right = -20.1995
+margin_bottom = 15.3863
 rect_pivot_offset = Vector2( 66.3353, 19 )
 custom_fonts/font = SubResource( 49 )
 text = "volume:"
@@ -525,13 +525,13 @@ anchor_left = 0.618031
 anchor_top = 0.656885
 anchor_right = 0.869514
 anchor_bottom = 0.736052
-margin_left = -60.7248
-margin_top = 78.3838
-margin_right = -18.5706
+margin_left = -61.1069
+margin_top = 68.3837
+margin_right = -8.70129
 margin_bottom = 91.3003
 rect_pivot_offset = Vector2( 64.3354, -257 )
 focus_mode = 0
-custom_colors/font_color = Color( 0, 0.556863, 0.0823529, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 51 )
 custom_styles/hover = SubResource( 52 )
 custom_styles/pressed = SubResource( 53 )

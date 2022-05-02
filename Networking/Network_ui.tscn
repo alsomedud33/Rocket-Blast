@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://assets/UI/Font Info.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Networking/Network_ui.gd" type="Script" id=2]
@@ -154,6 +154,24 @@ corner_radius_top_left = 30
 corner_radius_top_right = 30
 corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
+
+[sub_resource type="DynamicFontData" id=38]
+font_path = "res://assets/Fonts/TF2.ttf"
+
+[sub_resource type="DynamicFont" id=39]
+size = 30
+outline_size = 5
+outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+use_filter = true
+font_data = SubResource( 38 )
+
+[sub_resource type="InputEventKey" id=40]
+control = true
+command = true
+scancode = 72
+
+[sub_resource type="ShortCut" id=41]
+shortcut = SubResource( 40 )
 
 [sub_resource type="DynamicFont" id=28]
 size = 30
@@ -474,6 +492,7 @@ anchor_bottom = 0.626437
 custom_colors/font_color = Color( 0.568627, 0, 1, 1 )
 custom_fonts/font = ExtResource( 1 )
 align = 1
+secret = true
 placeholder_text = "enter ip address"
 __meta__ = {
 "_edit_use_anchors_": true
@@ -497,6 +516,21 @@ custom_styles/disabled = SubResource( 13 )
 custom_styles/normal = SubResource( 14 )
 enabled_focus_mode = 0
 text = "exit"
+
+[node name="CheckBox" type="CheckBox" parent="Game_panel"]
+margin_left = 19.0
+margin_top = 338.0
+margin_right = 164.0
+margin_bottom = 414.0
+focus_mode = 0
+custom_colors/font_color = Color( 0.568627, 0, 1, 1 )
+custom_fonts/font = SubResource( 39 )
+pressed = true
+action_mode = 0
+enabled_focus_mode = 0
+shortcut = SubResource( 41 )
+text = "Hide IP"
+align = 2
 
 [node name="Back" type="Button" parent="."]
 anchor_left = 0.003125
@@ -566,5 +600,6 @@ anims/connection_failed = SubResource( 36 )
 [connection signal="pressed" from="Game_panel/Join_button" to="." method="_on_Join_button_pressed"]
 [connection signal="text_changed" from="Game_panel/LineEdit" to="." method="_on_LineEdit_text_changed"]
 [connection signal="pressed" from="Game_panel/Exit_button" to="." method="_on_Exit_button_pressed"]
+[connection signal="toggled" from="Game_panel/CheckBox" to="." method="_on_CheckBox_toggled"]
 [connection signal="pressed" from="Back" to="." method="_on_Back_pressed"]
 [connection signal="pressed" from="Start_button" to="." method="_on_Start_button_pressed"]

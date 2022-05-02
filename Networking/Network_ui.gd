@@ -164,3 +164,7 @@ remote func start_game():
 	Transitions.fade_in()
 	yield(Transitions.anim,"animation_finished")
 	SceneChanger.goto_scene("res://Maps/TwoTower/Two_Towers.tscn",get_parent())
+
+
+func _on_CheckBox_toggled(button_pressed):
+	$"Game_panel/LineEdit".secret = button_pressed
