@@ -283,6 +283,7 @@ func _ready():
 	#yield(get_tree().create_timer(.2), "timeout")
 	main = get_tree().current_scene
 func _process(delta):
+#	Engine.set_target_fps(0)
 	camera.fov = Globals.fov
 	gun_camera.fov = Globals.viewmodel_fov
 	mouse_sensitivity = Globals.mouse_sense * 0.001
@@ -576,7 +577,7 @@ master func accelerate(wish_dir: Vector3, input_velocity: Vector3, accels: float
 
 # Scale down horizontal velocity
 # For now, we're simply substracting 10% from our current velocity. This is not how it works in engines like idTech or Source !
-master func friction(input_velocity: Vector3)-> Vector3:
+master func friction(input_velocity: Vector3, delta)-> Vector3:
 	#var speed: float = input_velocity.length()
 	var scaled_velocity: Vector3
 
@@ -586,7 +587,7 @@ master func friction(input_velocity: Vector3)-> Vector3:
 	if scaled_velocity.length() < max_speed / 100:
 		scaled_velocity = Vector3.ZERO
 
-	return scaled_velocity
+	return scaled_velocity*60 *delta
 
 # Apply friction, then accelerate
 master func move_ground(input_velocity: Vector3, delta: float)-> void:
@@ -594,7 +595,7 @@ master func move_ground(input_velocity: Vector3, delta: float)-> void:
 	var nextVelocity: Vector3 = Vector3.ZERO
 	nextVelocity.x = input_velocity.x
 	nextVelocity.z = input_velocity.z
-	nextVelocity = friction(nextVelocity) #Scale down velocity
+	nextVelocity = friction(nextVelocity,delta) #Scale down velocity
 	nextVelocity = accelerate(wishdir, nextVelocity, accel, max_speed, delta)
 	
 	# Then get back our vertical component, and move the player

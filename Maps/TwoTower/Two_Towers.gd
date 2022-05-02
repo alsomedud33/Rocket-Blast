@@ -29,7 +29,6 @@ func _ready():
 	Network.connect("koth_points_change",self,"_koth_points_change")
 	#restart(1)
 
-	
 #func _player_joined(id):
 #	rpc_id(1,"team_info_request")
 #	print(str(id) + " connected")

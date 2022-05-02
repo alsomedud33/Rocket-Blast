@@ -1,6 +1,6 @@
 extends Area
 
-export var duration = 0.6
+export var duration = 0.1
 var velocity = Vector3()
 var bounce_normal = Vector3()
 export var distance_ratio: float = 3

@@ -1,10 +1,11 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://assets/Soldier/Solly/SoldierHat.tres" type="ArrayMesh" id=1]
 [ext_resource path="res://assets/Soldier/Online/Red_Pallet.tres" type="Texture" id=2]
 [ext_resource path="res://Networking/Network_ui.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/Soldier/Solly/palette.material" type="Material" id=4]
 [ext_resource path="res://Online/Lobby/Lobby.gd" type="Script" id=5]
+[ext_resource path="res://Online/Lobby/Viewport.gd" type="Script" id=6]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.352941, 0, 0, 1 )
@@ -1457,23 +1458,36 @@ bias = 1.5
 normal_bias = 0.0
 interior = true
 
-[node name="Lobby" type="Spatial"]
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+stretch = true
+
+[node name="Viewport" type="Viewport" parent="ViewportContainer"]
+size = Vector2( 1280, 720 )
+handle_input_locally = false
+render_target_update_mode = 3
+script = ExtResource( 6 )
+
+[node name="Lobby" type="Spatial" parent="ViewportContainer/Viewport"]
 script = ExtResource( 5 )
 
-[node name="Network_ui" parent="." instance=ExtResource( 3 )]
-
-[node name="MeshInstance" type="MeshInstance" parent="."]
+[node name="MeshInstance" type="MeshInstance" parent="ViewportContainer/Viewport/Lobby"]
 transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0 )
 mesh = SubResource( 2 )
 material/0 = null
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="ViewportContainer/Viewport/Lobby"]
 environment = SubResource( 3 )
 
-[node name="Armature" type="Spatial" parent="."]
+[node name="Armature" type="Spatial" parent="ViewportContainer/Viewport/Lobby"]
 transform = Transform( 0.255, 0, 0, 0, 0.144, 0, 0, 0, 0.212, 0, 1.07029, 0 )
 
-[node name="Skeleton" type="Skeleton" parent="Armature"]
+[node name="Skeleton" type="Skeleton" parent="ViewportContainer/Viewport/Lobby/Armature"]
 bones/0/name = "Pelvis"
 bones/0/parent = -1
 bones/0/rest = Transform( 0.989422, 9.31323e-10, -0.145068, 0.0311141, 0.976729, 0.21221, 0.141692, -0.214479, 0.966396, 0, -1.08789, 0 )
@@ -1565,59 +1579,59 @@ bones/17/rest = Transform( 0.96676, 0.00814283, 0.255554, -0.230089, -0.408178, 
 bones/17/enabled = true
 bones/17/bound_children = [  ]
 
-[node name="Soldier" type="MeshInstance" parent="Armature/Skeleton"]
+[node name="Soldier" type="MeshInstance" parent="ViewportContainer/Viewport/Lobby/Armature/Skeleton"]
 layers = 2
 material_override = SubResource( 21 )
 mesh = SubResource( 22 )
 skin = SubResource( 23 )
 material/0 = null
 
-[node name="Rocket Launcher" type="BoneAttachment" parent="Armature/Skeleton"]
+[node name="Rocket Launcher" type="BoneAttachment" parent="ViewportContainer/Viewport/Lobby/Armature/Skeleton"]
 transform = Transform( 0.579703, -0.670268, 0.463341, 0.452503, 0.737709, 0.501025, -0.67763, -0.0807819, 0.730949, -6.25197, 3.51136, -0.609745 )
 bone_name = "Arm.R"
 
-[node name="Rocket Launcher" type="MeshInstance" parent="Armature/Skeleton/Rocket Launcher"]
+[node name="Rocket Launcher" type="MeshInstance" parent="ViewportContainer/Viewport/Lobby/Armature/Skeleton/Rocket Launcher"]
 transform = Transform( -0.0612517, -0.693447, -0.0106067, -0.014673, 0.0119416, -0.695968, 0.693371, -0.0610056, -0.0156654, 5.39636, 0.0527363, 2.30863 )
 layers = 2
 mesh = SubResource( 4 )
 skeleton = NodePath("../../../..")
 material/0 = null
 
-[node name="Hat" type="BoneAttachment" parent="Armature/Skeleton"]
+[node name="Hat" type="BoneAttachment" parent="ViewportContainer/Viewport/Lobby/Armature/Skeleton"]
 transform = Transform( 0.998304, 0.00776266, 0.0577092, -0.0056678, 0.999323, -0.0363652, -0.0579528, 0.0359756, 0.99767, -0.022046, 4.56155, -0.0469414 )
 bone_name = "Head"
 
-[node name="Soldier Hat2" type="MeshInstance" parent="Armature/Skeleton/Hat"]
+[node name="Soldier Hat2" type="MeshInstance" parent="ViewportContainer/Viewport/Lobby/Armature/Skeleton/Hat"]
 transform = Transform( -6.96228, 7.78095e-08, -2.09638e-05, -2.59355e-08, 6.96229, -3.11238e-07, 2.17937e-05, 3.37175e-07, -6.96229, -1.23908e-07, -11.0631, -3.90132e-07 )
 layers = 2
 mesh = ExtResource( 1 )
 skeleton = NodePath("../../../..")
 material/0 = null
 
-[node name="Username Sprite" type="Sprite3D" parent="Armature/Skeleton/Hat"]
+[node name="Username Sprite" type="Sprite3D" parent="ViewportContainer/Viewport/Lobby/Armature/Skeleton/Hat"]
 transform = Transform( 4.99152, -0.0283392, -0.0579529, 0.0388103, 4.99661, 0.0359756, 0.288549, -0.181822, 0.997671, -0.00102119, 3.58232, -0.0821855 )
 billboard = 2
 double_sided = false
 texture = SubResource( 44 )
 
-[node name="Viewport" type="Viewport" parent="Armature/Skeleton/Hat/Username Sprite"]
+[node name="Viewport" type="Viewport" parent="ViewportContainer/Viewport/Lobby/Armature/Skeleton/Hat/Username Sprite"]
 size = Vector2( 394, 38 )
 transparent_bg = true
 usage = 0
 render_target_v_flip = true
 script = SubResource( 41 )
 
-[node name="Username" type="Label" parent="Armature/Skeleton/Hat/Username Sprite/Viewport"]
+[node name="Username" type="Label" parent="ViewportContainer/Viewport/Lobby/Armature/Skeleton/Hat/Username Sprite/Viewport"]
 margin_right = 394.0
 margin_bottom = 38.0
 custom_fonts/font = SubResource( 42 )
 align = 1
 valign = 1
 
-[node name="Spineik" type="SkeletonIK" parent="Armature/Skeleton"]
+[node name="Spineik" type="SkeletonIK" parent="ViewportContainer/Viewport/Lobby/Armature/Skeleton"]
 process_priority = 1
 
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="ViewportContainer/Viewport/Lobby"]
 autoplay = "Run"
 anims/0TPose = SubResource( 24 )
 anims/AIr = SubResource( 25 )
@@ -1639,7 +1653,7 @@ next/Run = "Run (Backwards)"
 "next/Run (Backwards)" = "AIr"
 blend_times = [ "AIr", "Air (Backwards)", 1.0, "AIr (Beginning)", "AIr (Hit)", 1.0, "Air (Backwards)", "AIr (Beginning)", 1.0, "Idle", "Run", 0.3, "Run", "Run (Backwards)", 0.3, "Run (Backwards)", "AIr", 0.3 ]
 
-[node name="DirectionalLight" type="SpotLight" parent="."]
+[node name="DirectionalLight" type="SpotLight" parent="ViewportContainer/Viewport/Lobby"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3, 0 )
 light_energy = 0.077
 shadow_enabled = true
@@ -1649,7 +1663,7 @@ spot_attenuation = 0.466517
 spot_angle = 52.33
 spot_angle_attenuation = 0.233258
 
-[node name="DirectionalLight2" type="SpotLight" parent="."]
+[node name="DirectionalLight2" type="SpotLight" parent="ViewportContainer/Viewport/Lobby"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3, 0 )
 shadow_enabled = true
 shadow_bias = 1.197
@@ -1657,21 +1671,21 @@ spot_range = 4096.0
 spot_angle = 55.36
 spot_angle_attenuation = 0.233258
 
-[node name="CameraHub" type="Spatial" parent="."]
+[node name="CameraHub" type="Spatial" parent="ViewportContainer/Viewport/Lobby"]
 script = SubResource( 36 )
 
-[node name="Camera" type="Camera" parent="CameraHub"]
+[node name="Camera" type="Camera" parent="ViewportContainer/Viewport/Lobby/CameraHub"]
 transform = Transform( 1, 6.90722e-09, -3.25963e-08, 1.99633e-09, 0.9641, 0.265539, 3.32602e-08, -0.265539, 0.9641, 0.21349, 2.33309, 5.7256 )
 current = true
 
-[node name="RayCast" type="RayCast" parent="CameraHub/Camera"]
+[node name="RayCast" type="RayCast" parent="ViewportContainer/Viewport/Lobby/CameraHub/Camera"]
 transform = Transform( 1, 0, -1.06581e-14, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 enabled = true
 cast_to = Vector3( 0, 0, -1000 )
 collision_mask = 0
 collide_with_areas = true
 
-[node name="GIProbe" type="GIProbe" parent="."]
+[node name="GIProbe" type="GIProbe" parent="ViewportContainer/Viewport/Lobby"]
 subdiv = 3
 dynamic_range = 1
 energy = 16.0
@@ -1679,4 +1693,6 @@ propagation = 1.0
 interior = true
 data = SubResource( 39 )
 
-[connection signal="resized" from="Armature/Skeleton/Hat/Username Sprite/Viewport/Username" to="Armature/Skeleton/Hat/Username Sprite/Viewport" method="_on_Username_resized"]
+[node name="Network_ui" parent="." instance=ExtResource( 3 )]
+
+[connection signal="resized" from="ViewportContainer/Viewport/Lobby/Armature/Skeleton/Hat/Username Sprite/Viewport/Username" to="ViewportContainer/Viewport/Lobby/Armature/Skeleton/Hat/Username Sprite/Viewport" method="_on_Username_resized"]

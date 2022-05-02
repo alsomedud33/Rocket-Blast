@@ -1,9 +1,19 @@
 extends Node
 
+func emit_res_change(value):
+	resolution = value
 
-var mouse_sense = 50
+onready var resolution:Vector2 setget emit_res_change
+var res_sel:int #= 0
+var vsync:bool
+var fullscreen = false
+var fullscreen_sel: int# = 0
+var show_fps = false
+
+var mouse_sense:float# = 50
 var viewmodel_fov = 90
 var fov = 75
+
 
 var complete = false
 
@@ -15,7 +25,7 @@ var save_path = SAVE_DIR +"save.dat"
 
 const SAVE_DIR = "user://saves/"
 
-onready var data = {
+onready var settings = {
 	"username" : str(Players.username),
 	"mouse_sense" : mouse_sense,
 	"viewmodel_fov" : viewmodel_fov,
@@ -24,10 +34,17 @@ onready var data = {
 	"master_vol" : AudioServer.get_bus_volume_db(0),
 	"effects_vol" : AudioServer.get_bus_volume_db(1),
 	"music_vol" : AudioServer.get_bus_volume_db(2),
+	
+	"res_sel" : res_sel,
+	"resolution" : resolution,
+	"fullscreen" : fullscreen,
+	"fullscreen_sel" : fullscreen_sel,
+	"vsync" : vsync,
+	"show_fps" : show_fps,
 }
 
 func save_data():
-	data = {
+	settings = {
 	"username" : str(Players.username),
 	"mouse_sense" : mouse_sense,
 	"viewmodel_fov" : viewmodel_fov,
@@ -36,6 +53,13 @@ func save_data():
 	"master_vol" : AudioServer.get_bus_volume_db(0),
 	"effects_vol" : AudioServer.get_bus_volume_db(1),
 	"music_vol" : AudioServer.get_bus_volume_db(2),
+	
+	"res_sel" : res_sel,
+	"resolution" : resolution,
+	"fullscreen" : fullscreen,
+	"fullscreen_sel" : fullscreen_sel,
+	"vsync" : vsync,
+	"show_fps" : show_fps,
 	}
 	
 	var dir = Directory.new()
@@ -46,7 +70,7 @@ func save_data():
 	var file = File.new()
 	var error = file.open(save_path,File.WRITE)
 	if error == OK:
-		file.store_var(data)
+		file.store_var(settings)
 		file.close()
 
 func load_data():
@@ -58,7 +82,7 @@ func load_data():
 			return player_data
 			file.close()
 	else:
-		data = {
+		settings = {
 			"username" : str(Players.username),
 			"mouse_sense" : mouse_sense,
 			"viewmodel_fov" : viewmodel_fov,
@@ -67,6 +91,13 @@ func load_data():
 			"master_vol" : AudioServer.get_bus_volume_db(0),
 			"effects_vol" : AudioServer.get_bus_volume_db(1),
 			"music_vol" : AudioServer.get_bus_volume_db(2),
+			
+			"res_sel" : res_sel,
+			"resolution" : resolution,
+			"fullscreen" : fullscreen,
+			"fullscreen_sel" : fullscreen_sel,
+			"vsync" : vsync,
+			"show_fps" : show_fps,
 		}
 		save_data()
 		load_data()
@@ -100,7 +131,7 @@ var proj_counter = 0
 signal instance_player(id)
 
 
-onready var game_data = data
+onready var game_data = settings
 
 func _ready():
 	load_data()
