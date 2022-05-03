@@ -167,3 +167,7 @@ func _on_VsyncBtn_toggled(button_pressed):
 
 func _on_DisplayFpsBtn_toggled(button_pressed):
 	Globals.show_fps = button_pressed
+
+
+func _on_TextureFilteringBtn_toggled(button_pressed):
+	pass # Replace with function body.
