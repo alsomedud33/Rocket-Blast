@@ -26,6 +26,10 @@ func _ready():
 #	effecctsVol_scroll.value = db2linear(AudioServer.get_bus_volume_db(1))
 #	musicVol_scroll.value = db2linear(AudioServer.get_bus_volume_db(2))
 
+func disable_buttons():
+	$"Panel/Disconnect".disabled = true
+	$"Panel/Quit". disabled = true
+	
 func _process(delta):
 	if self.visible == true:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -103,6 +107,7 @@ func _on_Bomber_Man_pressed():
 
 
 func _on_Quit_pressed():
+	disable_buttons()
 	Transitions.fade_in()
 	MusicController.fade_out()
 	yield(Transitions.anim,"animation_finished")
@@ -142,21 +147,37 @@ func _on_Settings_pressed():
 
 
 func _on_Disconnect_pressed():
-#	if get_tree().is_network_master():
-#		get_tree().set_network_peer(null)
+	disable_buttons()
+	NetNodes.clear_nodes()
 	if Network.server != null:
 		Network.server.close_connection()
 	if Network.client != null:
 		Network.client.close_connection()
-#	for p in NetNodes.players.get_children():
-#		NetNodes.players.remove_child(p)
-#		p.queue_free()
+	get_tree().set_network_peer(null)
 	Players.player_list.clear()
 	MusicController.fade_out()
 	Transitions.fade_in()
 	yield(Transitions.anim,"animation_finished")
-	print (get_tree().current_scene.name)
-	SceneChanger.goto_scene("res://TitleScreen/TitleScreen.tscn",get_tree().root.get_node("Two_Towers"))
-	for p in NetNodes.players.get_children():
-		NetNodes.players.remove_child(p)
-		p.queue_free()
+	SceneChanger.goto_scene("res://TitleScreen/TitleScreen.tscn",NetNodes.viewport.get_node("Two_Towers"))
+	if NetNodes.has_node("HUD (Online)"):
+		NetNodes.get_node("HUD (Online)").queue_free()
+
+
+
+#	if Network.server != null:
+#		Network.server.close_connection()
+#	if Network.client != null:
+#		Network.client.close_connection()
+#	Players.player_list.clear()
+#	MusicController.fade_out()
+#	Transitions.fade_in()
+#	yield(Transitions.anim,"animation_finished")
+#	print (get_tree().current_scene.name)
+#	SceneChanger.goto_scene("res://TitleScreen/TitleScreen.tscn",get_tree().root.get_node("Two_Towers"))
+#	for p in NetNodes.players.get_children():
+#		NetNodes.players.remove_child(p)
+#		p.queue_free()
+
+
+func _on_Team_pressed():
+	$"../Change_Team".visible = true

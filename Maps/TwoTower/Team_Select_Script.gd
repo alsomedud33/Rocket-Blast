@@ -32,9 +32,21 @@ func set_player_no():
 		elif Players.player_list[p]["team"] == 2:
 			blue_player_no += 1
 
+
 func _on_Change_Team_visibility_changed():
 	set_player_no()
 
 
-func _on_Button_pressed():
-	print ("yo")
+func _on_Red_Button_pressed():
+	#if red_player_no > blue_player_no:
+	Players.player_list[get_tree().get_network_unique_id()]["team"] = 1
+	NetNodes.players.get_node(str(get_tree().get_network_unique_id())).team = 1
+	NetNodes.players.get_node(str(get_tree().get_network_unique_id())).health = -10000
+	self.visible = false
+
+func _on_Blue_Button_pressed():
+	#if blue_player_no > red_player_no:
+	Players.player_list[get_tree().get_network_unique_id()]["team"] = 2
+	NetNodes.players.get_node(str(get_tree().get_network_unique_id())).team = 2
+	NetNodes.players.get_node(str(get_tree().get_network_unique_id())).health = -10000
+	self.visible = false

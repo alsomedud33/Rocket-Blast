@@ -1,10 +1,14 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Online/HUD/Hud (Online).gd" type="Script" id=1]
 [ext_resource path="res://Online/Theme (Online).tres" type="Theme" id=2]
 [ext_resource path="res://Online/HUD/MatchEnd.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Online/HUD/Pause(Online).gd" type="Script" id=4]
 [ext_resource path="res://assets/UI/Settings Popup.tscn" type="PackedScene" id=5]
+[ext_resource path="res://TitleScreen/BG2.png" type="Texture" id=6]
+[ext_resource path="res://TitleScreen/BG3.png" type="Texture" id=7]
+[ext_resource path="res://Maps/TwoTower/Team_Select_Script.gd" type="Script" id=8]
+[ext_resource path="res://TitleScreen/Shifting Shader.tscn" type="PackedScene" id=9]
 
 [sub_resource type="DynamicFontData" id=17]
 font_path = "res://assets/Fonts/TF2.ttf"
@@ -60,6 +64,86 @@ corner_radius_top_left = 30
 corner_radius_top_right = 30
 corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
+
+[sub_resource type="Animation" id=32]
+resource_name = "Hue Shifting"
+length = 5.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.721569, 0.294118, 0.266667, 1 ), Color( 0.67451, 0.2, 1, 1 ), Color( 0.2, 0.717647, 1, 1 ), Color( 0.2, 1, 0.454902, 1 ), Color( 1, 0.94902, 0.2, 1 ), Color( 0.721569, 0.294118, 0.266667, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("WobbleOne:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4, 5 ),
+"transitions": PoolRealArray( 1, 8.28211, 8.28211, 8.28211, 8.28211, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.67451, 0.2, 1, 1 ), Color( 0.2, 0.717647, 1, 1 ), Color( 0.2, 1, 0.454902, 1 ), Color( 1, 0.94902, 0.2, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("WobbleTwo:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4, 5 ),
+"transitions": PoolRealArray( 1, 8.28211, 8.28211, 8.28211, 8.28211, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.67451, 0.2, 1, 1 ), Color( 0.2, 0.717647, 1, 1 ), Color( 0.2, 1, 0.454902, 1 ), Color( 1, 0.94902, 0.2, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Shader" id=39]
+code = "shader_type canvas_item;
+
+uniform float screen_height = 280.0;
+
+void fragment() {
+	float diff_x = -0.1 * sin((30.0 * UV.y)+(1.0 * TIME));
+	COLOR = texture(TEXTURE, vec2(UV.x + diff_x, UV.y));
+	COLOR = mix(vec4(0.0),COLOR, float(int(UV.y * screen_height) % 2));
+}"
+
+[sub_resource type="ShaderMaterial" id=34]
+shader = SubResource( 39 )
+shader_param/screen_height = 100.0
+
+[sub_resource type="StyleBoxFlat" id=35]
+bg_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 90
+corner_radius_top_right = 90
+corner_radius_bottom_right = 90
+corner_radius_bottom_left = 30
+
+[sub_resource type="DynamicFontData" id=36]
+font_path = "res://assets/Fonts/TF2.ttf"
+
+[sub_resource type="DynamicFont" id=37]
+size = 60
+outline_size = 5
+outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+use_filter = true
+font_data = SubResource( 36 )
+
+[sub_resource type="DynamicFont" id=38]
+size = 100
+outline_size = 5
+outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+use_filter = true
+font_data = SubResource( 36 )
 
 [node name="HUD (Online)" type="Control"]
 pause_mode = 2
@@ -197,9 +281,9 @@ __meta__ = {
 
 [node name="Settings" type="Button" parent="Pause/Panel"]
 anchor_left = 0.0914062
-anchor_top = 0.709722
+anchor_top = 0.751389
 anchor_right = 0.314063
-anchor_bottom = 0.788889
+anchor_bottom = 0.830556
 rect_pivot_offset = Vector2( 107, 0 )
 focus_mode = 0
 custom_colors/font_color = Color( 0, 0.556863, 0.0823529, 1 )
@@ -217,9 +301,9 @@ __meta__ = {
 
 [node name="Items" type="Button" parent="Pause/Panel"]
 anchor_left = 0.0914062
-anchor_top = 0.6125
+anchor_top = 0.452778
 anchor_right = 0.314063
-anchor_bottom = 0.691667
+anchor_bottom = 0.531945
 rect_pivot_offset = Vector2( 107, 0 )
 focus_mode = 0
 custom_colors/font_color = Color( 0, 0.556863, 0.0823529, 1 )
@@ -236,11 +320,52 @@ __meta__ = {
 "_editor_description_": ""
 }
 
+[node name="Team" type="Button" parent="Pause/Panel"]
+anchor_left = 0.0914062
+anchor_top = 0.551389
+anchor_right = 0.314063
+anchor_bottom = 0.630556
+rect_pivot_offset = Vector2( 107, 0 )
+focus_mode = 0
+custom_colors/font_color = Color( 0, 0.556863, 0.0823529, 1 )
+custom_fonts/font = SubResource( 27 )
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
+enabled_focus_mode = 0
+text = "change team"
+__meta__ = {
+"_edit_use_anchors_": true,
+"_editor_description_": ""
+}
+
+[node name="Team2" type="Button" parent="Pause/Panel"]
+anchor_left = 0.0914062
+anchor_top = 0.652778
+anchor_right = 0.314063
+anchor_bottom = 0.731945
+rect_pivot_offset = Vector2( 107, 0 )
+focus_mode = 0
+custom_colors/font_color = Color( 0, 0.556863, 0.0823529, 1 )
+custom_fonts/font = SubResource( 27 )
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
+disabled = true
+enabled_focus_mode = 0
+text = "change merc"
+__meta__ = {
+"_edit_use_anchors_": true,
+"_editor_description_": ""
+}
+
 [node name="Loadouts" type="Button" parent="Pause/Panel"]
 anchor_left = 0.0914062
-anchor_top = 0.5125
+anchor_top = 0.352778
 anchor_right = 0.314063
-anchor_bottom = 0.591667
+anchor_bottom = 0.431945
 margin_bottom = 3.05176e-05
 rect_pivot_offset = Vector2( 107, 0 )
 focus_mode = 0
@@ -259,10 +384,10 @@ __meta__ = {
 }
 
 [node name="Resume" type="Button" parent="Pause/Panel"]
-anchor_left = 0.0914062
-anchor_top = 0.354167
+anchor_left = 0.0914063
+anchor_top = 0.234722
 anchor_right = 0.314063
-anchor_bottom = 0.433333
+anchor_bottom = 0.313888
 rect_pivot_offset = Vector2( 107, 0 )
 focus_mode = 0
 custom_colors/font_color = Color( 0, 0.556863, 0.0823529, 1 )
@@ -280,6 +405,136 @@ __meta__ = {
 
 [node name="Settings Popup" parent="Pause" instance=ExtResource( 5 )]
 
+[node name="Change_Team" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Shifting Shader" parent="Change_Team" instance=ExtResource( 9 )]
+
+[node name="ColorRect" parent="Change_Team/Shifting Shader" index="0"]
+self_modulate = Color( 0, 0.105882, 0.0666667, 1 )
+
+[node name="WobbleOne" parent="Change_Team/Shifting Shader" index="1"]
+self_modulate = Color( 0, 1, 0.623529, 1 )
+
+[node name="WobbleTwo" parent="Change_Team/Shifting Shader" index="2"]
+self_modulate = Color( 0, 1, 0.623529, 1 )
+texture = ExtResource( 6 )
+
+[node name="AnimationPlayer" parent="Change_Team/Shifting Shader" index="3"]
+"anims/Hue Shifting" = SubResource( 32 )
+
+[node name="TextureRect" type="TextureRect" parent="Change_Team/Shifting Shader"]
+self_modulate = Color( 0, 1, 0.623529, 1 )
+material = SubResource( 34 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 7 )
+expand = true
+
+[node name="Blue" type="Panel" parent="Change_Team"]
+self_modulate = Color( 0, 0, 1, 0.501961 )
+margin_left = 812.0
+margin_top = 168.0
+margin_right = 1197.0
+margin_bottom = 656.0
+mouse_filter = 1
+custom_styles/panel = SubResource( 35 )
+
+[node name="Blue" type="Label" parent="Change_Team/Blue"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -120.0
+margin_top = 27.0
+margin_right = 120.0
+margin_bottom = 127.0
+grow_horizontal = 2
+custom_fonts/font = SubResource( 37 )
+text = "Blue"
+align = 1
+valign = 1
+
+[node name="Number" type="Label" parent="Change_Team/Blue"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -188.5
+margin_top = -104.0
+margin_right = -149.5
+margin_bottom = -4.0
+custom_fonts/font = SubResource( 37 )
+text = "temp"
+align = 1
+valign = 1
+
+[node name="Blue_Button" type="Button" parent="Change_Team/Blue"]
+self_modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Red" type="Panel" parent="Change_Team"]
+self_modulate = Color( 1, 0, 0, 0.35 )
+margin_left = 177.0
+margin_top = 168.0
+margin_right = 562.0
+margin_bottom = 656.0
+mouse_filter = 1
+custom_styles/panel = SubResource( 35 )
+
+[node name="Red2" type="Label" parent="Change_Team/Red"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -96.5
+margin_top = 27.0
+margin_right = 96.5
+margin_bottom = 127.0
+grow_horizontal = 2
+custom_fonts/font = SubResource( 37 )
+text = "red"
+align = 1
+valign = 1
+
+[node name="Number" type="Label" parent="Change_Team/Red"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -188.5
+margin_top = -104.0
+margin_right = -149.5
+margin_bottom = -4.0
+custom_fonts/font = SubResource( 37 )
+text = "temp"
+align = 1
+valign = 1
+
+[node name="Red_Button" type="Button" parent="Change_Team/Red"]
+self_modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Label" type="Label" parent="Change_Team"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -356.0
+margin_right = 356.0
+margin_bottom = 100.0
+custom_fonts/font = SubResource( 38 )
+text = "Choose team"
+
 [connection signal="pressed" from="Pause/Panel/Quit" to="Pause" method="_on_Quit_pressed"]
 [connection signal="pressed" from="Pause/Panel/Disconnect" to="Pause" method="_on_Disconnect_pressed"]
 [connection signal="pressed" from="Pause/Panel/Settings" to="Pause" method="_on_Settings_pressed"]
+[connection signal="pressed" from="Pause/Panel/Team" to="Pause" method="_on_Team_pressed"]
+[connection signal="visibility_changed" from="Change_Team" to="Change_Team" method="_on_Change_Team_visibility_changed"]
+[connection signal="pressed" from="Change_Team/Blue/Blue_Button" to="Change_Team" method="_on_Blue_Button_pressed"]
+[connection signal="pressed" from="Change_Team/Red/Red_Button" to="Change_Team" method="_on_Red_Button_pressed"]
+
+[editable path="Change_Team/Shifting Shader"]

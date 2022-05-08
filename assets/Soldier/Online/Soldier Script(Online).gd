@@ -13,7 +13,7 @@ remote var username = ''
 var max_health = 200
 var health = 200
 var wep_spread = 6
-var dealth_location
+var dealth_location = global_transform.origin
 onready var killer = name
 var merc = "Soldier"
 var team:int
@@ -230,12 +230,12 @@ remote func set_team():
 		1:
 			set_collision_layer_bit(1,true)
 			set_collision_mask_bit(5, true)
-			fp_arms.get_active_material(0).set_texture(0,red_pallete)
+			fp_arms.get_active_material(0).set_texture(0,blue_pallete)
 			self.armature.get_node("Skeleton/Soldier").get_active_material(0).set_texture(0,red_pallete)
 		2:
 			set_collision_layer_bit(5,true)
 			set_collision_mask_bit(1, true)
-			fp_arms.get_active_material(0).set_texture(0,blue_pallete)
+			fp_arms.get_active_material(0).set_texture(0,red_pallete)
 			self.armature.get_node("Skeleton/Soldier").get_active_material(0).set_texture(0,blue_pallete)
 
 func set_username():

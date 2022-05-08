@@ -23,3 +23,16 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+func clear_nodes():
+	for p in players.get_children():
+		players.remove_child(p)
+		p.queue_free()
+		
+	for r in rockets.get_children():
+		rockets.remove_child(r)
+		r.queue_free()
+		
+	for h in hitboxes.get_children():
+		hitboxes.remove_child(h)
+		h.queue_free()

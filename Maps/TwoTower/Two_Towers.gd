@@ -60,8 +60,7 @@ func _server_disconnected():
 	MusicController.fade_out()
 	Transitions.fade_in()
 	yield(Transitions.anim,"animation_finished")
-	for p in NetNodes.players.get_children():
-		p.queue_free()
+	NetNodes.clear_nodes()
 	SceneChanger.goto_scene("res://Online/Lobby/Lobby.tscn",self)
 	
 func restart(num):
@@ -71,9 +70,7 @@ func restart(num):
 remotesync func restart_game():
 	if NetNodes.has_node("HUD (Online)"):
 		NetNodes.get_node("HUD (Online)").queue_free()
-	for p in NetNodes.players.get_children():
-		NetNodes.players.remove_child(p)
-		p.queue_free()
+	NetNodes.clear_nodes()
 	if Network.server != null:
 		Network.server.close_connection()
 	if Network.client != null:
