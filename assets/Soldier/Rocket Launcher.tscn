@@ -13,7 +13,7 @@ uv1_triplanar_sharpness = 7.72748
 [node name="Rocket Launcher" instance=ExtResource( 1 )]
 
 [node name="MeshInstance" parent="." index="0"]
-layers = 4
+layers = 5
 cast_shadow = 0
 material/0 = SubResource( 2 )
 

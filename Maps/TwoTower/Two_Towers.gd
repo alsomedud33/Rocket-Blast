@@ -5,9 +5,16 @@ var soldier = preload("res://assets/Soldier/Online/Soldier(online).tscn")
 func _on_Skybox_Area_body_exited(body):
 	body.global_transform.origin = $"Skybox_Area/Respawn".global_transform.origin
 
+var time_limit_mins = 3
+var time_limit_sec = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Network.red_time_limit_mins = time_limit_mins
+	Network.red_time_limit_sec = time_limit_sec
+	Network.blue_time_limit_mins = time_limit_mins
+	Network.blue_time_limit_sec = time_limit_sec
+	
 	Transitions.fade_out()
 	Players.set_ids()
 	_instance_players()
@@ -62,6 +69,8 @@ func restart(num):
 #	restart_game()
 
 remotesync func restart_game():
+	if NetNodes.has_node("HUD (Online)"):
+		NetNodes.get_node("HUD (Online)").queue_free()
 	for p in NetNodes.players.get_children():
 		NetNodes.players.remove_child(p)
 		p.queue_free()
@@ -95,7 +104,9 @@ func _respawn(id,merc,team):
 	rpc("_respawn_remote",id,merc,team)
 	get_node("CameraHub/Camera").current = true
 	if NetNodes.has_node("HUD (Online)"):
-		NetNodes.get_node("HUD (Online)").queue_free()
+		var hud = NetNodes.get_node("HUD (Online)")
+		NetNodes.remove_child(NetNodes.get_node("HUD (Online)"))
+		hud.queue_free()
 	var child = NetNodes.players.get_node(str(id))
 	NetNodes.players.remove_child(NetNodes.players.get_node(str(id)))#get_node(str(id)).queue_free()
 	child.queue_free()
@@ -123,6 +134,7 @@ func _respawn(id,merc,team):
 
 remote func _respawn_remote(id,merc,team):
 	#NetNodes.players.get_node(str(id)).queue_free()
+	
 	var child = NetNodes.players.get_node(str(id))
 	NetNodes.players.remove_child(NetNodes.players.get_node(str(id)))#get_node(str(id)).queue_free()
 	child.queue_free()
@@ -139,12 +151,12 @@ remote func _respawn_remote(id,merc,team):
 
 func _koth_point_entered(body_name,cap_amount,cap_rate,max_cap):
 	rpc("_koth_point_entered_remote",body_name,cap_amount,cap_rate,max_cap)
-	if NetNodes.players.get_node(body_name).team == 1:
-		Network.cap_rate += 1
-	else:# NetNodes.players.get_node(body_name).team == 2:
-		Network.cap_rate -= 1
+#	if NetNodes.players.get_node(body_name).team == 1:
+#		Network.cap_rate += 1
+#	else:# NetNodes.players.get_node(body_name).team == 2:
+#		Network.cap_rate -= 1
 
-remote func _koth_point_entered_remote(body_name,cap_amount,cap_rate,max_cap):
+remotesync func _koth_point_entered_remote(body_name,cap_amount,cap_rate,max_cap):
 	print ("Player has entered the point")
 	if NetNodes.players.get_node(body_name).team == 1:
 		Network.cap_rate += 1
@@ -175,17 +187,18 @@ func _koth_points_change(cap_rate):
 	elif Network.cap_amount == -Network.max_cap:
 		Network.blue_captured = true
 		Network.red_captured = false
+	print ("Cap rate is: " + str(Network.cap_rate))
 	print ("Cap amount is: "+ str(Network.cap_amount))
 
 remote func _koth_points_change_remote(cap_rate):
 	Network.cap_amount += Network.cap_rate
 	Network.cap_amount = clamp(Network.cap_amount,-Network.max_cap,Network.max_cap)
-	if Network.cap_amount == Network.max_cap:
-		Network.red_captured = true
-		Network.blue_captured = false
-	elif Network.cap_amount == -Network.max_cap:
-		Network.blue_captured = true
-		Network.red_captured = false
+#	if Network.cap_amount == Network.max_cap:
+#		Network.red_captured = true
+#		Network.blue_captured = false
+#	elif Network.cap_amount == -Network.max_cap:
+#		Network.blue_captured = true
+#		Network.red_captured = false
 
 
 func _player_shot(id,position,wep_type):

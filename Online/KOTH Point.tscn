@@ -70,6 +70,7 @@ rounded = true
 percent_visible = false
 
 [node name="Timer" type="Timer" parent="."]
+process_mode = 0
 autostart = true
 
 [connection signal="body_entered" from="." to="." method="_on_Area_body_entered"]

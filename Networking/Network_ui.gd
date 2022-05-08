@@ -160,7 +160,7 @@ func _on_Start_button_pressed():
 	start_game()
 
 remote func start_game():
-	MusicController.fade_out()
+#	MusicController.fade_out()
 	Transitions.fade_in()
 	yield(Transitions.anim,"animation_finished")
 	SceneChanger.goto_scene_netnode("res://Maps/TwoTower/Two_Towers.tscn",get_parent())

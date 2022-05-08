@@ -24,11 +24,11 @@ var time_limit_sec = 0
 
 
 
-var red_time_limit_mins = time_limit_mins
-var red_time_limit_sec = time_limit_sec
+var red_time_limit_mins:int# = time_limit_mins
+var red_time_limit_sec:int# = time_limit_sec
 
-var blue_time_limit_mins = time_limit_mins
-var blue_time_limit_sec = time_limit_sec
+var blue_time_limit_mins:int# = time_limit_mins
+var blue_time_limit_sec:int# = time_limit_sec
 
 var red_captured:bool = false
 var blue_captured:bool = false
@@ -65,28 +65,28 @@ func _ready():
 
 func _update_timer(cap_rate):
 	rpc("_update_timer_remote",cap_rate)
-	if red_captured == true:
-		if red_time_limit_sec == 0 and red_time_limit_mins == 0:
-			red_time_limit_sec =0
-			red_time_limit_mins =0
-			emit_signal("winner",1)
-		elif red_time_limit_sec <= 0:
-			red_time_limit_mins -= 1
-			red_time_limit_sec = 59
-		else:
-			red_time_limit_sec -= 1
-	elif blue_captured == true:
-		if blue_time_limit_sec == 0 and blue_time_limit_mins == 0:
-			blue_time_limit_sec =0
-			blue_time_limit_mins =0
-			emit_signal("winner",2)
-		elif blue_time_limit_sec <= 0:
-			blue_time_limit_mins -= 1
-			blue_time_limit_sec = 59
-		else:
-			blue_time_limit_sec -= 1
+#	if red_captured == true:
+#		if red_time_limit_sec == 0 and red_time_limit_mins == 0:
+#			red_time_limit_sec =0
+#			red_time_limit_mins =0
+#			emit_signal("winner",1)
+#		elif red_time_limit_sec <= 0:
+#			red_time_limit_mins -= 1
+#			red_time_limit_sec = 59
+#		else:
+#			red_time_limit_sec -= 1
+#	elif blue_captured == true:
+#		if blue_time_limit_sec == 0 and blue_time_limit_mins == 0:
+#			blue_time_limit_sec =0
+#			blue_time_limit_mins =0
+#			emit_signal("winner",2)
+#		elif blue_time_limit_sec <= 0:
+#			blue_time_limit_mins -= 1
+#			blue_time_limit_sec = 59
+#		else:
+#			blue_time_limit_sec -= 1
 
-remote func _update_timer_remote(cap_rate):
+remotesync func _update_timer_remote(cap_rate):
 	if red_captured == true:
 		if red_time_limit_sec == 0 and red_time_limit_mins == 0:
 			red_time_limit_sec =0

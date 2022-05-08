@@ -21,7 +21,7 @@ var max_cap = 100
 
 
 func _on_Area_body_entered(body):
-	if body.is_in_group("Player"):
+	if body.is_in_group("Player") and body.is_network_master():
 		Network.emit_signal("koth_point_entered",body.name,Network.cap_amount,Network.cap_rate,Network.max_cap)
 #		if body.team == 1:
 #			cap_rate += 1
@@ -29,7 +29,7 @@ func _on_Area_body_entered(body):
 #			cap_rate -= 1
 
 func _on_Area_body_exited(body):
-	if body.is_in_group("Player"):
+	if body.is_in_group("Player") and body.is_network_master():
 		Network.emit_signal("koth_point_exited",body.name,Network.cap_amount,Network.cap_rate,Network.max_cap)
 #		if body.team == 1:
 #			cap_rate -= 1
