@@ -15,8 +15,9 @@ func _ready():
 	get_tree().connect("network_peer_connected",$"../../../Network_ui","player_connected")
 	get_tree().connect("connected_to_server",$"../../../Network_ui","join_lobby")
 	get_tree().connect("server_disconnected",self,"_server_disconnected")
-	$"../../../Network_ui".connect("text_changed",self,"_change_text")#Network_ui/Settings_panel/Username.connect("text_changed",self,"_change_text")
 	$"Armature/Skeleton/Hat/Username Sprite/Viewport/Username".text = Globals.load_data().username
+	$"../../../Network_ui/Settings_panel/Username".connect("text_changed",self,"_change_text")#Network_ui/Settings_panel/Username.connect("text_changed",self,"_change_text")
+
 
 func _player_disconnected(id):
 	pass

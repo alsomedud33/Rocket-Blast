@@ -149,7 +149,7 @@ remote func recieve_player_info(list):
 func _on_LineEdit_text_changed(new_text):
 	Network.ip_address = new_text
 
-func _on_Username_text_changed(new_text):
+func _on_Username_(new_text):
 	Players.username = new_text
 	Globals.save_data()
 
@@ -169,3 +169,4 @@ remote func start_game():
 
 func _on_CheckBox_toggled(button_pressed):
 	$"Game_panel/LineEdit".secret = button_pressed
+

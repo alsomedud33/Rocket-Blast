@@ -61,7 +61,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/Trail/plugin.cfg", "res://addons/multirun/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/Trail/plugin.cfg", "res://addons/batch_collisions/plugin.cfg", "res://addons/multirun/plugin.cfg" )
 
 [global]
 

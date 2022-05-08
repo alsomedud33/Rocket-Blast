@@ -128,7 +128,7 @@ surfaces/0 = {
 }
 
 [sub_resource type="ViewportTexture" id=44]
-viewport_path = NodePath("Armature/Skeleton/Hat/Username Sprite/Viewport")
+viewport_path = NodePath("ViewportContainer/Viewport/Lobby/Armature/Skeleton/Hat/Username Sprite/Viewport")
 
 [sub_resource type="GDScript" id=41]
 script/source = "extends Viewport

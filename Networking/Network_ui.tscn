@@ -598,7 +598,7 @@ anims/RESET = SubResource( 35 )
 "anims/Server Disconnected" = SubResource( 37 )
 anims/connection_failed = SubResource( 36 )
 
-[connection signal="text_changed" from="Settings_panel/Username" to="." method="_on_Username_text_changed"]
+[connection signal="text_changed" from="Settings_panel/Username" to="." method="_on_Username_"]
 [connection signal="pressed" from="Game_panel/Create_button" to="." method="_on_Create_button_pressed"]
 [connection signal="pressed" from="Game_panel/Join_button" to="." method="_on_Join_button_pressed"]
 [connection signal="text_changed" from="Game_panel/LineEdit" to="." method="_on_LineEdit_text_changed"]
