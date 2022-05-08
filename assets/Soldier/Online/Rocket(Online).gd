@@ -11,6 +11,8 @@ onready var explosion = preload("res://Online/Explosion_Hitbox(online).tscn")#: 
 onready var decal = preload('res://assets/Textures/Bullet Decal.tscn')
 onready var main = get_tree().current_scene
 
+onready var explosition = $"explosion"
+
 #onready var explosion_instance = explosion.instance()
 
 
@@ -112,12 +114,13 @@ func _on_Area_area_entered(area):
 		#print("AM I REAL: " + str(real))
 		if real:
 			var explosion_instance = Network.explosion.instance()
-			
-		#					var decal_instance = Network.decal.instance()
-		#					decal_instance.name = rocket
-		#					NetNodes.hitboxes.add_child(decal_instance)
-		#					decal_instance.global_transform.origin = collision.get_position()
-		#					decal_instance.look_at(collision.get_position() + collision.get_normal() , Vector3.UP)
+			instance_decal()
+#			var decal_instance = Network.decal.instance()
+#
+#			decal_instance.name = rocket
+#			NetNodes.hitboxes.add_child(decal_instance)
+#			decal_instance.global_transform.origin = explosition.global_transform.origin
+			#decal_instance.look_at(collision.get_position() + collision.get_normal() , Vector3.UP)
 			
 			explosion_instance.name = rocket
 			explosion_instance.real = NetNodes.rockets.get_node(rocket).real#true
@@ -130,6 +133,7 @@ func _on_Area_area_entered(area):
 			explosion_instance.damage_scaler = 1.25
 			explosion_instance.global_transform.origin = self.global_transform.origin
 			NetNodes.hitboxes.add_child(explosion_instance)
+			#NetNodes.hitboxes.add_child(decal_instance)
 			Network.emit_signal("destroy_rocket",rocket)
 
 
@@ -138,13 +142,14 @@ func _on_Hitbox_body_entered(body):
 	var rocket = name
 	if !body.is_in_group("Player"):#body.name !=rocket_owner || body.get_parent.name !=rocket_owner:
 		if real:
+			instance_decal()
 			var explosion_instance = Network.explosion.instance()
-
-		#					var decal_instance = Network.decal.instance()
-		#					decal_instance.name = rocket
-		#					NetNodes.hitboxes.add_child(decal_instance)
-		#					decal_instance.global_transform.origin = collision.get_position()
-		#					decal_instance.look_at(collision.get_position() + collision.get_normal() , Vector3.UP)
+#			var decal_instance = Network.decal.instance()
+#
+#			decal_instance.name = rocket
+#			NetNodes.hitboxes.add_child(decal_instance)
+#			decal_instance.global_transform.origin = explosition.global_transform.origin
+			#decal_instance.look_at(collision.get_position() + collision.get_normal() , Vector3.UP)
 
 			explosion_instance.name = rocket
 			explosion_instance.real = NetNodes.rockets.get_node(rocket).real#true
@@ -157,5 +162,22 @@ func _on_Hitbox_body_entered(body):
 			explosion_instance.damage_scaler = 1.25
 			explosion_instance.global_transform.origin = self.global_transform.origin
 			NetNodes.hitboxes.add_child(explosion_instance)
+			#NetNodes.hitboxes.add_child(decal_instance)
 			Network.emit_signal("destroy_rocket",rocket)
 
+func instance_decal():
+	rpc("instance_decal_remote",explosition.global_transform.origin)
+	var rocket = name
+	var decal_instance = Network.decal.instance()
+	decal_instance.name = rocket
+	NetNodes.hitboxes.add_child(decal_instance)
+	decal_instance.global_transform.origin = explosition.global_transform.origin
+	NetNodes.hitboxes.add_child(decal_instance)
+
+remote func instance_decal_remote(loc):
+	var rocket = name
+	var decal_instance = Network.decal.instance()
+	decal_instance.name = rocket
+	NetNodes.hitboxes.add_child(decal_instance)
+	decal_instance.global_transform.origin = loc
+	NetNodes.hitboxes.add_child(decal_instance)

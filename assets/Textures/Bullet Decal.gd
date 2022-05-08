@@ -2,7 +2,7 @@ extends Spatial
 
 
 
-var decal:bool = true
+var decal:bool = false
 
 func _on_Timer_timeout():
 	queue_free()

@@ -1683,7 +1683,7 @@ material/1 = null
 shape = SubResource( 2 )
 
 [node name="Steps" type="MeshInstance" parent="."]
-transform = Transform( -0.8, 0, -2.60673e-07, 0, 0.8, 0, 2.60673e-07, 0, -0.8, -16.6777, 4.18375, 9.42801 )
+transform = Transform( -0.8, 0, -3.11531e-07, 0, 0.8, 0, 3.11531e-07, 0, -0.8, -16.6777, 4.2, 9.42801 )
 mesh = SubResource( 3 )
 material/0 = null
 material/1 = null
@@ -2090,7 +2090,7 @@ material/1 = null
 shape = SubResource( 80 )
 
 [node name="Cube010" type="MeshInstance" parent="."]
-transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 16.9549, 4.18375, -9.21031 )
+transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 16.9549, 4.2, -9.21031 )
 mesh = SubResource( 81 )
 material/0 = null
 
