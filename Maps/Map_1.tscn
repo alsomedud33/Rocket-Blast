@@ -146,9 +146,10 @@ outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
 use_filter = true
 font_data = SubResource( 106 )
 
-[node name="Control" type="Control"]
+[node name="Room" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 1
 
 [node name="ViewportContainer" type="ViewportContainer" parent="."]
 anchor_right = 1.0
@@ -157,6 +158,7 @@ stretch = true
 
 [node name="Viewport" type="Viewport" parent="ViewportContainer"]
 size = Vector2( 1280, 720 )
+handle_input_locally = false
 render_target_update_mode = 3
 audio_listener_enable_2d = true
 audio_listener_enable_3d = true
@@ -353,18 +355,16 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 24, 80.5 )
 [node name="Position3D" type="Position3D" parent="ViewportContainer/Viewport/Room/Jurf Walls"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.5, -14 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 2
+[node name="HUD" parent="." instance=ExtResource( 13 )]
 
-[node name="Stage Select" type="Control" parent="CanvasLayer"]
+[node name="Stage Select" type="Control" parent="HUD"]
 pause_mode = 2
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 script = ExtResource( 5 )
 
-[node name="Panel" type="MarginContainer" parent="CanvasLayer/Stage Select"]
+[node name="Panel" type="MarginContainer" parent="HUD/Stage Select"]
 anchor_left = 0.676562
 anchor_top = 0.0888889
 anchor_right = 0.996875
@@ -375,17 +375,17 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Stage Select/Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/Stage Select/Panel"]
 margin_right = 410.0
 margin_bottom = 332.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Stage Select/Panel/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/Stage Select/Panel/VBoxContainer"]
 margin_right = 410.0
 margin_bottom = 108.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Stage" type="Button" parent="CanvasLayer/Stage Select/Panel/VBoxContainer/HBoxContainer"]
+[node name="Stage" type="Button" parent="HUD/Stage Select/Panel/VBoxContainer/HBoxContainer"]
 margin_right = 134.0
 margin_bottom = 108.0
 rect_min_size = Vector2( 134, 108 )
@@ -394,7 +394,7 @@ custom_fonts/font = SubResource( 97 )
 disabled = true
 text = "Stage 1"
 
-[node name="Stage2" type="Button" parent="CanvasLayer/Stage Select/Panel/VBoxContainer/HBoxContainer"]
+[node name="Stage2" type="Button" parent="HUD/Stage Select/Panel/VBoxContainer/HBoxContainer"]
 margin_left = 138.0
 margin_right = 272.0
 margin_bottom = 108.0
@@ -404,7 +404,7 @@ custom_fonts/font = SubResource( 98 )
 disabled = true
 text = "Stage 2"
 
-[node name="Stage3" type="Button" parent="CanvasLayer/Stage Select/Panel/VBoxContainer/HBoxContainer"]
+[node name="Stage3" type="Button" parent="HUD/Stage Select/Panel/VBoxContainer/HBoxContainer"]
 margin_left = 276.0
 margin_right = 410.0
 margin_bottom = 108.0
@@ -414,14 +414,14 @@ custom_fonts/font = SubResource( 99 )
 disabled = true
 text = "Stage 3"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Stage Select/Panel/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="HUD/Stage Select/Panel/VBoxContainer"]
 margin_top = 112.0
 margin_right = 410.0
 margin_bottom = 220.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Stage4" type="Button" parent="CanvasLayer/Stage Select/Panel/VBoxContainer/HBoxContainer2"]
+[node name="Stage4" type="Button" parent="HUD/Stage Select/Panel/VBoxContainer/HBoxContainer2"]
 margin_right = 134.0
 margin_bottom = 108.0
 rect_min_size = Vector2( 134, 108 )
@@ -430,7 +430,7 @@ custom_fonts/font = SubResource( 100 )
 disabled = true
 text = "Stage 4"
 
-[node name="Stage5" type="Button" parent="CanvasLayer/Stage Select/Panel/VBoxContainer/HBoxContainer2"]
+[node name="Stage5" type="Button" parent="HUD/Stage Select/Panel/VBoxContainer/HBoxContainer2"]
 margin_left = 138.0
 margin_right = 272.0
 margin_bottom = 108.0
@@ -440,7 +440,7 @@ custom_fonts/font = SubResource( 101 )
 disabled = true
 text = "Stage 5"
 
-[node name="Stage6" type="Button" parent="CanvasLayer/Stage Select/Panel/VBoxContainer/HBoxContainer2"]
+[node name="Stage6" type="Button" parent="HUD/Stage Select/Panel/VBoxContainer/HBoxContainer2"]
 margin_left = 276.0
 margin_right = 410.0
 margin_bottom = 108.0
@@ -450,14 +450,14 @@ custom_fonts/font = SubResource( 102 )
 disabled = true
 text = "Stage 6"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/Stage Select/Panel/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="HUD/Stage Select/Panel/VBoxContainer"]
 margin_top = 224.0
 margin_right = 410.0
 margin_bottom = 332.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Stage7" type="Button" parent="CanvasLayer/Stage Select/Panel/VBoxContainer/HBoxContainer3"]
+[node name="Stage7" type="Button" parent="HUD/Stage Select/Panel/VBoxContainer/HBoxContainer3"]
 margin_right = 134.0
 margin_bottom = 108.0
 rect_min_size = Vector2( 134, 108 )
@@ -466,7 +466,7 @@ custom_fonts/font = SubResource( 103 )
 disabled = true
 text = "Stage 7"
 
-[node name="Stage8" type="Button" parent="CanvasLayer/Stage Select/Panel/VBoxContainer/HBoxContainer3"]
+[node name="Stage8" type="Button" parent="HUD/Stage Select/Panel/VBoxContainer/HBoxContainer3"]
 margin_left = 138.0
 margin_right = 272.0
 margin_bottom = 108.0
@@ -476,7 +476,7 @@ custom_fonts/font = SubResource( 104 )
 disabled = true
 text = "Stage 8"
 
-[node name="Stage9" type="Button" parent="CanvasLayer/Stage Select/Panel/VBoxContainer/HBoxContainer3"]
+[node name="Stage9" type="Button" parent="HUD/Stage Select/Panel/VBoxContainer/HBoxContainer3"]
 margin_left = 276.0
 margin_right = 410.0
 margin_bottom = 108.0
@@ -486,41 +486,39 @@ custom_fonts/font = SubResource( 105 )
 disabled = true
 text = "Stage 9"
 
-[node name="HUD" parent="." instance=ExtResource( 13 )]
-
-[connection signal="area_entered" from="ViewportContainer/Viewport/Room/First Area/Contact_Point" to="CanvasLayer/Stage Select" method="contact_1"]
-[connection signal="body_entered" from="ViewportContainer/Viewport/Room/First Area/Contact_Point" to="CanvasLayer/Stage Select" method="contact_1"]
+[connection signal="area_entered" from="ViewportContainer/Viewport/Room/First Area/Contact_Point" to="HUD/Stage Select" method="contact_1"]
+[connection signal="body_entered" from="ViewportContainer/Viewport/Room/First Area/Contact_Point" to="HUD/Stage Select" method="contact_1"]
 [connection signal="body_entered" from="ViewportContainer/Viewport/Room/BoundingBox4" to="ViewportContainer/Viewport/Room/BoundingBox4" method="_on_BoundingBox_body_entered"]
-[connection signal="area_entered" from="ViewportContainer/Viewport/Room/First Area B/Contact_Point3" to="CanvasLayer/Stage Select" method="contact_2"]
-[connection signal="body_entered" from="ViewportContainer/Viewport/Room/First Area B/Contact_Point3" to="CanvasLayer/Stage Select" method="contact_2"]
+[connection signal="area_entered" from="ViewportContainer/Viewport/Room/First Area B/Contact_Point3" to="HUD/Stage Select" method="contact_2"]
+[connection signal="body_entered" from="ViewportContainer/Viewport/Room/First Area B/Contact_Point3" to="HUD/Stage Select" method="contact_2"]
 [connection signal="body_entered" from="ViewportContainer/Viewport/Room/BoundingBox5" to="ViewportContainer/Viewport/Room/BoundingBox5" method="_on_BoundingBox_body_entered"]
-[connection signal="area_entered" from="ViewportContainer/Viewport/Room/Second Area/Contact_Point4" to="CanvasLayer/Stage Select" method="contact_3"]
-[connection signal="body_entered" from="ViewportContainer/Viewport/Room/Second Area/Contact_Point4" to="CanvasLayer/Stage Select" method="contact_3"]
+[connection signal="area_entered" from="ViewportContainer/Viewport/Room/Second Area/Contact_Point4" to="HUD/Stage Select" method="contact_3"]
+[connection signal="body_entered" from="ViewportContainer/Viewport/Room/Second Area/Contact_Point4" to="HUD/Stage Select" method="contact_3"]
 [connection signal="body_entered" from="ViewportContainer/Viewport/Room/BoundingBox11" to="ViewportContainer/Viewport/Room/BoundingBox11" method="_on_BoundingBox_body_entered"]
-[connection signal="area_entered" from="ViewportContainer/Viewport/Room/Third Area/Contact_Point" to="CanvasLayer/Stage Select" method="contact_4"]
-[connection signal="body_entered" from="ViewportContainer/Viewport/Room/Third Area/Contact_Point" to="CanvasLayer/Stage Select" method="contact_4"]
+[connection signal="area_entered" from="ViewportContainer/Viewport/Room/Third Area/Contact_Point" to="HUD/Stage Select" method="contact_4"]
+[connection signal="body_entered" from="ViewportContainer/Viewport/Room/Third Area/Contact_Point" to="HUD/Stage Select" method="contact_4"]
 [connection signal="body_entered" from="ViewportContainer/Viewport/Room/BoundingBox6" to="ViewportContainer/Viewport/Room/BoundingBox6" method="_on_BoundingBox_body_entered"]
-[connection signal="area_entered" from="ViewportContainer/Viewport/Room/Fourth Area/Contact_Point3" to="CanvasLayer/Stage Select" method="contact_5"]
-[connection signal="body_entered" from="ViewportContainer/Viewport/Room/Fourth Area/Contact_Point3" to="CanvasLayer/Stage Select" method="contact_5"]
+[connection signal="area_entered" from="ViewportContainer/Viewport/Room/Fourth Area/Contact_Point3" to="HUD/Stage Select" method="contact_5"]
+[connection signal="body_entered" from="ViewportContainer/Viewport/Room/Fourth Area/Contact_Point3" to="HUD/Stage Select" method="contact_5"]
 [connection signal="body_entered" from="ViewportContainer/Viewport/Room/BoundingBox7" to="ViewportContainer/Viewport/Room/BoundingBox7" method="_on_BoundingBox_body_entered"]
-[connection signal="area_entered" from="ViewportContainer/Viewport/Room/Ground Skip/Contact_Point" to="CanvasLayer/Stage Select" method="contact_6"]
-[connection signal="body_entered" from="ViewportContainer/Viewport/Room/Ground Skip/Contact_Point" to="CanvasLayer/Stage Select" method="contact_6"]
+[connection signal="area_entered" from="ViewportContainer/Viewport/Room/Ground Skip/Contact_Point" to="HUD/Stage Select" method="contact_6"]
+[connection signal="body_entered" from="ViewportContainer/Viewport/Room/Ground Skip/Contact_Point" to="HUD/Stage Select" method="contact_6"]
 [connection signal="body_entered" from="ViewportContainer/Viewport/Room/BoundingBox10" to="ViewportContainer/Viewport/Room/BoundingBox10" method="_on_BoundingBox_body_entered"]
-[connection signal="area_entered" from="ViewportContainer/Viewport/Room/First_Ground_Skip/Contact_Point" to="CanvasLayer/Stage Select" method="contact_7"]
-[connection signal="body_entered" from="ViewportContainer/Viewport/Room/First_Ground_Skip/Contact_Point" to="CanvasLayer/Stage Select" method="contact_7"]
+[connection signal="area_entered" from="ViewportContainer/Viewport/Room/First_Ground_Skip/Contact_Point" to="HUD/Stage Select" method="contact_7"]
+[connection signal="body_entered" from="ViewportContainer/Viewport/Room/First_Ground_Skip/Contact_Point" to="HUD/Stage Select" method="contact_7"]
 [connection signal="body_entered" from="ViewportContainer/Viewport/Room/BoundingBox8" to="ViewportContainer/Viewport/Room/BoundingBox8" method="_on_BoundingBox_body_entered"]
-[connection signal="area_entered" from="ViewportContainer/Viewport/Room/Wall Shots/Contact_Point" to="CanvasLayer/Stage Select" method="contact_8"]
-[connection signal="body_entered" from="ViewportContainer/Viewport/Room/Wall Shots/Contact_Point" to="CanvasLayer/Stage Select" method="contact_8"]
+[connection signal="area_entered" from="ViewportContainer/Viewport/Room/Wall Shots/Contact_Point" to="HUD/Stage Select" method="contact_8"]
+[connection signal="body_entered" from="ViewportContainer/Viewport/Room/Wall Shots/Contact_Point" to="HUD/Stage Select" method="contact_8"]
 [connection signal="body_entered" from="ViewportContainer/Viewport/Room/BoundingBox9" to="ViewportContainer/Viewport/Room/BoundingBox9" method="_on_BoundingBox_body_entered"]
 [connection signal="body_entered" from="ViewportContainer/Viewport/Room/End Box2" to="ViewportContainer/Viewport/Room/End Box2" method="_on_End_Box_body_entered"]
-[connection signal="area_entered" from="ViewportContainer/Viewport/Room/Jurf Walls/Contact_Point" to="CanvasLayer/Stage Select" method="contact_9"]
-[connection signal="body_entered" from="ViewportContainer/Viewport/Room/Jurf Walls/Contact_Point" to="CanvasLayer/Stage Select" method="contact_9"]
-[connection signal="pressed" from="CanvasLayer/Stage Select/Panel/VBoxContainer/HBoxContainer/Stage" to="CanvasLayer/Stage Select" method="_on_Stage_pressed"]
-[connection signal="pressed" from="CanvasLayer/Stage Select/Panel/VBoxContainer/HBoxContainer/Stage2" to="CanvasLayer/Stage Select" method="_on_Stage2_pressed"]
-[connection signal="pressed" from="CanvasLayer/Stage Select/Panel/VBoxContainer/HBoxContainer/Stage3" to="CanvasLayer/Stage Select" method="_on_Stage3_pressed"]
-[connection signal="pressed" from="CanvasLayer/Stage Select/Panel/VBoxContainer/HBoxContainer2/Stage4" to="CanvasLayer/Stage Select" method="_on_Stage4_pressed"]
-[connection signal="pressed" from="CanvasLayer/Stage Select/Panel/VBoxContainer/HBoxContainer2/Stage5" to="CanvasLayer/Stage Select" method="_on_Stage5_pressed"]
-[connection signal="pressed" from="CanvasLayer/Stage Select/Panel/VBoxContainer/HBoxContainer2/Stage6" to="CanvasLayer/Stage Select" method="_on_Stage6_pressed"]
-[connection signal="pressed" from="CanvasLayer/Stage Select/Panel/VBoxContainer/HBoxContainer3/Stage7" to="CanvasLayer/Stage Select" method="_on_Stage7_pressed"]
-[connection signal="pressed" from="CanvasLayer/Stage Select/Panel/VBoxContainer/HBoxContainer3/Stage8" to="CanvasLayer/Stage Select" method="_on_Stage8_pressed"]
-[connection signal="pressed" from="CanvasLayer/Stage Select/Panel/VBoxContainer/HBoxContainer3/Stage9" to="CanvasLayer/Stage Select" method="_on_Stage9_pressed"]
+[connection signal="area_entered" from="ViewportContainer/Viewport/Room/Jurf Walls/Contact_Point" to="HUD/Stage Select" method="contact_9"]
+[connection signal="body_entered" from="ViewportContainer/Viewport/Room/Jurf Walls/Contact_Point" to="HUD/Stage Select" method="contact_9"]
+[connection signal="pressed" from="HUD/Stage Select/Panel/VBoxContainer/HBoxContainer/Stage" to="HUD/Stage Select" method="_on_Stage_pressed"]
+[connection signal="pressed" from="HUD/Stage Select/Panel/VBoxContainer/HBoxContainer/Stage2" to="HUD/Stage Select" method="_on_Stage2_pressed"]
+[connection signal="pressed" from="HUD/Stage Select/Panel/VBoxContainer/HBoxContainer/Stage3" to="HUD/Stage Select" method="_on_Stage3_pressed"]
+[connection signal="pressed" from="HUD/Stage Select/Panel/VBoxContainer/HBoxContainer2/Stage4" to="HUD/Stage Select" method="_on_Stage4_pressed"]
+[connection signal="pressed" from="HUD/Stage Select/Panel/VBoxContainer/HBoxContainer2/Stage5" to="HUD/Stage Select" method="_on_Stage5_pressed"]
+[connection signal="pressed" from="HUD/Stage Select/Panel/VBoxContainer/HBoxContainer2/Stage6" to="HUD/Stage Select" method="_on_Stage6_pressed"]
+[connection signal="pressed" from="HUD/Stage Select/Panel/VBoxContainer/HBoxContainer3/Stage7" to="HUD/Stage Select" method="_on_Stage7_pressed"]
+[connection signal="pressed" from="HUD/Stage Select/Panel/VBoxContainer/HBoxContainer3/Stage8" to="HUD/Stage Select" method="_on_Stage8_pressed"]
+[connection signal="pressed" from="HUD/Stage Select/Panel/VBoxContainer/HBoxContainer3/Stage9" to="HUD/Stage Select" method="_on_Stage9_pressed"]

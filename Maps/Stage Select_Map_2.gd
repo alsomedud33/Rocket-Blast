@@ -1,14 +1,16 @@
 extends Control
 #
 #
-#onready var current = get_tree().get_current_scene()
+#onready var current = $"../../ViewportContainer/Viewport/Room"#get_tree().get_current_scene()
 #func _input(event):
 #	if event.is_action_pressed("ui_cancel"):
 #		match Globals.Paused:
 #			true:
-#				visible = false
-#			false:
 #				visible = true
+#			false:
+#				visible = false
+#func _ready():
+#	visible = false
 #
 #func getallnodes(point):
 #	for N in current.get_children():
