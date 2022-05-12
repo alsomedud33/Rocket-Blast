@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Online/Health Pack/Health Pack.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Maps/Big Bass/Big_Bass.tscn" type="PackedScene" id=3]
@@ -7,6 +7,11 @@
 [ext_resource path="res://Maps/TwoTower/Two_Towers.gd" type="Script" id=6]
 [ext_resource path="res://Maps/TwoTower/Two Towers V4.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/Skybox/environment.png" type="Texture" id=11]
+
+[sub_resource type="Curve" id=17]
+min_value = 0.5
+max_value = 1.5
+_data = [ Vector2( 0, 1.5 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.5 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="GIProbeData" id=16]
 bounds = AABB( -79, -54, -55, 158, 108, 110 )
@@ -49,6 +54,7 @@ viewport_path = NodePath("Mirror/Viewport")
 
 [node name="Two_Towers" type="Node"]
 script = ExtResource( 6 )
+damage_ramp = SubResource( 17 )
 
 [node name="Two Towers V4" parent="." instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )

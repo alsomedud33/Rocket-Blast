@@ -507,7 +507,7 @@ func _physics_process(delta: float) -> void:
 					timer.start(cooldown)
 					#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 					
-					Network.emit_signal("player_shot",name,guns.global_transform.origin,"Rocket")
+					Network.emit_signal("player_shot",name,guns.global_transform.origin,"Rocket",0)
 					#anim.play("Shoot_Rocket")
 					$Rocket_Launch.play()
 					$Rocket_Trail.play()
@@ -520,7 +520,7 @@ func _physics_process(delta: float) -> void:
 		#			for r in camera.get_node("RayContainer").get_children():
 		#				r.cast_to.x = rand_range(wep_spread, -wep_spread)
 		#				r.cast_to.y = rand_range(wep_spread, -wep_spread)
-					Network.emit_signal("player_shot",name,guns.global_transform.origin,"Hitscan")
+					Network.emit_signal("player_shot",name,guns.global_transform.origin,"Hitscan",3.3)
 				3:
 					timer.start(cooldown)
 					anim.play("Shoot_Shovel")
@@ -734,4 +734,4 @@ func pallete_swap(colour):
 			pass
 
 func melee_attack():
-	Network.emit_signal("player_shot",name,guns.global_transform.origin,"Melee")
+	Network.emit_signal("player_shot",name,guns.global_transform.origin,"Melee",65)

@@ -1,12 +1,15 @@
 extends Node
 
 
-var soldier = preload("res://assets/Soldier/Online/Soldier(online).tscn")
+var soldier = preload("res://assets/Tweak/Tweak.tscn")#preload("res://assets/Soldier/Online/Soldier(online).tscn")
+var tweak = preload("res://assets/Tweak/Tweak.tscn")
 func _on_Skybox_Area_body_exited(body):
 	body.global_transform.origin = $"Skybox_Area/Respawn".global_transform.origin
 
 var time_limit_mins = 3
 var time_limit_sec = 0
+
+export var damage_ramp:Curve
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -198,7 +201,7 @@ remote func _koth_points_change_remote(cap_rate):
 #		Network.red_captured = false
 
 
-func _player_shot(id,position,wep_type):
+func _player_shot(id,position,wep_type,damage):
 	randomize()
 	rpc("_player_shot_remote", id,position,wep_type)
 	match wep_type:
@@ -228,7 +231,9 @@ func _player_shot(id,position,wep_type):
 					hit = true
 					print (r.get_collider().name)
 					print(NetNodes.players.get_node(id).head.get_global_transform().origin.distance_to(r.get_collision_point()))
-					dmg = round(75 * 1/clamp(NetNodes.players.get_node(id).head.get_global_transform().origin.distance_to(r.get_collision_point()),15,25))
+					var distance_travelled = clamp(NetNodes.players.get_node(id).global_transform.origin.distance_to(r.get_collision_point()),0,33)
+					dmg = round(damage * damage_ramp.interpolate(distance_travelled/33))
+					#dmg = round(75 * 1/clamp(NetNodes.players.get_node(id).head.get_global_transform().origin.distance_to(r.get_collision_point()),15,25))
 					r.get_collider().take_damage(dmg,id,true)
 					total_damage+=dmg
 					collision_point = r.get_collision_point()
@@ -239,11 +244,11 @@ func _player_shot(id,position,wep_type):
 			var collision_point:Vector3
 			for hb in NetNodes.players.get_node(str(id)).camera.get_node("Melee Hitbox").get_overlapping_areas():
 				if hb.get_parent().is_in_group("Player") and hb.get_parent().name != id and hit == false:
-					hb.get_parent().take_damage(65,id,true)
+					hb.get_parent().take_damage(damage,id,true)
 					collision_point = hb.get_parent().head.get_global_transform().origin
 					hit = true
 			if id  == str(get_tree().get_network_unique_id()) and hit == true:
-				Network.emit_signal("hit",65,collision_point)
+				Network.emit_signal("hit",damage,collision_point)
 remote func _player_shot_remote(id, position,wep_type):
 	match wep_type:
 		"Rocket":

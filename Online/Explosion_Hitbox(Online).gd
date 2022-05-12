@@ -88,5 +88,6 @@ func _on_Explosion_Hitbox_area_entered(area):
 	for i in get_overlapping_areas():
 		print ("HITBOX hit " + i.name)
 	if real == true:
-		for p in get_overlapping_areas():
-			Network.emit_signal("explosion_hitbox",name,p.get_parent().name,damage)
+#		for p in get_overlapping_areas():
+#			Network.emit_signal("explosion_hitbox",name,p.get_parent().name,damage)
+		Network.emit_signal("explosion_hitbox",name,area.get_parent().name,damage)

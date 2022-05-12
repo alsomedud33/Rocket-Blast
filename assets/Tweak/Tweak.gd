@@ -5,14 +5,14 @@
 extends KinematicBody
 
 
-var blue_pallete = load("res://Online/Characters/Char_Blue.png")
-var red_pallete = load("res://Online/Characters/Char_Red.png")
+var blue_pallete = load("res://Online/Characters/Blue_Pallete Gradient.png")
+var red_pallete = load("res://Online/Characters/Red_Pallete Gradient.png")
 var hud = load("res://Online/HUD/Hud (Online).tscn")
 
 remote var username = ''
-var max_health = 200
-var health = 200
-var wep_spread = 6
+var max_health = 125
+var health = 125
+var wep_spread = 4
 var dealth_location = global_transform.origin
 onready var killer = name
 var merc = "Tweak"
@@ -43,19 +43,18 @@ onready var gun_camera = $CanvasLayer/ViewportContainer/Viewport/Camera
 onready var raycast = $Pivot/Camera/RayCast
 onready var anim = $AnimationPlayer
 onready var anim_tree = $AnimationTree
-onready var timer = $"Rocket_Cooldown"
+onready var timer = $"Primary_Cooldown"
 onready var ground_check = $GroundCheck
-onready var rocket_launcher = preload("res://assets/Soldier/Rocket.tscn")#: PackedScene 
 onready var main = get_tree().current_scene
-onready var get_rocket_launcher = $"Pivot/Camera/Rocket Launcher"
-onready var guns = $"Pivot/Camera/Rocket Launcher/Gun0"
-onready var hat = $"Soldier Hat"
+#onready var get_rocket_launcher = $"Pivot/Camera/Rocket Launcher"
+onready var guns = $"Pivot/Camera/Projectile/Position3D"#"Pivot/Camera/Rocket Launcher/Gun0"
 onready var health_label = $Health
 onready var damage_label = $damage
 onready var team_label = $Team
 onready var arm_ik_left =$"Pivot/Camera/Arms/SkeletonIK2"
 onready var arm_ik_right =$"Pivot/Camera/Arms/SkeletonIK"
 onready var fp_arms = $"Pivot/Camera/Arms/Arms"
+onready var user_tag = $"Username"
 #onready var usr_tag = $Username
 
 onready var armature = $"Armature"
@@ -79,7 +78,6 @@ var accelerate_return: Vector3 = Vector3.ZERO
 var forward_input: float 
 var strafe_input: float
 #Networking variables
-onready var net_tween =$"Tween"
 var puppet_position = Vector3()
 var puppet_velocity = Vector3()
 var puppet_rotation = Vector3()
@@ -268,12 +266,16 @@ func _ready():
 	$"CanvasLayer/ViewportContainer".visible = is_network_master() 
 	fp_arms.visible = is_network_master() 
 	Network.connect("hit",self,"_hit")
-	armature.get_node("Skeleton/Soldier").set_layer_mask_bit(0,!is_network_master())#.visible = !is_network_master()
-	armature.get_node("Skeleton/Rocket Launcher/Rocket Launcher").set_layer_mask_bit(0,!is_network_master())
-	armature.get_node("Skeleton/Rocket Launcher/Shotgun").set_layer_mask_bit(0,!is_network_master())
-	for i in armature.get_node("Skeleton/Rocket Launcher/Shovel").get_children():
-		i.set_layer_mask_bit(0,!is_network_master())
-	armature.get_node("Skeleton/Hat/Soldier Hat2").set_layer_mask_bit(0,!is_network_master())
+	armature.get_node("Skeleton/Scout").set_layer_mask_bit(0,!is_network_master())#.visible = !is_network_master()
+	for i in armature.get_node("Skeleton/Weapons").get_children():
+		for c in i.get_children():
+			c.set_layer_mask_bit(0,!is_network_master())
+#	for i in armature.get_node("Skeleton/Weapons/Remburg 8").get_children():
+#		i.set_layer_mask_bit(0,!is_network_master())
+#	armature.get_node("Skeleton/Rocket Launcher/Shotgun").set_layer_mask_bit(0,!is_network_master())
+#	for i in armature.get_node("Skeleton/Weapons/Shovel").get_children():
+#		i.set_layer_mask_bit(0,!is_network_master())
+#	armature.get_node("Skeleton/Hat/Soldier Hat2").set_layer_mask_bit(0,!is_network_master())
 	anim.playback_active = true
 	if self.is_network_master():
 		rpc("set_team")
@@ -460,7 +462,8 @@ func _physics_process(delta: float) -> void:
 			#				velocity += get_slide_collision(i).normal *15
 				DEAD:
 					$Armature/Skeleton/Spineik.interpolation = 0
-					get_rocket_launcher.hide()
+					head.hide()
+					#get_rocket_launcher.hide()
 					fp_arms.hide()
 					camera.get_node("Shotgun").hide()
 					camera.get_node("Shovel").hide()
@@ -470,9 +473,12 @@ func _physics_process(delta: float) -> void:
 					self.global_transform.origin = dealth_location
 					armature.visible = true
 					armature.get_node("Skeleton/Soldier").set_layer_mask_bit(0,true)#.visible = !is_network_master()
-					armature.get_node("Skeleton/Rocket Launcher/Shotgun").set_layer_mask_bit(0,true)
-					armature.get_node("Skeleton/Rocket Launcher/Rocket Launcher").set_layer_mask_bit(0,true)
-					armature.get_node("Skeleton/Hat/Soldier Hat2").set_layer_mask_bit(0,true)
+					for i in armature.get_node("Skeleton/Weapons").get_children():
+						for c in i.get_children():
+							c.set_layer_mask_bit(0,true)
+#					armature.get_node("Skeleton/Rocket Launcher/Shotgun").set_layer_mask_bit(0,true)
+#					armature.get_node("Skeleton/Rocket Launcher/Rocket Launcher").set_layer_mask_bit(0,true)
+#					armature.get_node("Skeleton/Hat/Soldier Hat2").set_layer_mask_bit(0,true)
 					get_node("CollisionShape").disabled = true
 					get_node("Projectile Hurtbox").monitoring = false
 					get_node("Projectile Hurtbox").monitorable = false
@@ -480,38 +486,27 @@ func _physics_process(delta: float) -> void:
 					$Tween.interpolate_property(camera,"global_transform",Transform(camera.global_transform.basis,dealth_location),Transform(T.basis,camera.global_transform.origin),0.1)
 					$Tween.start()
 		if raycast.is_colliding() and raycast.get_collider().is_in_group("Player") and state != DEAD:
-			$"Username".show()
-			$"Username".text = raycast.get_collider().username
+			user_tag.show()
+			user_tag.text = raycast.get_collider().username
 			if raycast.get_collider().team == 1:
 				get_node("Username/Usr_name_panel").set_self_modulate(Color(1, 0, 0, 0.5))
 			elif raycast.get_collider().team == 2:
 				get_node("Username/Usr_name_panel").set_self_modulate(Color(0, 0.764706, 1, 0.5))
 		elif state == DEAD:
-			$"Username".show()
-			$"Username".text = NetNodes.players.get_node(killer).username
+			user_tag.show()
+			user_tag.text = NetNodes.players.get_node(killer).username
 			if NetNodes.players.has_node(killer):
 				if NetNodes.players.get_node(killer).team == 1:
 					get_node("Username/Usr_name_panel").set_self_modulate(Color(1, 0, 0, 0.5))
 				elif NetNodes.players.get_node(killer).team == 2:
 					get_node("Username/Usr_name_panel").set_self_modulate(Color(0, 0.764706, 1, 0.5))
 		else:
-			$"Username".hide()
+			user_tag.hide()
 #		if Input.is_action_pressed("shoot1"):
 #			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		if Input.is_action_pressed("shoot1") and timer.is_stopped() and $"Weapon_Cooldown".is_stopped() and state != DEAD and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			match current_weapon:
 				1:
-					anim.play("Shoot_Rocket")
-					animtree_change("parameters/Is_Shooting/active",1)
-					rpc("shoot_anim")
-					timer.start(cooldown)
-					#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-					
-					Network.emit_signal("player_shot",name,guns.global_transform.origin,"Rocket")
-					#anim.play("Shoot_Rocket")
-					$Rocket_Launch.play()
-					$Rocket_Trail.play()
-				2:
 					timer.start(0.625)
 					anim.play("Shoot_Shotty")
 					animtree_change("parameters/Is_Shooting/active",1)
@@ -520,9 +515,19 @@ func _physics_process(delta: float) -> void:
 		#			for r in camera.get_node("RayContainer").get_children():
 		#				r.cast_to.x = rand_range(wep_spread, -wep_spread)
 		#				r.cast_to.y = rand_range(wep_spread, -wep_spread)
-					Network.emit_signal("player_shot",name,guns.global_transform.origin,"Hitscan")
+					Network.emit_signal("player_shot",name,guns.global_transform.origin,"Hitscan",6)
+				2:
+					timer.start(0.15)
+					anim.play("Shoot_Shotty")
+					animtree_change("parameters/Is_Shooting/active",1)
+					rpc("shoot_anim")
+					randomize()
+		#			for r in camera.get_node("RayContainer").get_children():
+		#				r.cast_to.x = rand_range(wep_spread, -wep_spread)
+		#				r.cast_to.y = rand_range(wep_spread, -wep_spread)
+					Network.emit_signal("player_shot",name,guns.global_transform.origin,"Hitscan",6)
 				3:
-					timer.start(cooldown)
+					timer.start(0.5)
 					anim.play("Shoot_Shovel")
 					animtree_change("parameters/Is_Shooting/active",1)
 					rpc("shoot_anim")
