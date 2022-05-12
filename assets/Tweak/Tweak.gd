@@ -183,7 +183,7 @@ func weapon_switch():
 			$Weapon_Cooldown.start()
 			timer.stop()
 			current_weapon = 1
-			anim.play("Sway")
+			anim.play("Sway_Primary")
 			animtree_change("parameters/Attack_Anim/current",0)
 		
 		elif Input.is_action_just_pressed("wep_slot_2") and current_weapon != 2:
@@ -229,12 +229,12 @@ remote func set_team():
 			set_collision_layer_bit(1,true)
 			set_collision_mask_bit(5, true)
 			fp_arms.get_active_material(0).set_texture(0,blue_pallete)
-			self.armature.get_node("Skeleton/Soldier").get_active_material(0).set_texture(0,red_pallete)
+			self.armature.get_node("Skeleton/Scout").get_active_material(0).set_texture(0,red_pallete)
 		2:
 			set_collision_layer_bit(5,true)
 			set_collision_mask_bit(1, true)
 			fp_arms.get_active_material(0).set_texture(0,red_pallete)
-			self.armature.get_node("Skeleton/Soldier").get_active_material(0).set_texture(0,blue_pallete)
+			self.armature.get_node("Skeleton/Scout").get_active_material(0).set_texture(0,blue_pallete)
 
 func set_username():
 	if is_network_master():
@@ -472,7 +472,7 @@ func _physics_process(delta: float) -> void:
 					velocity = Vector3.ZERO
 					self.global_transform.origin = dealth_location
 					armature.visible = true
-					armature.get_node("Skeleton/Soldier").set_layer_mask_bit(0,true)#.visible = !is_network_master()
+					armature.get_node("Skeleton/Scout").set_layer_mask_bit(0,true)#.visible = !is_network_master()
 					for i in armature.get_node("Skeleton/Weapons").get_children():
 						for c in i.get_children():
 							c.set_layer_mask_bit(0,true)
@@ -508,7 +508,7 @@ func _physics_process(delta: float) -> void:
 			match current_weapon:
 				1:
 					timer.start(0.625)
-					anim.play("Shoot_Shotty")
+					anim.play("Shoot_Primary")
 					animtree_change("parameters/Is_Shooting/active",1)
 					rpc("shoot_anim")
 					randomize()

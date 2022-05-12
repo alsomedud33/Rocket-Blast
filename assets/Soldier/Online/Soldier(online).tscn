@@ -3278,7 +3278,7 @@ skin = SubResource( 131 )
 material/0 = ExtResource( 17 )
 
 [node name="Rocket Launcher" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.11885, -0.0329897, 0.992365, 0.992864, -0.0139015, 0.118449, 0.00988839, 0.999358, 0.0344072, -4.09554, 2.86099, 0.935876 )
+transform = Transform( -0.236643, 0.0759783, 0.968622, 0.970867, -0.0201689, 0.238774, 0.037678, 0.996905, -0.0689912, -3.85255, 1.90507, 1.26385 )
 bone_name = "Arm.R"
 
 [node name="Rocket Launcher" type="MeshInstance" parent="Armature/Skeleton/Rocket Launcher"]
@@ -3307,7 +3307,7 @@ layers = 2
 layers = 2
 
 [node name="Hat" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 0.997614, 0.00850394, 0.068499, -0.00672433, 0.999636, -0.0261693, -0.0686971, 0.0256463, 0.997308, -1.92989e-07, 4.8253, 0.933514 )
+transform = Transform( 0.997614, 0.00850394, 0.068499, -0.00672433, 0.999636, -0.0261693, -0.0686971, 0.0256463, 0.997308, -2.10573e-07, 4.05058, 0.976206 )
 bone_name = "Head"
 
 [node name="Soldier Hat2" type="MeshInstance" parent="Armature/Skeleton/Hat"]
@@ -3327,11 +3327,11 @@ target_node = NodePath("../../../Pivot/Camera/Head_Ik_Target")
 [node name="BoneAttachment" type="BoneAttachment" parent="Armature/Skeleton"]
 
 [node name="Physical Bone Pelvis" type="PhysicalBone" parent="Armature/Skeleton/BoneAttachment"]
-transform = Transform( 0.989415, 7.04883e-07, -0.145068, -0.0387238, 0.963716, -0.264107, 0.139805, 0.26693, 0.95352, 2.64079e-06, 9.39475, 4.18074 )
+transform = Transform( 0.989415, 7.04883e-07, -0.145068, -0.0387238, 0.963716, -0.264107, 0.139805, 0.26693, 0.95352, 2.98023e-06, 9.78951, 4.21295 )
 collision_layer = 64
 collision_mask = 65
 joint_type = 3
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.167778, -11.6073, -1.14435 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.167779, -11.6073, -1.14435 )
 body_offset = Transform( 0.99923, 0.0387237, -0.005208, -0.0387238, 0.963716, -0.264107, -0.00520661, 0.264106, 0.964479, 0.611167, 10.8774, 4.16838 )
 bone_name = "Pelvis"
 joint_constraints/angular_limit_enabled = true
@@ -3346,16 +3346,16 @@ transform = Transform( 1, 0, 1.90222e-08, -3.30387e-08, 2.08244e-07, 0.4625, 0, 
 shape = SubResource( 60 )
 
 [node name="BoneAttachment2" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.86978, -0.358176, -0.339399, 0.473373, -0.799831, -0.369038, -0.139282, -0.481644, 0.865228, -0.924683, -0.208694, -0.178268 )
+transform = Transform( -0.647953, -0.68879, -0.325152, 0.603469, -0.724704, 0.332611, -0.464739, 0.0192978, 0.885238, -0.924683, -0.98341, -0.135576 )
 bone_name = "UpperLeg.R"
 
 [node name="Physical Bone UpperLegR" type="PhysicalBone" parent="Armature/Skeleton/BoneAttachment2"]
-transform = Transform( 0.0155944, -0.00582746, -1.10253, 0.219416, 1.07762, -0.00260788, 1.07718, -0.219579, 0.0166526, -0.00215721, 1.43049, -0.0165066 )
+transform = Transform( 0.0156021, -0.00582834, -1.10285, 0.219473, 1.07791, -0.00261232, 1.07747, -0.21964, 0.0166521, -0.00215864, 1.43086, -0.0164475 )
 collision_layer = 64
 collision_mask = 65
 joint_type = 3
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.245119, -1.27754, 0.00132892 )
-body_offset = Transform( 0.0155944, -0.00582749, -1.10253, 0.219416, 1.07762, -0.00260789, 1.07718, -0.219579, 0.0166526, -0.00215721, 1.43049, -0.0165066 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.245176, -1.27752, 0.00132571 )
+body_offset = Transform( 0.0156021, -0.00582844, -1.10285, 0.219473, 1.07791, -0.00261232, 1.07747, -0.21964, 0.0166521, -0.00215864, 1.43086, -0.0164475 )
 bone_name = "UpperLeg.R"
 joint_constraints/angular_limit_enabled = true
 joint_constraints/angular_limit_upper = 77.0
@@ -3369,16 +3369,16 @@ transform = Transform( 1, 0, 0, 0, 0.999999, 0, 0, 0, 1, 0, 0, 0 )
 shape = SubResource( 61 )
 
 [node name="BoneAttachment3" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 0.86382, 0.288552, 0.41298, -0.416895, -0.050844, 0.907533, 0.282868, -0.956114, 0.0763749, -1.79704, -2.15672, -1.35134 )
+transform = Transform( 0.653342, 0.586375, 0.478862, -0.441679, -0.218496, 0.870161, 0.614871, -0.780016, 0.116237, -2.60227, -2.74846, -0.0885755 )
 bone_name = "LowerLeg.R"
 
 [node name="Physical Bone LowerLegR" type="PhysicalBone" parent="Armature/Skeleton/BoneAttachment3"]
-transform = Transform( 0.93025, -9.32515e-05, -1.94944e-05, -9.08971e-05, 0.931389, -2.04109e-05, -1.21752e-05, -8.06972e-05, 0.931558, -0.0440996, 1.29072, 0.102049 )
+transform = Transform( 0.930075, -9.57251e-05, -1.91145e-05, -8.67546e-05, 0.931209, -2.76417e-05, -1.25282e-05, -7.86185e-05, 0.931371, -0.0441206, 1.29048, 0.102024 )
 collision_layer = 64
 collision_mask = 65
 joint_type = 3
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.047265, -1.3858, -0.109666 )
-body_offset = Transform( 0.93025, -9.32217e-05, -1.94274e-05, -9.09269e-05, 0.931389, -2.04109e-05, -1.22022e-05, -8.06972e-05, 0.931558, -0.0440996, 1.29072, 0.102049 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0472927, -1.38581, -0.109658 )
+body_offset = Transform( 0.930075, -9.57549e-05, -1.90698e-05, -8.67546e-05, 0.931209, -2.7664e-05, -1.25207e-05, -7.86483e-05, 0.931371, -0.0441206, 1.29048, 0.102024 )
 bone_name = "LowerLeg.R"
 joint_constraints/angular_limit_enabled = true
 joint_constraints/angular_limit_upper = 98.94
@@ -3392,16 +3392,16 @@ transform = Transform( 0.48125, 0, 5.58794e-08, 1.11759e-08, 0, 0.48125, 0, -0.4
 shape = SubResource( 62 )
 
 [node name="BoneAttachment4" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 0.815395, -7.82311e-08, -0.578905, -0.0977692, 0.985636, -0.137709, 0.570589, 0.168887, 0.803681, 6.74158e-09, 0.357059, -0.0426913 )
+transform = Transform( 0.815395, -7.82311e-08, -0.578905, -0.0977692, 0.985636, -0.137709, 0.570589, 0.168887, 0.803681, -5.36158e-09, -0.417657, 2.16086e-07 )
 bone_name = "Spine1"
 
 [node name="Physical Bone Spine1" type="PhysicalBone" parent="Armature/Skeleton/BoneAttachment4"]
-transform = Transform( 0.00795007, 0.00640374, -0.846767, -0.0327104, 1.0005, 0.00533706, 1.20173, 0.0279988, 0.0038802, -0.0421864, 1.43685, 0.112812 )
+transform = Transform( 0.00840241, 0.00640266, -0.846767, -0.0327943, 1.00052, 0.00533721, 1.20417, 0.0280106, 0.0038802, -0.0423138, 1.4382, 0.113247 )
 collision_layer = 64
 collision_mask = 65
 joint_type = 3
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0601786, -1.43777, -0.061259 )
-body_offset = Transform( 0.00795007, 0.00640374, -0.846767, -0.0327104, 1.0005, 0.00533706, 1.20173, 0.0279988, 0.0038802, -0.0421866, 1.43685, 0.112812 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0603721, -1.4391, -0.0614515 )
+body_offset = Transform( 0.00840241, 0.00640266, -0.846767, -0.0327942, 1.00052, 0.00533721, 1.20417, 0.0280106, 0.0038802, -0.0423138, 1.4382, 0.113247 )
 bone_name = "Spine1"
 joint_constraints/angular_limit_enabled = true
 joint_constraints/angular_limit_upper = 34.77
@@ -3415,16 +3415,16 @@ transform = Transform( 1, -7.82311e-08, 2.98023e-08, 1.19209e-07, 7.45058e-09, 1
 shape = SubResource( 63 )
 
 [node name="BoneAttachment5" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 0.968534, -2.6077e-08, -0.24888, -0.0643286, 0.966019, -0.250339, 0.240423, 0.258472, 0.935622, -1.82564e-07, 2.63667, 0.347915 )
+transform = Transform( 0.968534, -2.6077e-08, -0.24888, -0.0643286, 0.966019, -0.250339, 0.240423, 0.258472, 0.935622, -2.03481e-07, 1.86195, 0.390606 )
 bone_name = "Spine2"
 
 [node name="Physical Bone Spine2" type="PhysicalBone" parent="Armature/Skeleton/BoneAttachment5"]
-transform = Transform( 0.125588, 0.0104192, -0.829324, -0.0320295, 1.00228, 0.00636378, 1.1987, 0.0256761, 0.0870255, 0.0280322, 1.11585, 0.18015 )
+transform = Transform( 0.125588, 0.0104195, -0.829324, -0.0320296, 1.00228, 0.00636381, 1.1987, 0.0256762, 0.0870255, 0.0281227, 1.11658, 0.180621 )
 collision_layer = 64
 collision_mask = 65
 joint_type = 3
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1264, -1.11735, 0.000622271 )
-body_offset = Transform( 0.125588, 0.0104192, -0.829324, -0.0320295, 1.00228, 0.00636378, 1.1987, 0.0256761, 0.0870255, 0.0280322, 1.11585, 0.18015 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12678, -1.11809, 0.000664145 )
+body_offset = Transform( 0.125588, 0.0104195, -0.829324, -0.0320296, 1.00228, 0.00636381, 1.1987, 0.0256762, 0.0870255, 0.0281227, 1.11658, 0.180621 )
 bone_name = "Spine2"
 joint_constraints/angular_limit_enabled = true
 joint_constraints/angular_limit_upper = 34.77
@@ -3437,16 +3437,16 @@ joint_constraints/angular_limit_relaxation = 1.0
 shape = SubResource( 64 )
 
 [node name="BoneAttachment6" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.758477, 0.634676, -0.147982, -0.530443, -0.469309, 0.70596, 0.378606, 0.61395, 0.692619, -4.96077e-07, 4.82531, 0.933517 )
+transform = Transform( -0.596717, 0.798221, 0.0822828, -0.530443, -0.469309, 0.70596, 0.602128, 0.377612, 0.703455, -5.16994e-07, 4.05059, 0.976208 )
 bone_name = "Shoulder.L"
 
 [node name="Physical Bone ShoulderL" type="PhysicalBone" parent="Armature/Skeleton/BoneAttachment6"]
-transform = Transform( 1.00793, 0.000134155, 0.00542551, -0.000745758, 1.00654, 0.0043793, -0.00133258, -9.7692e-05, 1.03272, -0.333277, 1.21946, 0.00188875 )
+transform = Transform( 1.00822, 0.000128716, 0.00542, -0.000743896, 1.00683, 0.00438035, -0.00131884, -8.90791e-05, 1.03301, -0.335512, 1.22199, 0.00233126 )
 collision_layer = 64
 collision_mask = 65
 joint_type = 3
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.330824, -1.21129, -0.00151613 )
-body_offset = Transform( 1.00793, 0.000134096, 0.00542551, -0.000745773, 1.00654, 0.0043793, -0.00133252, -9.76622e-05, 1.03272, -0.333277, 1.21946, 0.00188828 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.332941, -1.21345, -0.00193632 )
+body_offset = Transform( 1.00822, 0.000128746, 0.00541997, -0.000743836, 1.00683, 0.00438035, -0.00131881, -8.90493e-05, 1.03301, -0.335512, 1.22199, 0.00233126 )
 bone_name = "Shoulder.L"
 joint_constraints/angular_limit_enabled = true
 joint_constraints/angular_limit_upper = -0.08
@@ -3460,16 +3460,16 @@ transform = Transform( 1, -2.98023e-08, 0, -2.98023e-08, -0.0846406, 0.996412, 0
 shape = SubResource( 65 )
 
 [node name="BoneAttachment7" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 0.123386, -0.401667, -0.907435, -0.883917, -0.460131, 0.0834834, -0.451071, 0.791796, -0.411814, 1.29858, 3.86508, 2.18969 )
+transform = Transform( 0.0410651, -0.254203, -0.966278, -0.883917, -0.460131, 0.0834833, -0.465836, 0.850681, -0.243589, 1.6332, 3.09036, 1.74882 )
 bone_name = "UpperArm.L"
 
 [node name="Physical Bone UpperArmL" type="PhysicalBone" parent="Armature/Skeleton/BoneAttachment7"]
-transform = Transform( 0.114556, 0.101069, 1.00409, 0.389012, 0.938471, -0.127403, -0.942156, 0.397533, 0.0645836, 0.00695419, 1.44641, -0.000319242 )
+transform = Transform( 0.11458, 0.101095, 1.00425, 0.389071, 0.93863, -0.127437, -0.942314, 0.397599, 0.0645933, 0.00691128, 1.44662, -0.000302196 )
 collision_layer = 64
 collision_mask = 65
 joint_type = 3
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.534051, -1.29485, 0.184339 )
-body_offset = Transform( 0.114556, 0.101069, 1.00409, 0.389012, 0.938471, -0.127403, -0.942156, 0.397533, 0.0645836, 0.00695515, 1.44641, -0.000319362 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.534015, -1.29482, 0.184393 )
+body_offset = Transform( 0.11458, 0.101095, 1.00425, 0.389071, 0.93863, -0.127437, -0.942314, 0.397599, 0.0645933, 0.00691128, 1.44662, -0.000302196 )
 bone_name = "UpperArm.L"
 joint_constraints/angular_limit_enabled = true
 joint_constraints/angular_limit_upper = 145.83
@@ -3483,16 +3483,16 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0
 shape = SubResource( 66 )
 
 [node name="BoneAttachment8" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.50623, -0.840526, 0.192995, 0.461412, -0.0749188, 0.884016, -0.728579, 0.536565, 0.425755, 0.166759, 2.56852, 4.42081 )
+transform = Transform( -0.227835, -0.960742, 0.158318, 0.322051, 0.0790882, 0.943413, -0.918897, 0.265929, 0.291389, 0.916906, 1.79381, 4.14587 )
 bone_name = "LowerArm.L"
 
 [node name="Physical Bone LowerArmL" type="PhysicalBone" parent="Armature/Skeleton/BoneAttachment8"]
-transform = Transform( 0.697383, 0.740214, 0.000347525, -0.740792, 0.697569, -0.00190316, -0.0016095, -0.00134388, 1.01146, 0.0760283, 1.11465, 0.00262547 )
+transform = Transform( 0.697514, 0.740344, 0.000351608, -0.740931, 0.697691, -0.001902, -0.00161621, -0.00134845, 1.01165, 0.076072, 1.11485, 0.00263548 )
 collision_layer = 64
 collision_mask = 65
 joint_type = 3
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.746073, -0.805612, -0.00247895 )
-body_offset = Transform( 0.697383, 0.740215, 0.000347525, -0.740792, 0.697569, -0.00190316, -0.00160947, -0.00134391, 1.01146, 0.0760279, 1.11465, 0.00262547 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.746048, -0.805639, -0.00248754 )
+body_offset = Transform( 0.697514, 0.740344, 0.000351578, -0.740931, 0.697691, -0.00190201, -0.00161621, -0.00134841, 1.01165, 0.076072, 1.11485, 0.00263596 )
 bone_name = "LowerArm.L"
 joint_constraints/angular_limit_enabled = true
 joint_constraints/angular_limit_upper = 135.3
@@ -3506,15 +3506,15 @@ transform = Transform( 0.603028, -0.999453, -7.45058e-09, 0.777455, 0.775219, 0,
 shape = SubResource( 67 )
 
 [node name="BoneAttachment9" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.137273, -0.62227, 0.770672, -0.935634, -0.173966, -0.307124, 0.325184, -0.763227, -0.558336, -3.84461e-07, 4.82531, 0.933518 )
+transform = Transform( -0.137273, -0.62227, 0.770672, -0.935634, -0.173966, -0.307124, 0.325184, -0.763227, -0.558336, -4.05378e-07, 4.05059, 0.976209 )
 bone_name = "Shoulder.R"
 
 [node name="Physical Bone ShoulderR" type="PhysicalBone" parent="Armature/Skeleton/BoneAttachment9"]
-transform = Transform( 0.967759, 0.0197797, -0.0187294, 0.0219274, 0.959285, -0.0122766, 0.0501395, 0.0603274, 1.00433, 0, 0, 0 )
+transform = Transform( 0.967759, 0.0197797, -0.0187296, 0.0219274, 0.959285, -0.0122768, 0.0501395, 0.0603274, 1.00433, 0, 0, 0 )
 collision_layer = 64
 collision_mask = 65
 joint_type = 3
-body_offset = Transform( 0.967759, 0.0197797, -0.0187294, 0.0219274, 0.959285, -0.0122766, 0.0501395, 0.0603274, 1.00433, 0, 0, 0 )
+body_offset = Transform( 0.967759, 0.0197797, -0.0187296, 0.0219274, 0.959285, -0.0122768, 0.0501395, 0.0603274, 1.00433, 0, 0, 0 )
 bone_name = "Shoulder.R"
 joint_constraints/angular_limit_enabled = true
 joint_constraints/angular_limit_upper = 122.98
@@ -3527,16 +3527,16 @@ joint_constraints/angular_limit_relaxation = 1.0
 shape = SubResource( 68 )
 
 [node name="BoneAttachment10" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.303091, -0.748427, 0.58991, 0.0986244, -0.640339, -0.761735, 0.947844, -0.172696, 0.267894, -1.2732, 4.46937, -0.628083 )
+transform = Transform( -0.204007, -0.734894, 0.646771, 0.0850867, -0.671475, -0.736127, 0.975264, -0.0951438, 0.199515, -1.2732, 3.69465, -0.585392 )
 bone_name = "UpperArm.R"
 
 [node name="Physical Bone UpperArmR" type="PhysicalBone" parent="Armature/Skeleton/BoneAttachment10"]
-transform = Transform( 0.123317, 0.146248, 1.01528, 0.0438169, 1.0183, -0.152512, -1.02106, 0.0609923, 0.115727, -0.00183845, 1.87299, -0.00104046 )
+transform = Transform( 0.123295, 0.146228, 1.01514, 0.0437994, 1.01816, -0.152493, -1.02092, 0.0609891, 0.11571, -0.00185668, 1.87277, -0.000904083 )
 collision_layer = 64
 collision_mask = 65
 joint_type = 3
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0776864, -1.79557, 0.269892 )
-body_offset = Transform( 0.123317, 0.146248, 1.01528, 0.043817, 1.0183, -0.152512, -1.02106, 0.0609923, 0.115727, -0.00183839, 1.87299, -0.00104046 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0775631, -1.7956, 0.269901 )
+body_offset = Transform( 0.123295, 0.146228, 1.01514, 0.0437994, 1.01816, -0.152493, -1.02092, 0.0609891, 0.11571, -0.0018568, 1.87277, -0.000903606 )
 bone_name = "UpperArm.R"
 joint_constraints/angular_limit_enabled = true
 joint_constraints/angular_limit_upper = 125.37
@@ -3550,16 +3550,16 @@ transform = Transform( 1, 7.45058e-09, -3.67872e-08, 1.81608e-08, 0, 1, 0, -1, 0
 shape = SubResource( 69 )
 
 [node name="BoneAttachment11" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.923465, -0.327265, 0.200279, 0.180561, 0.0898981, 0.979447, -0.338543, 0.940646, -0.0239257, -3.38211, 2.66502, -1.1147 )
+transform = Transform( -0.969409, -0.233291, 0.0762994, 0.0671262, 0.0470211, 0.996637, -0.236094, 0.971269, -0.0299221, -3.34398, 1.80257, -0.853486 )
 bone_name = "LowerArm.R"
 
 [node name="Physical Bone LowerArmR" type="PhysicalBone" parent="Armature/Skeleton/BoneAttachment11"]
-transform = Transform( 0.951566, -0.150415, -0.000115886, 0.150459, 0.951452, -0.000222486, 9.34191e-05, -0.00012159, 0.96304, -0.0955849, 1.40234, -0.00348854 )
+transform = Transform( 0.951273, -0.150374, -0.000115543, 0.150418, 0.951174, -0.000222061, 9.17534e-05, -0.000121642, 0.962761, -0.0955422, 1.40194, -0.00345612 )
 collision_layer = 64
 collision_mask = 65
 joint_type = 3
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.129299, -1.45345, 0.00345097 )
-body_offset = Transform( 0.951566, -0.150415, -0.000115883, 0.150459, 0.951452, -0.000222493, 9.34191e-05, -0.000121586, 0.96304, -0.0955844, 1.40234, -0.00348806 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12932, -1.45345, 0.00341848 )
+body_offset = Transform( 0.951274, -0.150374, -0.000115543, 0.150418, 0.951174, -0.000222057, 9.17478e-05, -0.000121642, 0.962761, -0.0955424, 1.40194, -0.00345612 )
 bone_name = "LowerArm.R"
 joint_constraints/angular_limit_enabled = true
 joint_constraints/angular_limit_upper = 90.0
@@ -3573,16 +3573,16 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0
 shape = SubResource( 70 )
 
 [node name="BoneAttachment12" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.997947, 0.0470244, 0.0434674, 0.0130111, -0.515735, 0.856649, 0.0627007, 0.855457, 0.514064, 0.924683, -0.208694, 0.0928849 )
+transform = Transform( -0.995874, 0.0907107, 0.00193115, -0.042285, -0.482852, 0.87468, 0.080275, 0.870991, 0.484696, 0.924683, -0.98341, 0.135576 )
 bone_name = "UpperLeg.L"
 
 [node name="Physical Bone UpperLegL" type="PhysicalBone" parent="Armature/Skeleton/BoneAttachment12"]
-transform = Transform( 0.0701963, -0.00017022, -1.08969, 0.000352383, 1.08857, 2.80142e-06, 1.08551, -6.42836e-05, 0.0701193, 0.00228137, 1.54073, 0.00167084 )
+transform = Transform( 0.0702157, -0.000171512, -1.08996, 0.000361294, 1.08884, 4.00096e-06, 1.08577, -6.51479e-05, 0.0701368, 0.00230145, 1.54118, 0.00161767 )
 collision_layer = 64
 collision_mask = 65
 joint_type = 3
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00176528, -1.41537, 0.00220097 )
-body_offset = Transform( 0.0701963, -0.000170223, -1.08969, 0.000352412, 1.08857, 2.81073e-06, 1.08551, -6.43432e-05, 0.0701193, 0.00228137, 1.54073, 0.00167084 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00171842, -1.41544, 0.00222332 )
+body_offset = Transform( 0.0702157, -0.00017152, -1.08996, 0.000361264, 1.08884, 4.00469e-06, 1.08577, -6.51479e-05, 0.0701368, 0.00230122, 1.54118, 0.00161767 )
 bone_name = "UpperLeg.L"
 joint_constraints/angular_limit_enabled = true
 joint_constraints/angular_limit_upper = 77.68
@@ -3596,16 +3596,16 @@ transform = Transform( 1, -3.72529e-09, 0, -1.86265e-09, -8.14907e-10, 1, -1.490
 shape = SubResource( 71 )
 
 [node name="BoneAttachment13" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 0.995115, -0.070699, -0.0688956, -0.0935405, -0.898349, -0.429209, -0.0315471, 0.433557, -0.900573, 1.03921, -1.46479, 2.17639 )
+transform = Transform( 0.993755, -0.109374, -0.0220737, -0.106627, -0.989162, 0.100941, -0.0328744, -0.0979565, -0.994647, 1.14561, -2.15942, 2.25692 )
 bone_name = "LowerLeg.L"
 
 [node name="Physical Bone LowerLegL" type="PhysicalBone" parent="Armature/Skeleton/BoneAttachment13"]
-transform = Transform( 0.179893, -7.63964e-06, -1.08137, 0.000172883, 1.09342, 6.84895e-05, 1.07789, -8.2463e-05, 0.179791, 0.0231265, 1.36293, 0.000342369 )
+transform = Transform( 0.179942, -5.59096e-06, -1.08165, 0.000178367, 1.09369, 7.29673e-05, 1.07814, -8.33124e-05, 0.179837, 0.0231218, 1.36326, 0.000307798 )
 collision_layer = 64
 collision_mask = 65
 joint_type = 3
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00387416, -1.24649, 0.0207507 )
-body_offset = Transform( 0.179893, -7.64243e-06, -1.08137, 0.000172853, 1.09342, 6.84857e-05, 1.07789, -8.2463e-05, 0.179791, 0.0231265, 1.36293, 0.000342369 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00384188, -1.24648, 0.0207436 )
+body_offset = Transform( 0.179942, -5.59818e-06, -1.08165, 0.000178374, 1.09369, 7.29691e-05, 1.07814, -8.32975e-05, 0.179837, 0.0231218, 1.36326, 0.000307798 )
 bone_name = "LowerLeg.L"
 joint_constraints/angular_limit_enabled = true
 joint_constraints/angular_limit_upper = 96.56
@@ -3619,16 +3619,16 @@ transform = Transform( 0.999239, -1.49012e-08, 5.96046e-08, 0, -0.152756, 1.0264
 shape = SubResource( 72 )
 
 [node name="BoneAttachment14" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 0.997614, 0.00850394, 0.068499, -0.00672433, 0.999636, -0.0261693, -0.0686971, 0.0256463, 0.997308, -1.92989e-07, 4.8253, 0.933514 )
+transform = Transform( 0.997614, 0.00850394, 0.068499, -0.00672433, 0.999636, -0.0261693, -0.0686971, 0.0256463, 0.997308, -2.10573e-07, 4.05058, 0.976206 )
 bone_name = "Head"
 
 [node name="Physical Bone Head" type="PhysicalBone" parent="Armature/Skeleton/BoneAttachment14"]
-transform = Transform( -3.11434e-06, 6.74266e-06, -1.00258, -2.4632e-06, 1.00242, 3.53758e-06, 1.00228, -0.000107128, -4.17233e-07, -0.00178012, 1.98844, 0.00329202 )
+transform = Transform( -3.60608e-06, 6.74545e-06, -1.00258, -2.46544e-06, 1.00242, 3.54967e-06, 1.00228, -0.000107127, -3.50177e-07, -0.00177935, 1.9884, 0.00330138 )
 collision_layer = 64
 collision_mask = 65
 joint_type = 3
-joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00349656, -1.98364, -0.00178888 )
-body_offset = Transform( -3.11434e-06, 6.74266e-06, -1.00258, -2.4632e-06, 1.00242, 3.53758e-06, 1.00228, -0.000107128, -4.17233e-07, -0.00178012, 1.98844, 0.00329202 )
+joint_offset = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00350589, -1.9836, -0.00178811 )
+body_offset = Transform( -3.60608e-06, 6.74545e-06, -1.00258, -2.46544e-06, 1.00242, 3.54967e-06, 1.00228, -0.000107127, -3.50177e-07, -0.00177935, 1.9884, 0.00330138 )
 bone_name = "Head"
 joint_constraints/angular_limit_enabled = true
 joint_constraints/angular_limit_upper = 58.24
