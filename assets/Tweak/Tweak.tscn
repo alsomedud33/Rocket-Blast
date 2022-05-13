@@ -1,4 +1,4 @@
-[gd_scene load_steps=92 format=2]
+[gd_scene load_steps=99 format=2]
 
 [ext_resource path="res://assets/Soldier/Crosshair.gd" type="Script" id=1]
 [ext_resource path="res://assets/UI/Crosshair_reticle.png" type="Texture" id=2]
@@ -180,6 +180,145 @@ tracks/8/keys = {
 "update": 0,
 "values": [ Vector3( 15.6166, -53.5599, 90 ) ]
 }
+tracks/9/type = "value"
+tracks/9/path = NodePath("Pivot/Camera/Secondary:translation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0.602, -0.561, -1.015 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Pivot/Camera/Secondary:rotation_degrees")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, -173.045, 0 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Pivot/Camera/Melee:translation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0.491808, -0.457, -0.722218 ) ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("Pivot/Camera/Melee:rotation_degrees")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -90, -161.893, 0 ) ]
+}
+
+[sub_resource type="Animation" id=149]
+resource_name = "Shoot_Melee"
+length = 0.5
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pivot/Camera/ArmIK Left:rotation_degrees")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 14.5167, 93.7616, -89.0558 ), Vector3( 14.5167, 93.7616, -89.0558 ), Vector3( 14.5167, 93.7616, -89.0558 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pivot/Camera/ArmIK Left:translation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 3,
+"values": [ Vector3( -0.769, -0.543, -0.43 ), Vector3( -0.769, -1.338, 0.216 ), Vector3( -0.769, -0.543, -0.43 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Pivot/Camera/ArmIK:translation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.0833333, 0.233333, 0.333333, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.994847, -0.383813, -0.40767 ), Vector3( 1.0109, 0.0223109, -0.408508 ), Vector3( 1.00432, 0.38915, -0.671132 ), Vector3( 0.774969, -0.877583, -0.301422 ), Vector3( 0.774969, -0.877583, -0.301422 ), Vector3( 0.994847, -0.383813, -0.40767 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Pivot/Camera/ArmIK:rotation_degrees")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.0833333, 0.233333, 0.333333, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 15.6166, -53.5599, 122.736 ), Vector3( 37.4685, -79.3995, 75.4953 ), Vector3( 27.3063, -121.797, 6.52946 ), Vector3( 24.2065, -62.7881, 135.378 ), Vector3( 24.2065, -62.7881, 135.378 ), Vector3( 15.6166, -53.5599, 122.736 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Pivot/Camera/Melee:translation")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.0833333, 0.233333, 0.333333, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.938808, -0.457, -0.634218 ), Vector3( 0.938808, 0.575, -0.634218 ), Vector3( 0.687808, -1.023, -0.556218 ), Vector3( 0.687808, -1.023, -0.556218 ), Vector3( 0.938808, -0.457, -0.634218 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Pivot/Camera/Melee:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.0833333, 0.233333, 0.333333, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -47.5705, -83.1867, -81.6148 ), Vector3( -80.023, -158.724, -13.4753 ), Vector3( -80.023, -158.724, -13.4753 ), Vector3( -20.3167, -159.122, -25.8824 ), Vector3( -20.3167, -159.122, -25.8824 ), Vector3( -47.5705, -83.1867, -81.6148 ) ]
+}
+tracks/6/type = "method"
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.233333 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "melee_attack"
+} ]
+}
 
 [sub_resource type="Animation" id=137]
 resource_name = "Shoot_Primary"
@@ -194,7 +333,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.4 ),
 "transitions": PoolRealArray( 1, 1, -1.93187 ),
 "update": 3,
-"values": [ Vector3( 0.565, -0.599, -0.829 ), Vector3( 0.554219, -0.599, -0.445 ), Vector3( 0.565, -0.599, -0.829 ) ]
+"values": [ Vector3( 0.825, -0.599, -0.829 ), Vector3( 0.814, -0.599, -0.445 ), Vector3( 0.825, -0.599, -0.829 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Pivot/Camera/Primary:rotation_degrees")
@@ -254,7 +393,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 3,
-"values": [ Vector3( 0.334176, -0.543, -1.18344 ), Vector3( 0.334176, -0.45, -0.808442 ), Vector3( 0.334176, -0.45, -0.567442 ), Vector3( 0.334176, -0.543, -1.18344 ) ]
+"values": [ Vector3( 0.594, -0.543, -1.183 ), Vector3( 0.594, -0.45, -0.808 ), Vector3( 0.594, -0.45, -0.567 ), Vector3( 0.594, -0.543, -1.183 ) ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("Pivot/Camera/ArmIK Left:rotation_degrees")
@@ -290,12 +429,163 @@ tracks/8/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 3,
-"values": [ Vector3( 0.723519, -0.447333, -0.140422 ), Vector3( 0.723519, -0.447333, 0.0615778 ), Vector3( 0.723519, -0.447333, -0.0584222 ), Vector3( 0.723519, -0.447333, -0.140422 ) ]
+"values": [ Vector3( 0.984, -0.447, -0.14 ), Vector3( 0.984, -0.447, 0.062 ), Vector3( 0.984, -0.447, -0.058 ), Vector3( 0.984, -0.447, -0.14 ) ]
+}
+
+[sub_resource type="Animation" id=147]
+resource_name = "Shoot_Secondary"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pivot/Camera/ArmIK Left:rotation_degrees")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 9.97879, 10.0617, -90 ), Vector3( 9.18924, 10.6136, -86.0906 ), Vector3( 6.09178, 12.7787, -70.7535 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pivot/Camera/ArmIK Left:translation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 3,
+"values": [ Vector3( 0.642, -0.735, -0.799 ), Vector3( 0.549, -0.764, -0.637 ), Vector3( 0.51, -0.735, -0.799 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Pivot/Camera/ArmIK:translation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 3,
+"values": [ Vector3( 0.95, -0.47, -0.659 ), Vector3( 0.889, -0.513, -0.447 ), Vector3( 0.889, -0.47, -0.683 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Pivot/Camera/ArmIK:rotation_degrees")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 8.20811, -76.1936, 84.5323 ), Vector3( 17.4832, -92.2297, 49.9115 ), Vector3( 24.6956, -74.9315, 88.9408 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Pivot/Camera/Secondary:translation")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.889, -0.561, -1.015 ), Vector3( 0.889, -0.561, -0.812 ), Vector3( 0.889, -0.561, -1.015 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Pivot/Camera/Secondary:rotation_degrees")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 2.17808, -173.393, -18.1663 ), Vector3( -27.1173, -172.578, -21.8165 ), Vector3( 0, -173.393, 0 ) ]
+}
+
+[sub_resource type="Animation" id=148]
+resource_name = "Sway_Melee"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pivot/Camera/ArmIK:translation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 3,
+"values": [ Vector3( 0.994847, -0.383813, -0.40767 ), Vector3( 0.994847, -0.383813, -0.40767 ), Vector3( 0.994847, -0.383813, -0.40767 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pivot/Camera/ArmIK:rotation_degrees")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4, 0.6, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 15.6166, -53.5599, 122.736 ), Vector3( 15.6166, -53.5599, 122.736 ), Vector3( 38.4013, -61.7584, 108.972 ), Vector3( 38.4013, -61.7584, 108.972 ), Vector3( 15.6166, -53.5599, 122.736 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Pivot/Camera/Melee:translation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4, 0.6, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.938808, -0.457, -0.634218 ), Vector3( 0.938808, -0.369, -0.634218 ), Vector3( 0.938808, -0.369, -0.634218 ), Vector3( 0.938808, -0.457, -0.634218 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Pivot/Camera/Melee:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -47.5705, -83.1867, -81.6148 ), Vector3( -47.5705, -83.1867, -81.6148 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Pivot/Camera/ArmIK Left:rotation_degrees")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 14.5167, 93.7616, -89.0558 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Pivot/Camera/ArmIK Left:translation")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 3,
+"values": [ Vector3( -0.769, -0.543, -0.43 ), Vector3( -0.769, -0.543, -0.43 ) ]
 }
 
 [sub_resource type="Animation" id=135]
 resource_name = "Sway_Primary"
-loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Pivot/Camera/Primary:translation")
 tracks/0/interp = 2
@@ -303,10 +593,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, -1.93187 ),
+"times": PoolRealArray( 0, 0.4, 1 ),
+"transitions": PoolRealArray( 1, -1.93187, 1 ),
 "update": 0,
-"values": [ Vector3( 0.565, -0.599, -0.829 ), Vector3( 0.496, -0.599, -0.829 ) ]
+"values": [ Vector3( 0.825, -0.599, -0.829 ), Vector3( 0.756, -0.599, -0.829 ), Vector3( 0.825, -0.599, -0.829 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Pivot/Camera/Primary:rotation_degrees")
@@ -315,10 +605,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.4, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector3( 0, 173.045, 0 ), Vector3( 0, 176, -14.218 ) ]
+"values": [ Vector3( 0, 173.045, 0 ), Vector3( 0, 176, -14.218 ), Vector3( 0, 173.045, 0 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Pivot/Camera/ArmIK Left:rotation_degrees")
@@ -327,34 +617,34 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector3( 9.97879, 10.0617, -90 ), Vector3( -17.176, -7.62398, -65.6166 ) ]
+"values": [ Vector3( 9.97879, 10.0617, -90 ), Vector3( 9.97879, 10.0617, -90 ), Vector3( -17.176, -7.62398, -65.6166 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Pivot/Camera/ArmIK Left:translation")
-tracks/3/interp = 2
+tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector3( 0.37, -0.543, -1.174 ), Vector3( 0.241, -0.543, -1.208 ) ]
+"times": PoolRealArray( 0, 0.1, 0.4, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 3,
+"values": [ Vector3( 0.63, -0.543, -1.174 ), Vector3( 0.63, -0.543, -1.174 ), Vector3( 0.501, -0.543, -1.208 ), Vector3( 0.63, -0.543, -1.174 ) ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("Pivot/Camera/ArmIK:translation")
-tracks/4/interp = 2
+tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector3( 0.768508, -0.447333, -0.140422 ), Vector3( 0.606508, -0.447333, -0.140422 ) ]
+"times": PoolRealArray( 0, 0.1, 0.4, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 3,
+"values": [ Vector3( 1.029, -0.447, -0.14 ), Vector3( 1.029, -0.447, -0.14 ), Vector3( 0.867, -0.447, -0.14 ), Vector3( 1.029, -0.447, -0.14 ) ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("Pivot/Camera/ArmIK:rotation_degrees")
@@ -368,6 +658,100 @@ tracks/5/keys = {
 "update": 0,
 "values": [ Vector3( 15.6166, -53.5599, 90 ), Vector3( 33.1662, -46.8911, 105.875 ) ]
 }
+
+[sub_resource type="Animation" id=146]
+resource_name = "Sway_Secondary"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pivot/Camera/ArmIK Left:rotation_degrees")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4, 0.9, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 9.97879, 10.0617, -90 ), Vector3( 9.97879, 10.0617, -90 ), Vector3( 9.97879, 10.0617, -90 ), Vector3( 9.97879, 10.0617, -90 ), Vector3( 9.97879, 10.0617, -90 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pivot/Camera/ArmIK Left:translation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4, 0.9, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 3,
+"values": [ Vector3( 0.642, -0.735, -0.799 ), Vector3( 0.642, -0.735, -0.799 ), Vector3( 0.642, -0.735, -0.799 ), Vector3( 0.642, -0.735, -0.799 ), Vector3( 0.642, -0.735, -0.799 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Pivot/Camera/ArmIK:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4, 0.9, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 3,
+"values": [ Vector3( 0.955133, -0.470333, -0.685143 ), Vector3( 0.955133, -0.470333, -0.685143 ), Vector3( 0.943508, -0.470333, -0.683422 ), Vector3( 0.943508, -0.470333, -0.683422 ), Vector3( 0.955133, -0.470333, -0.685143 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Pivot/Camera/ArmIK:rotation_degrees")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4, 0.9, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 8.20811, -76.1936, 84.5323 ), Vector3( 8.20811, -76.1936, 84.5323 ), Vector3( 24.6956, -74.9315, 88.9408 ), Vector3( 24.6956, -74.9315, 88.9408 ), Vector3( 8.20811, -76.1936, 84.5323 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Pivot/Camera/Secondary:translation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.889, -0.561, -1.015 ), Vector3( 0.889, -0.561, -1.015 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Pivot/Camera/Secondary:rotation_degrees")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.4, 0.9, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -173.045, 0 ), Vector3( 2.17808, -173.393, -18.1663 ), Vector3( 2.17808, -173.393, -18.1663 ), Vector3( 0, -173.045, 0 ) ]
+}
+
+[sub_resource type="DynamicFontData" id=144]
+font_path = "res://assets/Fonts/TF2.ttf"
+
+[sub_resource type="DynamicFont" id=145]
+size = 38
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = SubResource( 144 )
+
+[sub_resource type="DynamicFontData" id=17]
+font_path = "res://assets/Fonts/TF2.ttf"
+
+[sub_resource type="DynamicFont" id=150]
+size = 30
+outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+use_filter = true
+font_data = SubResource( 17 )
 
 [sub_resource type="DynamicFontData" id=141]
 font_path = "res://assets/Fonts/TF2.ttf"
@@ -457,7 +841,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 0, 1, 0.027451, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="DynamicFontData" id=17]
+[sub_resource type="DynamicFontData" id=151]
 font_path = "res://assets/Fonts/TF2.ttf"
 
 [sub_resource type="DynamicFont" id=23]
@@ -465,13 +849,13 @@ size = 48
 outline_size = 4
 outline_color = Color( 0, 0, 0, 0.501961 )
 use_filter = true
-font_data = SubResource( 17 )
+font_data = SubResource( 151 )
 
 [sub_resource type="DynamicFont" id=24]
 size = 48
 outline_color = Color( 0, 0, 0, 1 )
 use_filter = true
-font_data = SubResource( 17 )
+font_data = SubResource( 151 )
 
 [sub_resource type="ArrayMesh" id=25]
 resource_name = "Proxy_Cube032"
@@ -1989,6 +2373,24 @@ tracks/16/imported = false
 tracks/16/enabled = true
 tracks/16/keys = PoolRealArray( 0, 1, 1.0835e-08, -1.33746, 7.3899e-08, -0.103893, 1.38134e-08, 0.0152326, 0.994472, 1, 1, 1, 0.1, 1, 1.0835e-08, -1.33746, 7.3899e-08, -0.103893, 1.38134e-08, 0.0152326, 0.994472, 1, 1, 1, 0.3, 1, 1.73572e-08, -3.39745, 1.18383e-07, -0.170073, -1.79625e-08, 0.024936, 0.985116, 1, 1, 1 )
 
+[sub_resource type="Animation" id=59]
+resource_name = "Ragdoll"
+length = 0.2
+tracks/0/type = "method"
+tracks/0/path = NodePath("Armature/Skeleton")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ [  ] ],
+"method": "physical_bones_start_simulation"
+} ]
+}
+
 [sub_resource type="Animation" id=39]
 resource_name = "Run"
 length = 0.8
@@ -2445,7 +2847,7 @@ filter_enabled = true
 filters = [ "Armature/Skeleton:Arm.L", "Armature/Skeleton:Arm.R", "Armature/Skeleton:Head", "Armature/Skeleton:LowerArm.L", "Armature/Skeleton:LowerArm.R", "Armature/Skeleton:Shoulder.L", "Armature/Skeleton:Shoulder.R", "Armature/Skeleton:Spine1", "Armature/Skeleton:Spine2", "Armature/Skeleton:UpperArm.L", "Armature/Skeleton:UpperArm.R", "Armature011/Skeleton:Arm.L", "Armature011/Skeleton:Arm.R", "Armature011/Skeleton:LowerArm.L", "Armature011/Skeleton:LowerArm.R", "Armature011/Skeleton:Shoulder.L", "Armature011/Skeleton:Shoulder.R", "Armature011/Skeleton:UpperArm.L", "Armature011/Skeleton:UpperArm.R" ]
 
 [sub_resource type="AnimationNodeBlendTree" id=124]
-graph_offset = Vector2( -133.316, 5.94945 )
+graph_offset = Vector2( 1290.3, 303.421 )
 nodes/Air_Hit/node = SubResource( 110 )
 nodes/Air_Hit/position = Vector2( 340, 320 )
 nodes/Air_State/node = SubResource( 56 )
@@ -2507,7 +2909,7 @@ nodes/TimeScale/position = Vector2( 420, -80 )
 nodes/Wep_Blend/node = SubResource( 127 )
 nodes/Wep_Blend/position = Vector2( 880, 220 )
 nodes/output/position = Vector2( 1880, 200 )
-node_connections = [ "output", 0, "Ragdoll", "Ragdoll", 0, "Is_Shooting", "Ragdoll", 1, "Animation 11", "Airborne", 0, "Animation 7", "Airborne", 1, "Animation 9", "Current_Wep", 0, "Animation", "Current_Wep", 1, "Animation 13", "Current_Wep", 2, "Animation 14", "Is_Moving", 0, "TimeScale", "Is_Moving", 1, "Run_Dir", "Char_State", 0, "Is_Moving", "Char_State", 1, "Air_Hit", "Char_State", 2, "Animation 6", "Attack_Anim", 0, "Animation 3", "Is_Shooting", 0, "Wep_Blend", "Is_Shooting", 1, "Attack_Anim", "Run_Dir", 0, "TimeScale 3", "Run_Dir", 1, "TimeScale 2", "Air_Hit", 0, "Air_State", "Air_Hit", 1, "Animation 5", "TimeScale", 0, "Animation 12", "Wep_Blend", 0, "Char_State", "Wep_Blend", 1, "Current_Wep", "Air_State", 0, "Animation 4", "Air_State", 1, "Airborne", "TimeScale 2", 0, "Animation 2", "TimeScale 3", 0, "Animation 8" ]
+node_connections = [ "output", 0, "Ragdoll", "Ragdoll", 0, "Is_Shooting", "Ragdoll", 1, "Animation 11", "Attack_Anim", 0, "Animation 3", "Is_Shooting", 0, "Wep_Blend", "Is_Shooting", 1, "Attack_Anim", "Char_State", 0, "Is_Moving", "Char_State", 1, "Air_Hit", "Char_State", 2, "Animation 6", "Air_State", 0, "Animation 4", "Air_State", 1, "Airborne", "Air_Hit", 0, "Air_State", "Air_Hit", 1, "Animation 5", "Current_Wep", 0, "Animation", "Current_Wep", 1, "Animation 13", "Current_Wep", 2, "Animation 14", "TimeScale", 0, "Animation 12", "Airborne", 0, "Animation 7", "Airborne", 1, "Animation 9", "Run_Dir", 0, "TimeScale 3", "Run_Dir", 1, "TimeScale 2", "Wep_Blend", 0, "Char_State", "Wep_Blend", 1, "Current_Wep", "Is_Moving", 0, "TimeScale", "Is_Moving", 1, "Run_Dir", "TimeScale 2", 0, "Animation 2", "TimeScale 3", 0, "Animation 8" ]
 
 [sub_resource type="ViewportTexture" id=138]
 viewport_path = NodePath("Username Sprite/Viewport")
@@ -2547,17 +2949,10 @@ outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
 use_filter = true
 font_data = SubResource( 88 )
 
-[sub_resource type="DynamicFontData" id=144]
-font_path = "res://assets/Fonts/TF2.ttf"
-
-[sub_resource type="DynamicFont" id=145]
-size = 38
-outline_color = Color( 0, 0, 0, 1 )
-use_filter = true
-font_data = SubResource( 144 )
-
-[node name="Tweak" type="KinematicBody"]
+[node name="Tweak" type="KinematicBody" groups=["Player"]]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1, 0 )
+collision_layer = 0
+collision_mask = 9
 script = ExtResource( 3 )
 
 [node name="GroundCheck" type="RayCast" parent="."]
@@ -2664,7 +3059,7 @@ debug_shape_custom_color = Color( 0, 1, 0.298039, 1 )
 [node name="RayCast" type="RayCast" parent="Pivot/Camera"]
 transform = Transform( -1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, -1, 3.0604e-08, 0, -0.51345 )
 enabled = true
-cast_to = Vector3( 0, 0, 100000 )
+cast_to = Vector3( 0, 0, 80 )
 collision_mask = 35
 
 [node name="SpeedRays" parent="Pivot/Camera" instance=ExtResource( 4 )]
@@ -2707,13 +3102,13 @@ mesh = SubResource( 6 )
 material/0 = null
 
 [node name="ArmIK" type="Position3D" parent="Pivot/Camera"]
-transform = Transform( -0.216565, -0.593982, -0.77478, 0.963084, -4.20978e-08, -0.269199, 0.159899, -0.804478, 0.572055, 0.768508, -0.447333, -0.140422 )
+transform = Transform( -0.216564, -0.593982, -0.77478, 0.963084, -4.20977e-08, -0.269199, 0.159899, -0.804478, 0.572055, 0.768508, -0.447333, -0.140422 )
 
 [node name="ArmIK Left" type="Position3D" parent="Pivot/Camera"]
 transform = Transform( -1.05496e-07, 1, -1.8206e-07, -0.946955, -4.13928e-08, 0.321361, 0.321361, 2.06306e-07, 0.946955, 0.37, -0.543, -1.16 )
 
 [node name="Arms" type="Skeleton" parent="Pivot/Camera"]
-transform = Transform( -0.357, 0, 5.63214e-08, 0, 0.2, 0, -5.39055e-08, 0, -0.373, -0.0600002, -1.061, -0.087 )
+transform = Transform( -0.357, 0, 5.63214e-08, 0, 0.2, 0, -5.39055e-08, 0, -0.373, -0.0600002, -1.205, -0.087 )
 bones/0/name = "UpperArm.L.001"
 bones/0/parent = -1
 bones/0/rest = Transform( 1.78814e-07, 0.994999, 0.0998879, -1, 1.78814e-07, -2.86847e-07, -3.01748e-07, -0.0998878, 0.994999, 1.41601, 4.4362, -0.639934 )
@@ -2814,24 +3209,26 @@ layers = 4
 layers = 4
 
 [node name="Secondary" type="Spatial" parent="Pivot/Camera"]
-transform = Transform( -0.992642, 0, -0.12109, 0, 1, 0, 0.12109, 0, -0.992642, 0.602, -0.561, -1.015 )
+transform = Transform( -0.992641, 0, -0.12109, 0, 1, 0, 0.12109, 0, -0.992641, 0.602, -0.561, -1.015 )
 __meta__ = {
 "_editor_description_": ""
 }
 
 [node name="G9" parent="Pivot/Camera/Secondary" instance=ExtResource( 11 )]
+transform = Transform( 1.5, 0, 0, 0, 1.5, 0, -1.49012e-08, 0, 1.5, 0, 0, 0 )
 
 [node name="Pistol" parent="Pivot/Camera/Secondary/G9" index="0"]
+transform = Transform( 1, 7.45058e-09, 0, 0, -1.19209e-07, -1, -7.45058e-09, 1, -1.19209e-07, 0.000203431, 0.232475, 0.00217211 )
 layers = 4
 
 [node name="Melee" type="Spatial" parent="Pivot/Camera"]
-transform = Transform( -0.763038, 0.646353, 2.8253e-08, 0, -4.37114e-08, 1, 0.646353, 0.763038, 3.33535e-08, 0.51121, 0, -0.907419 )
-visible = false
+transform = Transform( -0.950478, 0.31079, 1.35851e-08, 0, -4.37114e-08, 1, 0.31079, 0.950478, 4.15467e-08, 0.491808, -0.457, -0.722218 )
 __meta__ = {
 "_editor_description_": ""
 }
 
 [node name="Machete" parent="Pivot/Camera/Melee" instance=ExtResource( 9 )]
+transform = Transform( 1, -2.98023e-08, -3.55271e-15, 2.98023e-08, 1, 1.95399e-14, -5.32907e-15, -5.32907e-15, 1, 0, -0.0700001, 0.513 )
 
 [node name="Cube006" parent="Pivot/Camera/Melee/Machete" index="0"]
 layers = 4
@@ -2916,49 +3313,48 @@ cast_to = Vector3( 0, 0, 80 )
 collision_mask = 35
 debug_shape_custom_color = Color( 0, 1, 0.298039, 1 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Crosshair" type="TextureRect" parent="CanvasLayer"]
-anchor_left = 0.488281
-anchor_top = 0.4875
-anchor_right = 0.511719
-anchor_bottom = 0.5125
-rect_pivot_offset = Vector2( 15, 9 )
-texture = ExtResource( 2 )
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="ViewportContainer" type="ViewportContainer" parent="CanvasLayer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 1
-size_flags_horizontal = 6
-size_flags_vertical = 6
-stretch = true
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Viewport" type="Viewport" parent="CanvasLayer/ViewportContainer"]
-size = Vector2( 1280, 720 )
-transparent_bg = true
-handle_input_locally = false
-hdr = false
-render_target_update_mode = 3
-
-[node name="Camera" type="Camera" parent="CanvasLayer/ViewportContainer/Viewport"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0 )
-cull_mask = 4
-fov = 90.0
-near = 0.01
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Sway_Primary"
 anims/RESET = SubResource( 136 )
+anims/Shoot_Melee = SubResource( 149 )
 anims/Shoot_Primary = SubResource( 137 )
+anims/Shoot_Secondary = SubResource( 147 )
+anims/Sway_Melee = SubResource( 148 )
 anims/Sway_Primary = SubResource( 135 )
+anims/Sway_Secondary = SubResource( 146 )
+next/Shoot_Melee = "Sway_Melee"
 next/Shoot_Primary = "Sway_Primary"
+next/Shoot_Secondary = "Sway_Secondary"
+next/Sway_Melee = "Sway_Melee"
+next/Sway_Primary = "Sway_Primary"
+next/Sway_Secondary = "Sway_Secondary"
+blend_times = [ "Shoot_Melee", "Sway_Melee", 0.1, "Shoot_Primary", "Sway_Primary", 0.5, "Sway_Melee", "Sway_Melee", 0.5, "Sway_Primary", "Sway_Primary", 0.5, "Sway_Secondary", "Sway_Secondary", 0.5 ]
+
+[node name="Team" type="Label" parent="."]
+anchor_left = 0.00390625
+anchor_top = 0.0125
+anchor_right = 0.142188
+anchor_bottom = 0.0791667
+custom_fonts/font = SubResource( 145 )
+text = "Team: 1"
+valign = 1
+
+[node name="damage" type="Label" parent="."]
+visible = false
+self_modulate = Color( 1, 0.913725, 0, 1 )
+anchor_left = 0.5
+anchor_top = 0.506
+anchor_right = 0.5
+anchor_bottom = 0.506
+margin_left = -20.0
+margin_top = -75.32
+margin_right = 20.0
+margin_bottom = -44.32
+custom_fonts/font = SubResource( 150 )
+text = "61"
+align = 1
+
+[node name="Tween" type="Tween" parent="damage"]
 
 [node name="Username" type="Label" parent="."]
 visible = false
@@ -3037,6 +3433,45 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": true
 }
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Crosshair" type="TextureRect" parent="CanvasLayer"]
+anchor_left = 0.488281
+anchor_top = 0.4875
+anchor_right = 0.511719
+anchor_bottom = 0.5125
+rect_pivot_offset = Vector2( 15, 9 )
+texture = ExtResource( 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="ViewportContainer" type="ViewportContainer" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+size_flags_horizontal = 6
+size_flags_vertical = 6
+stretch = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Viewport" type="Viewport" parent="CanvasLayer/ViewportContainer"]
+size = Vector2( 1280, 720 )
+transparent_bg = true
+handle_input_locally = false
+hdr = false
+render_target_update_mode = 3
+
+[node name="Camera" type="Camera" parent="CanvasLayer/ViewportContainer/Viewport"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0 )
+cull_mask = 4
+fov = 90.0
+near = 0.01
 
 [node name="Armature" type="Spatial" parent="."]
 transform = Transform( 0.143631, 0, 0, 0, 0.143631, 0, 0, 0, 0.143631, 0, -0.23, 0 )
@@ -3139,29 +3574,48 @@ skin = SubResource( 26 )
 material/0 = ExtResource( 6 )
 
 [node name="Hat" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( 0.995007, 0.00929448, 0.0993721, -0.00672416, 0.999636, -0.0261688, -0.0995782, 0.0253701, 0.994706, -0.0565649, 4.21614, 0.943321 )
+transform = Transform( 0.995754, 0.00909626, 0.0916058, -0.00672419, 0.999636, -0.0261688, -0.0918098, 0.0254419, 0.995451, -0.0424641, 4.56751, 0.959449 )
 bone_name = "Head"
 
-[node name="Tanishas Hair002" type="MeshInstance" parent="Armature/Skeleton/Hat"]
+[node name="Hair" type="MeshInstance" parent="Armature/Skeleton/Hat"]
 transform = Transform( -7.65851, -1.14121e-07, -2.42088e-05, 1.4265e-07, 7.65851, 1.71182e-07, 2.535e-05, 2.85302e-07, -7.65851, 0.0621033, -12.3609, 0.454213 )
+layers = 2
 mesh = SubResource( 27 )
 skeleton = NodePath("../../../..")
 material/0 = null
 
 [node name="Weapons" type="BoneAttachment" parent="Armature/Skeleton"]
-transform = Transform( -0.240864, -0.00041618, 0.970626, 0.970373, 0.0276579, 0.240143, -0.0271325, 0.999516, -0.00659793, -3.913, 1.97628, 1.15196 )
+transform = Transform( 0.613371, -0.0373855, 0.792158, 0.788325, -0.040138, -0.615312, 0.0542216, 0.999395, 0.00254141, -2.24133, 3.44497, 6.11977 )
 bone_name = "Arm.R"
 
-[node name="Remburg 8" parent="Armature/Skeleton/Weapons" instance=ExtResource( 10 )]
-transform = Transform( -1.72272, 6.74863, 0.127445, 0.467685, -0.0121703, 6.93735, 6.73515, 1.72701, -0.449128, -1.05138, 1.72408, 1.21404 )
-
-[node name="G9" parent="Armature/Skeleton/Weapons" instance=ExtResource( 11 )]
-transform = Transform( 0.43294, 6.94767, 0.103681, 0.351447, -0.12563, 6.95282, 6.93973, -0.427072, -0.358578, -0.497471, 1.2477, -0.0446277 )
+[node name="Primary" type="Spatial" parent="Armature/Skeleton/Weapons"]
+transform = Transform( -1.72272, 6.74863, 0.127446, 0.467691, -0.0121702, 6.93735, 6.73515, 1.72701, -0.449134, -1.05138, 1.72408, 1.21404 )
 visible = false
+__meta__ = {
+"_editor_description_": ""
+}
 
-[node name="Machete" parent="Armature/Skeleton/Weapons" instance=ExtResource( 9 )]
-transform = Transform( 1.30605, 0.713678, 6.80064, -1.00337, -6.82677, 0.909256, 6.76834, -1.14975, -1.17749, 2.70426, 1.54796, -0.653421 )
+[node name="Remburg 8" parent="Armature/Skeleton/Weapons/Primary" instance=ExtResource( 10 )]
+transform = Transform( 1, -4.17e-07, 8.1677e-07, -1.64437e-08, 1, 0, -8.51229e-07, 2.04891e-08, 1, 0, 0, 0 )
+
+[node name="Secondary" type="Spatial" parent="Armature/Skeleton/Weapons"]
+transform = Transform( 0.432938, 6.94767, 0.103684, 0.351454, -0.125633, 6.95282, 6.93973, -0.427071, -0.358586, -0.497471, 1.2477, -0.0446278 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="G9" parent="Armature/Skeleton/Weapons/Secondary" instance=ExtResource( 11 )]
+transform = Transform( 1, -7.85221e-08, 1.06357e-06, 2.65427e-07, 1, -4.54485e-07, -1.05053e-06, 3.93018e-07, 1, 0, 0, 0 )
+
+[node name="Melee" type="Spatial" parent="Armature/Skeleton/Weapons"]
+transform = Transform( 1.30605, 0.713679, 6.80064, -1.00337, -6.82677, 0.909257, 6.76834, -1.14975, -1.17749, 2.70426, 1.54796, -0.653421 )
 visible = false
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Machete" parent="Armature/Skeleton/Weapons/Melee" instance=ExtResource( 9 )]
+transform = Transform( 1, -5.96046e-07, 2.30968e-07, 1.63913e-07, 1, 7.45058e-08, -1.49012e-07, 1.49012e-08, 1, 0, 0, 0 )
 
 [node name="Spineik" type="SkeletonIK" parent="Armature/Skeleton"]
 process_priority = 1
@@ -3182,6 +3636,7 @@ anims/Idle_Shotgun001 = SubResource( 35 )
 anims/Idle_Shovel = SubResource( 36 )
 anims/Idle_Shovel004 = SubResource( 37 )
 anims/Landing002 = SubResource( 38 )
+anims/Ragdoll = SubResource( 59 )
 anims/Run = SubResource( 39 )
 "anims/Run (Backwards)" = SubResource( 125 )
 anims/Shoot002 = SubResource( 40 )
@@ -3196,7 +3651,7 @@ parameters/Airborne/current = 1
 parameters/Attack_Anim/current = 0
 parameters/Blend3/blend_amount = 0
 parameters/Char_State/current = 0
-parameters/Current_Wep/current = 0
+parameters/Current_Wep/current = 1
 parameters/Is_Moving/current = 1
 parameters/Is_Shooting/active = false
 parameters/Ragdoll/current = 0
@@ -3207,7 +3662,10 @@ parameters/TimeScale/scale = 3.0
 parameters/Wep_Blend/blend_amount = 1.0
 
 [node name="Primary_Cooldown" type="Timer" parent="."]
-process_mode = 0
+one_shot = true
+
+[node name="Spread_Cooldown" type="Timer" parent="."]
+wait_time = 1.25
 one_shot = true
 
 [node name="Weapon_Cooldown" type="Timer" parent="."]
@@ -3278,19 +3736,8 @@ unit_size = 10.0
 max_db = 6.0
 bus = "Effects"
 
-[node name="Team" type="Label" parent="."]
-anchor_left = 0.00390625
-anchor_top = 0.0125
-anchor_right = 0.142188
-anchor_bottom = 0.0791667
-custom_fonts/font = SubResource( 145 )
-text = "Team: 1"
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
 [connection signal="value_changed" from="Health_Bar" to="Health_Bar" method="_on_Health_Bar_value_changed"]
+[connection signal="timeout" from="Spread_Cooldown" to="." method="_on_Spread_Cooldown_timeout"]
 [connection signal="timeout" from="Footstep" to="." method="_on_Footstep_timeout"]
 [connection signal="timeout" from="network_timer2" to="." method="anim_timeout"]
 [connection signal="timeout" from="Death_Cam" to="." method="_on_Death_Cam_timeout"]
@@ -3299,4 +3746,4 @@ __meta__ = {
 [editable path="Pivot/Camera/Primary/Remburg 8"]
 [editable path="Pivot/Camera/Secondary/G9"]
 [editable path="Pivot/Camera/Melee/Machete"]
-[editable path="Armature/Skeleton/Weapons/Remburg 8"]
+[editable path="Armature/Skeleton/Weapons/Primary/Remburg 8"]

@@ -12,7 +12,7 @@ var hud = load("res://Online/HUD/Hud (Online).tscn")
 remote var username = ''
 var max_health = 125
 var health = 125
-var wep_spread = 4
+var wep_spread = 6
 var dealth_location = global_transform.origin
 onready var killer = name
 var merc = "Tweak"
@@ -24,7 +24,7 @@ var mouse_sensitivity = Globals.mouse_sense
 
 
 export var max_speed: float = 8.5 # Meters per second
-export var max_air_speed: float = 0.2
+export var max_air_speed: float = 0.2#4
 export var accel: float = max_speed * 10 # or max_speed * 10 : Reach max speed in 1 / 10th of a second
 
 # For now, the friction variable is not used, as the calculations are  not the same as quake's
@@ -44,6 +44,7 @@ onready var raycast = $Pivot/Camera/RayCast
 onready var anim = $AnimationPlayer
 onready var anim_tree = $AnimationTree
 onready var timer = $"Primary_Cooldown"
+onready var spread_cooldown = $"Spread_Cooldown"
 onready var ground_check = $GroundCheck
 onready var main = get_tree().current_scene
 #onready var get_rocket_launcher = $"Pivot/Camera/Rocket Launcher"
@@ -69,6 +70,7 @@ var vertical_velocity: float = 0 # Vertical component of our velocity.
 var rocket_jump: bool = false
 var temp_rocket_jump:bool 
 var wish_jump: bool = false # If true, player has queued a jump : the jump key can be held down before hitting the ground to jump.
+var can_jump: bool = true
 var auto_jump: bool = false # Auto bunnyhopping
 
 # The next three variables are used to display corresponding vectors in game world.
@@ -139,15 +141,15 @@ puppet func shoot_anim():
 	if current_weapon == 2:
 		animtree_change("parameters/Attack_Anim/current",0)
 		anim.play("Shoot_Shotty")
-		armature.get_node("Skeleton/Rocket Launcher/Shotgun/Spatial").visible = true
+		armature.get_node("Skeleton/Weapons/Secondary").visible = true
 		yield(anim,"animation_finished")
-		armature.get_node("Skeleton/Rocket Launcher/Shotgun/Spatial").visible = false
+		armature.get_node("Skeleton/Weapons/Secondary").visible = false
 	if current_weapon == 1:
 		animtree_change("parameters/Attack_Anim/current",0)
 		anim.play("Shoot_Rocket")
-		armature.get_node("Skeleton/Rocket Launcher/Rocket Launcher").visible = true
+		armature.get_node("Skeleton/Weapons/Primary").visible = true
 		yield(anim,"animation_finished")
-		armature.get_node("Skeleton/Rocket Launcher/Rocket Launcher").visible = false
+		armature.get_node("Skeleton/Weapons/Primary").visible = false
 #Networking end
 
 
@@ -182,6 +184,7 @@ func weapon_switch():
 		if Input.is_action_just_pressed("wep_slot_1") and current_weapon != 1:
 			$Weapon_Cooldown.start()
 			timer.stop()
+			wep_spread = 6
 			current_weapon = 1
 			anim.play("Sway_Primary")
 			animtree_change("parameters/Attack_Anim/current",0)
@@ -189,40 +192,41 @@ func weapon_switch():
 		elif Input.is_action_just_pressed("wep_slot_2") and current_weapon != 2:
 			$Weapon_Cooldown.start()
 			timer.stop()
+			wep_spread = 0
 			current_weapon = 2
-			anim.play("Sway_Shotty")
+			anim.play("Sway_Secondary")
 			animtree_change("parameters/Attack_Anim/current",0)
 		
 		elif Input.is_action_just_pressed("wep_slot_3") and current_weapon != 3:
 			$Weapon_Cooldown.start()
 			timer.stop()
 			current_weapon = 3
-			anim.play("Sway_Shovel")
+			anim.play("Sway_Melee")
 			animtree_change("parameters/Attack_Anim/current",1)
 	else:
 		current_weapon = puppet_current_weapon
 	if current_weapon == 1:
 		timer
-		head.get_node("Camera/Rocket Launcher").visible = true
+		head.get_node("Camera/Primary").visible = true
 		#anim.play("Sway")
-		armature.get_node("Skeleton/Rocket Launcher/Rocket Launcher").visible = true
+		armature.get_node("Skeleton/Weapons/Primary").visible = true
 	else:
-		head.get_node("Camera/Rocket Launcher").visible = false
-		armature.get_node("Skeleton/Rocket Launcher/Rocket Launcher").visible = false
+		head.get_node("Camera/Primary").visible = false
+		armature.get_node("Skeleton/Weapons/Primary").visible = false
 
 	if current_weapon == 2:
-		head.get_node("Camera/Shotgun").visible = true
-		armature.get_node("Skeleton/Rocket Launcher/Shotgun").visible = true
+		head.get_node("Camera/Secondary").visible = true
+		armature.get_node("Skeleton/Weapons/Secondary").visible = true
 	else:
-		head.get_node("Camera/Shotgun").visible = false
-		armature.get_node("Skeleton/Rocket Launcher/Shotgun").visible = false
+		head.get_node("Camera/Secondary").visible = false
+		armature.get_node("Skeleton/Weapons/Secondary").visible = false
 
 	if current_weapon == 3:
-		head.get_node("Camera/Shovel").visible = true
-		armature.get_node("Skeleton/Rocket Launcher/Shovel").visible = true
+		head.get_node("Camera/Melee").visible = true
+		armature.get_node("Skeleton/Weapons/Melee").visible = true
 	else:
-		head.get_node("Camera/Shovel").visible = false
-		armature.get_node("Skeleton/Rocket Launcher/Shovel").visible = false
+		head.get_node("Camera/Melee").visible = false
+		armature.get_node("Skeleton/Weapons/Melee").visible = false
 remote func set_team():
 	match team:
 		1:
@@ -269,13 +273,14 @@ func _ready():
 	armature.get_node("Skeleton/Scout").set_layer_mask_bit(0,!is_network_master())#.visible = !is_network_master()
 	for i in armature.get_node("Skeleton/Weapons").get_children():
 		for c in i.get_children():
-			c.set_layer_mask_bit(0,!is_network_master())
+			for h in c.get_children():
+				h.set_layer_mask_bit(0,!is_network_master())
 #	for i in armature.get_node("Skeleton/Weapons/Remburg 8").get_children():
 #		i.set_layer_mask_bit(0,!is_network_master())
 #	armature.get_node("Skeleton/Rocket Launcher/Shotgun").set_layer_mask_bit(0,!is_network_master())
 #	for i in armature.get_node("Skeleton/Weapons/Shovel").get_children():
 #		i.set_layer_mask_bit(0,!is_network_master())
-#	armature.get_node("Skeleton/Hat/Soldier Hat2").set_layer_mask_bit(0,!is_network_master())
+	armature.get_node("Skeleton/Hat/Hair").set_layer_mask_bit(0,!is_network_master())
 	anim.playback_active = true
 	if self.is_network_master():
 		rpc("set_team")
@@ -375,6 +380,8 @@ func _physics_process(delta: float) -> void:
 				GROUND:
 					if !is_on_floor():
 						change_state(AIR)
+					else:
+						can_jump = true
 					temp_rocket_jump = false
 					if wish_jump: # If we're on the ground but wish_jump is still true, this means we've just landed
 						snap = Vector3.ZERO #Set snapping to zero so we can get off the ground
@@ -433,9 +440,14 @@ func _physics_process(delta: float) -> void:
 								animtree_change("parameters/Run_Dir/blend_amount",int(velocity.z>0))
 								#if velocity.z >
 				AIR:
+					if Input.is_action_just_pressed("jump") and can_jump == true:
+						wish_jump = true
+						velocity.x = wishdir.x * jump_impulse *1.5
+						velocity.z = wishdir.z * jump_impulse *1.5
+						can_jump = false
+						change_state(GROUND)
+						#vertical_velocity = rocket_impulse
 					if is_on_floor():
-						if wish_jump:
-							self.take_damage(5,name,true)
 						change_state(GROUND)
 					if ground_check.is_colliding():#velocity.y <=0 and ground_check.is_colliding() and !wish_jump== true:
 						#anim_tree.set("parameters/Char_State/current", 2)
@@ -464,9 +476,9 @@ func _physics_process(delta: float) -> void:
 					$Armature/Skeleton/Spineik.interpolation = 0
 					head.hide()
 					#get_rocket_launcher.hide()
-					fp_arms.hide()
-					camera.get_node("Shotgun").hide()
-					camera.get_node("Shovel").hide()
+#					fp_arms.hide()
+#					camera.get_node("prim").hide()
+#					camera.get_node("Shovel").hide()
 					armature.set_as_toplevel(true)
 					animtree_change("parameters/Ragdoll/current",1)
 					velocity = Vector3.ZERO
@@ -475,7 +487,8 @@ func _physics_process(delta: float) -> void:
 					armature.get_node("Skeleton/Scout").set_layer_mask_bit(0,true)#.visible = !is_network_master()
 					for i in armature.get_node("Skeleton/Weapons").get_children():
 						for c in i.get_children():
-							c.set_layer_mask_bit(0,true)
+							for h in c.get_children():
+								h.set_layer_mask_bit(0,true)
 #					armature.get_node("Skeleton/Rocket Launcher/Shotgun").set_layer_mask_bit(0,true)
 #					armature.get_node("Skeleton/Rocket Launcher/Rocket Launcher").set_layer_mask_bit(0,true)
 #					armature.get_node("Skeleton/Hat/Soldier Hat2").set_layer_mask_bit(0,true)
@@ -512,23 +525,26 @@ func _physics_process(delta: float) -> void:
 					animtree_change("parameters/Is_Shooting/active",1)
 					rpc("shoot_anim")
 					randomize()
-		#			for r in camera.get_node("RayContainer").get_children():
-		#				r.cast_to.x = rand_range(wep_spread, -wep_spread)
-		#				r.cast_to.y = rand_range(wep_spread, -wep_spread)
-					Network.emit_signal("player_shot",name,guns.global_transform.origin,"Hitscan",6)
+					for r in camera.get_node("RayContainer").get_children():
+						r.cast_to.x = rand_range(wep_spread, -wep_spread)
+						r.cast_to.y = rand_range(wep_spread, -wep_spread)
+					Network.emit_signal("player_shot",name,guns.global_transform.origin,"Shotgun",6)
 				2:
-					timer.start(0.15)
-					anim.play("Shoot_Shotty")
+					timer.start(0.4)
+					spread_cooldown.start(1.25)
+					wep_spread +=1
+					wep_spread = clamp(wep_spread,0,6)
+					anim.play("Shoot_Secondary")
 					animtree_change("parameters/Is_Shooting/active",1)
 					rpc("shoot_anim")
 					randomize()
-		#			for r in camera.get_node("RayContainer").get_children():
-		#				r.cast_to.x = rand_range(wep_spread, -wep_spread)
-		#				r.cast_to.y = rand_range(wep_spread, -wep_spread)
-					Network.emit_signal("player_shot",name,guns.global_transform.origin,"Hitscan",6)
+#					for r in camera.get_node("RayContainer").get_children():
+#						r.cast_to.x = rand_range(wep_spread, -wep_spread)
+#						r.cast_to.y = rand_range(wep_spread, -wep_spread)
+					Network.emit_signal("player_shot",name,guns.global_transform.origin,"Hitscan",10)
 				3:
 					timer.start(0.5)
-					anim.play("Shoot_Shovel")
+					anim.play("Shoot_Melee")
 					animtree_change("parameters/Is_Shooting/active",1)
 					rpc("shoot_anim")
 
@@ -642,7 +658,7 @@ master func queue_jump():
 #		wish_jump = true if Input.is_action_pressed("jump") else false
 #		return
 	
-	if Input.is_action_just_pressed("jump") and !wish_jump:
+	if Input.is_action_pressed("jump") and !wish_jump:
 		wish_jump = true
 		return true
 	if Input.is_action_just_released("jump"):
@@ -739,4 +755,9 @@ func pallete_swap(colour):
 			pass
 
 func melee_attack():
-	Network.emit_signal("player_shot",name,guns.global_transform.origin,"Melee")
+	Network.emit_signal("player_shot",name,guns.global_transform.origin,"Melee",35)
+
+
+func _on_Spread_Cooldown_timeout():
+	if current_weapon == 2:
+		wep_spread = 0

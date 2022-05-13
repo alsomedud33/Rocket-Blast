@@ -520,7 +520,7 @@ func _physics_process(delta: float) -> void:
 		#			for r in camera.get_node("RayContainer").get_children():
 		#				r.cast_to.x = rand_range(wep_spread, -wep_spread)
 		#				r.cast_to.y = rand_range(wep_spread, -wep_spread)
-					Network.emit_signal("player_shot",name,guns.global_transform.origin,"Hitscan",3.3)
+					Network.emit_signal("player_shot",name,guns.global_transform.origin,"Shotgun",3.3)
 				3:
 					timer.start(cooldown)
 					anim.play("Shoot_Shovel")

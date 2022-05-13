@@ -2,7 +2,7 @@ extends Node
 
 
 var soldier = preload("res://assets/Tweak/Tweak.tscn")#preload("res://assets/Soldier/Online/Soldier(online).tscn")
-var tweak = preload("res://assets/Tweak/Tweak.tscn")
+var tweak = preload("res://assets/Soldier/Online/Soldier(online).tscn")#preload("res://assets/Tweak/Tweak.tscn")
 func _on_Skybox_Area_body_exited(body):
 	body.global_transform.origin = $"Skybox_Area/Respawn".global_transform.origin
 
@@ -203,9 +203,10 @@ remote func _koth_points_change_remote(cap_rate):
 
 func _player_shot(id,position,wep_type,damage):
 	randomize()
-	rpc("_player_shot_remote", id,position,wep_type)
+#	rpc("_player_shot_remote", id,position,wep_type)
 	match wep_type:
 		"Rocket":
+			rpc("_player_shot_remote", id,position,wep_type,damage)
 			var r = Network.rocket.instance()
 			r.real = true
 			if NetNodes.players.get_node(str(id)).raycast.is_colliding():
@@ -222,6 +223,26 @@ func _player_shot(id,position,wep_type,damage):
 		"Hitscan":
 			var collision_point:Vector3
 			var total_damage = 0
+			#var dmg = 6
+			var hit = false
+			var raycast = NetNodes.players.get_node(id).raycast
+			raycast.cast_to.x = rand_range(-NetNodes.players.get_node(str(id)).wep_spread, NetNodes.players.get_node(str(id)).wep_spread)
+			raycast.cast_to.y = rand_range(-NetNodes.players.get_node(str(id)).wep_spread, NetNodes.players.get_node(str(id)).wep_spread)
+			if raycast.is_colliding() and raycast.get_collider().is_in_group("Player"):
+				hit = true
+				print (raycast.get_collider().name)
+				print(NetNodes.players.get_node(id).head.get_global_transform().origin.distance_to(raycast.get_collision_point()))
+				var distance_travelled = clamp(NetNodes.players.get_node(id).global_transform.origin.distance_to(raycast.get_collision_point()),0,33)
+				var dmg = round(damage * damage_ramp.interpolate(distance_travelled/33))
+				#dmg = round(75 * 1/clamp(NetNodes.players.get_node(id).head.get_global_transform().origin.distance_to(r.get_collision_point()),15,25))
+				raycast.get_collider().take_damage(dmg,id,true)
+				total_damage+=dmg
+				collision_point = raycast.get_collision_point()
+			if id  == str(get_tree().get_network_unique_id()) and hit == true:
+				Network.emit_signal("hit",total_damage,collision_point)
+		"Shotgun":
+			var collision_point:Vector3
+			var total_damage = 0
 			var dmg = 6
 			var hit = false
 			for r in NetNodes.players.get_node(id).camera.get_node("RayContainer").get_children():
@@ -231,8 +252,8 @@ func _player_shot(id,position,wep_type,damage):
 					hit = true
 					print (r.get_collider().name)
 					print(NetNodes.players.get_node(id).head.get_global_transform().origin.distance_to(r.get_collision_point()))
-					var distance_travelled = clamp(NetNodes.players.get_node(id).global_transform.origin.distance_to(r.get_collision_point()),0,33)
-					dmg = round(damage * damage_ramp.interpolate(distance_travelled/33))
+					var distance_travelled = clamp(NetNodes.players.get_node(id).global_transform.origin.distance_to(r.get_collision_point()),0,50)
+					dmg = round(damage * damage_ramp.interpolate(distance_travelled/50))
 					#dmg = round(75 * 1/clamp(NetNodes.players.get_node(id).head.get_global_transform().origin.distance_to(r.get_collision_point()),15,25))
 					r.get_collider().take_damage(dmg,id,true)
 					total_damage+=dmg
@@ -249,7 +270,7 @@ func _player_shot(id,position,wep_type,damage):
 					hit = true
 			if id  == str(get_tree().get_network_unique_id()) and hit == true:
 				Network.emit_signal("hit",damage,collision_point)
-remote func _player_shot_remote(id, position,wep_type):
+remote func _player_shot_remote(id,position,wep_type,damage):
 	match wep_type:
 		"Rocket":
 			var r = Network.rocket.instance()
@@ -266,7 +287,7 @@ remote func _player_shot_remote(id, position,wep_type):
 			NetNodes.players.get_node(str(id)).get_node("Rocket_Launch").play()
 			NetNodes.players.get_node(str(id)).get_node("Rocket_Trail").play()
 			NetNodes.rockets.add_child(r)
-		"Hitscan":
+		"Shotgun":
 			pass
 #			for r in NetNodes.players.get_node(str(id)).camera.get_node("RayContainer").get_children():
 #				r.cast_to.x = rand_range(NetNodes.players.get_node(str(id)).wep_spread, -NetNodes.players.get_node(str(id)).wep_spread)
