@@ -369,9 +369,9 @@ __meta__ = {
 
 [node name="Team" type="Button" parent="Pause/Panel"]
 anchor_left = 0.0914062
-anchor_top = 0.551389
+anchor_top = 0.655556
 anchor_right = 0.314063
-anchor_bottom = 0.630556
+anchor_bottom = 0.734723
 rect_pivot_offset = Vector2( 107, 0 )
 focus_mode = 0
 custom_colors/font_color = Color( 0, 0.556863, 0.0823529, 1 )
@@ -387,11 +387,11 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="Team2" type="Button" parent="Pause/Panel"]
+[node name="Merc" type="Button" parent="Pause/Panel"]
 anchor_left = 0.0914062
-anchor_top = 0.652778
+anchor_top = 0.555556
 anchor_right = 0.314063
-anchor_bottom = 0.731945
+anchor_bottom = 0.634722
 rect_pivot_offset = Vector2( 107, 0 )
 focus_mode = 0
 custom_colors/font_color = Color( 0, 0.556863, 0.0823529, 1 )
@@ -400,7 +400,6 @@ custom_styles/hover = SubResource( 28 )
 custom_styles/pressed = SubResource( 29 )
 custom_styles/disabled = SubResource( 30 )
 custom_styles/normal = SubResource( 31 )
-disabled = true
 enabled_focus_mode = 0
 text = "change merc"
 __meta__ = {
@@ -453,6 +452,7 @@ __meta__ = {
 [node name="Settings Popup" parent="Pause" instance=ExtResource( 5 )]
 
 [node name="Change_Team" type="Control" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 1
@@ -576,6 +576,7 @@ custom_fonts/font = SubResource( 38 )
 text = "Choose team"
 
 [node name="Change_Merc" type="Control" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 1
@@ -697,6 +698,7 @@ texture = SubResource( 41 )
 [connection signal="pressed" from="Pause/Panel/Disconnect" to="Pause" method="_on_Disconnect_pressed"]
 [connection signal="pressed" from="Pause/Panel/Settings" to="Pause" method="_on_Settings_pressed"]
 [connection signal="pressed" from="Pause/Panel/Team" to="Pause" method="_on_Team_pressed"]
+[connection signal="pressed" from="Pause/Panel/Merc" to="Pause" method="_on_Merc_pressed"]
 [connection signal="visibility_changed" from="Change_Team" to="Change_Team" method="_on_Change_Team_visibility_changed"]
 [connection signal="pressed" from="Change_Team/Blue/Blue_Button" to="Change_Team" method="_on_Blue_Button_pressed"]
 [connection signal="pressed" from="Change_Team/Red/Red_Button" to="Change_Team" method="_on_Red_Button_pressed"]

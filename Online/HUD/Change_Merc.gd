@@ -13,7 +13,9 @@ func _unhandled_input(event):
 			self.visible = false
 		else:
 			self.visible = true
-
+	if event.is_action_pressed("ui_cancel"):
+		if self.visible == true:
+			self.visible = false
 func _on_Solly_Button_mouse_entered():
 	print("Solly")
 	emit_signal("display_merc","Solly")

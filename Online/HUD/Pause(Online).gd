@@ -34,16 +34,16 @@ func _process(delta):
 	if self.visible == true:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 func _input(event):
-	if event.is_action_pressed("ui_focus_next"):
-		match fullscreen:
-			false:
-				OS.set_window_fullscreen(true)
-			#	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-				fullscreen = true
-			true:
-				OS.set_window_fullscreen(false) 
-			#	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-				fullscreen = false
+#	if event.is_action_pressed("ui_focus_next"):
+#		match fullscreen:
+#			false:
+#				OS.set_window_fullscreen(true)
+#			#	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+#				fullscreen = true
+#			true:
+#				OS.set_window_fullscreen(false) 
+#			#	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+#				fullscreen = false
 
 	if event.is_action_pressed("ui_cancel"):
 		match Paused:
@@ -180,4 +180,15 @@ func _on_Disconnect_pressed():
 
 
 func _on_Team_pressed():
-	$"../Change_Team".visible = true
+	var a = InputEventAction.new()
+	a.action = "Change_Team"
+	a.pressed = true
+	Input.parse_input_event(a)
+	#$"../Change_Team".visible = true
+
+
+func _on_Merc_pressed():
+	var a = InputEventAction.new()
+	a.action = "Change_Merc"
+	a.pressed = true
+	Input.parse_input_event(a)

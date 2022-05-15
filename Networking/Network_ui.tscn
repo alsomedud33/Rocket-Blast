@@ -373,6 +373,7 @@ __meta__ = {
 }
 
 [node name="SpinBox" type="SpinBox" parent="Settings_panel"]
+visible = false
 anchor_left = 0.710526
 anchor_top = 0.344828
 anchor_right = 0.954545
@@ -384,6 +385,7 @@ __meta__ = {
 }
 
 [node name="Rocket Man3" type="Label" parent="Settings_panel"]
+visible = false
 anchor_left = 0.0574162
 anchor_top = 0.348659
 anchor_right = 0.669856
@@ -392,6 +394,22 @@ margin_right = -0.000213623
 custom_colors/font_color = Color( 0.92549, 0.478431, 0.164706, 1 )
 custom_fonts/font = SubResource( 25 )
 text = "Round time:"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true,
+"_editor_description_": ""
+}
+
+[node name="Rocket Man4" type="Label" parent="Settings_panel"]
+visible = false
+anchor_left = 0.0574162
+anchor_top = 0.498084
+anchor_right = 0.669858
+anchor_bottom = 0.574714
+margin_right = -0.000213623
+custom_colors/font_color = Color( 0.92549, 0.478431, 0.164706, 1 )
+custom_fonts/font = SubResource( 25 )
+text = "Mercenary:"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": true,

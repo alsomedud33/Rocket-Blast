@@ -84,7 +84,7 @@ func load_data():
 	else:
 		settings = {
 			"username" : str(Players.username),
-			"mouse_sense" : mouse_sense,
+			"mouse_sense" : 2.5,
 			"viewmodel_fov" : viewmodel_fov,
 			"fov" : fov,
 			

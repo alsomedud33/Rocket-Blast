@@ -523,6 +523,7 @@ func _physics_process(delta: float) -> void:
 				1:
 					timer.start(0.625)
 					anim.play("Shoot_Primary")
+					animtree_change("parameters/Is_Shooting/active",0)
 					animtree_change("parameters/Is_Shooting/active",1)
 					rpc("shoot_anim")
 					randomize()
@@ -536,6 +537,7 @@ func _physics_process(delta: float) -> void:
 					wep_spread +=1
 					wep_spread = clamp(wep_spread,0,6)
 					anim.play("Shoot_Secondary")
+					animtree_change("parameters/Is_Shooting/active",0)
 					animtree_change("parameters/Is_Shooting/active",1)
 					rpc("shoot_anim")
 					randomize()
@@ -546,6 +548,7 @@ func _physics_process(delta: float) -> void:
 				3:
 					timer.start(0.5)
 					anim.play("Shoot_Melee")
+					animtree_change("parameters/Is_Shooting/active",0)
 					animtree_change("parameters/Is_Shooting/active",1)
 					rpc("shoot_anim")
 
