@@ -181,30 +181,6 @@ var a = InputEventAction.new()
 func weapon_switch():
 	animtree_change("parameters/Current_Wep/current",current_weapon - 1)
 	if is_network_master():
-		if Input.is_action_just_released("Wep_scroll+"):
-			var temp = current_weapon
-			if temp <=2:
-				temp += 1
-			else:
-				temp = 1
-			a = InputEventAction.new()
-			print(temp)
-			print(current_weapon)
-			a.action = "wep_slot_" + str(temp)
-			a.pressed = true
-			Input.action_press("wep_slot_" + str(temp))
-		elif Input.is_action_just_released("Wep_scroll-"):
-			var temp = current_weapon
-			if temp >=2:
-				temp -= 1
-			else:
-				temp = 3
-			a = InputEventAction.new()
-			print(temp)
-			print(current_weapon)
-			a.action = "wep_slot_" + str(temp)
-			a.pressed = true
-			Input.action_press("wep_slot_" + str(temp))
 		if Input.is_action_just_pressed("wep_slot_1") and current_weapon != 1:
 			$Weapon_Cooldown.start()
 			timer.stop()
@@ -225,6 +201,56 @@ func weapon_switch():
 			current_weapon = 3
 			anim.play("Change_Melee")
 			animtree_change("parameters/Attack_Anim/current",1)
+		if Input.is_action_just_released("Wep_scroll+"):
+			var temp = current_weapon
+			if temp <=2:
+				temp += 1
+			else:
+				temp = 1
+			match temp:
+				1:
+					$Weapon_Cooldown.start()
+					timer.stop()
+					current_weapon = 1
+					anim.play("Change_Primary")
+					animtree_change("parameters/Attack_Anim/current",0)
+				2:
+					$Weapon_Cooldown.start()
+					timer.stop()
+					current_weapon = 2
+					anim.play("Change_Secondary")
+					animtree_change("parameters/Attack_Anim/current",0)
+				3:
+					$Weapon_Cooldown.start()
+					timer.stop()
+					current_weapon = 3
+					anim.play("Change_Melee")
+					animtree_change("parameters/Attack_Anim/current",1)
+		if Input.is_action_just_released("Wep_scroll-"):
+			var temp = current_weapon
+			if temp >=2:
+				temp -= 1
+			else:
+				temp = 3
+			match temp:
+				1:
+					$Weapon_Cooldown.start()
+					timer.stop()
+					current_weapon = 1
+					anim.play("Change_Primary")
+					animtree_change("parameters/Attack_Anim/current",0)
+				2:
+					$Weapon_Cooldown.start()
+					timer.stop()
+					current_weapon = 2
+					anim.play("Change_Secondary")
+					animtree_change("parameters/Attack_Anim/current",0)
+				3:
+					$Weapon_Cooldown.start()
+					timer.stop()
+					current_weapon = 3
+					anim.play("Change_Melee")
+					animtree_change("parameters/Attack_Anim/current",1)
 	else:
 		current_weapon = puppet_current_weapon
 	if current_weapon == 1:

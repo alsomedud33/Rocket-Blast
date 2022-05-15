@@ -729,8 +729,7 @@ margin_top = 218.0
 margin_right = 370.0
 margin_bottom = 368.0
 custom_fonts/font = SubResource( 43 )
-text = "-runs fast
--can double jump
+text = "-can double jump
 -hold jump to bhop"
 
 [node name="Label" type="Label" parent="Change_Merc"]
