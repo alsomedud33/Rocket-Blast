@@ -192,3 +192,11 @@ func _on_Merc_pressed():
 	a.action = "Change_Merc"
 	a.pressed = true
 	Input.parse_input_event(a)
+
+
+func _on_Resume_pressed():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+#	get_tree().paused = false
+	visible = false
+	#print ("ui_cancel")
+	Paused = false

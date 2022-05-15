@@ -80,6 +80,7 @@ func _on_Explosion_Hitbox_body_entered(body):
 
 func _on_Explosion_Hitbox_area_entered(area):
 	if area.get_parent().name == explosion_owner:
+		NetNodes.players.get_node(area.get_parent().name).temp_rocket_jump = true
 		damage *= 0.4#0.35
 	else:
 		var distance_travelled = clamp(NetNodes.players.get_node(explosion_owner).global_transform.origin.distance_to(area.get_parent().global_transform.origin),0,33)

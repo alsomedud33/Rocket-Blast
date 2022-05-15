@@ -134,7 +134,7 @@ puppet func shoot_anim():
 	anim_tree.set("parameters/Is_Shooting/active",1)
 	if current_weapon == 3:
 		animtree_change("parameters/Attack_Anim/current",1)
-#		anim.play("Shoot_Shovel")
+		anim.play("Shoot_Shovel")
 #		armature.get_node("Skeleton/Rocket Launcher/Shovel").visible = true
 #		yield(anim,"animation_finished")
 #		armature.get_node("Skeleton/Rocket Launcher/Shovel").visible = false
@@ -734,4 +734,8 @@ func pallete_swap(colour):
 			pass
 
 func melee_attack():
-	Network.emit_signal("player_shot",name,guns.global_transform.origin,"Melee",65)
+	if self.is_network_master():
+		if temp_rocket_jump == true:# and !is_on_floor():
+			Network.emit_signal("player_shot",name,guns.global_transform.origin,"Melee",195)
+		else:
+			Network.emit_signal("player_shot",name,guns.global_transform.origin,"Melee",65)

@@ -23,6 +23,8 @@ func _unhandled_input(event):#_process(delta):
 			self.visible = true
 	if self.visible == true:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	if Input.is_action_just_pressed("Change_Merc"):
+		self.visible = false
 	red_number_label.text = str(red_player_no)
 	blue_number_label.text = str(blue_player_no)
 

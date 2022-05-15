@@ -485,6 +485,7 @@ func _physics_process(delta: float) -> void:
 					velocity = Vector3.ZERO
 					self.global_transform.origin = dealth_location
 					armature.visible = true
+					armature.get_node("Skeleton/Hat/Hair").set_layer_mask_bit(0,true)
 					armature.get_node("Skeleton/Scout").set_layer_mask_bit(0,true)#.visible = !is_network_master()
 					for i in armature.get_node("Skeleton/Weapons").get_children():
 						for c in i.get_children():
@@ -759,7 +760,8 @@ func pallete_swap(colour):
 			pass
 
 func melee_attack():
-	Network.emit_signal("player_shot",name,guns.global_transform.origin,"Melee",35)
+	if self.is_network_master():
+		Network.emit_signal("player_shot",name,guns.global_transform.origin,"Melee",35)
 
 
 func _on_Spread_Cooldown_timeout():

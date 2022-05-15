@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Online/HUD/Hud (Online).gd" type="Script" id=1]
 [ext_resource path="res://Online/Theme (Online).tres" type="Theme" id=2]
@@ -188,6 +188,20 @@ tracks/2/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 0.67451, 0.2, 1, 1 ), Color( 0.2, 0.717647, 1, 1 ), Color( 0.2, 1, 0.454902, 1 ), Color( 1, 0.94902, 0.2, 1 ), Color( 1, 1, 1, 1 ) ]
 }
+
+[sub_resource type="DynamicFont" id=42]
+size = 60
+outline_size = 5
+outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+use_filter = true
+font_data = SubResource( 36 )
+
+[sub_resource type="DynamicFont" id=43]
+size = 48
+outline_size = 5
+outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+use_filter = true
+font_data = SubResource( 36 )
 
 [sub_resource type="ViewportTexture" id=41]
 viewport_path = NodePath("Change_Merc/Viewport Container")
@@ -576,7 +590,6 @@ custom_fonts/font = SubResource( 38 )
 text = "Choose team"
 
 [node name="Change_Merc" type="Control" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 1
@@ -643,6 +656,28 @@ __meta__ = {
 "_editor_description_": ""
 }
 
+[node name="Description" type="Label" parent="Change_Merc/Solly"]
+visible = false
+margin_left = -734.0
+margin_top = 336.0
+margin_right = -152.0
+margin_bottom = 522.0
+custom_fonts/font = SubResource( 42 )
+text = "-rocket launcher
+-shotgun
+-shovel"
+
+[node name="Description2" type="Label" parent="Change_Merc/Solly"]
+visible = false
+margin_left = -86.0
+margin_top = 368.0
+margin_right = 324.0
+margin_bottom = 518.0
+custom_fonts/font = SubResource( 43 )
+text = "press and hold
+jump mid-air to
+bhop"
+
 [node name="Tweak" type="Panel" parent="Change_Merc"]
 pause_mode = 2
 self_modulate = Color( 0.376471, 0.376471, 0.376471, 1 )
@@ -675,7 +710,30 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 1
 
+[node name="Description" type="Label" parent="Change_Merc/Tweak"]
+visible = false
+margin_left = -734.0
+margin_top = 186.0
+margin_right = -152.0
+margin_bottom = 372.0
+custom_fonts/font = SubResource( 42 )
+text = "-Remburg 8
+-G9
+-Machete"
+
+[node name="Description2" type="Label" parent="Change_Merc/Tweak"]
+visible = false
+margin_left = -144.0
+margin_top = 218.0
+margin_right = 370.0
+margin_bottom = 368.0
+custom_fonts/font = SubResource( 43 )
+text = "-runs fast
+-can double jump
+-hold jump to bhop"
+
 [node name="Label" type="Label" parent="Change_Merc"]
+visible = false
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -356.0
@@ -694,11 +752,33 @@ position = Vector2( 448.111, 371.063 )
 scale = Vector2( 0.702604, 0.702604 )
 texture = SubResource( 41 )
 
+[node name="Description" type="Label" parent="Change_Merc"]
+margin_left = 160.0
+margin_top = 504.0
+margin_right = 742.0
+margin_bottom = 690.0
+custom_fonts/font = SubResource( 42 )
+text = "-rocket launcher
+-shotgun
+-shovel"
+
+[node name="Description2" type="Label" parent="Change_Merc"]
+margin_left = 808.0
+margin_top = 536.0
+margin_right = 1218.0
+margin_bottom = 686.0
+grow_horizontal = 0
+custom_fonts/font = SubResource( 43 )
+text = "press and hold
+jump mid-air to
+bhop"
+
 [connection signal="pressed" from="Pause/Panel/Quit" to="Pause" method="_on_Quit_pressed"]
 [connection signal="pressed" from="Pause/Panel/Disconnect" to="Pause" method="_on_Disconnect_pressed"]
 [connection signal="pressed" from="Pause/Panel/Settings" to="Pause" method="_on_Settings_pressed"]
 [connection signal="pressed" from="Pause/Panel/Team" to="Pause" method="_on_Team_pressed"]
 [connection signal="pressed" from="Pause/Panel/Merc" to="Pause" method="_on_Merc_pressed"]
+[connection signal="pressed" from="Pause/Panel/Resume" to="Pause" method="_on_Resume_pressed"]
 [connection signal="visibility_changed" from="Change_Team" to="Change_Team" method="_on_Change_Team_visibility_changed"]
 [connection signal="pressed" from="Change_Team/Blue/Blue_Button" to="Change_Team" method="_on_Blue_Button_pressed"]
 [connection signal="pressed" from="Change_Team/Red/Red_Button" to="Change_Team" method="_on_Red_Button_pressed"]
