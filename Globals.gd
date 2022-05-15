@@ -85,8 +85,8 @@ func load_data():
 		settings = {
 			"username" : str(Players.username),
 			"mouse_sense" : 2.5,
-			"viewmodel_fov" : viewmodel_fov,
-			"fov" : fov,
+			"viewmodel_fov" : 90,
+			"fov" : 90,
 			
 			"master_vol" : AudioServer.get_bus_volume_db(0),
 			"effects_vol" : AudioServer.get_bus_volume_db(1),
