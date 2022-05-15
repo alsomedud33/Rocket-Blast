@@ -15,6 +15,7 @@ var player_list = {}
 func set_info():
 	player_info["username"] = username
 	player_info["team"] = team + 1
+	player_info["merc"] = "Solly"
 	player_list[1] = player_info
 
 func set_ids():

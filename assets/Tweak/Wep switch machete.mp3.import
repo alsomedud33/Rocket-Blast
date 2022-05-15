@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Wep switch machete.mp3-44396ed53ede476a565601961dcc7a71.mp3str"
+
+[deps]
+
+source_file="res://assets/Tweak/Wep switch machete.mp3"
+dest_files=[ "res://.import/Wep switch machete.mp3-44396ed53ede476a565601961dcc7a71.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

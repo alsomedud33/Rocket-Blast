@@ -1,8 +1,8 @@
 extends Node
 
 
-var soldier = preload("res://assets/Tweak/Tweak.tscn")#preload("res://assets/Soldier/Online/Soldier(online).tscn")
-var tweak = preload("res://assets/Soldier/Online/Soldier(online).tscn")#preload("res://assets/Tweak/Tweak.tscn")
+var soldier = preload("res://assets/Soldier/Online/Soldier(online).tscn")
+var tweak = preload("res://assets/Tweak/Tweak.tscn")#preload("res://assets/Tweak/Tweak.tscn")
 func _on_Skybox_Area_body_exited(body):
 	body.global_transform.origin = $"Skybox_Area/Respawn".global_transform.origin
 
@@ -88,12 +88,17 @@ remotesync func restart_game():
 
 func _instance_players():
 	for id in Players.id_list:
-		_instance_player(id,Players.player_list[id]["team"])
-	_instance_player(Players.net_id,Players.player_info["team"])
+		_instance_player(id,Players.player_list[id]["team"],Players.player_list[id]["merc"])
+	_instance_player(Players.net_id,Players.player_info["team"],Players.player_info["merc"])
 
-func _instance_player(id,_team):
-	print("creating player " +str(id))
+func _instance_player(id,_team,merc):
 	var p = soldier.instance()
+	match merc:
+		"Solly":
+			p = soldier.instance()
+		"Tweak":
+			p = tweak.instance()
+	print("creating player " +str(id))
 	p.set_network_master(id)
 	p.name = str(id)
 	p.team = _team
@@ -101,6 +106,7 @@ func _instance_player(id,_team):
 	NetNodes.players.add_child(p)#self.add_child(p) #NetNodes.players.add_child(p)
 
 func _respawn(id,merc,team):
+	merc = Players.player_info["merc"]
 	rpc("_respawn_remote",id,merc,team)
 	get_node("CameraHub/Camera").current = true
 	if NetNodes.has_node("HUD (Online)"):
@@ -115,6 +121,13 @@ func _respawn(id,merc,team):
 #	yield(get_tree().create_timer(2),"timeout")
 	print("respawning player: " +str(id))
 	var p = soldier.instance()
+	match merc:
+		"Solly":
+			p = soldier.instance()
+		"Tweak":
+			p = tweak.instance()
+		"":
+			p = soldier.instance()
 	p.set_network_master(id)
 	p.name = str(id)
 	p.team = team
@@ -143,6 +156,13 @@ remote func _respawn_remote(id,merc,team):
 #	yield(get_tree().create_timer(2),"timeout")
 	print("respawning player: " +str(id))
 	var p = soldier.instance()
+	match merc:
+		"Solly":
+			p = soldier.instance()
+		"Tweak":
+			p = tweak.instance()
+		"":
+			p = soldier.instance()
 	p.set_network_master(id)
 	p.name = str(id)
 	p.team = team

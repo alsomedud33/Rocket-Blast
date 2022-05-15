@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Online/HUD/Hud (Online).gd" type="Script" id=1]
 [ext_resource path="res://Online/Theme (Online).tres" type="Theme" id=2]
@@ -9,6 +9,9 @@
 [ext_resource path="res://TitleScreen/BG3.png" type="Texture" id=7]
 [ext_resource path="res://Maps/TwoTower/Team_Select_Script.gd" type="Script" id=8]
 [ext_resource path="res://TitleScreen/Shifting Shader.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Online/Character Previews.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Online/HUD/Change_Merc.gd" type="Script" id=11]
+[ext_resource path="res://Online/Character Previews.gd" type="Script" id=12]
 
 [sub_resource type="DynamicFontData" id=17]
 font_path = "res://assets/Fonts/TF2.ttf"
@@ -144,6 +147,50 @@ outline_size = 5
 outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
 use_filter = true
 font_data = SubResource( 36 )
+
+[sub_resource type="Animation" id=40]
+resource_name = "Hue Shifting"
+length = 5.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.721569, 0.294118, 0.266667, 1 ), Color( 0.67451, 0.2, 1, 1 ), Color( 0.2, 0.717647, 1, 1 ), Color( 0.2, 1, 0.454902, 1 ), Color( 1, 0.94902, 0.2, 1 ), Color( 0.721569, 0.294118, 0.266667, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("WobbleOne:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4, 5 ),
+"transitions": PoolRealArray( 1, 8.28211, 8.28211, 8.28211, 8.28211, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.67451, 0.2, 1, 1 ), Color( 0.2, 0.717647, 1, 1 ), Color( 0.2, 1, 0.454902, 1 ), Color( 1, 0.94902, 0.2, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("WobbleTwo:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4, 5 ),
+"transitions": PoolRealArray( 1, 8.28211, 8.28211, 8.28211, 8.28211, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.67451, 0.2, 1, 1 ), Color( 0.2, 0.717647, 1, 1 ), Color( 0.2, 1, 0.454902, 1 ), Color( 1, 0.94902, 0.2, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="ViewportTexture" id=41]
+viewport_path = NodePath("Change_Merc/Viewport Container")
 
 [node name="HUD (Online)" type="Control"]
 pause_mode = 2
@@ -406,7 +453,6 @@ __meta__ = {
 [node name="Settings Popup" parent="Pause" instance=ExtResource( 5 )]
 
 [node name="Change_Team" type="Control" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 1
@@ -529,6 +575,124 @@ margin_bottom = 100.0
 custom_fonts/font = SubResource( 38 )
 text = "Choose team"
 
+[node name="Change_Merc" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Shifting Shader" parent="Change_Merc" instance=ExtResource( 9 )]
+mouse_filter = 1
+
+[node name="ColorRect" parent="Change_Merc/Shifting Shader" index="0"]
+self_modulate = Color( 0.2, 0.168627, 0.0980392, 1 )
+color = Color( 1, 1, 1, 1 )
+
+[node name="WobbleOne" parent="Change_Merc/Shifting Shader" index="1"]
+self_modulate = Color( 0.188235, 0.54902, 0.741176, 1 )
+
+[node name="WobbleTwo" parent="Change_Merc/Shifting Shader" index="2"]
+self_modulate = Color( 0.188235, 0.54902, 0.741176, 1 )
+texture = ExtResource( 6 )
+
+[node name="AnimationPlayer" parent="Change_Merc/Shifting Shader" index="3"]
+"anims/Hue Shifting" = SubResource( 40 )
+
+[node name="TextureRect" type="TextureRect" parent="Change_Merc/Shifting Shader"]
+self_modulate = Color( 0.188235, 0.54902, 0.741176, 1 )
+material = SubResource( 34 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 7 )
+expand = true
+
+[node name="Solly" type="Panel" parent="Change_Merc"]
+pause_mode = 2
+self_modulate = Color( 0.376471, 0.376471, 0.376471, 1 )
+margin_left = 894.0
+margin_top = 168.0
+margin_right = 1197.0
+margin_bottom = 315.0
+mouse_filter = 1
+custom_styles/panel = SubResource( 35 )
+
+[node name="Blue" type="Label" parent="Change_Merc/Solly"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -120.0
+margin_top = 27.0
+margin_right = 120.0
+margin_bottom = 127.0
+grow_horizontal = 2
+custom_fonts/font = SubResource( 37 )
+text = "solly"
+align = 1
+valign = 1
+
+[node name="Solly_Button" type="Button" parent="Change_Merc/Solly"]
+self_modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+custom_styles/normal = SubResource( 35 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Tweak" type="Panel" parent="Change_Merc"]
+pause_mode = 2
+self_modulate = Color( 0.376471, 0.376471, 0.376471, 1 )
+margin_left = 896.0
+margin_top = 320.0
+margin_right = 1192.0
+margin_bottom = 463.0
+mouse_filter = 1
+custom_styles/panel = SubResource( 35 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Red2" type="Label" parent="Change_Merc/Tweak"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -96.5
+margin_top = 27.0
+margin_right = 96.5
+margin_bottom = 127.0
+grow_horizontal = 2
+custom_fonts/font = SubResource( 37 )
+text = "tweak"
+align = 1
+valign = 1
+
+[node name="Tweak_Button" type="Button" parent="Change_Merc/Tweak"]
+self_modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+
+[node name="Label" type="Label" parent="Change_Merc"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -356.0
+margin_right = 356.0
+margin_bottom = 100.0
+grow_horizontal = 2
+custom_fonts/font = SubResource( 38 )
+text = "Choose mercenary"
+
+[node name="Viewport Container" parent="Change_Merc" instance=ExtResource( 10 )]
+transparent_bg = true
+script = ExtResource( 12 )
+
+[node name="Sprite" type="Sprite" parent="Change_Merc"]
+position = Vector2( 448.111, 371.063 )
+scale = Vector2( 0.702604, 0.702604 )
+texture = SubResource( 41 )
+
 [connection signal="pressed" from="Pause/Panel/Quit" to="Pause" method="_on_Quit_pressed"]
 [connection signal="pressed" from="Pause/Panel/Disconnect" to="Pause" method="_on_Disconnect_pressed"]
 [connection signal="pressed" from="Pause/Panel/Settings" to="Pause" method="_on_Settings_pressed"]
@@ -536,5 +700,11 @@ text = "Choose team"
 [connection signal="visibility_changed" from="Change_Team" to="Change_Team" method="_on_Change_Team_visibility_changed"]
 [connection signal="pressed" from="Change_Team/Blue/Blue_Button" to="Change_Team" method="_on_Blue_Button_pressed"]
 [connection signal="pressed" from="Change_Team/Red/Red_Button" to="Change_Team" method="_on_Red_Button_pressed"]
+[connection signal="visibility_changed" from="Change_Merc" to="Change_Merc" method="_on_Change_Merc_visibility_changed"]
+[connection signal="mouse_entered" from="Change_Merc/Solly" to="Change_Merc" method="_on_Solly_Button_mouse_entered"]
+[connection signal="pressed" from="Change_Merc/Solly/Solly_Button" to="Change_Merc" method="_on_Solly_Button_pressed"]
+[connection signal="mouse_entered" from="Change_Merc/Tweak" to="Change_Merc" method="_on_Tweak_Button_mouse_entered"]
+[connection signal="pressed" from="Change_Merc/Tweak/Tweak_Button" to="Change_Merc" method="_on_Tweak_Button_pressed"]
 
 [editable path="Change_Team/Shifting Shader"]
+[editable path="Change_Merc/Shifting Shader"]

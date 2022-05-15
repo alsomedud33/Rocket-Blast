@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Remburg Switch3.wav-8244ef3b9e38bddd4015424acbff0eea.sample"
+
+[deps]
+
+source_file="res://assets/Tweak/Remburg Switch3.wav"
+dest_files=[ "res://.import/Remburg Switch3.wav-8244ef3b9e38bddd4015424acbff0eea.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

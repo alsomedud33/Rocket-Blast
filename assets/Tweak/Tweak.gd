@@ -134,19 +134,20 @@ puppet func shoot_anim():
 	anim_tree.set("parameters/Is_Shooting/active",1)
 	if current_weapon == 3:
 		animtree_change("parameters/Attack_Anim/current",1)
+		anim.play("Shoot_Melee")
 #		anim.play("Shoot_Shovel")
 #		armature.get_node("Skeleton/Rocket Launcher/Shovel").visible = true
 #		yield(anim,"animation_finished")
 #		armature.get_node("Skeleton/Rocket Launcher/Shovel").visible = false
 	if current_weapon == 2:
 		animtree_change("parameters/Attack_Anim/current",0)
-		anim.play("Shoot_Shotty")
+		anim.play("Shoot_Secondary")
 		armature.get_node("Skeleton/Weapons/Secondary").visible = true
 		yield(anim,"animation_finished")
 		armature.get_node("Skeleton/Weapons/Secondary").visible = false
 	if current_weapon == 1:
 		animtree_change("parameters/Attack_Anim/current",0)
-		anim.play("Shoot_Rocket")
+		anim.play("Shoot_Primary")
 		armature.get_node("Skeleton/Weapons/Primary").visible = true
 		yield(anim,"animation_finished")
 		armature.get_node("Skeleton/Weapons/Primary").visible = false
@@ -186,7 +187,7 @@ func weapon_switch():
 			timer.stop()
 			wep_spread = 6
 			current_weapon = 1
-			anim.play("Sway_Primary")
+			anim.play("Change_Primary")
 			animtree_change("parameters/Attack_Anim/current",0)
 		
 		elif Input.is_action_just_pressed("wep_slot_2") and current_weapon != 2:
@@ -194,14 +195,14 @@ func weapon_switch():
 			timer.stop()
 			wep_spread = 0
 			current_weapon = 2
-			anim.play("Sway_Secondary")
+			anim.play("Change_Secondary")
 			animtree_change("parameters/Attack_Anim/current",0)
 		
 		elif Input.is_action_just_pressed("wep_slot_3") and current_weapon != 3:
 			$Weapon_Cooldown.start()
 			timer.stop()
 			current_weapon = 3
-			anim.play("Sway_Melee")
+			anim.play("Change_Melee")
 			animtree_change("parameters/Attack_Anim/current",1)
 	else:
 		current_weapon = puppet_current_weapon

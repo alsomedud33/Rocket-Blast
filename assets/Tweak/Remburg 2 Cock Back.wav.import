@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Remburg 2 Cock Back.wav-945afbc2a74d2408f28238a9056733c7.sample"
+
+[deps]
+
+source_file="res://assets/Tweak/Remburg 2 Cock Back.wav"
+dest_files=[ "res://.import/Remburg 2 Cock Back.wav-945afbc2a74d2408f28238a9056733c7.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

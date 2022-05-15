@@ -11,7 +11,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _input(event):#_process(delta):
+func _unhandled_input(event):#_process(delta):
 	if Input.is_action_just_pressed("Change_Team"):
 		if self.visible == true:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -44,9 +44,11 @@ func _on_Red_Button_pressed():
 	NetNodes.players.get_node(str(get_tree().get_network_unique_id())).health = -10000
 	self.visible = false
 
+
 func _on_Blue_Button_pressed():
 	#if blue_player_no > red_player_no:
 	Players.player_list[get_tree().get_network_unique_id()]["team"] = 2
 	NetNodes.players.get_node(str(get_tree().get_network_unique_id())).team = 2
 	NetNodes.players.get_node(str(get_tree().get_network_unique_id())).health = -10000
 	self.visible = false
+

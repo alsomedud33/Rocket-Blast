@@ -185,21 +185,21 @@ func weapon_switch():
 			$Weapon_Cooldown.start()
 			timer.stop()
 			current_weapon = 1
-			anim.play("Sway")
+			anim.play("Change_Primary")
 			animtree_change("parameters/Attack_Anim/current",0)
 		
 		elif Input.is_action_just_pressed("wep_slot_2") and current_weapon != 2:
 			$Weapon_Cooldown.start()
 			timer.stop()
 			current_weapon = 2
-			anim.play("Sway_Shotty")
+			anim.play("Change_Secondary")
 			animtree_change("parameters/Attack_Anim/current",0)
 		
 		elif Input.is_action_just_pressed("wep_slot_3") and current_weapon != 3:
 			$Weapon_Cooldown.start()
 			timer.stop()
 			current_weapon = 3
-			anim.play("Sway_Shovel")
+			anim.play("Change_Melee")
 			animtree_change("parameters/Attack_Anim/current",1)
 	else:
 		current_weapon = puppet_current_weapon
