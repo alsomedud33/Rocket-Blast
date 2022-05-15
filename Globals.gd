@@ -21,6 +21,98 @@ var sticky_deployed:int = 0
 var player: int
 var Paused = false
 
+
+
+var file_name = "user://keybinding.json"
+
+var key_dict = {
+	"move_forward":65,
+	"move_back":83,
+	"move_right":68,
+	"move_left":65,
+	"jump":32,
+	"shoot1":1,
+	"shoot2":2,
+	"wep_slot_1":49,
+	"wep_slot_2":50,
+	"wep_slot_3":51,
+	"wep_slot_4":52,
+	"wep_slot_5":53,
+	"wep_slot_6":54,
+	"wep_slot_7":55,
+	"wep_slot_8":56,
+	"wep_slot_9":57,
+	"Wep_scroll+":4,
+	"Wep_scroll-":5,
+	}
+				
+var setting_key = false
+
+#We'll use this when the game loads
+func load_keys():
+	var file = File.new()
+	if(file.file_exists(file_name)):
+		delete_old_keys()
+		file.open(file_name,File.READ)
+		var data = parse_json(file.get_as_text())
+		file.close()
+		if(typeof(data) == TYPE_DICTIONARY):
+			key_dict = data
+			setup_keys()
+		else:
+			printerr("corrupted data!")
+	else:
+		#NoFile, so lets save the default keys now
+		save_keys()
+	pass
+	
+func delete_old_keys():
+	#Remove the old keys
+	for i in key_dict:
+		var oldkey = InputEventKey.new()
+		oldkey.scancode = int(Globals.key_dict[i])
+		InputMap.action_erase_event(i,oldkey)
+
+func setup_keys():
+	for i in key_dict:
+		for j in get_tree().get_nodes_in_group("button_keys"):
+			if(j.action_name == i):
+				if key_dict[i] == 1 or key_dict[i] == 2 or key_dict[i] == 4 or key_dict[i] ==5:
+					print (key_dict[i])
+					j.text = index_to_text(key_dict[i])
+				else:
+					j.text = OS.get_scancode_string(key_dict[i])
+		var newkey = InputEventKey.new()
+		newkey.scancode = int(key_dict[i])
+		InputMap.action_add_event(i,newkey)
+
+func index_to_text(index:int):
+	var text:String
+	match index:
+			1:
+				text = "Mouse 1"
+			2:
+				text = "Mouse 2"
+			3:
+				text = "BUTTON_MIDDLE"
+			4:
+				text = "MWHEELUP"
+			5:
+				text = "MWHEELDOWN"
+			8:
+				text = "SIDE_BTN_1"
+			9:
+				text = "SIDE_BTN_2"
+	return text
+
+func save_keys():
+	var file = File.new()
+	file.open(file_name,File.WRITE)
+	file.store_string(to_json(key_dict))
+	file.close()
+	print("saved")
+	pass
+
 var save_path = SAVE_DIR +"save.dat"
 
 const SAVE_DIR = "user://saves/"
@@ -135,6 +227,7 @@ onready var game_data = settings
 
 func _ready():
 	load_data()
+	load_keys()
 	#AudioServer.set_bus_volume_db(0, linear2db(0.5))
 
 func _process(delta):

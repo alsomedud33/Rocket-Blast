@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://btnparent.gd" type="Script" id=1]
+
+[sub_resource type="DynamicFontData" id=36]
+font_path = "res://assets/Fonts/TF2.ttf"
+
+[sub_resource type="DynamicFont" id=37]
+size = 20
+outline_size = 5
+outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+use_filter = true
+font_data = SubResource( 36 )
+
+[node name="btnparent" type="Button" groups=["button_keys"]]
+anchor_right = 0.153906
+anchor_bottom = 0.0736111
+focus_mode = 0
+custom_fonts/font = SubResource( 37 )
+enabled_focus_mode = 0
+text = "TEST"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}

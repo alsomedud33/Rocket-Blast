@@ -26,6 +26,7 @@ onready var vsync_btn = $"TabContainer/Video/Panel/MarginContainer/VBoxContainer
 onready var fps_btn = $"TabContainer/Video/Panel/MarginContainer/VBoxContainer/HBoxContainer4/DisplayFpsBtn"
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	set_buttons()
 	Globals.load_data()
 	Globals.mouse_sense = Globals.load_data().mouse_sense
 	mouse_sens_scroll.value = Globals.load_data().mouse_sense/20
@@ -171,3 +172,11 @@ func _on_DisplayFpsBtn_toggled(button_pressed):
 
 func _on_TextureFilteringBtn_toggled(button_pressed):
 	pass # Replace with function body.
+func set_buttons():
+	for i in Globals.key_dict:
+		for j in get_tree().get_nodes_in_group("button_keys"):
+			if(j.action_name == i):
+				if Globals.key_dict[i] == 1 or Globals.key_dict[i] == 2 or Globals.key_dict[i] == 4 or Globals.key_dict[i] ==5:
+					j.text = Globals.index_to_text(Globals.key_dict[i])
+				else:
+					j.text = OS.get_scancode_string(Globals.key_dict[i])

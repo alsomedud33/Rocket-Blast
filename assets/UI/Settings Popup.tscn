@@ -1,7 +1,8 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://assets/UI/Font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://TitleScreen/Settings Popup.gd" type="Script" id=2]
+[ext_resource path="res://assets/UI/btnparent.tscn" type="PackedScene" id=3]
 
 [sub_resource type="StyleBoxFlat" id=40]
 bg_color = Color( 0.45098, 0.129412, 0.101961, 1 )
@@ -149,8 +150,19 @@ font_data = SubResource( 17 )
 [sub_resource type="StyleBoxFlat" id=63]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
 
+[sub_resource type="DynamicFontData" id=36]
+font_path = "res://assets/Fonts/TF2.ttf"
+
+[sub_resource type="DynamicFont" id=70]
+size = 17
+outline_size = 5
+outline_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+use_filter = true
+font_data = SubResource( 36 )
+
 [node name="Settings Popup" type="WindowDialog"]
 pause_mode = 2
+visible = true
 anchor_left = 0.40625
 anchor_top = 0.259722
 anchor_right = 0.982813
@@ -181,6 +193,7 @@ __meta__ = {
 }
 
 [node name="Game" type="Tabs" parent="TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 24.0
@@ -719,6 +732,560 @@ custom_fonts/font = SubResource( 62 )
 custom_styles/normal = SubResource( 63 )
 enabled_focus_mode = 0
 align = 1
+
+[node name="Keybinds" type="Tabs" parent="TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 24.0
+
+[node name="Panel" type="Panel" parent="TabContainer/Keybinds"]
+self_modulate = Color( 1, 1, 1, 0.5 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 42 )
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Keybinds/Panel"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 728.0
+margin_bottom = 370.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Keybinds/Panel/MarginContainer"]
+margin_right = 718.0
+margin_bottom = 360.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer"]
+margin_right = 718.0
+margin_bottom = 731.0
+rect_min_size = Vector2( 718, 360 )
+
+[node name="Label" type="Label" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_right = 718.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 180, 0 )
+rect_pivot_offset = Vector2( 66.3635, -35 )
+custom_fonts/font = SubResource( 50 )
+text = "MOVEMENT"
+align = 1
+valign = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 35.0
+margin_right = 718.0
+margin_bottom = 66.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="ResolutionLabel" type="Label" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer5"]
+margin_left = 129.0
+margin_right = 429.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 300, 0 )
+rect_pivot_offset = Vector2( 66.3635, -35 )
+custom_fonts/font = SubResource( 50 )
+text = "forward"
+valign = 1
+
+[node name="btnparent" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer5" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 449.0
+margin_right = 589.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 140, 0 )
+text = "w"
+action_name = "move_forward"
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 70.0
+margin_right = 718.0
+margin_bottom = 101.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="ResolutionLabel" type="Label" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer6"]
+margin_left = 129.0
+margin_right = 429.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 300, 0 )
+rect_pivot_offset = Vector2( 66.3635, -35 )
+custom_fonts/font = SubResource( 50 )
+text = "Backward"
+valign = 1
+
+[node name="btnparent" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer6" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 449.0
+margin_right = 589.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 140, 0 )
+text = "s"
+action_name = "move_back"
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 105.0
+margin_right = 718.0
+margin_bottom = 136.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="ResolutionLabel" type="Label" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer7"]
+margin_left = 129.0
+margin_right = 429.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 300, 0 )
+rect_pivot_offset = Vector2( 66.3635, -35 )
+custom_fonts/font = SubResource( 50 )
+text = "moveleft"
+valign = 1
+
+[node name="btnparent" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer7" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 449.0
+margin_right = 589.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 140, 0 )
+text = "a"
+action_name = "move_left"
+
+[node name="HBoxContainer8" type="HBoxContainer" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 140.0
+margin_right = 718.0
+margin_bottom = 171.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="ResolutionLabel" type="Label" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer8"]
+margin_left = 129.0
+margin_right = 429.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 300, 0 )
+rect_pivot_offset = Vector2( 66.3635, -35 )
+custom_fonts/font = SubResource( 50 )
+text = "moveright"
+valign = 1
+
+[node name="btnparent" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer8" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 449.0
+margin_right = 589.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 140, 0 )
+text = "d"
+action_name = "move_right"
+
+[node name="HBoxContainer9" type="HBoxContainer" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 175.0
+margin_right = 718.0
+margin_bottom = 206.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="ResolutionLabel" type="Label" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer9"]
+margin_left = 129.0
+margin_right = 429.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 300, 0 )
+rect_pivot_offset = Vector2( 66.3635, -35 )
+custom_fonts/font = SubResource( 50 )
+text = "jump"
+valign = 1
+
+[node name="btnparent" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer9" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 449.0
+margin_right = 589.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 140, 0 )
+text = "space"
+action_name = "jump"
+
+[node name="Label2" type="Label" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 210.0
+margin_right = 718.0
+margin_bottom = 241.0
+rect_min_size = Vector2( 180, 0 )
+rect_pivot_offset = Vector2( 66.3635, -35 )
+custom_fonts/font = SubResource( 50 )
+align = 1
+valign = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Label4" type="Label" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 245.0
+margin_right = 718.0
+margin_bottom = 276.0
+rect_min_size = Vector2( 180, 0 )
+rect_pivot_offset = Vector2( 66.3635, -35 )
+custom_fonts/font = SubResource( 50 )
+text = "COMBAT"
+align = 1
+valign = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="HBoxContainer10" type="HBoxContainer" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 280.0
+margin_right = 718.0
+margin_bottom = 311.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="ResolutionLabel" type="Label" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer10"]
+margin_left = 129.0
+margin_right = 429.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 300, 0 )
+rect_pivot_offset = Vector2( 66.3635, -35 )
+custom_fonts/font = SubResource( 50 )
+text = "primary attack"
+valign = 1
+
+[node name="btnparent" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer10" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 449.0
+margin_right = 589.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 140, 0 )
+text = "mouse_1"
+action_name = "shoot1"
+
+[node name="HBoxContainer11" type="HBoxContainer" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 315.0
+margin_right = 718.0
+margin_bottom = 346.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="ResolutionLabel" type="Label" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer11"]
+margin_left = 129.0
+margin_right = 429.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 300, 0 )
+rect_pivot_offset = Vector2( 66.3635, -35 )
+custom_fonts/font = SubResource( 50 )
+text = "seconday attack"
+valign = 1
+
+[node name="btnparent" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer11" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 449.0
+margin_right = 589.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 140, 0 )
+text = "mouse_2"
+action_name = "shoot2"
+
+[node name="HBoxContainer12" type="HBoxContainer" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 350.0
+margin_right = 718.0
+margin_bottom = 381.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="ResolutionLabel" type="Label" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer12"]
+margin_left = 129.0
+margin_right = 429.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 300, 0 )
+rect_pivot_offset = Vector2( 66.3635, -35 )
+custom_fonts/font = SubResource( 50 )
+text = "Next weapon "
+valign = 1
+
+[node name="btnparent" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer12" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 449.0
+margin_right = 589.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 140, 0 )
+text = "MWHEELUP"
+action_name = "Wep_scroll+"
+
+[node name="HBoxContainer14" type="HBoxContainer" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 385.0
+margin_right = 718.0
+margin_bottom = 416.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="ResolutionLabel" type="Label" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer14"]
+margin_left = 129.0
+margin_right = 429.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 300, 0 )
+rect_pivot_offset = Vector2( 66.3635, -35 )
+custom_fonts/font = SubResource( 50 )
+text = "Previous weapon "
+valign = 1
+
+[node name="btnparent" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer14" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 449.0
+margin_right = 589.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 140, 0 )
+custom_fonts/font = SubResource( 70 )
+text = "MWHEELDown"
+action_name = "Wep_scroll-"
+
+[node name="HBoxContainer13" type="HBoxContainer" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 420.0
+margin_right = 718.0
+margin_bottom = 451.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="ResolutionLabel" type="Label" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer13"]
+margin_left = 129.0
+margin_right = 429.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 300, 0 )
+rect_pivot_offset = Vector2( 66.3635, -35 )
+custom_fonts/font = SubResource( 50 )
+text = "Weapon slot 1"
+valign = 1
+
+[node name="btnparent" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer13" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 449.0
+margin_right = 589.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 140, 0 )
+text = "1"
+action_name = "wep_slot_1"
+
+[node name="HBoxContainer15" type="HBoxContainer" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 455.0
+margin_right = 718.0
+margin_bottom = 486.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="ResolutionLabel" type="Label" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer15"]
+margin_left = 129.0
+margin_right = 429.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 300, 0 )
+rect_pivot_offset = Vector2( 66.3635, -35 )
+custom_fonts/font = SubResource( 50 )
+text = "Weapon slot 2"
+valign = 1
+
+[node name="btnparent" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer15" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 449.0
+margin_right = 589.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 140, 0 )
+text = "2"
+action_name = "wep_slot_2"
+
+[node name="HBoxContainer16" type="HBoxContainer" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 490.0
+margin_right = 718.0
+margin_bottom = 521.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="ResolutionLabel" type="Label" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer16"]
+margin_left = 129.0
+margin_right = 429.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 300, 0 )
+rect_pivot_offset = Vector2( 66.3635, -35 )
+custom_fonts/font = SubResource( 50 )
+text = "Weapon slot 3"
+valign = 1
+
+[node name="btnparent" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer16" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 449.0
+margin_right = 589.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 140, 0 )
+text = "3"
+action_name = "wep_slot_3"
+
+[node name="HBoxContainer17" type="HBoxContainer" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 525.0
+margin_right = 718.0
+margin_bottom = 556.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="ResolutionLabel" type="Label" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer17"]
+margin_left = 129.0
+margin_right = 429.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 300, 0 )
+rect_pivot_offset = Vector2( 66.3635, -35 )
+custom_fonts/font = SubResource( 50 )
+text = "Weapon slot 4"
+valign = 1
+
+[node name="btnparent" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer17" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 449.0
+margin_right = 589.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 140, 0 )
+text = "4"
+action_name = "wep_slot_4"
+
+[node name="HBoxContainer18" type="HBoxContainer" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 560.0
+margin_right = 718.0
+margin_bottom = 591.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="ResolutionLabel" type="Label" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer18"]
+margin_left = 129.0
+margin_right = 429.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 300, 0 )
+rect_pivot_offset = Vector2( 66.3635, -35 )
+custom_fonts/font = SubResource( 50 )
+text = "Weapon slot 5"
+valign = 1
+
+[node name="btnparent" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer18" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 449.0
+margin_right = 589.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 140, 0 )
+text = "5"
+action_name = "wep_slot_5"
+
+[node name="HBoxContainer19" type="HBoxContainer" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 595.0
+margin_right = 718.0
+margin_bottom = 626.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="ResolutionLabel" type="Label" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer19"]
+margin_left = 129.0
+margin_right = 429.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 300, 0 )
+rect_pivot_offset = Vector2( 66.3635, -35 )
+custom_fonts/font = SubResource( 50 )
+text = "Weapon slot 6"
+valign = 1
+
+[node name="btnparent" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer19" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 449.0
+margin_right = 589.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 140, 0 )
+text = "6"
+action_name = "wep_slot_6"
+
+[node name="HBoxContainer20" type="HBoxContainer" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 630.0
+margin_right = 718.0
+margin_bottom = 661.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="ResolutionLabel" type="Label" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer20"]
+margin_left = 129.0
+margin_right = 429.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 300, 0 )
+rect_pivot_offset = Vector2( 66.3635, -35 )
+custom_fonts/font = SubResource( 50 )
+text = "Weapon slot 7"
+valign = 1
+
+[node name="btnparent" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer20" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 449.0
+margin_right = 589.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 140, 0 )
+rect_pivot_offset = Vector2( 1000, -508 )
+text = "7"
+action_name = "wep_slot_7"
+
+[node name="HBoxContainer21" type="HBoxContainer" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 665.0
+margin_right = 718.0
+margin_bottom = 696.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="ResolutionLabel" type="Label" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer21"]
+margin_left = 129.0
+margin_right = 429.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 300, 0 )
+rect_pivot_offset = Vector2( 66.3635, -35 )
+custom_fonts/font = SubResource( 50 )
+text = "Weapon slot 8"
+valign = 1
+
+[node name="btnparent" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer21" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 449.0
+margin_right = 589.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 140, 0 )
+text = "8"
+action_name = "wep_slot_8"
+
+[node name="HBoxContainer22" type="HBoxContainer" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 700.0
+margin_right = 718.0
+margin_bottom = 731.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="ResolutionLabel" type="Label" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer22"]
+margin_left = 129.0
+margin_right = 429.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 300, 0 )
+rect_pivot_offset = Vector2( 66.3635, -35 )
+custom_fonts/font = SubResource( 50 )
+text = "Weapon slot 9"
+valign = 1
+
+[node name="btnparent" parent="TabContainer/Keybinds/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer22" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 449.0
+margin_right = 589.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 140, 0 )
+text = "9"
+action_name = "wep_slot_9"
 
 [connection signal="popup_hide" from="." to="." method="_on_Settings_Popup_popup_hide"]
 [connection signal="value_changed" from="TabContainer/Game/Panel2/Mouse Sense" to="." method="_on_Mouse_Sense_value_changed"]
